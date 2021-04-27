@@ -1,0 +1,17 @@
+{
+    "event": "GW170818",
+    "detectors": [
+        "H1",
+        "L1",
+        "V1"
+    ],
+    "t_event": 1187058327.1,
+    "f_min": 20.0,
+    "f_max": 1024.0,
+    "T": 8.0,
+    "T_psd": 1024.0,
+    "T_buffer": 2.0,
+    "window_factor": 0.9374713897717841,
+    "window": "tukey",
+    "roll_off": 0.4
+}
