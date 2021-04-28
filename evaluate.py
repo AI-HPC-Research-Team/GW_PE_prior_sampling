@@ -13,11 +13,11 @@ from lfigw.gwpe_extra import PosteriorModel
 import lfigw.waveform_generator_extra as wfg
 
 import os
-path = '/userhome/O2/injection'
+path = './injection'
 
 event = 'GW150914'
 event_name = 'Model150914_PSD150914_Noise150914_Inj150914'
-os.mkdir('/userhome/O2/output/' + event_name)
+os.mkdir('./output/' + event_name)
 version = 'v3'
 
 #alpha = ['0.0002', '0.0005', '0.001', '0.0011', '0.0012', '0.0013', '0.0014', '0.0016', '0.0017', '0.002', '0.003', '0.004', '0.005', '0.006', '0.009', '0.01']
@@ -28,7 +28,7 @@ for x in l:
     if x.startswith(event_name) and x.endswith(version):
         testd[ind] = x
         ind += 1
-        
+
 # for tmp in alpha:
 #     print("#######", tmp)
 #     tmp_dir = event_name + '_' + str(tmp) + '_' + version
@@ -36,18 +36,23 @@ for x in l:
 #     ind += 1
 
 #pm = PosteriorModel(model_dir='/userhome/O2/gwpe_151012/models/{}_posterior/'.format(event), data_dir='/userhome/O2/gwpe_151012/waveforms/{}_posterior/'.format(event))
-pm = PosteriorModel(model_dir='/userhome/O2/models/202103/{}/'.format(event), data_dir='/userhome/O2/waveforms/{}/'.format(event))
+pm = PosteriorModel(model_dir='./models/202103/{}/'.format(event), data_dir='./waveforms/{}/'.format(event))
 pm.load_model()
 pm.wfd = wfg.WaveformDataset()
 pm.wfd.load_noisy_test_data(pm.data_dir)
 pm.init_waveform_supp()
 
 from lfigw.nde_flows import obtain_samples
+#     for det, h in d_RB.items():
+#         plt.plot(h)
+#     plt.savefig('/userhome/O2/output/figure1_{}_{}_{}.jpg'.format(event, testd[i+1], version))
+
+nsamples = 50000
 
 for i in range(len(testd)):
     event_strain = {}
     # with h5py.File('../data/events/{}/strain_FD_whitened.hdf5'.format(event), 'r') as f:
-    with h5py.File('/userhome/O2/injection/{}/strain_FD_whitened.hdf5'.format(testd[i+1]), 'r') as f:
+    with h5py.File('./injection/{}/strain_FD_whitened.hdf5'.format(testd[i+1]), 'r') as f:
         event_strain['H1'] = f['H1'][:].astype(np.complex64)
         event_strain['L1'] = f['L1'][:].astype(np.complex64)
         #event_strain['V1'] = f['V1'][:].astype(np.complex64)
@@ -57,12 +62,6 @@ for i in range(len(testd)):
         h_RB = pm.wfd.basis.fseries_to_basis_coefficients(di)
         d_RB[ifo] = h_RB
     _, y = pm.wfd.x_y_from_p_h(pm.wfd.noisy_waveforms_parameters[0], d_RB, add_noise=False)
-
-#     for det, h in d_RB.items():
-#         plt.plot(h)
-#     plt.savefig('/userhome/O2/output/figure1_{}_{}_{}.jpg'.format(event, testd[i+1], version))
-
-    nsamples = 50000
 
     start = time.time()
     x_samples = obtain_samples(pm.model, y, nsamples, pm.device)
@@ -74,7 +73,7 @@ for i in range(len(testd)):
     # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
     params_samples = pm.wfd.post_process_parameters(x_samples.numpy())
 
-    np.savez_compressed('/userhome/O2/output/' + event_name + '/posterior_{}.npz'.format(testd[i+1]), samples=params_samples, parameter_labels=pm.wfd.parameter_labels,)
+    np.savez_compressed('./output/' + event_name + '/posterior_{}.npz'.format(testd[i+1]), samples=params_samples, parameter_labels=pm.wfd.parameter_labels,)
 
 #     corner.corner(params_samples, labels=pm.wfd.parameter_labels, color='black',
 #                   levels=[0.5, 0.9],
