@@ -28,7 +28,7 @@ for x in l:
     if x.startswith(event_name) and x.endswith(version):
         testd[ind] = x
         ind += 1
-        
+
 # for tmp in alpha:
 #     print("#######", tmp)
 #     tmp_dir = event_name + '_' + str(tmp) + '_' + version
@@ -43,6 +43,11 @@ pm.wfd.load_noisy_test_data(pm.data_dir)
 pm.init_waveform_supp()
 
 from lfigw.nde_flows import obtain_samples
+#     for det, h in d_RB.items():
+#         plt.plot(h)
+#     plt.savefig('/userhome/O2/output/figure1_{}_{}_{}.jpg'.format(event, testd[i+1], version))
+
+nsamples = 50000
 
 for i in range(len(testd)):
     event_strain = {}
@@ -57,12 +62,6 @@ for i in range(len(testd)):
         h_RB = pm.wfd.basis.fseries_to_basis_coefficients(di)
         d_RB[ifo] = h_RB
     _, y = pm.wfd.x_y_from_p_h(pm.wfd.noisy_waveforms_parameters[0], d_RB, add_noise=False)
-
-#     for det, h in d_RB.items():
-#         plt.plot(h)
-#     plt.savefig('/userhome/O2/output/figure1_{}_{}_{}.jpg'.format(event, testd[i+1], version))
-
-    nsamples = 50000
 
     start = time.time()
     x_samples = obtain_samples(pm.model, y, nsamples, pm.device)
