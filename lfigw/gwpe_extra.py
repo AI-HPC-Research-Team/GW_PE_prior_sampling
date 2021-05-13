@@ -20,6 +20,9 @@ from . import a_flows
 from . import nde_flows_extra
 from . import cvae
 
+def touch(path):
+    with open(path, 'a'):
+        os.utime(path, None)
 
 class PosteriorModel(object):
 
@@ -327,11 +330,13 @@ class PosteriorModel(object):
             dict['scheduler_state_dict'] = self.scheduler.state_dict()
 
         torch.save(dict, p / filename)
-
+        touch(p / ('.'+filename))
+        
         # Save any information about basis truncation or standardization in
         # another file.
         f = h5py.File(p / aux_filename, 'w')
-
+        touch(p / ('.'+aux_filename))
+        
         if self.wfd.domain == 'RB':
             f.attrs['Nrb'] = self.wfd.Nrb
 
@@ -524,6 +529,8 @@ class PosteriorModel(object):
                             writer = csv.writer(f, delimiter='\t')
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
+
+                touch(p / ('.'+'history.txt'))
 
     def init_waveform_supp(self, aux_filename='waveforms_supplementary.hdf5'):
 
