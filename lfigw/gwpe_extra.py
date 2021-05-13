@@ -14,6 +14,7 @@ import time
 import numpy as np
 import h5py
 
+from .reduced_basis import SVDBasis
 from . import waveform_generator_extra as wfg_extra
 from . import waveform_generator as wfg
 from . import a_flows
