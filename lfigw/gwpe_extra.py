@@ -1176,20 +1176,22 @@ def main():
 
         print('Starting timer')
         start_time = time.time()
+        try:
+            pm.train(args.epochs,
+                     output_freq=args.output_freq,
+                     kl_annealing=args.kl_annealing,
+                     snr_annealing=args.snr_annealing)
+        except KeyboardInterrupt as e:
+            print(e)
+        finally:
+            print('Stopping timer.')
+            stop_time = time.time()
+            print('Training time (including validation): {} seconds'
+                  .format(stop_time - start_time))
 
-        pm.train(args.epochs,
-                 output_freq=args.output_freq,
-                 kl_annealing=args.kl_annealing,
-                 snr_annealing=args.snr_annealing)
-
-        print('Stopping timer.')
-        stop_time = time.time()
-        print('Training time (including validation): {} seconds'
-              .format(stop_time - start_time))
-
-        if args.save:
-            print('Saving model')
-            pm.save_model()
+            if args.save:
+                print('Saving model')
+                pm.save_model()
 
     print('Program complete')
 
