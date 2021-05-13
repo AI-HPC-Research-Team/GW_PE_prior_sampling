@@ -23,7 +23,8 @@ from . import cvae
 
 class PosteriorModel(object):
 
-    def __init__(self, model_dir=None, data_dir=None, basis_dir=None, sample_extrinsic_only=True,
+    def __init__(self, model_dir=None, data_dir=None, basis_dir=None, 
+                 sample_extrinsic_only=True, save_aux_filename='waveforms_supplementary.hdf5',save_model_name='model.pt',
                  use_cuda=True):
 
         self.wfd = None
@@ -31,6 +32,8 @@ class PosteriorModel(object):
         self.data_dir = data_dir
         self.basis_dir = basis_dir        
         self.model_dir = model_dir
+        self.save_aux_filename = save_aux_filename
+        self.save_model_name = save_model_name
         self.sample_extrinsic_only = sample_extrinsic_only
         self.model_type = None
         self.optimizer = None
@@ -625,6 +628,8 @@ def parse_args():
     dir_parent_parser.add_argument('--data_dir', type=str, required=True)
     dir_parent_parser.add_argument('--basis_dir', type=str, required=True)
     dir_parent_parser.add_argument('--model_dir', type=str, required=True)
+    dir_parent_parser.add_argument('--save_model_name', type=str, required=True)
+    dir_parent_parser.add_argument('--save_aux_filename', type=str, required=True)
     dir_parent_parser.add_argument('--no_cuda', action='store_false',
                                    dest='cuda')
     dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
@@ -916,6 +921,8 @@ def main():
                             data_dir=args.data_dir,
                             basis_dir=args.basis_dir,
                             sample_extrinsic_only=args.dont_sample_extrinsic_only,
+                            save_model_name=args.save_model_name,
+                            save_aux_filename=args.save_aux_filename,
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
@@ -1191,8 +1198,7 @@ def main():
 
             if args.save:
                 print('Saving model')
-                pm.save_model()
-
+                pm.save_model(filename=self.save_model_name, aux_filename=self.save_aux_filename)
     print('Program complete')
 
 
