@@ -14,31 +14,21 @@ import time
 import numpy as np
 import h5py
 
-from .reduced_basis import SVDBasis
-from . import waveform_generator_extra as wfg_extra
 from . import waveform_generator as wfg
 from . import a_flows
-from . import nde_flows_extra
+from . import nde_flows
 from . import cvae
 
-def touch(path):
-    with open(path, 'a'):
-        os.utime(path, None)
 
 class PosteriorModel(object):
 
-    def __init__(self, model_dir=None, data_dir=None, basis_dir=None, 
-                 sample_extrinsic_only=True, save_aux_filename='waveforms_supplementary.hdf5',save_model_name='model.pt',
+    def __init__(self, model_dir=None, data_dir=None,
                  use_cuda=True):
 
         self.wfd = None
         self.model = None
         self.data_dir = data_dir
-        self.basis_dir = basis_dir        
         self.model_dir = model_dir
-        self.save_aux_filename = save_aux_filename
-        self.save_model_name = save_model_name
-        self.sample_extrinsic_only = sample_extrinsic_only
         self.model_type = None
         self.optimizer = None
         self.scheduler = None
@@ -70,19 +60,10 @@ class PosteriorModel(object):
                             " Store in attribute PosteriorModel.data_dir")
 
         # Load waveforms, already split into train and test sets
-        self.wfd = wfg_extra.WaveformDataset_extra()
+        self.wfd = wfg.WaveformDataset()
         self.wfd.load(self.data_dir)
-        
-        # 覆盖 basis
-        if self.wfd.domain == 'RB':
-            self.wfd.basis = SVDBasis()
-            self.wfd.basis.load(self.basis_dir)
-            self.wfd.Nrb = self.wfd.basis.n        
-
-        self.wfd._load_posterior(self.wfd.event, sample_extrinsic_only=self.sample_extrinsic_only) # loading bilby posterior as training dist.
         self.wfd.load_train(self.data_dir)
-        
-        
+
         # Set the detectors for training; useful if this is different from
         # stored detectors in WaveformDataset
         if self.detectors is not None:
@@ -207,7 +188,7 @@ class PosteriorModel(object):
         elif model_type == 'cvae':
             model_creator = cvae.CVAE
         elif model_type == 'nde':
-            model_creator = nde_flows_extra.create_NDE_model
+            model_creator = nde_flows.create_NDE_model
         else:
             raise NameError('Invalid model type')
 
@@ -331,13 +312,11 @@ class PosteriorModel(object):
             dict['scheduler_state_dict'] = self.scheduler.state_dict()
 
         torch.save(dict, p / filename)
-        touch(p / ('.'+filename))
-        
+
         # Save any information about basis truncation or standardization in
         # another file.
         f = h5py.File(p / aux_filename, 'w')
-        touch(p / ('.'+aux_filename))
-        
+
         if self.wfd.domain == 'RB':
             f.attrs['Nrb'] = self.wfd.Nrb
 
@@ -455,7 +434,7 @@ class PosteriorModel(object):
                     self.device)
 
             elif self.model_type == 'nde':
-                train_loss = nde_flows_extra.train_epoch(
+                train_loss = nde_flows.train_epoch(
                     self.model,
                     self.train_loader,
                     self.optimizer,
@@ -464,7 +443,7 @@ class PosteriorModel(object):
                     output_freq,
                     add_noise,
                     snr_annealing)
-                test_loss = nde_flows_extra.test_epoch(
+                test_loss = nde_flows.test_epoch(
                     self.model,
                     self.test_loader,
                     epoch,
@@ -531,8 +510,6 @@ class PosteriorModel(object):
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
 
-                touch(p / ('.'+'history.txt'))
-
     def init_waveform_supp(self, aux_filename='waveforms_supplementary.hdf5'):
 
         p = Path(self.model_dir)
@@ -569,7 +546,7 @@ class PosteriorModel(object):
         """
 
         if self.wfd is None:
-            self.wfd = wfg_extra.WaveformDataset_extra()
+            self.wfd = wfg.WaveformDataset()
 
         if self.wfd.noisy_test_waveforms is None:
             self.wfd.load_noisy_test_data(self.data_dir)
@@ -593,7 +570,7 @@ class PosteriorModel(object):
             x_samples = a_flows.obtain_samples(
                 self.model, self.base_dist, y, nsamples, self.device)
         elif self.model_type == 'nde':
-            x_samples = nde_flows_extra.obtain_samples(
+            x_samples = nde_flows.obtain_samples(
                 self.model, y, nsamples, self.device
             )
         elif self.model_type == 'cvae':
@@ -634,13 +611,9 @@ def parse_args():
 
     dir_parent_parser = argparse.ArgumentParser(add_help=False)
     dir_parent_parser.add_argument('--data_dir', type=str, required=True)
-    dir_parent_parser.add_argument('--basis_dir', type=str, required=True)
     dir_parent_parser.add_argument('--model_dir', type=str, required=True)
-    dir_parent_parser.add_argument('--save_model_name', type=str, required=True)
-    dir_parent_parser.add_argument('--save_aux_filename', type=str, required=True)
     dir_parent_parser.add_argument('--no_cuda', action='store_false',
                                    dest='cuda')
-    dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
 
     activation_parent_parser = argparse.ArgumentParser(add_help=None)
     activation_parent_parser.add_argument(
@@ -927,10 +900,6 @@ def main():
         print('Model directory', args.model_dir)
         pm = PosteriorModel(model_dir=args.model_dir,
                             data_dir=args.data_dir,
-                            basis_dir=args.basis_dir,
-                            sample_extrinsic_only=args.dont_sample_extrinsic_only,
-                            save_model_name=args.save_model_name,
-                            save_aux_filename=args.save_aux_filename,
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
@@ -1191,22 +1160,21 @@ def main():
 
         print('Starting timer')
         start_time = time.time()
-        try:
-            pm.train(args.epochs,
-                     output_freq=args.output_freq,
-                     kl_annealing=args.kl_annealing,
-                     snr_annealing=args.snr_annealing)
-        except KeyboardInterrupt as e:
-            print(e)
-        finally:
-            print('Stopping timer.')
-            stop_time = time.time()
-            print('Training time (including validation): {} seconds'
-                  .format(stop_time - start_time))
 
-            if args.save:
-                print('Saving model')
-                pm.save_model(filename=self.save_model_name, aux_filename=self.save_aux_filename)
+        pm.train(args.epochs,
+                 output_freq=args.output_freq,
+                 kl_annealing=args.kl_annealing,
+                 snr_annealing=args.snr_annealing)
+
+        print('Stopping timer.')
+        stop_time = time.time()
+        print('Training time (including validation): {} seconds'
+              .format(stop_time - start_time))
+
+        if args.save:
+            print('Saving model')
+            pm.save_model()
+
     print('Program complete')
 
 
