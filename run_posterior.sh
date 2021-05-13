@@ -3,7 +3,7 @@ python3.7 -m lfigw.gwpe_extra train new nde \
     --data_dir waveforms/GW150914_posterior/ \
     --model_dir models/GW150914_posterior/ \
     --basis_dir waveforms/GW150914/ \
-    --save_model_name model_sampall.pt \ 
+    --save_model_name model_sampall.pt \
     --save_aux_filename waveforms_supplementary_sampall.hdf5 \
     --nbins 8 \
     --dont_sample_extrinsic_only \
