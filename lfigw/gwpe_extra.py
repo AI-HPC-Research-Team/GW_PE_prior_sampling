@@ -23,12 +23,13 @@ from . import cvae
 
 class PosteriorModel(object):
 
-    def __init__(self, model_dir=None, data_dir=None,
+    def __init__(self, model_dir=None, data_dir=None, basis_dir=None,
                  use_cuda=True):
 
         self.wfd = None
         self.model = None
         self.data_dir = data_dir
+        self.basis_dir = basis_dir        
         self.model_dir = model_dir
         self.model_type = None
         self.optimizer = None
@@ -63,6 +64,13 @@ class PosteriorModel(object):
         # Load waveforms, already split into train and test sets
         self.wfd = wfg_extra.WaveformDataset_extra()
         self.wfd.load(self.data_dir)
+        
+        # 覆盖 basis
+        if self.wfd.domain == 'RB':
+            self.wfd.basis = SVDBasis()
+            self.wfd.basis.load(self.basis_dir)
+            self.wfd.Nrb = self.wfd.basis.n        
+
         self.wfd._load_posterior(self.wfd.event) # loading bilby posterior as training dist.
         self.wfd.load_train(self.data_dir)
         
@@ -614,6 +622,7 @@ def parse_args():
 
     dir_parent_parser = argparse.ArgumentParser(add_help=False)
     dir_parent_parser.add_argument('--data_dir', type=str, required=True)
+    dir_parent_parser.add_argument('--basis_dir', type=str, required=True)
     dir_parent_parser.add_argument('--model_dir', type=str, required=True)
     dir_parent_parser.add_argument('--no_cuda', action='store_false',
                                    dest='cuda')
@@ -903,6 +912,7 @@ def main():
         print('Model directory', args.model_dir)
         pm = PosteriorModel(model_dir=args.model_dir,
                             data_dir=args.data_dir,
+                            basis_dir=args.basis_dir,
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
