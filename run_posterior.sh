@@ -1,9 +1,10 @@
 
-python3.7 -m lfigw.gwpe_extra train new nde \
-    --data_dir waveforms/GW170729_posterior/ \
-    --model_dir models/GW170729_posterior/ \
+python -m lfigw.gwpe_extra train new nde \
+    --data_dir waveforms/GW150914_posterior/ \
+    --model_dir models/GW150914_posterior/ \
     --basis_dir waveforms/GW150914/ \
     --nbins 8 \
+    --dont_sample_extrinsic_only \
     --num_transform_blocks 10 \
     --nflows 15 \
     --batch_norm \

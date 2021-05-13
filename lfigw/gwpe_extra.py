@@ -23,7 +23,7 @@ from . import cvae
 
 class PosteriorModel(object):
 
-    def __init__(self, model_dir=None, data_dir=None, basis_dir=None,
+    def __init__(self, model_dir=None, data_dir=None, basis_dir=None, sample_extrinsic_only=True,
                  use_cuda=True):
 
         self.wfd = None
@@ -31,6 +31,7 @@ class PosteriorModel(object):
         self.data_dir = data_dir
         self.basis_dir = basis_dir        
         self.model_dir = model_dir
+        self.sample_extrinsic_only = sample_extrinsic_only
         self.model_type = None
         self.optimizer = None
         self.scheduler = None
@@ -71,7 +72,7 @@ class PosteriorModel(object):
             self.wfd.basis.load(self.basis_dir)
             self.wfd.Nrb = self.wfd.basis.n        
 
-        self.wfd._load_posterior(self.wfd.event) # loading bilby posterior as training dist.
+        self.wfd._load_posterior(self.wfd.event, sample_extrinsic_only=self.sample_extrinsic_only) # loading bilby posterior as training dist.
         self.wfd.load_train(self.data_dir)
         
         
@@ -626,6 +627,7 @@ def parse_args():
     dir_parent_parser.add_argument('--model_dir', type=str, required=True)
     dir_parent_parser.add_argument('--no_cuda', action='store_false',
                                    dest='cuda')
+    dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
 
     activation_parent_parser = argparse.ArgumentParser(add_help=None)
     activation_parent_parser.add_argument(
@@ -913,6 +915,7 @@ def main():
         pm = PosteriorModel(model_dir=args.model_dir,
                             data_dir=args.data_dir,
                             basis_dir=args.basis_dir,
+                            sample_extrinsic_only=args.dont_sample_extrinsic_only,
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
