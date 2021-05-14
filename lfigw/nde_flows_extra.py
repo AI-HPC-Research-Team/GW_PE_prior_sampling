@@ -277,7 +277,7 @@ def train_epoch(flow, train_loader, optimizer, epoch,
     anneal_exponent = torch.tensor(anneal_exponent).to(device)
     wfd._cache_oversampled_parameters(len(train_loader))
     if not wfd.sample_extrinsic_only:
-        wfd.parameters = self.cache_parameters       
+        wfd.parameters = wfd.cache_parameters       
 
     for batch_idx, (h, x, w, snr) in enumerate(train_loader):
         optimizer.zero_grad()
@@ -296,6 +296,8 @@ def train_epoch(flow, train_loader, optimizer, epoch,
             y = h
 
         # Compute log prob
+        x = x.to(torch.float32)
+        y = y.to(torch.float32)
         loss = - flow.log_prob(x, context=y)
 
         if anneal_exponent > 0.0:
@@ -359,7 +361,7 @@ def test_epoch(flow, test_loader, epoch, device=None, add_noise=True,
     wfd = test_loader.dataset.wfd
     wfd._cache_oversampled_parameters(len(test_loader))
     if not wfd.sample_extrinsic_only:
-        wfd.parameters = self.cache_parameters    
+        wfd.parameters = wfd.cache_parameters    
 
     with torch.no_grad():
         flow.eval()
@@ -381,6 +383,8 @@ def test_epoch(flow, test_loader, epoch, device=None, add_noise=True,
                 y = h
 
             # Compute log prob
+            x = x.to(torch.float32)
+            y = y.to(torch.float32)
             loss = - flow.log_prob(x, context=y)
 
             if anneal_exponent > 0.0:
