@@ -23,6 +23,7 @@ from . import cvae
 class PosteriorModel(object):
 
     def __init__(self, model_dir=None, data_dir=None,
+                 sample_extrinsic_only=True,save_aux_filename='waveforms_supplementary.hdf5',save_model_name='model.pt',
                  use_cuda=True):
 
         self.wfd = None
@@ -30,6 +31,9 @@ class PosteriorModel(object):
         self.data_dir = data_dir
         self.model_dir = model_dir
         self.model_type = None
+        self.save_aux_filename = save_aux_filename
+        self.save_model_name = save_model_name        
+        self.sample_extrinsic_only = sample_extrinsic_only
         self.optimizer = None
         self.scheduler = None
         self.detectors = None
@@ -612,6 +616,9 @@ def parse_args():
     dir_parent_parser = argparse.ArgumentParser(add_help=False)
     dir_parent_parser.add_argument('--data_dir', type=str, required=True)
     dir_parent_parser.add_argument('--model_dir', type=str, required=True)
+    dir_parent_parser.add_argument('--save_model_name', type=str, required=True)
+    dir_parent_parser.add_argument('--save_aux_filename', type=str, required=True)   
+    dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
     dir_parent_parser.add_argument('--no_cuda', action='store_false',
                                    dest='cuda')
 
@@ -900,6 +907,9 @@ def main():
         print('Model directory', args.model_dir)
         pm = PosteriorModel(model_dir=args.model_dir,
                             data_dir=args.data_dir,
+                            save_model_name=args.save_model_name,
+                            save_aux_filename=args.save_aux_filename,
+                            sample_extrinsic_only=args.dont_sample_extrinsic_only,
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
@@ -1161,19 +1171,22 @@ def main():
         print('Starting timer')
         start_time = time.time()
 
-        pm.train(args.epochs,
-                 output_freq=args.output_freq,
-                 kl_annealing=args.kl_annealing,
-                 snr_annealing=args.snr_annealing)
+        try:
+            pm.train(args.epochs,
+                     output_freq=args.output_freq,
+                     kl_annealing=args.kl_annealing,
+                     snr_annealing=args.snr_annealing)
+        except KeyboardInterrupt as e:
+            print(e)
+        finally:
+            print('Stopping timer.')
+            stop_time = time.time()
+            print('Training time (including validation): {} seconds'
+                  .format(stop_time - start_time))
 
-        print('Stopping timer.')
-        stop_time = time.time()
-        print('Training time (including validation): {} seconds'
-              .format(stop_time - start_time))
-
-        if args.save:
-            print('Saving model')
-            pm.save_model()
+            if args.save:
+                print('Saving model')
+                pm.save_model(filename=pm.save_model_name, aux_filename=pm.save_aux_filename)
 
     print('Program complete')
 

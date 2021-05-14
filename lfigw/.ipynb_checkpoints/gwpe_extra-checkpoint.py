@@ -1206,7 +1206,7 @@ def main():
 
             if args.save:
                 print('Saving model')
-                pm.save_model(filename=self.save_model_name, aux_filename=self.save_aux_filename)
+                pm.save_model(filename=pm.save_model_name, aux_filename=pm.save_aux_filename)
     print('Program complete')
 
 
