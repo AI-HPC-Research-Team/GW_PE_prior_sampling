@@ -14,12 +14,12 @@ import time
 import numpy as np
 import h5py
 
-from .reduced_basis import SVDBasis
-from . import waveform_generator_extra as wfg_extra
-from . import waveform_generator as wfg
-from . import a_flows
-from . import nde_flows_extra
-from . import cvae
+# from .reduced_basis import SVDBasis
+# from . import waveform_generator_extra as wfg_extra
+# from . import waveform_generator as wfg
+# from . import a_flows
+# from . import nde_flows_extra
+# from . import cvae
 
 def touch(path):
     with open(path, 'a'):
@@ -934,6 +934,7 @@ def main():
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
+        return #
         pm.load_dataset(batch_size=args.batch_size,
                         detectors=args.detectors,
                         truncate_basis=args.truncate_basis,
