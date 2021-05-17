@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
     wfd._load_posterior(wfd.event, sample_extrinsic_only=False)  # loading bilby posterior as training dist.
 
-    div = 200 # For demo
+    div = 1#200 # For demo
 
     print()
     wfd.train_reduced_basis(n_train=50000//div, prior_fun=wfd._sample_prior)
@@ -111,4 +111,6 @@ if __name__ == '__main__':
                             truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
                             fiducial_distance=450, truncate=100)
-    wfd.basis.save('data/{}{}_basis/'.format(event, wfd._sample_prior.__name__))
+    addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior.__name__)
+    wfd.basis.save(addr)
+    wfd.save_setting(data_dir=addr)

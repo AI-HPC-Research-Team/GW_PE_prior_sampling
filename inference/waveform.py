@@ -1258,6 +1258,34 @@ class WaveformDataset(object):
     #
     # File I/O for waveform database
     #
+    def save_setting(self, data_dir='.', config_fn='setting.json'):
+        p = Path(data_dir)
+        p.mkdir(parents=True, exist_ok=True)
+
+        # Save configuration parameters
+
+        with open(p / config_fn, 'w') as f_config:
+            json.dump(dict(domain=self.domain,
+                           prior=self.prior,
+                           approximant=self.approximant,
+                           params=self.param_idx,
+                           latex=self.parameters_latex_dict,
+                           detectors=list(self.detectors.keys()),
+                           psds=self.psd_names,
+                           f_min=self.f_min,
+                           f_min_psd=self.f_min_psd,
+                           sampling_rate=self.sampling_rate,
+                           time_duration=self.time_duration,
+                           ref_time=self.ref_time,
+                           f_ref=self.f_ref,
+                           extrinsic_at_train=self.extrinsic_at_train,
+                           extrinsic_params=self.extrinsic_params,
+                           fiducial_params=self.fiducial_params,
+                           window_factor=self.window_factor,
+                           event=self.event,
+                           event_dir=str(self.event_dir),
+                           ), f_config, indent=4)
+
 
     def save(self, data_dir='.', data_fn='waveform_dataset.hdf5',
              config_fn='settings.json'):
@@ -1322,6 +1350,70 @@ class WaveformDataset(object):
 
         if self.domain == 'RB':
             self.basis.save(data_dir)
+
+    def load_setting(self, data_dir='.', config_fn='settings.json'):
+
+        p = Path(data_dir)
+
+        # Load configuration
+
+        with open(p / config_fn, 'r') as f_config:
+            d = json.load(f_config)
+            self.prior = d['prior']
+            self.approximant = d['approximant']
+            self.param_idx = d['params']
+            self.parameters_latex_dict = d['latex']
+            ifos = d['detectors']
+            self.init_detectors(ifos)
+            self.psd_names = d['psds']
+            self.f_min = d['f_min']
+            self.f_min_psd = d['f_min_psd']
+            self.sampling_rate = d['sampling_rate']
+            self.time_duration = d['time_duration']
+            self.ref_time = d['ref_time']
+            if 'extrinsic_at_train' in d.keys():  # Compatibility
+                self.extrinsic_at_train = d['extrinsic_at_train']
+            else:
+                self.extrinsic_at_train = False
+            if 'extrinsic_params' in d.keys():
+                self.extrinsic_params = d['extrinsic_params']
+            if 'fiducial_params' in d.keys():
+                self.fiducial_params = d['fiducial_params']
+            if 'f_ref' in d.keys():
+                self.f_ref = d['f_ref']
+            if 'domain' in d.keys():  # Compatibility
+                self.domain = d['domain']
+            else:
+                self.domain = 'TD'
+            try:
+                self.event = d['event']
+                event_dir = d['event_dir']
+                if event_dir != 'None':
+                    self.event_dir = Path(event_dir)
+                self.load_event(self.event_dir)
+            except:
+                self.event = None
+                self.event_dir = None
+
+        self.nparams = len(self.param_idx)
+
+        self.spins = False
+        self.inclination = False
+        if (('chi_1' in self.param_idx.keys()) or
+                ('chi1z') in self.param_idx.keys()):
+            self.spins = True
+            self.spins_aligned = True
+        if 'a_1' in self.param_idx.keys():
+            self.spins = True
+            self.spins_aligned = False
+        if (('theta_jn' in self.param_idx.keys())
+                or ('inc' in self.param_idx.keys())):
+            self.inclination = True
+
+        if self.extrinsic_at_train:
+            if self.domain == 'FD':
+                print('extrinsic_at_train=True, domain=FD, So init_relative_whitening...')
+                self.init_relative_whitening()
 
     def load(self, data_dir='.', data_fn='waveform_dataset.hdf5',
              config_fn='settings.json'):
