@@ -549,7 +549,7 @@ class WaveformDataset(object):
         try:
             df = pd.read_csv('../bilby_runs/downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
         except:
-            df = pd.read_csv('../downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+            df = pd.read_csv('./downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
         self.bilby_samples = df.dropna()[['mass_1', 'mass_2', 'phase', 'geocent_time', 'luminosity_distance',
                               'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl',
                               'theta_jn', 'psi', 'ra', 'dec']].values.astype('float64')
