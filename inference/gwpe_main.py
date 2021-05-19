@@ -14,7 +14,8 @@ import time
 import numpy as np
 import h5py
 
-# from .reduced_basis import SVDBasis
+from .reduced_basis import SVDBasis
+from . import waveform as wfg
 # from . import waveform_generator_extra as wfg_extra
 # from . import waveform_generator as wfg
 # from . import a_flows
@@ -57,6 +58,7 @@ class PosteriorModel(object):
     def load_dataset(self, batch_size=512, detectors=None,
                      truncate_basis=None, snr_threshold=None,
                      distance_prior_fn=None, distance_prior=None,
+                     sampling_from=None, nsample=10000,
                      bw_dstar=None):
         """Load database of waveforms and set up data loaders.
 
@@ -69,20 +71,38 @@ class PosteriorModel(object):
             raise NameError("Data directory must be specified."
                             " Store in attribute PosteriorModel.data_dir")
 
-        # Load waveforms, already split into train and test sets
-        self.wfd = wfg_extra.WaveformDataset_extra()
-        self.wfd.load(self.data_dir)
+        # Load settings
+        self.wfd = wfg.WaveformDataset(sampling_from=sampling_from)
+        self.wfd.load_setting(self.data_dir, sample_extrinsic_only = self.sample_extrinsic_only)
         
         # 覆盖 basis
         if self.wfd.domain == 'RB':
             self.wfd.basis = SVDBasis()
             self.wfd.basis.load(self.basis_dir)
-            self.wfd.Nrb = self.wfd.basis.n        
+            self.wfd.Nrb = self.wfd.basis.n
 
-        self.wfd._load_posterior(self.wfd.event, sample_extrinsic_only=self.sample_extrinsic_only) # loading bilby posterior as training dist.
-        self.wfd.load_train(self.data_dir)
-        
-        
+        print("Sampling {} sets of parameters from {} prior.".format(nsample, self.wfd.sampling_from))
+        if self.wfd.sampling_from == 'posterior':
+            # loading bilby posterior as training dist.
+            self.wfd._load_posterior(self.wfd.event,) 
+            self.wfd.parameters = self.wfd._sample_prior_posterior(nsample)
+            self.wfd.nsamples = len(self.wfd.parameters)
+            print('init training...')
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics            
+            self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))
+        elif self.wfd.sampling_from == 'uniform':
+            self.wfd.parameters = self.wfd._sample_prior(nsample)
+            self.wfd.nsamples = len(self.wfd.parameters)
+            print('init training...')
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics            
+        else:
+            raise
+        #self.wfd.load_train(self.data_dir) # discard
+    
+        # Set up relative whitening
+        print('init relative whitening...')
+        self.wfd.init_relative_whitening()
+
         # Set the detectors for training; useful if this is different from
         # stored detectors in WaveformDataset
         if self.detectors is not None:
@@ -103,32 +123,36 @@ class PosteriorModel(object):
             # Additional initialization (time translations, whitening) for
             # reduced basis. This should be done *after* truncating the basis
             # to save time in generating time translation matrices.
+            print('initialidze reduced basis aux...')
             self.wfd.initialize_reduced_basis_aux()
 
             # Initialize the SNR threshold. This needs to be done after fully
             # initializing the reduced basis, so that the time translation
             # and whitening transformations are available.
-            restandardize = False
 
-            if snr_threshold is not None:
-                print('Setting SNR threshold to {}.'.format(snr_threshold))
-                self.wfd.snr_threshold = snr_threshold
-                restandardize = True
+            # restandardize = False
 
-            if distance_prior_fn is not None:
-                print('Using distance prior function: {}'.format(
-                      distance_prior_fn))
-                self.wfd.distance_prior_fn = distance_prior_fn
-                self.wfd.bw_dstar = bw_dstar
-                restandardize = True
+            # if snr_threshold is not None:
+            #     print('Setting SNR threshold to {}.'.format(snr_threshold))
+            #     self.wfd.snr_threshold = snr_threshold
+            #     restandardize = True
 
-            if distance_prior is not None:
-                print('Setting distance prior to {}'.format(distance_prior))
-                self.wfd.prior['distance'] = distance_prior
-                restandardize = True
+            # if distance_prior_fn is not None:
+            #     print('Using distance prior function: {}'.format(
+            #           distance_prior_fn))
+            #     self.wfd.distance_prior_fn = distance_prior_fn
+            #     self.wfd.bw_dstar = bw_dstar
+            #     restandardize = True
 
-            if restandardize:
-                self.wfd.calculate_threshold_standardizations()
+            # if distance_prior is not None:
+            #     print('Setting distance prior to {}'.format(distance_prior))
+            #     self.wfd.prior['distance'] = distance_prior
+            #     restandardize = True
+
+            # if restandardize:
+            #     self.wfd.calculate_threshold_standardizations()
+        print('calculate threshold standardizatison...')
+        self.wfd.calculate_threshold_standardizations()
 
         # pytorch wrappers
         wfd_train = wfg.WaveformDatasetTorch(self.wfd, train=True)
@@ -136,7 +160,7 @@ class PosteriorModel(object):
 
         # DataLoader objects
         self.train_loader = DataLoader(
-            wfd_train, batch_size=batch_size, shuffle=True, pin_memory=True,
+            wfd_train, batch_size=batch_size, shuffle=False, pin_memory=True,
             num_workers=16,
             worker_init_fn=lambda _: np.random.seed(
                 int(torch.initial_seed()) % (2**32-1)))
@@ -641,6 +665,11 @@ def parse_args():
     dir_parent_parser.add_argument('--no_cuda', action='store_false',
                                    dest='cuda')
     dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
+    dir_parent_parser.add_argument('--sampling_from',
+                                     choices=['uniform',
+                                              'posterior'])
+    dir_parent_parser.add_argument(
+        '--nsample', type=int, default='1000000')
 
     activation_parent_parser = argparse.ArgumentParser(add_help=None)
     activation_parent_parser.add_argument(
@@ -920,6 +949,7 @@ def parse_args():
 
 def main():
     args = parse_args()
+    print(args)
 
     if args.mode == 'train':
 
@@ -934,12 +964,14 @@ def main():
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
-        return #
+
         pm.load_dataset(batch_size=args.batch_size,
                         detectors=args.detectors,
                         truncate_basis=args.truncate_basis,
                         snr_threshold=args.snr_threshold,
                         distance_prior_fn=args.distance_prior_fn,
+                        sampling_from=args.sampling_from,
+                        nsample=args.nsample,
                         distance_prior=args.distance_prior,
                         bw_dstar=args.bw_dstar)
         print('Detectors:', pm.detectors)
