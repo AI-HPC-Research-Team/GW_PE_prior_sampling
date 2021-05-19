@@ -2,6 +2,7 @@ from nflows import distributions, flows, transforms, utils
 import torch
 from torch.nn import functional as F
 import nflows.nn.nets as nn_
+import time
 
 
 def create_linear_transform(param_dim):
@@ -314,7 +315,7 @@ def train_epoch(flow, train_loader, optimizer, epoch,
         optimizer.step()
 
         if (output_freq is not None) and (batch_idx % output_freq == 0):
-            print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.4f}\tCost: {}s'.format(
+            print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.4f}\tCost: {:.2f}s'.format(
                 epoch, batch_idx *
                 train_loader.batch_size, len(train_loader.dataset),
                 100. * batch_idx / len(train_loader),
