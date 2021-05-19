@@ -26,7 +26,7 @@ def make_print_to_file(path='./'):
  
 
     fileName = datetime.datetime.now().strftime('prepreparing4RBasis_'+'%Y_%m_%d')
-    sys.stdout = Logger('data/' + fileName + '.log', path=path)
+    sys.stdout = Logger('data/' + fileName + '.logfile', path=path)
  
     #############################################################
     # 这里输出之后的所有的输出的 print 内容即将写入日志
@@ -99,7 +99,9 @@ if __name__ == '__main__':
                             truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
                             fiducial_distance=450, truncate=100)
-    wfd.basis.save('data/{}{}_basis/'.format(event, wfd._sample_prior.__name__))
+    addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior.__name__)
+    wfd.basis.save(addr)
+    wfd.save_setting(data_dir=addr)
 
     print()
     wfd.train_reduced_basis(n_train=50000//div, prior_fun=wfd._sample_prior_posterior)
@@ -111,6 +113,6 @@ if __name__ == '__main__':
                             truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
                             fiducial_distance=450, truncate=100)
-    addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior.__name__)
+    addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior_posterior.__name__)
     wfd.basis.save(addr)
     wfd.save_setting(data_dir=addr)
