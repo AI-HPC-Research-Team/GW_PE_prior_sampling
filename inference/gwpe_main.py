@@ -8,6 +8,8 @@ from torch.utils.data import DataLoader
 import torch
 from pathlib import Path
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 import corner
 import csv
 import time
@@ -556,6 +558,13 @@ class PosteriorModel(object):
                                 [epoch, train_kl_loss, test_kl_loss])
 
                 touch(p / ('.'+'history.txt'))
+                data_history = np.loadtxt(p / 'history.txt')
+                plt.plot(data_history[:,0], data_history[:,1], '*--', label='train')
+                plt.plot(data_history[:,0], data_history[:,2], '*--', label='test')
+                plt.xlabel('Epoch')
+                plt.ylabel('Loss')
+                plt.legend()
+                plt.savefig(p / 'history.png')                
 
                 if (output_freq is not None) and (epoch % 50 == 0):
                     print('Saving model as {}_e{} & {}_e{}'.format(self.save_model_name, epoch,
