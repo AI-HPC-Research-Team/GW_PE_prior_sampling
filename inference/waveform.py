@@ -109,7 +109,7 @@ class WaveformDataset(object):
 
     def __init__(self, spins=True, inclination=True, spins_aligned=True,
                  detectors=['H1', 'L1', 'V1'], domain='TD',
-                 extrinsic_at_train=False):
+                 extrinsic_at_train=False, sampling_from=None):
 
         # Set up indices for parameters
         param_idx = dict(mass_1=0, mass_2=1, phase=2, time=3, distance=4)
@@ -138,7 +138,7 @@ class WaveformDataset(object):
         nparams += 2
         self.param_idx = param_idx
         self.nparams = nparams
-
+        self.sampling_from = sampling_from
         # Default prior ranges
         self.prior = dict(mass_1=[10.0, 80.0],  # solar masses
                           mass_2=[10.0, 80.0],
@@ -544,17 +544,17 @@ class WaveformDataset(object):
     #
     # Generate target dis.
     #
-    def _load_posterior(self, event, sample_extrinsic_only=True):
-        print('sample_extrinsic_only:', sample_extrinsic_only)
+    def _load_posterior(self, event):
+        print('sample_extrinsic_only:', self.sample_extrinsic_only)
         try:
-            df = pd.read_csv('./bilby_runs/downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
-        except:
             df = pd.read_csv('../bilby_runs/downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+        except:
+            df = pd.read_csv('./downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
         self.bilby_samples = df.dropna()[['mass_1', 'mass_2', 'phase', 'geocent_time', 'luminosity_distance',
                               'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl',
                               'theta_jn', 'psi', 'ra', 'dec']].values.astype('float64')
         self.bilby_samples[:,3] = self.bilby_samples[:,3] - self.ref_time
-        self.sample_extrinsic_only = sample_extrinsic_only
+        # if self.sample_extrinsic_only:
         self.bilby_samples_extrisinc = self.bilby_samples[:,[3,4,12,13,14]]
 
     def _sample_prior_posterior(self, n):
@@ -566,7 +566,10 @@ class WaveformDataset(object):
         Returns:
             array -- samples
         """
+        # if not self.sample_extrinsic_only:
         return self.oversampling(self.bilby_samples, threshold=n)[:n]
+        # elif self.sample_extrinsic_only:
+            # return self.oversampling(self.bilby_samples_extrisinc, threshold=n)[:n]
 
     @staticmethod
     def oversampling(x: np.array, threshold=512, random_state=0):
@@ -581,6 +584,34 @@ class WaveformDataset(object):
             if len(np.concatenate(cache)) > threshold:
                 break
         return np.concatenate(cache)
+
+    def _compute_parameter_statistics(self):
+        """Compute mean and standard deviation for physical parameters, in
+        order to standardize later.
+        (Do not use analytic expressions )
+        """
+        #parameters_train = self.parameters[self.train_selection]
+        self.parameters_mean = np.mean(self.parameters, axis=0).astype(np.float32)
+        self.parameters_std = np.std(self.parameters, axis=0).astype(np.float32)
+
+    def _cache_oversampled_parameters(self, nsample):
+        self.ncache_parameters = nsample
+        self.cache_parameters = self.oversampling(self.bilby_samples, threshold=len(self.parameters))
+        self.cache_parameters_extrinsic = self.oversampling(self.bilby_samples_extrisinc, threshold=nsample)[:nsample]
+    
+    def sample_prior_extrinsic_posterior(self, n):
+        """Draw samples of extrinsic parameters from the posterior prior.
+
+        Arguments:
+            n {int} -- number of prior samples
+
+        Returns:
+            array -- n x m array of samples, where m is number of extrinsic
+                     parameters
+        """        
+        assert n == 1
+        return self.cache_parameters_extrinsic[np.random.randint(self.ncache_parameters)][np.newaxis,...].astype(np.float32)
+
 
     def _generate_psd(self, delta_f, ifo):
         """Generate a PSD. This depends on the detector chosen.
@@ -943,7 +974,8 @@ class WaveformDataset(object):
             # Calculate time shift at detector
             dt = d.time_delay_from_earth_center(ra, dec, self.ref_time)
             time_shift = time_shift_earth_center + dt
-
+            # if abs(time_shift) >= 0.1:
+            #     raise IndexError
             # Time translate and whiten
             if mode == 'FD':
                 h_d = h_d * np.exp(- 2j * np.pi * time_shift
@@ -1003,7 +1035,7 @@ class WaveformDataset(object):
         else:
             return h
 
-    def p_h_random_extrinsic(self, idx, train, mode=None):
+    def p_h_random_extrinsic(self, idx, train, sample_extrinsic_only, mode=None):
         """Generate detector waveform with random extrinsic parameters.
 
         This uses intrinsic parameters for a given index from either the train
@@ -1037,30 +1069,39 @@ class WaveformDataset(object):
         # Take intrinsic parameters corresponding to idx.
         p_initial = self.parameters[orig_idx]
 
-        # Generate random extrinsic parameters.
-        p_extrinsic = self.sample_prior_extrinsic(1)[0]
+        # if sample_extrinsic_only:
+            # Generate random extrinsic parameters.
+        if self.sampling_from == 'uniform':
+            p_extrinsic = self.sample_prior_extrinsic(1)[0]
+        elif self.sampling_from == 'posterior':
+            p_extrinsic = self.sample_prior_extrinsic_posterior(1)[0]
+        # else: # self.parameters have been resampled.
+            # if self.sampling_from == 'posterior':
+            #     p_initial = self._sample_prior_posterior(1)[0]
+            #     p_extrinsic = self.sample_prior_extrinsic_posterior(1)
+            # elif self.sampling_from == 'uniform':
+            #     p_initial = self._sample_prior(1)[0]
+            #     p_extrinsic = self.sample_prior_extrinsic(1)[0]
+            # print(p_initial.shape, p_extrinsic.shape)
+            # pass
+        # Generate the waveform.
+        #
+        # This usually only gets run when generating noisy test FD
+        # waveforms for the RB network. The waveforms are already
+        # saved in RB, but we require FD waveforms.
 
-        if mode == 'FD' and self.domain == 'RB':
-            # Generate the waveform.
-            #
-            # This usually only gets run when generating noisy test FD
-            # waveforms for the RB network. The waveforms are already
-            # saved in RB, but we require FD waveforms.
+        # Intrinsic waveform
+        #
+        # Type conversion of the parameters is needed for lal.
+        hp, hc = self._generate_whitened_waveform(
+            p_initial.astype(np.float64),
+            intrinsic_only=True)
+        hp = hp.astype(np.complex64)
+        hc = hc.astype(np.complex64)
 
-            # Intrinsic waveform
-            #
-            # Type conversion of the parameters is needed for lal.
-            hp, hc = self._generate_whitened_waveform(
-                p_initial.astype(np.float64),
-                intrinsic_only=True)
-            hp = hp.astype(np.complex64)
-            hc = hc.astype(np.complex64)
-
-        else:
-            # Waveforms are already saved in dataset.
-            hp = self.hp[orig_idx]
-            hc = self.hc[orig_idx]
-
+        # Convert FD to RB waveforms
+        hp = self.basis.fseries_to_basis_coefficients(hp)
+        hc = self.basis.fseries_to_basis_coefficients(hc)
         # Apply extrinsic parameters to obtain detector waveforms
         p, h_det = self.get_detector_waveforms(hp, hc, p_initial, p_extrinsic,
                                                mode)
@@ -1252,8 +1293,8 @@ class WaveformDataset(object):
         self.basis.truncate(n)
         self.Nrb = n
 
-        self.hp = self.hp[:, :n]
-        self.hc = self.hc[:, :n]
+        #self.hp = self.hp[:, :n]
+        #self.hc = self.hc[:, :n]
 
     #
     # File I/O for waveform database
@@ -1351,8 +1392,9 @@ class WaveformDataset(object):
         if self.domain == 'RB':
             self.basis.save(data_dir)
 
-    def load_setting(self, data_dir='.', config_fn='settings.json'):
+    def load_setting(self, data_dir='.', config_fn='settings.json', sample_extrinsic_only = True):
 
+        self.sample_extrinsic_only = sample_extrinsic_only
         p = Path(data_dir)
 
         # Load configuration
@@ -1538,77 +1580,77 @@ class WaveformDataset(object):
 
         self._compute_parameter_statistics()
 
-    def _compute_parameter_statistics(self):
-        """Compute mean and standard deviation for physical parameters, in
-        order to standardize later.
+    # def _compute_parameter_statistics(self):
+    #     """Compute mean and standard deviation for physical parameters, in
+    #     order to standardize later.
 
-        """
-        # parameters_train = self.parameters[self.train_selection]
-        # self.parameters_mean = np.mean(parameters_train, axis=0)
-        # self.parameters_std = np.std(parameters_train, axis=0)
+    #     """
+    #     # parameters_train = self.parameters[self.train_selection]
+    #     # self.parameters_mean = np.mean(parameters_train, axis=0)
+    #     # self.parameters_std = np.std(parameters_train, axis=0)
 
-        self.parameters_mean = np.empty(self.nparams, dtype=np.float32)
-        self.parameters_std = np.empty(self.nparams, dtype=np.float32)
+    #     self.parameters_mean = np.empty(self.nparams, dtype=np.float32)
+    #     self.parameters_std = np.empty(self.nparams, dtype=np.float32)
 
-        # Use analytic expressions
+    #     # Use analytic expressions
 
-        for param, i in self.param_idx.items():
-            left, right = self.prior[param]
+    #     for param, i in self.param_idx.items():
+    #         left, right = self.prior[param]
 
-            if param == 'mass_1':
-                m2left, m2right = self.prior['mass_2']
-                mean = ((-3*m2left*(left + right)
-                         + 2*(left**2 + left*right + right**2))
-                        / (3.*(left - 2*m2left + right)))
-                cov = (((left - right)**2*(left**2 + 6*m2left**2
-                                           + 4*left*right + right**2
-                                           - 6*m2left*(left + right)))
-                       / (18.*(left - 2*m2left + right)**2))
-                std = np.sqrt(cov)
+    #         if param == 'mass_1':
+    #             m2left, m2right = self.prior['mass_2']
+    #             mean = ((-3*m2left*(left + right)
+    #                      + 2*(left**2 + left*right + right**2))
+    #                     / (3.*(left - 2*m2left + right)))
+    #             cov = (((left - right)**2*(left**2 + 6*m2left**2
+    #                                        + 4*left*right + right**2
+    #                                        - 6*m2left*(left + right)))
+    #                    / (18.*(left - 2*m2left + right)**2))
+    #             std = np.sqrt(cov)
 
-            elif param == 'mass_2':
-                m1left, m1right = self.prior['mass_1']
-                mean = ((-3*left**2 + m1left**2 + m1left*m1right + m1right**2)
-                        / (3.*(-2*left + m1left + m1right)))
-                cov = ((-2*(-3*left**2 + m1left**2
-                            + m1left*m1right + m1right**2)**2 +
-                        3*(-2*left + m1left + m1right) *
-                        (-4*left**3
-                         + (m1left + m1right)*(m1left**2 + m1right**2))) /
-                       (18.*(-2*left + m1left + m1right)**2))
-                std = np.sqrt(cov)
+    #         elif param == 'mass_2':
+    #             m1left, m1right = self.prior['mass_1']
+    #             mean = ((-3*left**2 + m1left**2 + m1left*m1right + m1right**2)
+    #                     / (3.*(-2*left + m1left + m1right)))
+    #             cov = ((-2*(-3*left**2 + m1left**2
+    #                         + m1left*m1right + m1right**2)**2 +
+    #                     3*(-2*left + m1left + m1right) *
+    #                     (-4*left**3
+    #                      + (m1left + m1right)*(m1left**2 + m1right**2))) /
+    #                    (18.*(-2*left + m1left + m1right)**2))
+    #             std = np.sqrt(cov)
 
-            if param in ('phase', 'time',
-                         'chi_1', 'chi_2', 'a_1', 'a_2',
-                         'phi_12', 'phi_jk', 'psi', 'ra'):
-                # Uniform prior
-                mean = (left + right)/2
-                std = np.sqrt(((left - right)**2) / 12)
+    #         if param in ('phase', 'time',
+    #                      'chi_1', 'chi_2', 'a_1', 'a_2',
+    #                      'phi_12', 'phi_jk', 'psi', 'ra'):
+    #             # Uniform prior
+    #             mean = (left + right)/2
+    #             std = np.sqrt(((left - right)**2) / 12)
 
-            elif param == 'distance':
-                # Uniform in distance^3
-                mean = ((3/4) * (left + right) * (left**2 + right**2)
-                        / (left**2 + left*right + right**2))
-                std = np.sqrt((3*((left - right)**2)
-                               * (left**4 + 4*(left**3)*right
-                                  + 10*(left**2)*(right**2)
-                                  + 4*left*(right**3) + right**4))
-                              / (80.*((left**2 + left*right + right**2)**2)))
+    #         elif param == 'distance':
+    #             # Uniform in distance^3
+    #             mean = ((3/4) * (left + right) * (left**2 + right**2)
+    #                     / (left**2 + left*right + right**2))
+    #             std = np.sqrt((3*((left - right)**2)
+    #                            * (left**4 + 4*(left**3)*right
+    #                               + 10*(left**2)*(right**2)
+    #                               + 4*left*(right**3) + right**4))
+    #                           / (80.*((left**2 + left*right + right**2)**2)))
 
-            elif param in ('tilt_1', 'tilt_2', 'theta_jn'):
-                # Uniform in cosine prior
-                # Assume range is [0, pi]
-                mean = np.pi / 2.0
-                std = np.sqrt((np.pi**2 - 8) / 4)
+    #         elif param in ('tilt_1', 'tilt_2', 'theta_jn'):
+    #             # Uniform in cosine prior
+    #             # Assume range is [0, pi]
+    #             mean = np.pi / 2.0
+    #             std = np.sqrt((np.pi**2 - 8) / 4)
 
-            elif param == 'dec':
-                # Uniform in sine prior
-                # Assume range for declination is [-pi/2, pi/2]
-                mean = 0.0
-                std = np.sqrt((np.pi**2 - 8) / 4)
+    #         elif param == 'dec':
+    #             # Uniform in sine prior
+    #             # Assume range for declination is [-pi/2, pi/2]
+    #             mean = 0.0
+    #             std = np.sqrt((np.pi**2 - 8) / 4)
 
-            self.parameters_mean[i] = mean
-            self.parameters_std[i] = std
+    #         self.parameters_mean[i] = mean
+    #         self.parameters_std[i] = std
 
     def x_train(self):
         """Return training set of standardized waveform parameters x.
@@ -2187,8 +2229,8 @@ class WaveformDataset(object):
             print('Not implemented.')
             return
 
-        print('Calculating standardization variances based on SNR threshold'
-              ' of {}'.format(self.snr_threshold))
+        # print('Calculating standardization variances based on SNR threshold'
+        #       ' of {}'.format(self.snr_threshold))
         print('  Generating {} detector waveforms'.format(nsamples))
 
         # Create arrays
@@ -2196,24 +2238,32 @@ class WaveformDataset(object):
         for ifo in self.detectors.keys():
             h_detector[ifo] = np.empty((nsamples, waveform_size),
                                        dtype=np.complex64)
-        distances = np.empty(nsamples, dtype=np.float32)
+        # distances = np.empty(nsamples, dtype=np.float32)
 
-        self._cache_oversampled_parameters(nsamples)
-        if not self.sample_extrinsic_only:
-            self.parameters = self.cache_parameters
-        
+        if self.sampling_from == 'posterior':
+            self.parameters = self._sample_prior_posterior(self.nsamples)
+        elif self.sampling_from == 'uniform':
+            self.parameters = self._sample_prior(self.nsamples)
+
+        # Set extrinsic parameters to fiducial values.
+        print("Setting extrinsic parameters to fiducial values.")
+        for extrinsic_param, value in self.fiducial_params.items():
+            self.parameters[:, self.param_idx[extrinsic_param]] = value
+
+
         # Generate distances and waveforms
         for i in tqdm(range(nsamples)):
-            p, h_det, _, _ = self.p_h_random_extrinsic(i, train=True)
-            distances[i] = p[self.param_idx['distance']]
+            p, h_det, _, _ = self.p_h_random_extrinsic(i, 
+                        sample_extrinsic_only=self.sample_extrinsic_only, train=True)
+            # distances[i] = p[self.param_idx['distance']]
             for ifo, h in h_det.items():
                 h_detector[ifo][i] = h
 
         print('  Calculating new standardization factors.')
 
-        # Distance mean and standard deviation
-        self.parameters_mean[self.param_idx['distance']] = np.mean(distances)
-        self.parameters_std[self.param_idx['distance']] = np.std(distances)
+        # # Distance mean and standard deviation
+        # self.parameters_mean[self.param_idx['distance']] = np.mean(distances)
+        # self.parameters_std[self.param_idx['distance']] = np.std(distances)
 
         # Reduced basis standardization
         if self.domain == 'RB':
@@ -2239,49 +2289,27 @@ class WaveformDatasetTorch(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
-        if self.wfd.extrinsic_at_train:
-
-            # Obtain parameters and waveform
-            p, h, w, snr = self.wfd.p_h_random_extrinsic(idx, self.train)
-
-            # Add noise, reshape, standardize
-            x, y = self.wfd.x_y_from_p_h(p, h, add_noise=True)
-
-            # Explicitly put the tensor w on the CPU, because default is CUDA.
-            return (torch.from_numpy(y), torch.from_numpy(x),
-                    torch.tensor(w, device='cpu'),
-                    torch.tensor(snr, device='cpu'))
-
-        else:
-            # OLD CODE. REWORK FOR COMPATIBILITY.
-
-            # Convert to index in wrapped WaveformDataset
-            if self.train:
-                wfd_idx = self.wfd.train_selection[idx]
+        # shuffle = False
+        if (idx == 0) and (not self.wfd.sample_extrinsic_only):
+            if self.wfd.sampling_from == 'posterior':
+                self.wfd.parameters = self.wfd._sample_prior_posterior(self.wfd.nsamples)
+            elif self.wfd.sampling_from == 'uniform':
+                self.wfd.parameters = self.wfd._sample_prior(self.wfd.nsamples)
             else:
-                wfd_idx = self.wfd.test_selection[idx]
+                raise
+            print('Re-generating waveforms for {} prior.'.format(self.wfd.sampling_from))
+        elif (idx == 0) and self.wfd.sample_extrinsic_only:
+            if self.wfd.sampling_from == 'posterior':
+                self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
+            print('Re-sampling exterior params for {} prior.'.format(self.wfd.sampling_from))
 
-            params = (self.wfd.parameters[wfd_idx]
-                      - self.wfd.parameters_mean) / self.wfd.parameters_std
+        # Obtain parameters and waveform
+        p, h, w, snr = self.wfd.p_h_random_extrinsic(idx, self.train, self.wfd.sample_extrinsic_only)
 
-            # Concatenate the waveforms from the different detectors
-            wfs = []
-            for d in self.wfd.detectors.keys():
+        # Add noise, reshape, standardize
+        x, y = self.wfd.x_y_from_p_h(p, h, add_noise=True)
 
-                wf = self.wfd.h_dict[d][wfd_idx]/self.wfd._noise_std
-
-                if self.wfd.domain == 'TD':
-                    wfs.append(wf)
-
-                elif self.wfd.domain == 'FD':
-
-                    # Cut out the part of the waveforms below f_min
-                    start_idx = int(self.wfd.f_min / self.wfd.delta_f)
-
-                    wf_truncated = wf[start_idx:]
-                    wfs.append(wf_truncated.real)
-                    wfs.append(wf_truncated.imag)
-
-            wf = np.concatenate(wfs, axis=-1)
-
-            return (torch.from_numpy(wf), torch.from_numpy(params))
+        # Explicitly put the tensor w on the CPU, because default is CUDA.
+        return (torch.from_numpy(y), torch.from_numpy(x),
+                torch.tensor(w, device='cpu'),
+                torch.tensor(snr, device='cpu'))
