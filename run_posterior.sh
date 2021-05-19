@@ -30,12 +30,13 @@ python -m inference.gwpe_main train new nde \
     --save_aux_filename waveforms_supplementary_sampall.hdf5 \
     --nbins 8 \
     --dont_sample_extrinsic_only \
-    --nsample 10000 \
+    --nsamples_target_event 500 \
+    --nsample 2000 \
     --sampling_from posterior \
     --num_transform_blocks 10 \
     --nflows 15 \
     --batch_norm \
-    --batch_size 2048 \
+    --batch_size 16 \
     --lr 0.0002 \
     --epochs 1000 \
     --distance_prior_fn uniform_distance \
