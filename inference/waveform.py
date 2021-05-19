@@ -1194,7 +1194,6 @@ class WaveformDataset(object):
 
     def test_reduced_basis(self, n_test=10000, prior_fun=None, fiducial_distance=None, truncate=None):
         # Evaluation on test waveforms
-        distance = (fiducial_distance if fiducial_distance else self.fiducial_params['distance'])
         print('Generating {} detector FD waveforms from ({}) for testing reduced basis.\n(Fiducial distance: {} Mpc)'
               .format(n_test, prior_fun.__name__, distance))
 
@@ -1206,7 +1205,8 @@ class WaveformDataset(object):
             p = prior_fun(1)[0]
             # To generate reduced basis, fix all waveforms to same fiducial
             # distance.
-            p[self.param_idx['distance']] = distance
+            if fiducial_distance:
+                p[self.param_idx['distance']] = fiducial_distance
             h_d = self._generate_whitened_waveform(p, intrinsic_only=False)
             for ifo, h in h_d.items():
                 h_detector[ifo][i] = h
