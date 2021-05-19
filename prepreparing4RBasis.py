@@ -26,7 +26,7 @@ def make_print_to_file(path='./'):
  
 
     fileName = datetime.datetime.now().strftime('prepreparing4RBasis_'+'%Y_%m_%d')
-    sys.stdout = Logger('data/' + fileName + '.log', path=path)
+    sys.stdout = Logger('data/' + fileName + '.logfile', path=path)
  
     #############################################################
     # 这里输出之后的所有的输出的 print 内容即将写入日志
