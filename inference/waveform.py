@@ -1875,7 +1875,7 @@ class WaveformDataset(object):
 
         self._cache_oversampled_parameters(n)
         if not self.sample_extrinsic_only:
-            self.parameters = self.cache_parameters
+            self.parameters = self.cache_parameters.astype(np.float32)
         print('Generating whitened detector waveforms.')
         for i in tqdm(range(n)):
 
@@ -2241,9 +2241,9 @@ class WaveformDataset(object):
         # distances = np.empty(nsamples, dtype=np.float32)
 
         if self.sampling_from == 'posterior':
-            self.parameters = self._sample_prior_posterior(self.nsamples)
+            self.parameters = self._sample_prior_posterior(self.nsamples).astype(np.float32)
         elif self.sampling_from == 'uniform':
-            self.parameters = self._sample_prior(self.nsamples)
+            self.parameters = self._sample_prior(self.nsamples).astype(np.float32)
 
         # Set extrinsic parameters to fiducial values.
         print("Setting extrinsic parameters to fiducial values.")
@@ -2292,9 +2292,9 @@ class WaveformDatasetTorch(Dataset):
         # shuffle = False
         if (idx == 0) and (not self.wfd.sample_extrinsic_only):
             if self.wfd.sampling_from == 'posterior':
-                self.wfd.parameters = self.wfd._sample_prior_posterior(self.wfd.nsamples)
+                self.wfd.parameters = self.wfd._sample_prior_posterior(self.wfd.nsamples).astype(np.float32)
             elif self.wfd.sampling_from == 'uniform':
-                self.wfd.parameters = self.wfd._sample_prior(self.wfd.nsamples)
+                self.wfd.parameters = self.wfd._sample_prior(self.wfd.nsamples).astype(np.float32)
             else:
                 raise
             print('Re-generating waveforms for {} prior.'.format(self.wfd.sampling_from))
