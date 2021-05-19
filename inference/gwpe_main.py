@@ -19,7 +19,7 @@ from . import waveform as wfg
 # from . import waveform_generator_extra as wfg_extra
 # from . import waveform_generator as wfg
 # from . import a_flows
-# from . import nde_flows_extra
+from . import nde_flows
 # from . import cvae
 
 def touch(path):
@@ -231,7 +231,7 @@ class PosteriorModel(object):
         elif model_type == 'cvae':
             model_creator = cvae.CVAE
         elif model_type == 'nde':
-            model_creator = nde_flows_extra.create_NDE_model
+            model_creator = nde_flows.create_NDE_model
         else:
             raise NameError('Invalid model type')
 
@@ -479,7 +479,7 @@ class PosteriorModel(object):
                     self.device)
 
             elif self.model_type == 'nde':
-                train_loss = nde_flows_extra.train_epoch(
+                train_loss = nde_flows.train_epoch(
                     self.model,
                     self.train_loader,
                     self.optimizer,
@@ -488,7 +488,7 @@ class PosteriorModel(object):
                     output_freq,
                     add_noise,
                     snr_annealing)
-                test_loss = nde_flows_extra.test_epoch(
+                test_loss = nde_flows.test_epoch(
                     self.model,
                     self.test_loader,
                     epoch,
@@ -557,6 +557,12 @@ class PosteriorModel(object):
 
                 touch(p / ('.'+'history.txt'))
 
+                if (output_freq is not None) and (epoch % 50 == 0):
+                    print('Saving model as {}_e{} & {}_e{}'.format(self.save_model_name, epoch,
+                                                                   self.save_aux_filename, epoch))
+                    self.save_model(filename=self.save_model_name + '_e{}'.format(epoch), 
+                                    aux_filename=self.save_aux_filename + 'e_{}'.foramt(epoch))
+
     def init_waveform_supp(self, aux_filename='waveforms_supplementary.hdf5'):
 
         p = Path(self.model_dir)
@@ -617,7 +623,7 @@ class PosteriorModel(object):
             x_samples = a_flows.obtain_samples(
                 self.model, self.base_dist, y, nsamples, self.device)
         elif self.model_type == 'nde':
-            x_samples = nde_flows_extra.obtain_samples(
+            x_samples = nde_flows.obtain_samples(
                 self.model, y, nsamples, self.device
             )
         elif self.model_type == 'cvae':
