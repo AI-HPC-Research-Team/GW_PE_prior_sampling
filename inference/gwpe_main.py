@@ -633,6 +633,7 @@ class PosteriorModel(object):
                     plt.ylabel('Loss')
                     plt.legend()
                     plt.savefig(p / 'history.png')
+                    plt.close()
                     touch(p / ('.'+'history.png'))
 
                 touch(p / ('.'+'history.txt'))
@@ -684,6 +685,7 @@ class PosteriorModel(object):
             plt.ylabel('JS div.')
             plt.legend()
             plt.savefig(p / 'js_history.png')
+            plt.close()
             touch(p / ('.'+'js_history.png'))        
 
             plt.figure()
@@ -692,6 +694,7 @@ class PosteriorModel(object):
             plt.ylabel('KL div.')
             plt.legend()
             plt.savefig(p / 'kl_history.png')
+            plt.close()
             touch(p / ('.'+'kl_history.png'))
 
     
