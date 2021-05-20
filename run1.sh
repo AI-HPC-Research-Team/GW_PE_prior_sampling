@@ -6,15 +6,16 @@ python3.7 -m inference.gwpe_main train new nde \
     --save_aux_filename waveforms_supplementary_sample_from_all_posterior.hdf5 \
     --nbins 8 \
     --dont_sample_extrinsic_only \
-    --nsamples_target_event 500 \
+    --nsamples_target_event 1000 \
     --nsample 100000 \
     --sampling_from posterior \
     --num_transform_blocks 10 \
     --nflows 15 \
     --batch_norm \
     --batch_size 2048 \
+    --output_freq 10 \
     --lr 0.0002 \
-    --epochs 1000 \
+    --epochs 2000 \
     --distance_prior_fn uniform_distance \
     --hidden_dims 512 \
     --truncate_basis 100 \
