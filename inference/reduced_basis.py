@@ -153,7 +153,6 @@ class SVDBasis(object):
         pos = np.searchsorted(self.t_grid, dt, side='right') - 1
 
         if self.t_grid[pos] == dt:
-
             # No interpolation needed
             translated = coefficients @ self.T_matrices[pos]
 

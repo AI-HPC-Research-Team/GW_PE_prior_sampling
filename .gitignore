@@ -1,6 +1,6 @@
 # Byte-compiled / optimized / DLL files
 .dolt/
-inference/__pycache__/
+inference/__pycache__/*
 downsampled_posterior_samples_v1.0.0/GW*.dat
 __pycache__/
 *.py[cod]

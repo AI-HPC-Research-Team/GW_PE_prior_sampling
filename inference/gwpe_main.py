@@ -8,23 +8,76 @@ from torch.utils.data import DataLoader
 import torch
 from pathlib import Path
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 import corner
 import csv
 import time
 import numpy as np
+import pandas as pd
 import h5py
 
-# from .reduced_basis import SVDBasis
+from .reduced_basis import SVDBasis
+from . import waveform as wfg
 # from . import waveform_generator_extra as wfg_extra
 # from . import waveform_generator as wfg
 # from . import a_flows
-# from . import nde_flows_extra
+from . import nde_flows
 # from . import cvae
+from scipy import stats
 
 def touch(path):
     with open(path, 'a'):
         os.utime(path, None)
 
+def kl_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
+    try:
+         kernel = [kde(i,bw_method='scott') for i in samples]
+    except np.linalg.LinAlgError:
+         return float("nan")
+        
+    x = np.linspace(
+        np.min([np.min(i) for i in samples]),
+        np.max([np.max(i) for i in samples]),
+        100
+    )
+    factor = 1.0e-5
+
+    a, b = [k(x) for k in kernel]
+    
+    for index in range(len(a)):
+        if a[index] < max(a) * factor:
+            a[index] = max(a) * factor
+            
+    for index in range(len(b)):
+        if b[index] < max(b) * factor:
+            b[index] = max(b) * factor
+
+    a = np.asarray(a)
+    b = np.asarray(b)
+    kl_forward = stats.entropy(a, qk=b, base=base)
+    return kl_forward
+
+def js_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
+    try:
+         kernel = [kde(i) for i in samples]
+    except np.linalg.LinAlgError:
+         return float("nan")
+        
+    x = np.linspace(
+        np.min([np.min(i) for i in samples]),
+        np.max([np.max(i) for i in samples]),
+        100
+    )
+    
+    a, b = [k(x) for k in kernel]
+    a = np.asarray(a)
+    b = np.asarray(b)
+    
+    m = 1. / 2 * (a + b)
+    kl_forward = stats.entropy(a, qk=m, base=base)
+    kl_backward = stats.entropy(b, qk=m, base=base)
+    return np.round(kl_forward / 2. + kl_backward / 2., decimal)
 class PosteriorModel(object):
 
     def __init__(self, model_dir=None, data_dir=None, basis_dir=None, 
@@ -57,6 +110,7 @@ class PosteriorModel(object):
     def load_dataset(self, batch_size=512, detectors=None,
                      truncate_basis=None, snr_threshold=None,
                      distance_prior_fn=None, distance_prior=None,
+                     sampling_from=None, nsample=10000, nsamples_target_event=0,
                      bw_dstar=None):
         """Load database of waveforms and set up data loaders.
 
@@ -64,25 +118,45 @@ class PosteriorModel(object):
 
             batch_size (int):  batch size for DataLoaders
         """
-
+        self.nsamples_target_event = nsamples_target_event
         if self.data_dir is None:
             raise NameError("Data directory must be specified."
                             " Store in attribute PosteriorModel.data_dir")
 
-        # Load waveforms, already split into train and test sets
-        self.wfd = wfg_extra.WaveformDataset_extra()
-        self.wfd.load(self.data_dir)
+        # Load settings
+        self.wfd = wfg.WaveformDataset(sampling_from=sampling_from)
+        self.wfd.load_setting(self.data_dir, sample_extrinsic_only = self.sample_extrinsic_only)
         
         # 覆盖 basis
         if self.wfd.domain == 'RB':
             self.wfd.basis = SVDBasis()
             self.wfd.basis.load(self.basis_dir)
-            self.wfd.Nrb = self.wfd.basis.n        
+            self.wfd.Nrb = self.wfd.basis.n
 
-        self.wfd._load_posterior(self.wfd.event, sample_extrinsic_only=self.sample_extrinsic_only) # loading bilby posterior as training dist.
-        self.wfd.load_train(self.data_dir)
-        
-        
+        print("Sampling {} sets of parameters from {} prior.".format(nsample, self.wfd.sampling_from))
+        if self.wfd.sampling_from == 'posterior':
+            # loading bilby posterior as training dist.
+            self.wfd._load_posterior(self.wfd.event,) 
+            self.wfd.parameters = self.wfd._sample_prior_posterior(nsample).astype(np.float32)
+            self.wfd.nsamples = len(self.wfd.parameters)
+            print('init training...')
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics            
+            self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))
+        elif self.wfd.sampling_from == 'uniform':
+            self.wfd.parameters = self.wfd._sample_prior(nsample).astype(np.float32)
+            self.wfd.nsamples = len(self.wfd.parameters)
+            print('init training...')
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics            
+        else:
+            raise
+        #self.wfd.load_train(self.data_dir) # discard
+
+
+
+        # Set up relative whitening
+        print('init relative whitening...')
+        self.wfd.init_relative_whitening()
+
         # Set the detectors for training; useful if this is different from
         # stored detectors in WaveformDataset
         if self.detectors is not None:
@@ -103,32 +177,51 @@ class PosteriorModel(object):
             # Additional initialization (time translations, whitening) for
             # reduced basis. This should be done *after* truncating the basis
             # to save time in generating time translation matrices.
+            print('initialidze reduced basis aux...')
             self.wfd.initialize_reduced_basis_aux()
 
             # Initialize the SNR threshold. This needs to be done after fully
             # initializing the reduced basis, so that the time translation
             # and whitening transformations are available.
-            restandardize = False
 
-            if snr_threshold is not None:
-                print('Setting SNR threshold to {}.'.format(snr_threshold))
-                self.wfd.snr_threshold = snr_threshold
-                restandardize = True
+            # restandardize = False
 
-            if distance_prior_fn is not None:
-                print('Using distance prior function: {}'.format(
-                      distance_prior_fn))
-                self.wfd.distance_prior_fn = distance_prior_fn
-                self.wfd.bw_dstar = bw_dstar
-                restandardize = True
+            # if snr_threshold is not None:
+            #     print('Setting SNR threshold to {}.'.format(snr_threshold))
+            #     self.wfd.snr_threshold = snr_threshold
+            #     restandardize = True
 
-            if distance_prior is not None:
-                print('Setting distance prior to {}'.format(distance_prior))
-                self.wfd.prior['distance'] = distance_prior
-                restandardize = True
+            # if distance_prior_fn is not None:
+            #     print('Using distance prior function: {}'.format(
+            #           distance_prior_fn))
+            #     self.wfd.distance_prior_fn = distance_prior_fn
+            #     self.wfd.bw_dstar = bw_dstar
+            #     restandardize = True
 
-            if restandardize:
-                self.wfd.calculate_threshold_standardizations()
+            # if distance_prior is not None:
+            #     print('Setting distance prior to {}'.format(distance_prior))
+            #     self.wfd.prior['distance'] = distance_prior
+            #     restandardize = True
+
+            # if restandardize:
+            #     self.wfd.calculate_threshold_standardizations()
+        print('calculate threshold standardizatison...')
+        self.wfd.calculate_threshold_standardizations()
+
+        # 用于在训练的时候，与目标 event 的测试后验分布作对比
+        if self.nsamples_target_event:
+            self.wfd._load_posterior(self.wfd.event,) 
+            self.wfd.parameters_event = self.wfd._sample_prior_posterior(nsamples_target_event).astype(np.float32)        
+
+            # Load strain data for event
+            event_strain = {}
+            with h5py.File(self.wfd.event_dir / 'strain_FD_whitened.hdf5', 'r') as f:
+                event_strain = {det:f[det][:].astype(np.complex64) for det in self.detectors}
+            d_RB = {}
+            for ifo, di in event_strain.items():
+                h_RB = self.wfd.basis.fseries_to_basis_coefficients(di)
+                d_RB[ifo] = h_RB
+            _, self.event_y = self.wfd.x_y_from_p_h(np.zeros(self.wfd.nparams), d_RB, add_noise=False)
 
         # pytorch wrappers
         wfd_train = wfg.WaveformDatasetTorch(self.wfd, train=True)
@@ -136,7 +229,7 @@ class PosteriorModel(object):
 
         # DataLoader objects
         self.train_loader = DataLoader(
-            wfd_train, batch_size=batch_size, shuffle=True, pin_memory=True,
+            wfd_train, batch_size=batch_size, shuffle=False, pin_memory=True,
             num_workers=16,
             worker_init_fn=lambda _: np.random.seed(
                 int(torch.initial_seed()) % (2**32-1)))
@@ -207,7 +300,7 @@ class PosteriorModel(object):
         elif model_type == 'cvae':
             model_creator = cvae.CVAE
         elif model_type == 'nde':
-            model_creator = nde_flows_extra.create_NDE_model
+            model_creator = nde_flows.create_NDE_model
         else:
             raise NameError('Invalid model type')
 
@@ -455,7 +548,7 @@ class PosteriorModel(object):
                     self.device)
 
             elif self.model_type == 'nde':
-                train_loss = nde_flows_extra.train_epoch(
+                train_loss = nde_flows.train_epoch(
                     self.model,
                     self.train_loader,
                     self.optimizer,
@@ -464,7 +557,7 @@ class PosteriorModel(object):
                     output_freq,
                     add_noise,
                     snr_annealing)
-                test_loss = nde_flows_extra.test_epoch(
+                test_loss = nde_flows.test_epoch(
                     self.model,
                     self.test_loader,
                     epoch,
@@ -530,9 +623,78 @@ class PosteriorModel(object):
                             writer = csv.writer(f, delimiter='\t')
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
+                    data_history = np.loadtxt(p / 'history.txt')
+
+                    # Plot                  
+                    plt.figure()
+                    plt.plot(data_history[:,0], data_history[:,1], '*--', label='train')
+                    plt.plot(data_history[:,0], data_history[:,2], '*--', label='test')
+                    plt.xlabel('Epoch')
+                    plt.ylabel('Loss')
+                    plt.legend()
+                    plt.savefig(p / 'history.png')
+                    touch(p / ('.'+'history.png'))
 
                 touch(p / ('.'+'history.txt'))
 
+
+
+                # Save kl and js history
+                self.save_kljs_history(p, epoch)
+
+                if (output_freq is not None) and (epoch % 50 == 0):
+                    print('Saving model as {}_e{} & {}_e{}'.format(self.save_model_name, epoch,
+                                                                   self.save_aux_filename, epoch))
+                    self.save_model(filename=self.save_model_name + '_e{}'.format(epoch), 
+                                    aux_filename=self.save_aux_filename + 'e_{}'.format(epoch))
+                    
+
+    def save_kljs_history(self, p, epoch):
+        # for nflow only
+        x_samples = nde_flows.obtain_samples(self.model, self.event_y, self.nsamples_target_event, self.device)
+        x_samples = x_samples.cpu()
+        # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
+        test_samples = self.wfd.post_process_parameters(x_samples.numpy())
+
+        # Make column headers if this is the first epoch
+        if epoch == 1:
+            with open(p / 'js_history.txt', 'w') as f:
+                writer = csv.writer(f, delimiter='\t')
+                writer.writerow(list(self.wfd.param_idx.keys()))
+            with open(p / 'kl_history.txt', 'w') as f:
+                writer = csv.writer(f, delimiter='\t')
+                writer.writerow(list(self.wfd.param_idx.keys()))    
+                    
+        with open(p / 'js_history.txt', 'a') as f:
+            writer = csv.writer(f, delimiter='\t')
+            writer.writerow(js_divergence([test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+        with open(p / 'kl_history.txt', 'a') as f:
+            writer = csv.writer(f, delimiter='\t')
+            writer.writerow(kl_divergence([test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+
+        touch(p / ('.'+'js_history.txt'))
+        touch(p / ('.'+'kl_history.txt'))
+        # Plot
+        if epoch >1:
+            kldf = pd.read_csv(p / 'kl_history.txt', sep='\t')
+            jsdf = pd.read_csv(p / 'js_history.txt', sep='\t')
+            plt.figure()
+            [plt.plot(jsdf[name], label=name) for name in self.wfd.param_idx.keys()]
+            plt.xlabel('Epoch')
+            plt.ylabel('JS div.')
+            plt.legend()
+            plt.savefig(p / 'js_history.png')
+            touch(p / ('.'+'js_history.png'))        
+
+            plt.figure()
+            [plt.plot(kldf[name], label=name) for name in self.wfd.param_idx.keys()]
+            plt.xlabel('Epoch')
+            plt.ylabel('KL div.')
+            plt.legend()
+            plt.savefig(p / 'kl_history.png')
+            touch(p / ('.'+'kl_history.png'))
+
+    
     def init_waveform_supp(self, aux_filename='waveforms_supplementary.hdf5'):
 
         p = Path(self.model_dir)
@@ -593,7 +755,7 @@ class PosteriorModel(object):
             x_samples = a_flows.obtain_samples(
                 self.model, self.base_dist, y, nsamples, self.device)
         elif self.model_type == 'nde':
-            x_samples = nde_flows_extra.obtain_samples(
+            x_samples = nde_flows.obtain_samples(
                 self.model, y, nsamples, self.device
             )
         elif self.model_type == 'cvae':
@@ -641,6 +803,13 @@ def parse_args():
     dir_parent_parser.add_argument('--no_cuda', action='store_false',
                                    dest='cuda')
     dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
+    dir_parent_parser.add_argument('--sampling_from',
+                                     choices=['uniform',
+                                              'posterior'])
+    dir_parent_parser.add_argument(
+        '--nsamples_target_event', type=int, default='0')                                              
+    dir_parent_parser.add_argument(
+        '--nsample', type=int, default='1000000')
 
     activation_parent_parser = argparse.ArgumentParser(add_help=None)
     activation_parent_parser.add_argument(
@@ -920,6 +1089,7 @@ def parse_args():
 
 def main():
     args = parse_args()
+    print(args)
 
     if args.mode == 'train':
 
@@ -934,12 +1104,15 @@ def main():
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
-        return #
+
         pm.load_dataset(batch_size=args.batch_size,
                         detectors=args.detectors,
                         truncate_basis=args.truncate_basis,
                         snr_threshold=args.snr_threshold,
                         distance_prior_fn=args.distance_prior_fn,
+                        sampling_from=args.sampling_from,
+                        nsamples_target_event=args.nsamples_target_event,
+                        nsample=args.nsample,
                         distance_prior=args.distance_prior,
                         bw_dstar=args.bw_dstar)
         print('Detectors:', pm.detectors)

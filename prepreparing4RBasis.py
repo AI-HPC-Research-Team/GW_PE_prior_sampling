@@ -92,11 +92,11 @@ if __name__ == '__main__':
     print()
     wfd.train_reduced_basis(n_train=50000//div, prior_fun=wfd._sample_prior)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            truncate=None)
+                            fiducial_distance=1000, truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
                             fiducial_distance=450, truncate=100)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            truncate=None)
+                            fiducial_distance=1000, truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
                             fiducial_distance=450, truncate=100)
     addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior.__name__)
@@ -106,11 +106,11 @@ if __name__ == '__main__':
     print()
     wfd.train_reduced_basis(n_train=50000//div, prior_fun=wfd._sample_prior_posterior)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            truncate=None)
+                            fiducial_distance=1000, truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
                             fiducial_distance=450, truncate=100)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            truncate=None)
+                            fiducial_distance=1000, truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
                             fiducial_distance=450, truncate=100)
     addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior_posterior.__name__)
