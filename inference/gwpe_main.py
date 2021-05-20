@@ -646,7 +646,7 @@ class PosteriorModel(object):
                     print('Saving model as {}_e{} & {}_e{}'.format(self.save_model_name, epoch,
                                                                    self.save_aux_filename, epoch))
                     self.save_model(filename=self.save_model_name + '_e{}'.format(epoch), 
-                                    aux_filename=self.save_aux_filename + 'e_{}'.foramt(epoch))
+                                    aux_filename=self.save_aux_filename + 'e_{}'.format(epoch))
                     
 
     def save_kljs_history(self, p, epoch):
