@@ -633,6 +633,7 @@ class PosteriorModel(object):
                     plt.ylabel('Loss')
                     plt.legend()
                     plt.savefig(p / 'history.png')
+                    plt.close()
                     touch(p / ('.'+'history.png'))
 
                 touch(p / ('.'+'history.txt'))
@@ -645,8 +646,8 @@ class PosteriorModel(object):
                 if (output_freq is not None) and (epoch % 50 == 0):
                     print('Saving model as {}_e{} & {}_e{}'.format(self.save_model_name, epoch,
                                                                    self.save_aux_filename, epoch))
-                    self.save_model(filename=self.save_model_name + '_e{}'.format(epoch), 
-                                    aux_filename=self.save_aux_filename + 'e_{}'.format(epoch))
+                    self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
+                                    aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
                     
 
     def save_kljs_history(self, p, epoch):
@@ -684,6 +685,7 @@ class PosteriorModel(object):
             plt.ylabel('JS div.')
             plt.legend()
             plt.savefig(p / 'js_history.png')
+            plt.close()
             touch(p / ('.'+'js_history.png'))        
 
             plt.figure()
@@ -692,6 +694,7 @@ class PosteriorModel(object):
             plt.ylabel('KL div.')
             plt.legend()
             plt.savefig(p / 'kl_history.png')
+            plt.close()
             touch(p / ('.'+'kl_history.png'))
 
     
