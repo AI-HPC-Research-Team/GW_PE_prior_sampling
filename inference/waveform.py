@@ -2298,6 +2298,10 @@ class WaveformDatasetTorch(Dataset):
             else:
                 raise
             print('Re-generating waveforms for {} prior.'.format(self.wfd.sampling_from))
+            # Set extrinsic parameters to fiducial values.
+            print("Setting extrinsic parameters to fiducial values.")
+            for extrinsic_param, value in self.wfd.fiducial_params.items():
+                self.wfd.parameters[:, self.wfd.param_idx[extrinsic_param]] = value            
         elif (idx == 0) and self.wfd.sample_extrinsic_only:
             if self.wfd.sampling_from == 'posterior':
                 self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
