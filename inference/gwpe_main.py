@@ -148,7 +148,7 @@ class PosteriorModel(object):
             print('init training...')
             self.wfd.init_training() # split dataset and _compute_parameter_statistics            
         else:
-            raise
+            raise NameError('You need specify either "uniform" or "posterior" for `sampling_from`.')
         #self.wfd.load_train(self.data_dir) # discard
 
 
