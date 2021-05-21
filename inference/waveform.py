@@ -1195,7 +1195,7 @@ class WaveformDataset(object):
     def test_reduced_basis(self, n_test=10000, prior_fun=None, fiducial_distance=None, truncate=None):
         # Evaluation on test waveforms
         print('Generating {} detector FD waveforms from ({}) for testing reduced basis.\n(Fiducial distance: {} Mpc)'
-              .format(n_test, prior_fun.__name__, distance))
+              .format(n_test, prior_fun.__name__, fiducial_distance))
 
         h_detector = {}
         for ifo in self.detectors.keys():
