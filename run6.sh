@@ -5,16 +5,17 @@ python3.7 -m inference.gwpe_main train new nde \
     --save_model_name model.pt \
     --save_aux_filename waveforms_supplementary.hdf5 \
     --nbins 8 \
-    --nsamples_target_event 500 \
+    --nsamples_target_event 1000 \
     --nsample 100000 \
     --dont_sample_extrinsic_only \
     --sampling_from uniform \
     --num_transform_blocks 10 \
     --nflows 15 \
     --batch_norm \
+    --output_freq 10 \
     --batch_size 2048 \
     --lr 0.0002 \
-    --epochs 1000 \
+    --epochs 2000 \
     --distance_prior_fn uniform_distance \
     --hidden_dims 512 \
     --truncate_basis 100 \
