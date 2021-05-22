@@ -1299,7 +1299,7 @@ class WaveformDataset(object):
     #
     # File I/O for waveform database
     #
-    def save_setting(self, data_dir='.', config_fn='setting.json'):
+    def save_setting(self, data_dir='.', config_fn='settings.json'):
         p = Path(data_dir)
         p.mkdir(parents=True, exist_ok=True)
 
