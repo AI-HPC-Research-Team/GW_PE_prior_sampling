@@ -1123,7 +1123,7 @@ class WaveformDataset(object):
     # Methods for reduced basis
     #
 
-    def train_reduced_basis(self, n_train=10000, prior_fun=None, save_matches=None):
+    def train_reduced_basis(self, n_train=10000, prior_fun=None):
         """Generate the reduced basis elements.
 
         This draws parameters from the prior, generates detector waveforms,
@@ -1170,7 +1170,7 @@ class WaveformDataset(object):
         #     # Compute standardization for given ifo
         #     self.basis.init_standardization(ifo, h_array_RB, self._noise_std)
 
-`        print('Evaluating performance on training set waveforms.')
+        print('Evaluating performance on training set waveforms.')
         matches = []
         for h_FD in tqdm(training_array):
             h_RB = self.basis.fseries_to_basis_coefficients(h_FD)
@@ -1180,10 +1180,7 @@ class WaveformDataset(object):
             norm2 = np.mean(np.abs(h_reconstructed)**2)
             inner = np.mean(h_FD.conj()*h_reconstructed).real
 
-            matches.append(inner / np.sqrt(norm1 * norm2))`
-        # if save_matches:
-        #     print('saving matches to {} ...'.format(save_dir))
-        #     np.save(save_dir+,)
+            matches.append(inner / np.sqrt(norm1 * norm2))
         mismatches = 1 - np.array(matches)
         print('  Mean mismatch = {}'.format(np.mean(mismatches)))
         print('  Standard deviation = {}'.format(np.std(mismatches)))
@@ -1195,7 +1192,8 @@ class WaveformDataset(object):
         print('    99.99 -> {}'.format(np.percentile(mismatches, 99.99)))
         print()
 
-    def test_reduced_basis(self, n_test=10000, prior_fun=None, fiducial_distance=None, truncate=None):
+    def test_reduced_basis(self, n_test=10000, prior_fun=None, fiducial_distance=None, truncate=None, 
+                            save_dir=None):
         # Evaluation on test waveforms
         print('Generating {} detector FD waveforms from ({}) for testing reduced basis.\n(Fiducial distance: {} Mpc)'
               .format(n_test, prior_fun.__name__, fiducial_distance))
@@ -1204,8 +1202,10 @@ class WaveformDataset(object):
         for ifo in self.detectors.keys():
             h_detector[ifo] = np.empty((n_test, self.Nf), dtype=np.complex64)
 
+        p_save = np.empty((n_test, self.nparams), dtype=np.float64)
         for i in tqdm(range(n_test)):
             p = prior_fun(1)[0]
+            p_save[i] = p
             # To generate reduced basis, fix all waveforms to same fiducial
             # distance.
             if fiducial_distance:
@@ -1231,6 +1231,14 @@ class WaveformDataset(object):
 
             matches.append(inner / np.sqrt(norm1 * norm2))
         mismatches = 1 - np.array(matches)
+        if save_dir:
+            addr='{}_{}Mpc_{}trucate'.format(prior_fun.__name__,
+                                            fiducial_distance, truncate,)
+            print('saving mismatches for {}; fiducial:{}Mpc; truncate:{}\nat {}{}.npz'.format(prior_fun.__name__, 
+                                                                            fiducial_distance, truncate,
+                                                                            save_dir,addr))
+            np.savez_compressed(save_dir+addr, 
+                                p_save=p_save, mismatches=mismatches)
         print('  Mean mismatch = {}'.format(np.mean(mismatches)))
         print('  Standard deviation = {}'.format(np.std(mismatches)))
         print('  Max mismatch = {}'.format(np.max(mismatches)))

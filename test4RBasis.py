@@ -106,14 +106,25 @@ if __name__ == '__main__':
     #                        fiducial_distance=450, truncate=None)
     #wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
     #                        fiducial_distance=1000, truncate=100)    
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            truncate=None)
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            truncate=100)
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            truncate=None)
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            truncate=100)
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+    #                         truncate=None)
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+    #                         truncate=100)
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+    #                         truncate=None)
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+    #                         truncate=100)
+    wfd.test_reduced_basis(n_test=150000//div, 
+                            prior_fun=wfd._sample_prior,
+                            fiducial_distance=None,
+                            truncate=None,
+                            save_dir='./data/_uniform_prior')    
+    wfd.test_reduced_basis(n_test=150000//div, 
+                            prior_fun=wfd._sample_prior_posterior,
+                            fiducial_distance=None,
+                            truncate=None,
+                            save_dir='./data/_uniform_prior')
+
 
     ## 2
     addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior_posterior.__name__)    
@@ -137,20 +148,29 @@ if __name__ == '__main__':
     #                         fiducial_distance=1000, truncate=None)
     # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
     #                         fiducial_distance=450, truncate=100)
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            fiducial_distance=450, truncate=None)    
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            fiducial_distance=1000, truncate=100)        
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            fiducial_distance=450, truncate=None)
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            fiducial_distance=1000, truncate=100)    
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            truncate=None)
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            truncate=100)
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            truncate=None)
-    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            truncate=100)
-
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+    #                         fiducial_distance=450, truncate=None)    
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+    #                         fiducial_distance=1000, truncate=100)        
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+    #                         fiducial_distance=450, truncate=None)
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+    #                         fiducial_distance=1000, truncate=100)    
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+    #                         truncate=None)
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+    #                         truncate=100)
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+    #                         truncate=None)
+    # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+    #                         truncate=100)
+    wfd.test_reduced_basis(n_test=150000//div, 
+                            prior_fun=wfd._sample_prior,
+                            fiducial_distance=None,
+                            truncate=None,
+                            save_dir='./data/_posterior_prior')    
+    wfd.test_reduced_basis(n_test=150000//div, 
+                            prior_fun=wfd._sample_prior_posterior,
+                            fiducial_distance=None,
+                            truncate=None,
+                            save_dir='./data/_posterior_prior')
