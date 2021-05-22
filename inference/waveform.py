@@ -1123,7 +1123,7 @@ class WaveformDataset(object):
     # Methods for reduced basis
     #
 
-    def train_reduced_basis(self, n_train=10000, prior_fun=None):
+    def train_reduced_basis(self, n_train=10000, prior_fun=None, save_matches=None):
         """Generate the reduced basis elements.
 
         This draws parameters from the prior, generates detector waveforms,
@@ -1170,7 +1170,7 @@ class WaveformDataset(object):
         #     # Compute standardization for given ifo
         #     self.basis.init_standardization(ifo, h_array_RB, self._noise_std)
 
-        print('Evaluating performance on training set waveforms.')
+`        print('Evaluating performance on training set waveforms.')
         matches = []
         for h_FD in tqdm(training_array):
             h_RB = self.basis.fseries_to_basis_coefficients(h_FD)
@@ -1180,7 +1180,10 @@ class WaveformDataset(object):
             norm2 = np.mean(np.abs(h_reconstructed)**2)
             inner = np.mean(h_FD.conj()*h_reconstructed).real
 
-            matches.append(inner / np.sqrt(norm1 * norm2))
+            matches.append(inner / np.sqrt(norm1 * norm2))`
+        # if save_matches:
+        #     print('saving matches to {} ...'.format(save_dir))
+        #     np.save(save_dir+,)
         mismatches = 1 - np.array(matches)
         print('  Mean mismatch = {}'.format(np.mean(mismatches)))
         print('  Standard deviation = {}'.format(np.std(mismatches)))
@@ -1213,7 +1216,7 @@ class WaveformDataset(object):
 
         print('Evaluating performance on test set waveforms.\nTruncate at {}/{}.'
               .format(truncate if truncate else self.Nrb, self.Nrb))
-        test_array = np.vstack(list(h_detector.values()))
+        test_array = np.vstack(list(h_detector.values())) # [H1..., L1..., ....].shape = (len(det)*n_test, 8193)
         matches = []
         for h_FD in tqdm(test_array):
             h_RB = self.basis.fseries_to_basis_coefficients(h_FD,
