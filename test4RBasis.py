@@ -78,6 +78,7 @@ if __name__ == '__main__':
 
     ## 1
     addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior.__name__)    
+    print('Loading reduced basis:', addr)
     if wfd.domain == 'RB':
         wfd.basis = SVDBasis()
         wfd.basis.load(addr)
@@ -97,18 +98,26 @@ if __name__ == '__main__':
     #                         fiducial_distance=1000, truncate=None)
     # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
     #                         fiducial_distance=450, truncate=100)
+    #wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+    #                        fiducial_distance=450, truncate=None)    
+    #wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+    #                        fiducial_distance=1000, truncate=100)    
+    #wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+    #                        fiducial_distance=450, truncate=None)
+    #wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+    #                        fiducial_distance=1000, truncate=100)    
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            fiducial_distance=450, truncate=None)    
+                            truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
-                            fiducial_distance=1000, truncate=100)    
+                            truncate=100)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            fiducial_distance=450, truncate=None)
+                            truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-                            fiducial_distance=1000, truncate=100)    
-
+                            truncate=100)
 
     ## 2
     addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior_posterior.__name__)    
+    print('Loading reduced basis:', addr)
     if wfd.domain == 'RB':
         wfd.basis = SVDBasis()
         wfd.basis.load(addr)
@@ -136,3 +145,12 @@ if __name__ == '__main__':
                             fiducial_distance=450, truncate=None)
     wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
                             fiducial_distance=1000, truncate=100)    
+    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+                            truncate=None)
+    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior,
+                            truncate=100)
+    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+                            truncate=None)
+    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+                            truncate=100)
+
