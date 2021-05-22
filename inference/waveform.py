@@ -1192,7 +1192,8 @@ class WaveformDataset(object):
         print('    99.99 -> {}'.format(np.percentile(mismatches, 99.99)))
         print()
 
-    def test_reduced_basis(self, n_test=10000, prior_fun=None, fiducial_distance=None, truncate=None):
+    def test_reduced_basis(self, n_test=10000, prior_fun=None, fiducial_distance=None, truncate=None, 
+                            save_dir=None):
         # Evaluation on test waveforms
         print('Generating {} detector FD waveforms from ({}) for testing reduced basis.\n(Fiducial distance: {} Mpc)'
               .format(n_test, prior_fun.__name__, fiducial_distance))
@@ -1201,8 +1202,10 @@ class WaveformDataset(object):
         for ifo in self.detectors.keys():
             h_detector[ifo] = np.empty((n_test, self.Nf), dtype=np.complex64)
 
+        p_save = np.empty((n_test, self.nparams), dtype=np.float64)
         for i in tqdm(range(n_test)):
             p = prior_fun(1)[0]
+            p_save[i] = p
             # To generate reduced basis, fix all waveforms to same fiducial
             # distance.
             if fiducial_distance:
@@ -1213,7 +1216,7 @@ class WaveformDataset(object):
 
         print('Evaluating performance on test set waveforms.\nTruncate at {}/{}.'
               .format(truncate if truncate else self.Nrb, self.Nrb))
-        test_array = np.vstack(list(h_detector.values()))
+        test_array = np.vstack(list(h_detector.values())) # [H1..., L1..., ....].shape = (len(det)*n_test, 8193)
         matches = []
         for h_FD in tqdm(test_array):
             h_RB = self.basis.fseries_to_basis_coefficients(h_FD,
@@ -1228,6 +1231,14 @@ class WaveformDataset(object):
 
             matches.append(inner / np.sqrt(norm1 * norm2))
         mismatches = 1 - np.array(matches)
+        if save_dir:
+            addr='{}_{}Mpc_{}trucate'.format(prior_fun.__name__,
+                                            fiducial_distance, truncate,)
+            print('saving mismatches for {}; fiducial:{}Mpc; truncate:{}\nat {}{}.npz'.format(prior_fun.__name__, 
+                                                                            fiducial_distance, truncate,
+                                                                            save_dir,addr))
+            np.savez_compressed(save_dir+addr, 
+                                p_save=p_save, mismatches=mismatches)
         print('  Mean mismatch = {}'.format(np.mean(mismatches)))
         print('  Standard deviation = {}'.format(np.std(mismatches)))
         print('  Max mismatch = {}'.format(np.max(mismatches)))
