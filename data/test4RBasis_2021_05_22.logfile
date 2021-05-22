@@ -1,0 +1,177 @@
+************* test4RBasis__2021_05_22_09_56_17 *************
+sample_extrinsic_only: False
+
+Loading reduced basis: data/GW150914_sample_prior_basis/
+Dataset properties
+Event GW150914
+{'mass_1': [10.0, 80.0], 'mass_2': [10.0, 80.0], 'phase': [0.0, 6.283185307179586], 'time': [-0.1, 0.1], 'distance': [100.0, 1000.0], 'chi_1': [-1.0, 1.0], 'chi_2': [-1.0, 1.0], 'a_1': [0.0, 0.88], 'a_2': [0.0, 0.88], 'tilt_1': [0.0, 3.141592653589793], 'tilt_2': [0.0, 3.141592653589793], 'phi_12': [0.0, 6.283185307179586], 'phi_jl': [0.0, 6.283185307179586], 'theta_jn': [0.0, 3.141592653589793], 'psi': [0.0, 3.141592653589793], 'ra': [0.0, 6.283185307179586], 'dec': [-1.5707963267948966, 1.5707963267948966]}
+f_min 20.0
+f_min_psd 20.0
+f_max 1024.0
+T 8.0
+reference time 1126259462.4
+Generating 10000 detector FD waveforms from (_sample_prior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+  Mean mismatch = 3.171265205992313e-08
+  Standard deviation = 6.051018317521084e-07
+  Max mismatch = 4.392862319946289e-05
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 4.172325134277344e-07
+    99.9  -> 5.960583686829071e-06
+    99.99 -> 2.3426359891847662e-05
+
+Generating 10000 detector FD waveforms from (_sample_prior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 100/600.
+  Mean mismatch = 0.010389870963990688
+  Standard deviation = 0.012323588132858276
+  Max mismatch = 0.11153823137283325
+  Median mismatch = 0.006032407283782959
+  Percentiles:
+    99    -> 0.06456129252910606
+    99.9  -> 0.08877579754591233
+    99.99 -> 0.1092592822968936
+
+Generating 10000 detector FD waveforms from (_sample_prior_posterior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+  Mean mismatch = 1.8724799488722965e-08
+  Standard deviation = 7.353048658842454e-08
+  Max mismatch = 3.5762786865234375e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.7881393432617188e-07
+    99.9  -> 2.384185791015625e-07
+    99.99 -> 2.980232238769531e-07
+
+Generating 10000 detector FD waveforms from (_sample_prior_posterior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 100/600.
+  Mean mismatch = 0.008423103019595146
+  Standard deviation = 0.0011467909207567573
+  Max mismatch = 0.012292802333831787
+  Median mismatch = 0.008403033018112183
+  Percentiles:
+    99    -> 0.010632466673851012
+    99.9  -> 0.011216580867767334
+    99.99 -> 0.012131094932556152
+
+Loading reduced basis: data/GW150914_sample_prior_posterior_basis/
+Dataset properties
+Event GW150914
+{'mass_1': [10.0, 80.0], 'mass_2': [10.0, 80.0], 'phase': [0.0, 6.283185307179586], 'time': [-0.1, 0.1], 'distance': [100.0, 4000.0], 'chi_1': [-1.0, 1.0], 'chi_2': [-1.0, 1.0], 'a_1': [0.0, 0.99], 'a_2': [0.0, 0.99], 'tilt_1': [0.0, 3.141592653589793], 'tilt_2': [0.0, 3.141592653589793], 'phi_12': [0.0, 6.283185307179586], 'phi_jl': [0.0, 6.283185307179586], 'theta_jn': [0.0, 3.141592653589793], 'psi': [0.0, 3.141592653589793], 'ra': [0.0, 6.283185307179586], 'dec': [-1.5707963267948966, 1.5707963267948966]}
+f_min 20.0
+f_min_psd 20.0
+f_max 1024.0
+T 8.0
+reference time 1126259462.4
+Generating 10000 detector FD waveforms from (_sample_prior) for testing reduced basis.
+(Fiducial distance: 450 Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+  Mean mismatch = 0.18235652148723602
+  Standard deviation = 0.15391486883163452
+  Max mismatch = 0.5795726776123047
+  Median mismatch = 0.18814805150032043
+  Percentiles:
+    99    -> 0.4748437625169752
+    99.9  -> 0.5363399044275291
+    99.99 -> 0.5651253454148755
+
+Generating 10000 detector FD waveforms from (_sample_prior) for testing reduced basis.
+(Fiducial distance: 1000 Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 100/600.
+  Mean mismatch = 0.26267513632774353
+  Standard deviation = 0.18882127106189728
+  Max mismatch = 0.7780945301055908
+  Median mismatch = 0.30830666422843933
+  Percentiles:
+    99    -> 0.6024115180969237
+    99.9  -> 0.6828246376514454
+    99.99 -> 0.7191983758807055
+
+Generating 10000 detector FD waveforms from (_sample_prior_posterior) for testing reduced basis.
+(Fiducial distance: 450 Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+  Mean mismatch = -9.766220721019181e-09
+  Standard deviation = 7.356776166034251e-08
+  Max mismatch = 2.384185791015625e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.1920928955078125e-07
+    99.9  -> 1.7881393432617188e-07
+    99.99 -> 2.384185791015625e-07
+
+Generating 10000 detector FD waveforms from (_sample_prior_posterior) for testing reduced basis.
+(Fiducial distance: 1000 Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 100/600.
+  Mean mismatch = -8.95559804092727e-09
+  Standard deviation = 7.426640991070599e-08
+  Max mismatch = 2.384185791015625e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.1920928955078125e-07
+    99.9  -> 1.7881393432617188e-07
+    99.99 -> 2.384185791015625e-07
+
+Generating 10000 detector FD waveforms from (_sample_prior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+  Mean mismatch = 0.1833234578371048
+  Standard deviation = 0.15489304065704346
+  Max mismatch = 0.5832846760749817
+  Median mismatch = 0.1859840750694275
+  Percentiles:
+    99    -> 0.4815545344352715
+    99.9  -> 0.5321438513398177
+    99.99 -> 0.5628821164369209
+
+Generating 10000 detector FD waveforms from (_sample_prior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 100/600.
+  Mean mismatch = 0.2613067328929901
+  Standard deviation = 0.1885271519422531
+  Max mismatch = 0.7496045827865601
+  Median mismatch = 0.30728474259376526
+  Percentiles:
+    99    -> 0.5999618923664093
+    99.9  -> 0.6779234415888835
+    99.99 -> 0.736506637513612
+
+Generating 10000 detector FD waveforms from (_sample_prior_posterior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+  Mean mismatch = -1.3408064880593429e-08
+  Standard deviation = 7.160370074643652e-08
+  Max mismatch = 2.384185791015625e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.1920928955078125e-07
+    99.9  -> 1.7881393432617188e-07
+    99.99 -> 2.384185791015625e-07
+
+Generating 10000 detector FD waveforms from (_sample_prior_posterior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 100/600.
+  Mean mismatch = -1.2964010309701735e-08
+  Standard deviation = 7.18994570547693e-08
+  Max mismatch = 2.384185791015625e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.7881393432617188e-07
+    99.9  -> 1.7881393432617188e-07
+    99.99 -> 2.384185791015625e-07
+
