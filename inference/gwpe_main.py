@@ -664,8 +664,8 @@ class PosteriorModel(object):
                 writer.writerow(list(self.wfd.param_idx.keys()))
             with open(p / 'kl_history.txt', 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
-                writer.writerow(list(self.wfd.param_idx.keys()))    
-                    
+                writer.writerow(list(self.wfd.param_idx.keys()))
+
         with open(p / 'js_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(js_divergence([test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
@@ -675,6 +675,8 @@ class PosteriorModel(object):
 
         touch(p / ('.'+'js_history.txt'))
         touch(p / ('.'+'kl_history.txt'))
+        np.save(p / 'test_event_samples', test_samples)
+
         # Plot
         if epoch >1:
             kldf = pd.read_csv(p / 'kl_history.txt', sep='\t')
