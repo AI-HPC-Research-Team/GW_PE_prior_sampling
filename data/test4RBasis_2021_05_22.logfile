@@ -175,3 +175,84 @@ Truncate at 100/600.
     99.9  -> 1.7881393432617188e-07
     99.99 -> 2.384185791015625e-07
 
+************* test4RBasis__2021_05_22_21_41_23 *************
+sample_extrinsic_only: False
+
+Loading reduced basis: data/GW150914_sample_prior_basis/
+Dataset properties
+Event GW150914
+{'mass_1': [10.0, 80.0], 'mass_2': [10.0, 80.0], 'phase': [0.0, 6.283185307179586], 'time': [-0.1, 0.1], 'distance': [100.0, 1000.0], 'chi_1': [-1.0, 1.0], 'chi_2': [-1.0, 1.0], 'a_1': [0.0, 0.88], 'a_2': [0.0, 0.88], 'tilt_1': [0.0, 3.141592653589793], 'tilt_2': [0.0, 3.141592653589793], 'phi_12': [0.0, 6.283185307179586], 'phi_jl': [0.0, 6.283185307179586], 'theta_jn': [0.0, 3.141592653589793], 'psi': [0.0, 3.141592653589793], 'ra': [0.0, 6.283185307179586], 'dec': [-1.5707963267948966, 1.5707963267948966]}
+f_min 20.0
+f_min_psd 20.0
+f_max 1024.0
+T 8.0
+reference time 1126259462.4
+Generating 150000 detector FD waveforms from (_sample_prior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+saving mismatches for _sample_prior; fiducial:NoneMpc; truncate:None
+at ./data/_uniform_prior_sample_prior_NoneMpc_Nonetrucate.npz
+  Mean mismatch = 4.144350640444827e-08
+  Standard deviation = 3.011186436197022e-06
+  Max mismatch = 0.0010647773742675781
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 3.5762786865234375e-07
+    99.9  -> 4.17238473892495e-06
+    99.99 -> 3.9458483457453786e-05
+
+Generating 150000 detector FD waveforms from (_sample_prior_posterior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+saving mismatches for _sample_prior_posterior; fiducial:NoneMpc; truncate:None
+at ./data/_uniform_prior_sample_prior_posterior_NoneMpc_Nonetrucate.npz
+  Mean mismatch = 1.8157363612658628e-08
+  Standard deviation = 7.405887458844518e-08
+  Max mismatch = 3.5762786865234375e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.7881393432617188e-07
+    99.9  -> 2.384185791015625e-07
+    99.99 -> 2.980232238769531e-07
+
+Loading reduced basis: data/GW150914_sample_prior_posterior_basis/
+Dataset properties
+Event GW150914
+{'mass_1': [10.0, 80.0], 'mass_2': [10.0, 80.0], 'phase': [0.0, 6.283185307179586], 'time': [-0.1, 0.1], 'distance': [100.0, 4000.0], 'chi_1': [-1.0, 1.0], 'chi_2': [-1.0, 1.0], 'a_1': [0.0, 0.99], 'a_2': [0.0, 0.99], 'tilt_1': [0.0, 3.141592653589793], 'tilt_2': [0.0, 3.141592653589793], 'phi_12': [0.0, 6.283185307179586], 'phi_jl': [0.0, 6.283185307179586], 'theta_jn': [0.0, 3.141592653589793], 'psi': [0.0, 3.141592653589793], 'ra': [0.0, 6.283185307179586], 'dec': [-1.5707963267948966, 1.5707963267948966]}
+f_min 20.0
+f_min_psd 20.0
+f_max 1024.0
+T 8.0
+reference time 1126259462.4
+Generating 150000 detector FD waveforms from (_sample_prior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+saving mismatches for _sample_prior; fiducial:NoneMpc; truncate:None
+at ./data/_posterior_prior_sample_prior_NoneMpc_Nonetrucate.npz
+  Mean mismatch = 0.18295475840568542
+  Standard deviation = 0.15389487147331238
+  Max mismatch = 0.6158305406570435
+  Median mismatch = 0.18760934472084045
+  Percentiles:
+    99    -> 0.47748730897903446
+    99.9  -> 0.5351746069192914
+    99.99 -> 0.5648306851386257
+
+Generating 150000 detector FD waveforms from (_sample_prior_posterior) for testing reduced basis.
+(Fiducial distance: None Mpc)
+Evaluating performance on test set waveforms.
+Truncate at 600/600.
+saving mismatches for _sample_prior_posterior; fiducial:NoneMpc; truncate:None
+at ./data/_posterior_prior_sample_prior_posterior_NoneMpc_Nonetrucate.npz
+  Mean mismatch = -1.2286901274194406e-08
+  Standard deviation = 7.10891185917717e-08
+  Max mismatch = 2.384185791015625e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.1920928955078125e-07
+    99.9  -> 1.7881393432617188e-07
+    99.99 -> 2.384185791015625e-07
+
