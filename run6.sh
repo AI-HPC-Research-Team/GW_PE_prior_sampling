@@ -1,3 +1,4 @@
+export CUDA_VISIBLE_DEVICES=1
 python3.7 -m inference.gwpe_main train new nde \
     --data_dir data/GW150914_sample_prior_basis/ \
     --model_dir models/GW150914_sample_uniform_100basis_all_uniform_prior/ \
