@@ -1,0 +1,82 @@
+14:47 INFO    : Waveform generator initiated with
+  frequency_domain_source_model: bilby.gw.source.lal_binary_black_hole
+  time_domain_source_model: None
+  parameter_conversion: bilby.gw.conversion.convert_to_lal_binary_black_hole_parameters
+14:47 INFO    : Running for label 'luminosity_distance_500', output will be saved to './GW150914/luminosity_distance_500'
+14:47 INFO    : Using lal version 7.1.2
+14:47 INFO    : Using lal git version Branch: None;Tag: lalsuite-v6.82;Id: cf792129c2473f42ce6c6ee21d8234254cefd337;;Builder: Unknown User <>;Repository status: UNCLEAN: Modified working tree
+14:47 INFO    : Using lalsimulation version 2.5.1
+14:47 INFO    : Using lalsimulation git version Branch: None;Tag: lalsuite-v6.82;Id: cf792129c2473f42ce6c6ee21d8234254cefd337;;Builder: Unknown User <>;Repository status: UNCLEAN: Modified working tree
+14:47 INFO    : Search parameters:
+14:47 INFO    :   mass_1 = Uniform(minimum=10, maximum=80, name='mass_1', latex_label='$m_1$', unit='$M_{\\odot}$', boundary=None)
+14:47 INFO    :   mass_2 = Uniform(minimum=10, maximum=80, name='mass_2', latex_label='$m_2$', unit='$M_{\\odot}$', boundary=None)
+14:47 INFO    :   a_1 = Uniform(minimum=0, maximum=0.99, name='a_1', latex_label='$a_1$', unit=None, boundary='reflective')
+14:47 INFO    :   a_2 = Uniform(minimum=0, maximum=0.99, name='a_2', latex_label='$a_2$', unit=None, boundary='reflective')
+14:47 INFO    :   tilt_1 = Sine(minimum=0, maximum=3.141592653589793, name='tilt_1', latex_label='$\\theta_1$', unit=None, boundary='reflective')
+14:47 INFO    :   tilt_2 = Sine(minimum=0, maximum=3.141592653589793, name='tilt_2', latex_label='$\\theta_2$', unit=None, boundary='reflective')
+14:47 INFO    :   phi_12 = Uniform(minimum=0, maximum=6.283185307179586, name='phi_12', latex_label='$\\Delta\\phi$', unit=None, boundary='periodic')
+14:47 INFO    :   phi_jl = Uniform(minimum=0, maximum=6.283185307179586, name='phi_jl', latex_label='$\\phi_{JL}$', unit=None, boundary='periodic')
+14:47 INFO    :   luminosity_distance = UniformSourceFrame(minimum=100.0, maximum=1000, cosmology=FlatLambdaCDM(name="Planck15", H0=67.7 km / (Mpc s), Om0=0.307, Tcmb0=2.725 K, Neff=3.05, m_nu=[0.   0.   0.06] eV, Ob0=0.0486), name='luminosity_distance', latex_label='$d_L$', unit=Unit("Mpc"), boundary=None)
+14:47 INFO    :   dec = Cosine(minimum=-1.5707963267948966, maximum=1.5707963267948966, name='dec', latex_label='$\\mathrm{DEC}$', unit=None, boundary='reflective')
+14:47 INFO    :   ra = Uniform(minimum=0, maximum=6.283185307179586, name='ra', latex_label='$\\mathrm{RA}$', unit=None, boundary='periodic')
+14:47 INFO    :   theta_jn = Sine(minimum=0, maximum=3.141592653589793, name='theta_jn', latex_label='$\\theta_{JN}$', unit=None, boundary='reflective')
+14:47 INFO    :   psi = Uniform(minimum=0, maximum=3.141592653589793, name='psi', latex_label='$\\psi$', unit=None, boundary='periodic')
+14:47 INFO    :   phase = Uniform(minimum=0, maximum=6.283185307179586, name='phase', latex_label='$\\phi$', unit=None, boundary='periodic')
+14:47 INFO    :   geocent_time = Uniform(minimum=1126259462.3168237, maximum=1126259462.5168235, name='geocent_time', latex_label='$t_c$', unit='$s$', boundary=None)
+14:47 INFO    :   mass_ratio = Constraint(minimum=0.125, maximum=1, name='mass_ratio', latex_label='$q$', unit=None)
+14:47 INFO    : Single likelihood evaluation took 1.030e-02 s
+14:47 INFO    : Using sampler Dynesty with kwargs {'bound': 'multi', 'sample': 'rwalk', 'verbose': True, 'periodic': None, 'reflective': None, 'check_point_delta_t': 600, 'nlive': 1000, 'first_update': None, 'walks': 100, 'npdim': None, 'rstate': None, 'queue_size': 20, 'pool': None, 'use_pool': None, 'live_points': None, 'logl_args': None, 'logl_kwargs': None, 'ptform_args': None, 'ptform_kwargs': None, 'enlarge': 1.5, 'bootstrap': None, 'vol_dec': 0.5, 'vol_check': 8.0, 'facc': 0.2, 'slices': 5, 'update_interval': 600, 'print_func': <bound method Dynesty._print_func of <bilby.core.sampler.dynesty.Dynesty object at 0x7fe24fd28310>>, 'dlogz': 0.1, 'maxiter': None, 'maxcall': None, 'logl_max': inf, 'add_live': True, 'print_progress': True, 'save_bounds': False, 'n_effective': None, 'maxmcmc': 5000, 'nact': 10}
+14:47 INFO    : Checkpoint every check_point_delta_t = 600s
+14:47 INFO    : Using dynesty version 1.0.1
+14:47 INFO    : Using the bilby-implemented rwalk sample method with ACT estimated walks
+14:47 INFO    : Setting up multiproccesing pool with 20 processes.
+14:47 INFO    : Generating initial points from the prior
+14:57 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+15:07 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+15:17 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+15:28 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+15:38 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+15:48 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+15:58 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+16:08 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+16:18 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+16:29 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+16:39 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+16:49 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+16:59 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+16:59 INFO    : Writing 125 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+17:10 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+17:10 INFO    : Writing 230 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+17:20 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+17:20 INFO    : Writing 303 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+17:30 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+17:40 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+17:50 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+17:50 INFO    : Writing 150 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+18:01 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+18:01 INFO    : Writing 334 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+18:11 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+18:11 INFO    : Writing 454 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+18:21 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+18:21 INFO    : Writing 849 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+18:31 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+18:31 INFO    : Writing 1571 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+18:42 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+18:42 INFO    : Writing 2259 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+18:52 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+18:52 INFO    : Writing 4020 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+19:02 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+19:02 INFO    : Writing 6575 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+19:10 INFO    : Written checkpoint file ./GW150914/luminosity_distance_500/luminosity_distance_500_resume.pickle
+19:10 INFO    : Writing 9289 current samples to ./GW150914/luminosity_distance_500/luminosity_distance_500_samples.dat
+19:10 INFO    : Starting to close worker pool.
+19:10 INFO    : Finished closing worker pool.
+19:10 INFO    : Sampling time: 4:22:13.260543
+19:10 INFO    : Generating sky frame parameters.
+19:12 INFO    : Computing SNRs for every sample.
+19:15 INFO    : Summary of results:
+nsamples: 23984
+ln_noise_evidence: -32365.958
+ln_evidence: -32371.151 +/-  0.159
+ln_bayes_factor: -5.192 +/-  0.159
+
