@@ -114,18 +114,39 @@ if __name__ == '__main__':
     #                         truncate=None)
     # wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
     #                         truncate=100)
-    wfd.test_reduced_basis(n_test=150000//div, 
+    #wfd.test_reduced_basis(n_test=150000//div, 
+    #                        prior_fun=wfd._sample_prior,
+    #                        fiducial_distance=None,
+    #                        truncate=None,
+    #                        save_dir='./data/_uniform_prior')    
+    #wfd.test_reduced_basis(n_test=150000//div, 
+    #                        prior_fun=wfd._sample_prior_posterior,
+    #                        fiducial_distance=None,
+    #                        truncate=None,
+    #                        save_dir='./data/_uniform_prior')
+
+    wfd.test_reduced_basis(n_test=100000//div,
                             prior_fun=wfd._sample_prior,
                             fiducial_distance=None,
-                            truncate=None,
-                            save_dir='./data/_uniform_prior')    
-    wfd.test_reduced_basis(n_test=150000//div, 
+                            truncate=50,
+                            save_dir='./data/_uniform_prior')
+    wfd.test_reduced_basis(n_test=100000//div,
                             prior_fun=wfd._sample_prior_posterior,
                             fiducial_distance=None,
-                            truncate=None,
+                            truncate=50,
+                            save_dir='./data/_uniform_prior')
+    wfd.test_reduced_basis(n_test=100000//div, 
+                            prior_fun=wfd._sample_prior,
+                            fiducial_distance=None,
+                            truncate=300,
+                            save_dir='./data/_uniform_prior')    
+    wfd.test_reduced_basis(n_test=100000//div, 
+                            prior_fun=wfd._sample_prior_posterior,
+                            fiducial_distance=None,
+                            truncate=300,
                             save_dir='./data/_uniform_prior')
 
-
+    input('continue?')
     ## 2
     addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior_posterior.__name__)    
     print('Loading reduced basis:', addr)
