@@ -524,7 +524,8 @@ class PosteriorModel(object):
             add_noise = False
         else:
             add_noise = True
-
+        
+        epoch_minimum_test_loss = 1
         for epoch in range(self.epoch, self.epoch + epochs):
 
             print('Learning rate: {}'.format(
@@ -635,6 +636,8 @@ class PosteriorModel(object):
                     plt.savefig(p / 'history.png')
                     plt.close()
                     touch(p / ('.'+'history.png'))
+                    
+                    epoch_minimum_test_loss = int(data_history[np.argmin(data_history[:,2]),0])
 
                 touch(p / ('.'+'history.txt'))
 
@@ -643,7 +646,12 @@ class PosteriorModel(object):
                 # Save kl and js history
                 self.save_kljs_history(p, epoch)
 
-                if (output_freq is not None) and (epoch % 50 == 0):
+                if (output_freq is not None) and (epoch == epoch_minimum_test_loss):
+                    for f in os.listdir(p):
+                        if '_model.pt' in f:
+                            os.remove(p / f)
+                        elif '_waveforms_supplementary.hdf5' in f:
+                            os.remove(p / f)
                     print('Saving model as {}_e{} & {}_e{}'.format(self.save_model_name, epoch,
                                                                    self.save_aux_filename, epoch))
                     self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
