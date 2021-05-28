@@ -652,8 +652,8 @@ class PosteriorModel(object):
                             os.remove(p / f)
                         elif '_waveforms_supplementary.hdf5' in f:
                             os.remove(p / f)
-                    print('Saving model as {}_e{} & {}_e{}'.format(self.save_model_name, epoch,
-                                                                   self.save_aux_filename, epoch))
+                    print('Saving model as e{}_{} & e{}_{}'.format(epoch, self.save_model_name, epoch,
+                                                                   self.save_aux_filename))
                     self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
                                     aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
                     
