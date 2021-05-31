@@ -111,6 +111,7 @@ class PosteriorModel(object):
                      truncate_basis=None, snr_threshold=None,
                      distance_prior_fn=None, distance_prior=None,
                      sampling_from=None, nsample=10000, nsamples_target_event=0,
+                     mixed_alpha = None,
                      bw_dstar=None):
         """Load database of waveforms and set up data loaders.
 
@@ -146,9 +147,22 @@ class PosteriorModel(object):
             self.wfd.parameters = self.wfd._sample_prior(nsample).astype(np.float32)
             self.wfd.nsamples = len(self.wfd.parameters)
             print('init training...')
-            self.wfd.init_training() # split dataset and _compute_parameter_statistics            
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics  
+        elif self.wfd.sampling_from == 'mixed':
+            assert mixed_alpha, "You need specify a 'mixed_alpha' value for 'mixed'"
+            self.wfd.mixed_alpha = mixed_alpha
+            self.wfd._load_posterior(self.wfd.event,) 
+            parameters_posterior = self.wfd._sample_prior_posterior(nsample).astype(np.float32)
+            parameters_uniform = self.wfd._sample_prior(nsample).astype(np.float32)
+            self.wfd.parameters = np.concatenate((parameters_posterior[:int(nsample*mixed_alpha)], 
+                                                  parameters_uniform[:(nsample-int(nsample*mixed_alpha))]),axis=0)
+            self.wfd.nsamples = len(self.wfd.parameters)
+            assert self.wfd.nsamples == nsample
+            print('init training...')
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics
+            self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))         
         else:
-            raise NameError('You need specify either "uniform" or "posterior" for `sampling_from`.')
+            raise NameError('You need specify either "uniform", "posterior" or "mixed" for `sampling_from`.')
         #self.wfd.load_train(self.data_dir) # discard
 
 
@@ -818,9 +832,12 @@ def parse_args():
     dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
     dir_parent_parser.add_argument('--sampling_from',
                                      choices=['uniform',
-                                              'posterior'])
+                                              'posterior',
+                                              'mixed'])
     dir_parent_parser.add_argument(
-        '--nsamples_target_event', type=int, default='0')                                              
+        '--nsamples_target_event', type=int, default='0')    
+    dir_parent_parser.add_argument(
+        '--mixed_alpha', type=float, default='0.0')    
     dir_parent_parser.add_argument(
         '--nsample', type=int, default='1000000')
 
@@ -1125,6 +1142,7 @@ def main():
                         distance_prior_fn=args.distance_prior_fn,
                         sampling_from=args.sampling_from,
                         nsamples_target_event=args.nsamples_target_event,
+                        mixed_alpha=args.mixed_alpha,
                         nsample=args.nsample,
                         distance_prior=args.distance_prior,
                         bw_dstar=args.bw_dstar)

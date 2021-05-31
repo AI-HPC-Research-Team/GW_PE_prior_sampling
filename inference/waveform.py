@@ -608,10 +608,9 @@ class WaveformDataset(object):
         Returns:
             array -- n x m array of samples, where m is number of extrinsic
                      parameters
-        """        
+        """
         assert n == 1
         return self.cache_parameters_extrinsic[np.random.randint(self.ncache_parameters)][np.newaxis,...].astype(np.float32)
-
 
     def _generate_psd(self, delta_f, ifo):
         """Generate a PSD. This depends on the detector chosen.
@@ -1075,6 +1074,11 @@ class WaveformDataset(object):
             p_extrinsic = self.sample_prior_extrinsic(1)[0]
         elif self.sampling_from == 'posterior':
             p_extrinsic = self.sample_prior_extrinsic_posterior(1)[0]
+        elif self.sampling_from == 'mixed':
+            p_extrinsic = (self.sample_prior_extrinsic_posterior(1)[0]
+                if np.random.binomial(1, self.mixed_alpha,)
+                    else self.sample_prior_extrinsic(1)[0])
+
         # else: # self.parameters have been resampled.
             # if self.sampling_from == 'posterior':
             #     p_initial = self._sample_prior_posterior(1)[0]
@@ -2255,7 +2259,11 @@ class WaveformDataset(object):
             self.parameters = self._sample_prior_posterior(self.nsamples).astype(np.float32)
         elif self.sampling_from == 'uniform':
             self.parameters = self._sample_prior(self.nsamples).astype(np.float32)
-
+        elif self.sampling_from == 'mixed':
+            parameters_posterior = self._sample_prior_posterior(self.nsamples).astype(np.float32)
+            parameters_uniform = self._sample_prior(self.nsamples).astype(np.float32)
+            self.parameters = np.concatenate((parameters_posterior[:int(self.nsamples*self.mixed_alpha)], 
+                                                  parameters_uniform[:(self.nsamples-int(self.nsamples*self.mixed_alpha))]),axis=0)
         # Set extrinsic parameters to fiducial values.
         print("Setting extrinsic parameters to fiducial values.")
         for extrinsic_param, value in self.fiducial_params.items():
@@ -2306,6 +2314,15 @@ class WaveformDatasetTorch(Dataset):
                 self.wfd.parameters = self.wfd._sample_prior_posterior(self.wfd.nsamples).astype(np.float32)
             elif self.wfd.sampling_from == 'uniform':
                 self.wfd.parameters = self.wfd._sample_prior(self.wfd.nsamples).astype(np.float32)
+            elif self.wfd.sampling_from == 'mixed':
+                parameters_posterior = self.wfd._sample_prior_posterior(self.wfd.nsamples).astype(np.float32)
+                parameters_uniform = self.wfd._sample_prior(self.wfd.nsamples).astype(np.float32)
+                self.wfd.parameters = np.concatenate((parameters_posterior[:int(self.wfd.nsamples*self.wfd.mixed_alpha)],
+                                                    parameters_uniform[:(self.wfd.nsamples-int(self.wfd.nsamples*self.wfd.mixed_alpha))]),axis=0)
+                # I have to shuffle the mixed parameters...
+                index = np.arange(self.wfd.nsamples)
+                np.random.shuffle(index)
+                self.wfd.parameters = self.wfd.parameters[index]
             else:
                 raise
             print('Re-generating waveforms for {} prior.'.format(self.wfd.sampling_from))
@@ -2315,6 +2332,8 @@ class WaveformDatasetTorch(Dataset):
                 self.wfd.parameters[:, self.wfd.param_idx[extrinsic_param]] = value            
         elif (idx == 0) and self.wfd.sample_extrinsic_only:
             if self.wfd.sampling_from == 'posterior':
+                self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
+            elif self.wfd.sampling_from == 'posterior':
                 self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
             print('Re-sampling exterior params for {} prior.'.format(self.wfd.sampling_from))
 
