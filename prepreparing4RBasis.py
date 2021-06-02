@@ -44,10 +44,10 @@ if __name__ == '__main__':
     # event = 'GW170104'
     # event = 'GW170608'
     # event = 'GW170729'
-    # event = 'GW170809'
+    event = 'GW170809'
     # event = 'GW170814'
     # event = 'GW170818'
-    event = 'GW170823'
+    # event = 'GW170823'
 
 
     # Refine the distance fiducial_params for each event

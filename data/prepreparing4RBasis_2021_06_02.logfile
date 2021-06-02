@@ -1,0 +1,36 @@
+********* prepreparing4RBasis__2021_06_02_10_43_19 *********
+Dataset properties
+Event GW170809
+{'mass_1': [10.0, 80.0], 'mass_2': [10.0, 80.0], 'phase': [0.0, 6.283185307179586], 'time': [-0.1, 0.1], 'distance': [100.0, 4000.0], 'chi_1': [-1.0, 1.0], 'chi_2': [-1.0, 1.0], 'a_1': [0.0, 0.99], 'a_2': [0.0, 0.99], 'tilt_1': [0.0, 3.141592653589793], 'tilt_2': [0.0, 3.141592653589793], 'phi_12': [0.0, 6.283185307179586], 'phi_jl': [0.0, 6.283185307179586], 'theta_jn': [0.0, 3.141592653589793], 'psi': [0.0, 3.141592653589793], 'ra': [0.0, 6.283185307179586], 'dec': [-1.5707963267948966, 1.5707963267948966]}
+f_min 20.0
+f_min_psd 20.0
+f_max 1024.0
+T 8.0
+reference time 1186302519.8
+sample_extrinsic_only: False
+
+Generating 50000 detector FD waveforms (from _sample_prior) for training reduced basis.
+Generating reduced basis for training detector waveforms
+Evaluating performance on training set waveforms.
+  Mean mismatch = 6.662868145212997e-06
+  Standard deviation = 2.6333393179811537e-05
+  Max mismatch = 0.0020354390144348145
+  Median mismatch = 1.1920928955078125e-06
+  Percentiles:
+    99    -> 0.00011056661605834961
+    99.9  -> 0.0003197193741798412
+    99.99 -> 0.0006615529179570707
+
+
+Generating 50000 detector FD waveforms (from _sample_prior_posterior) for training reduced basis.
+Generating reduced basis for training detector waveforms
+Evaluating performance on training set waveforms.
+  Mean mismatch = -9.116728705294008e-09
+  Standard deviation = 7.533671464443614e-08
+  Max mismatch = 2.384185791015625e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.1920928955078125e-07
+    99.9  -> 2.384185791015625e-07
+    99.99 -> 2.384185791015625e-07
+
