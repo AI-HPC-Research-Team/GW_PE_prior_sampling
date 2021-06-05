@@ -84,12 +84,16 @@ labels = ['$m_1$', '$m_2$', '$\\phi_c$', '$t_c$', '$d_L$', '$a_1$',
 ######
 
 
-event = 'GW150914'
+event = 'GW170608'
 
-model_dir = 'models/GW150914_sample_uniform_100basis_all_posterior_prior_1024hiddendims'
-data_dir = 'data/GW150914_sample_prior_basis/'
-save_model_name = [f for f in os.listdir(model_dir) if '_model.pt' in f ][0]
-save_aux_filename = [f for f in os.listdir(model_dir) if '_waveforms_supplementary.hdf5' in f ][0]
+model_dir = 'models/GW170608_sample_uniform_100basis_all_posterior_prior'
+data_dir = 'data/GW170608_sample_prior_basis/'
+save_model_name = [f for f in os.listdir(model_dir) if ('_model.pt' in f) and ('.e' not in f) ][0]
+save_aux_filename = [f for f in os.listdir(model_dir) if ('_waveforms_supplementary.hdf5' in f) and ('.e' not in f) ][0]
+print(model_dir)
+print(data_dir)
+print(save_model_name)
+print(save_aux_filename)
 assert save_model_name[0] == 'e'
 assert save_aux_filename[0] == 'e'
 
