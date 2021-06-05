@@ -670,14 +670,17 @@ class PosteriorModel(object):
                                                                    self.save_aux_filename))
                     self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
                                     aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
-                    
+                    self.save_test_samples(p)
 
-    def save_kljs_history(self, p, epoch):
+    def save_test_samples(self, p):
         # for nflow only
         x_samples = nde_flows.obtain_samples(self.model, self.event_y, self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
         # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
         test_samples = self.wfd.post_process_parameters(x_samples.numpy())
+        np.save(p / 'test_event_samples', test_samples)
+
+    def save_kljs_history(self, p, epoch):
 
         # Make column headers if this is the first epoch
         if epoch == 1:
@@ -697,7 +700,6 @@ class PosteriorModel(object):
 
         touch(p / ('.'+'js_history.txt'))
         touch(p / ('.'+'kl_history.txt'))
-        np.save(p / 'test_event_samples', test_samples)
 
         # Plot
         if epoch >1:
