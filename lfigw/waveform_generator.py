@@ -1,5 +1,4 @@
 from .reduced_basis import SVDBasis
-
 import h5py
 import numpy as np
 from pathlib import Path
@@ -1687,9 +1686,6 @@ class WaveformDataset(object):
 
             self.noisy_test_waveforms[ifo] = noise
 
-        self._cache_oversampled_parameters(n)
-        if not self.sample_extrinsic_only:
-            self.parameters = self.cache_parameters
         print('Generating whitened detector waveforms.')
         for i in tqdm(range(n)):
 
@@ -2054,10 +2050,6 @@ class WaveformDataset(object):
                                        dtype=np.complex64)
         distances = np.empty(nsamples, dtype=np.float32)
 
-        self._cache_oversampled_parameters(nsamples)
-        if not self.sample_extrinsic_only:
-            self.parameters = self.cache_parameters
-        
         # Generate distances and waveforms
         for i in tqdm(range(nsamples)):
             p, h_det, _, _ = self.p_h_random_extrinsic(i, train=True)
