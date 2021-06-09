@@ -39,12 +39,12 @@ if __name__ == '__main__':
     # O1
     # event = 'GW150914'
     # event = 'GW151012'
-    # event = 'GW151226'
+    #event = 'GW151226'
     # O2
     # event = 'GW170104'
-    # event = 'GW170608'
+    event = 'GW170608'
     # event = 'GW170729'
-    event = 'GW170809'
+    #event = 'GW170809'
     # event = 'GW170814'
     # event = 'GW170818'
     # event = 'GW170823'
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     wfd.importance_sampling = 'uniform_distance'
     wfd.fiducial_params['distance'] = fiducial_params[event]
 
-    if event in ['GW151226', 'GW150608']:
+    if event in ['GW151226', 'GW170608']:
         wfd.prior['mass_1'][0] = 5.0
         wfd.prior['mass_2'][0] = 5.0
 
