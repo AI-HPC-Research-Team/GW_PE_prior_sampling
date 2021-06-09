@@ -76,6 +76,10 @@ if __name__ == '__main__':
     wfd.importance_sampling = 'uniform_distance'
     wfd.fiducial_params['distance'] = fiducial_params[event]
 
+    if event in ['GW151226', 'GW150608']:
+        wfd.prior['mass_1'][0] = 5.0
+        wfd.prior['mass_2'][0] = 5.0
+
     print('Dataset properties')
     print('Event', wfd.event)
     print(wfd.prior)
