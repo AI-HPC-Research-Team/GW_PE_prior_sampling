@@ -2333,7 +2333,7 @@ class WaveformDatasetTorch(Dataset):
         elif (idx == 0) and self.wfd.sample_extrinsic_only:
             if self.wfd.sampling_from == 'posterior':
                 self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
-            elif self.wfd.sampling_from == 'posterior':
+            elif self.wfd.sampling_from == 'mixed':
                 self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
             print('Re-sampling exterior params for {} prior.'.format(self.wfd.sampling_from))
 
