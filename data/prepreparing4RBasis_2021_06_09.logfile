@@ -1,0 +1,84 @@
+********* prepreparing4RBasis__2021_06_09_17_13_43 *********
+Dataset properties
+Event GW170608
+{'mass_1': [10.0, 80.0], 'mass_2': [10.0, 80.0], 'phase': [0.0, 6.283185307179586], 'time': [-0.1, 0.1], 'distance': [100.0, 4000.0], 'chi_1': [-1.0, 1.0], 'chi_2': [-1.0, 1.0], 'a_1': [0.0, 0.99], 'a_2': [0.0, 0.99], 'tilt_1': [0.0, 3.141592653589793], 'tilt_2': [0.0, 3.141592653589793], 'phi_12': [0.0, 6.283185307179586], 'phi_jl': [0.0, 6.283185307179586], 'theta_jn': [0.0, 3.141592653589793], 'psi': [0.0, 3.141592653589793], 'ra': [0.0, 6.283185307179586], 'dec': [-1.5707963267948966, 1.5707963267948966]}
+f_min 20.0
+f_min_psd 20.0
+f_max 1024.0
+T 8.0
+reference time 1180922494.5
+sample_extrinsic_only: False
+
+Generating 50000 detector FD waveforms (from _sample_prior) for training reduced basis.
+********* prepreparing4RBasis__2021_06_09_17_12_51 *********
+Dataset properties
+Event GW151226
+{'mass_1': [5.0, 80.0], 'mass_2': [5.0, 80.0], 'phase': [0.0, 6.283185307179586], 'time': [-0.1, 0.1], 'distance': [100.0, 4000.0], 'chi_1': [-1.0, 1.0], 'chi_2': [-1.0, 1.0], 'a_1': [0.0, 0.99], 'a_2': [0.0, 0.99], 'tilt_1': [0.0, 3.141592653589793], 'tilt_2': [0.0, 3.141592653589793], 'phi_12': [0.0, 6.283185307179586], 'phi_jl': [0.0, 6.283185307179586], 'theta_jn': [0.0, 3.141592653589793], 'psi': [0.0, 3.141592653589793], 'ra': [0.0, 6.283185307179586], 'dec': [-1.5707963267948966, 1.5707963267948966]}
+f_min 20.0
+f_min_psd 20.0
+f_max 1024.0
+T 8.0
+reference time 1135136350.6
+sample_extrinsic_only: False
+
+Generating 50000 detector FD waveforms (from _sample_prior) for training reduced basis.
+Generating reduced basis for training detector waveforms
+Evaluating performance on training set waveforms.
+  Mean mismatch = 4.6549968828912824e-05
+  Standard deviation = 0.0003001112781930715
+  Max mismatch = 0.038187265396118164
+  Median mismatch = 8.285045623779297e-06
+  Percentiles:
+    99    -> 0.0007385647296905499
+    99.9  -> 0.0031070276498795183
+    99.99 -> 0.01102160596250983
+
+
+Generating 50000 detector FD waveforms (from _sample_prior_posterior) for training reduced basis.
+Generating reduced basis for training detector waveforms
+Evaluating performance on training set waveforms.
+  Mean mismatch = -9.691119018384597e-09
+  Standard deviation = 7.916597866142183e-08
+  Max mismatch = 2.384185791015625e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.7881393432617188e-07
+    99.9  -> 2.384185791015625e-07
+    99.99 -> 2.384185791015625e-07
+
+********* prepreparing4RBasis__2021_06_09_17_14_18 *********
+Dataset properties
+Event GW170608
+{'mass_1': [5.0, 80.0], 'mass_2': [5.0, 80.0], 'phase': [0.0, 6.283185307179586], 'time': [-0.1, 0.1], 'distance': [100.0, 4000.0], 'chi_1': [-1.0, 1.0], 'chi_2': [-1.0, 1.0], 'a_1': [0.0, 0.99], 'a_2': [0.0, 0.99], 'tilt_1': [0.0, 3.141592653589793], 'tilt_2': [0.0, 3.141592653589793], 'phi_12': [0.0, 6.283185307179586], 'phi_jl': [0.0, 6.283185307179586], 'theta_jn': [0.0, 3.141592653589793], 'psi': [0.0, 3.141592653589793], 'ra': [0.0, 6.283185307179586], 'dec': [-1.5707963267948966, 1.5707963267948966]}
+f_min 20.0
+f_min_psd 20.0
+f_max 1024.0
+T 8.0
+reference time 1180922494.5
+sample_extrinsic_only: False
+
+Generating 50000 detector FD waveforms (from _sample_prior) for training reduced basis.
+Generating reduced basis for training detector waveforms
+Evaluating performance on training set waveforms.
+  Mean mismatch = 4.466910831979476e-05
+  Standard deviation = 0.00036345902481116354
+  Max mismatch = 0.07188814878463745
+  Median mismatch = 8.225440979003906e-06
+  Percentiles:
+    99    -> 0.0006226956844329803
+    99.9  -> 0.0029816477298738285
+    99.99 -> 0.012294891589879686
+
+
+Generating 50000 detector FD waveforms (from _sample_prior_posterior) for training reduced basis.
+Generating reduced basis for training detector waveforms
+Evaluating performance on training set waveforms.
+  Mean mismatch = -9.638070785911168e-09
+  Standard deviation = 8.027117104347781e-08
+  Max mismatch = 2.980232238769531e-07
+  Median mismatch = 0.0
+  Percentiles:
+    99    -> 1.7881393432617188e-07
+    99.9  -> 2.384185791015625e-07
+    99.99 -> 2.384185791015625e-07
+
