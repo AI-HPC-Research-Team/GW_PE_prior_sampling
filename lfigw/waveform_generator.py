@@ -1,6 +1,8 @@
 from .reduced_basis import SVDBasis
+from imblearn.combine import SMOTETomek # pip install imblearn
 import h5py
 import numpy as np
+import pandas as pd
 from pathlib import Path
 import json
 import functools
@@ -537,6 +539,69 @@ class WaveformDataset(object):
 
         return samples
 
+    #
+    # Generate target dis.
+    #
+    def _load_posterior(self, event):
+        # print('sample_extrinsic_only:', self.sample_extrinsic_only)
+        try:
+            df = pd.read_csv('../bilby_runs/downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+        except:
+            df = pd.read_csv('./downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+        self.bilby_samples = df.dropna()[['mass_1', 'mass_2', 'phase', 'geocent_time', 'luminosity_distance',
+                              'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl',
+                              'theta_jn', 'psi', 'ra', 'dec']].values.astype('float64')
+        self.bilby_samples[:,3] = self.bilby_samples[:,3] - self.ref_time
+        # if self.sample_extrinsic_only:
+        self.bilby_samples_extrisinc = self.bilby_samples[:,[3,4,12,13,14]]
+
+    def _sample_prior_posterior(self, n):
+        """Obtain samples from the target posterior distribution.
+
+        Arguments:
+            n {int} -- number of samples
+
+        Returns:
+            array -- samples
+        """
+        # if not self.sample_extrinsic_only:
+        return self.oversampling(self.bilby_samples, threshold=n)[:n]
+        # elif self.sample_extrinsic_only:
+            # return self.oversampling(self.bilby_samples_extrisinc, threshold=n)[:n]
+
+    @staticmethod
+    def oversampling(x: np.array, threshold=512, random_state=0):
+        num = len(x)//4
+        cache = []
+        while True:
+            Input = pd.DataFrame(x).sample(2*num).values
+            fitfor = Input, [1,]*(num)+[0,]*(num)
+            smote_tomek = SMOTETomek(random_state=random_state)
+            Output_tomek, _ = smote_tomek.fit_resample(*fitfor)            
+            cache.append(pd.concat([pd.DataFrame(Input), pd.DataFrame(Output_tomek)]).drop_duplicates(keep=False).values)
+            if len(np.concatenate(cache)) > threshold:
+                break
+        return np.concatenate(cache)
+
+    def _cache_oversampled_parameters(self, nsample):
+        self.ncache_parameters = nsample
+        # sample_extrinsic_only
+        #self.cache_parameters = self.oversampling(self.bilby_samples, threshold=len(self.parameters))
+        self.cache_parameters_extrinsic = self.oversampling(self.bilby_samples_extrisinc, threshold=nsample)[:nsample]
+    
+    def sample_prior_extrinsic_posterior(self, n):
+        """Draw samples of extrinsic parameters from the posterior prior.
+
+        Arguments:
+            n {int} -- number of prior samples
+
+        Returns:
+            array -- n x m array of samples, where m is number of extrinsic
+                     parameters
+        """
+        assert n == 1
+        return self.cache_parameters_extrinsic[np.random.randint(self.ncache_parameters)][np.newaxis,...].astype(np.float32)
+
     def _generate_psd(self, delta_f, ifo):
         """Generate a PSD. This depends on the detector chosen.
 
@@ -993,7 +1058,10 @@ class WaveformDataset(object):
         p_initial = self.parameters[orig_idx]
 
         # Generate random extrinsic parameters.
-        p_extrinsic = self.sample_prior_extrinsic(1)[0]
+        # p_extrinsic = self.sample_prior_extrinsic(1)[0]
+        p_extrinsic = (self.sample_prior_extrinsic_posterior(1)[0]
+            if np.random.binomial(1, self.mixed_alpha,)
+                else self.sample_prior_extrinsic(1)[0])
 
         if mode == 'FD' and self.domain == 'RB':
             # Generate the waveform.
@@ -1272,7 +1340,7 @@ class WaveformDataset(object):
             self.basis.save(data_dir)
 
     def load(self, data_dir='.', data_fn='waveform_dataset.hdf5',
-             config_fn='settings.json'):
+             config_fn='settings.json', mixed_alpha=None):
         """Load a database created with the save method.
 
         Keyword Arguments:
@@ -1347,6 +1415,22 @@ class WaveformDataset(object):
         self.parameters = f_data['parameters'][:, :]
         self.nsamples = len(self.parameters)
 
+        self.mixed_alpha = mixed_alpha
+        if self.mixed_alpha:
+            print('Load mixed_alpha =', self.mixed_alpha, '(It may take a few mins...)')
+            self._load_posterior(self.event,)
+            parameters_posterior = self._sample_prior_posterior(self.nsamples).astype(np.float32)
+            parameters_uniform = self._sample_prior(self.nsamples).astype(np.float32)
+            self.parameters = np.concatenate((parameters_posterior[:int(self.nsamples*self.mixed_alpha)], 
+                                                  parameters_uniform[:(self.nsamples-int(self.nsamples*self.mixed_alpha))]),axis=0)
+            assert self.nsamples == len(self.parameters)        
+            # I have to shuffle the mixed parameters...
+            index = np.arange(self.nsamples)
+            np.random.shuffle(index)
+            self.parameters = self.parameters[index]                
+        else:
+            print('Load mixed_alpha = 0.0')
+        print('loaded parameters...')
         self.h_detector = {}
 
         if self.extrinsic_at_train:
@@ -2050,6 +2134,29 @@ class WaveformDataset(object):
                                        dtype=np.complex64)
         distances = np.empty(nsamples, dtype=np.float32)
 
+        if self.mixed_alpha:
+            print('Load mixed_alpha =', self.mixed_alpha, '(It may take a few mins...)')
+            parameters_posterior = self._sample_prior_posterior(self.nsamples).astype(np.float32)
+            parameters_uniform = self._sample_prior(self.nsamples).astype(np.float32)
+            self.parameters = np.concatenate((parameters_posterior[:int(self.nsamples*self.mixed_alpha)], 
+                                                  parameters_uniform[:(self.nsamples-int(self.nsamples*self.mixed_alpha))]),axis=0)
+            assert self.nsamples == len(self.parameters)        
+            # I have to shuffle the mixed parameters...
+            index = np.arange(self.nsamples)
+            np.random.shuffle(index)
+            self.parameters = self.parameters[index]     
+            
+            self._cache_oversampled_parameters(self.nsamples)
+            # Set extrinsic parameters to fiducial values.
+            print("Setting extrinsic parameters to fiducial values.")
+            for extrinsic_param, value in self.fiducial_params.items():
+                self.parameters[:, self.param_idx[extrinsic_param]] = value
+        
+        else:
+            print('Load mixed_alpha = 0.0')
+        print('loaded parameters...')
+
+
         # Generate distances and waveforms
         for i in tqdm(range(nsamples)):
             p, h_det, _, _ = self.p_h_random_extrinsic(i, train=True)
@@ -2087,6 +2194,17 @@ class WaveformDatasetTorch(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
+        if self.wfd.mixed_alpha: # sample_extrinsic_only
+            if (idx == 0):
+                self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
+                print('Re-sampling exterior params for alpha = {}.'.format(self.wfd.mixed_alpha))        
+                # Set extrinsic parameters to fiducial values.
+                # print("Setting extrinsic parameters to fiducial values.")
+                # for extrinsic_param, value in self.wfd.fiducial_params.items():
+                #     self.wfd.parameters[:, self.wfd.param_idx[extrinsic_param]] = value    
+        else:
+            pass
+
         if self.wfd.extrinsic_at_train:
 
             # Obtain parameters and waveform
@@ -2101,6 +2219,7 @@ class WaveformDatasetTorch(Dataset):
                     torch.tensor(snr, device='cpu'))
 
         else:
+            raise
             # OLD CODE. REWORK FOR COMPATIBILITY.
 
             # Convert to index in wrapped WaveformDataset
