@@ -863,6 +863,7 @@ def parse_args():
                                      default=80)
     train_parent_parser.add_argument('--flow_lr', type=float)
     train_parent_parser.add_argument('--epochs', type=int, required=True)
+    train_parent_parser.add_argument('--transfer_epochs', type=int, default=0)
     train_parent_parser.add_argument(
         '--output_freq', type=int, default='50')
     train_parent_parser.add_argument('--no_save', action='store_false',
@@ -1399,22 +1400,72 @@ def main():
 
         print('Starting timer')
         start_time = time.time()
-        try:
-            pm.train(args.epochs,
-                     output_freq=args.output_freq,
-                     kl_annealing=args.kl_annealing,
-                     snr_annealing=args.snr_annealing)
-        except KeyboardInterrupt as e:
-            print(e)
-        finally:
-            print('Stopping timer.')
-            stop_time = time.time()
-            print('Training time (including validation): {} seconds'
-                  .format(stop_time - start_time))
+        if args.transfer_epochs:
+            try:
+                pm.train(args.epochs,
+                        output_freq=args.output_freq,
+                        kl_annealing=args.kl_annealing,
+                        snr_annealing=args.snr_annealing)
+            except KeyboardInterrupt as e:
+                print(e)
+        else: # You should set args.mixed_alpha = 1.0
+            print('Now, transfer learning from alpha={}!'.format(args.mixed_alpha))
+            try:
+                pm.train(args.transfer_epochs,
+                        output_freq=args.output_freq,
+                        kl_annealing=args.kl_annealing,
+                        snr_annealing=args.snr_annealing)
+            except KeyboardInterrupt as e:
+                print(e)   
+            finally:
+                print('Stopping timer.')
+                stop_time = time.time()
+                print('Training time (including validation): {} seconds'
+                    .format(stop_time - start_time))
 
-            if args.save:
-                print('Saving model')
-                pm.save_model(filename=pm.save_model_name, aux_filename=pm.save_aux_filename)
+                if args.save:
+                    print('Saving model')
+                    pm.save_model(filename='a{}'.format(args.mixed_alpha) + pm.save_model_name, 
+                                    aux_filename='a{}'.format(args.mixed_alpha) + pm.save_aux_filename)                         
+            alpha_list = [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005]
+            for i, mixed_alpha in enumerate(alpha_list):
+                print('Transfer learning by starting with alpha={}!'.format(mixed_alpha))
+                pm.load_dataset(batch_size=args.batch_size,
+                                detectors=args.detectors,
+                                truncate_basis=args.truncate_basis,
+                                snr_threshold=args.snr_threshold,
+                                distance_prior_fn=args.distance_prior_fn,
+                                sampling_from=args.sampling_from,
+                                nsamples_target_event=args.nsamples_target_event,
+                                mixed_alpha=mixed_alpha,
+                                nsample=args.nsample,
+                                distance_prior=args.distance_prior,
+                                bw_dstar=args.bw_dstar)       
+                pm.initialize_training(lr=args.lr,
+                                    lr_annealing=args.lr_annealing,
+                                    anneal_method=args.lr_anneal_method,
+                                    total_epochs=args.transfer_epochs,
+                                    # steplr=args.steplr,
+                                    steplr_step_size=args.steplr_step_size,
+                                    steplr_gamma=args.steplr_gamma,
+                                    flow_lr=args.flow_lr)   
+                try:
+                    pm.train(args.transfer_epochs,
+                            output_freq=args.output_freq,
+                            kl_annealing=args.kl_annealing,
+                            snr_annealing=args.snr_annealing)
+                except KeyboardInterrupt as e:
+                    print(e)                                                                         
+                finally:
+                    print('Stopping timer.')
+                    stop_time = time.time()
+                    print('Training time (including validation): {} seconds'
+                        .format(stop_time - start_time))
+
+                    if args.save:
+                        print('Saving model')
+                        pm.save_model(filename= 'a{}'.format(mixed_alpha) + pm.save_model_name, 
+                                      aux_filename='a{}'.format(mixed_alpha) + pm.save_aux_filename)
     print('Program complete')
 
 
