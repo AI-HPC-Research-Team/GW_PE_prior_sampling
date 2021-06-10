@@ -12,14 +12,15 @@
 
 python3.7 -m lfigw.gwpe train new nde \
     --data_dir waveforms/GW150914/ \
-    --model_dir models/GW150914/ \
-    --mixed_alpha 0.0 \
+    --model_dir models/GW150914_a02/ \
+    --mixed_alpha 0.2 \
     --nbins 8 \
     --num_transform_blocks 10 \
     --nflows 15 \
+    --batch_size 2048 \
     --batch_norm \
     --lr 0.0002 \
-    --epochs 500 \
+    --epochs 5000 \
     --distance_prior_fn uniform_distance \
     --distance_prior 100.0 1000.0 \
     --hidden_dims 512 \
