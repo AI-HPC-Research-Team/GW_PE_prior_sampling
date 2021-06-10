@@ -11,8 +11,8 @@ wfd.load_event('data/events/GW150914/')
 wfd.importance_sampling = 'uniform_distance'
 
 wfd.prior['distance'] = [100.0, 1000.0]
-wfd.prior['a_1'][1] = 0.88
-wfd.prior['a_2'][1] = 0.88
+#wfd.prior['a_1'][1] = 0.88
+#wfd.prior['a_2'][1] = 0.88
 
 print('Dataset properties')
 print('Event', wfd.event)
@@ -23,14 +23,11 @@ print('f_max', wfd.f_max)
 print('T', wfd.time_duration)
 print('reference time', wfd.ref_time)
 
-# wfd.generate_reduced_basis(50000)
-wfd.generate_reduced_basis(1000)
+wfd.generate_reduced_basis(50000)
 
-# wfd.generate_dataset(1000000)
-wfd.generate_dataset(500)
+wfd.generate_dataset(1000000)
 
-# wfd.generate_noisy_test_data(5000)
-wfd.generate_noisy_test_data(50)
+wfd.generate_noisy_test_data(5000)
 
 wfd.save('waveforms/GW150914')
 wfd.save_train('waveforms/GW150914')
