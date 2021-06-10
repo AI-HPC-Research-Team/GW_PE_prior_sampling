@@ -12,12 +12,67 @@ import corner
 import csv
 import time
 import numpy as np
+import pandas as pd
 import h5py
+from scipy import stats
 
 from . import waveform_generator as wfg
 from . import a_flows
 from . import nde_flows
 from . import cvae
+
+def touch(path):
+    with open(path, 'a'):
+        os.utime(path, None)
+
+def kl_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
+    try:
+         kernel = [kde(i,bw_method='scott') for i in samples]
+    except np.linalg.LinAlgError:
+         return float("nan")
+        
+    x = np.linspace(
+        np.min([np.min(i) for i in samples]),
+        np.max([np.max(i) for i in samples]),
+        100
+    )
+    factor = 1.0e-5
+
+    a, b = [k(x) for k in kernel]
+    
+    for index in range(len(a)):
+        if a[index] < max(a) * factor:
+            a[index] = max(a) * factor
+            
+    for index in range(len(b)):
+        if b[index] < max(b) * factor:
+            b[index] = max(b) * factor
+
+    a = np.asarray(a)
+    b = np.asarray(b)
+    kl_forward = stats.entropy(a, qk=b, base=base)
+    return kl_forward
+
+def js_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
+    try:
+         kernel = [kde(i) for i in samples]
+    except np.linalg.LinAlgError:
+         return float("nan")
+        
+    x = np.linspace(
+        np.min([np.min(i) for i in samples]),
+        np.max([np.max(i) for i in samples]),
+        100
+    )
+    
+    a, b = [k(x) for k in kernel]
+    a = np.asarray(a)
+    b = np.asarray(b)
+    
+    m = 1. / 2 * (a + b)
+    kl_forward = stats.entropy(a, qk=m, base=base)
+    kl_backward = stats.entropy(b, qk=m, base=base)
+    return np.round(kl_forward / 2. + kl_backward / 2., decimal)
 
 
 class PosteriorModel(object):
@@ -111,6 +166,21 @@ class PosteriorModel(object):
 
             if restandardize:
                 self.wfd.calculate_threshold_standardizations()
+
+        # 用于在训练的时候，与目标 event 的测试后验分布作对比
+        self.wfd._load_posterior(self.wfd.event,)
+        self.wfd.parameters_event = self.wfd._sample_prior_posterior(50000).astype(np.float32)
+
+        # Load strain data for event
+        event_strain = {}
+        with h5py.File(self.wfd.event_dir / 'strain_FD_whitened.hdf5', 'r') as f:
+            event_strain = {det: f[det][:].astype(np.complex64) for det in self.detectors}
+        d_RB = {}
+        for ifo, di in event_strain.items():
+            h_RB = self.wfd.basis.fseries_to_basis_coefficients(di)
+            d_RB[ifo] = h_RB
+        _, self.event_y = self.wfd.x_y_from_p_h(np.zeros(self.wfd.nparams), d_RB, add_noise=False)
+
 
         # pytorch wrappers
         wfd_train = wfg.WaveformDatasetTorch(self.wfd, train=True)
@@ -510,6 +580,89 @@ class PosteriorModel(object):
                             writer = csv.writer(f, delimiter='\t')
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
+                    data_history = np.loadtxt(p / 'history.txt')
+
+                    # Plot                  
+                    plt.figure()
+                    plt.plot(data_history[:,0], data_history[:,1], '*--', label='train')
+                    plt.plot(data_history[:,0], data_history[:,2], '*--', label='test')
+                    plt.xlabel('Epoch')
+                    plt.ylabel('Loss')
+                    plt.legend()
+                    plt.savefig(p / 'history.png')
+                    plt.close()
+                    touch(p / ('.'+'history.png'))
+                    
+                    epoch_minimum_test_loss = int(data_history[np.argmin(data_history[:,2]),0])
+                touch(p / ('.'+'history.txt'))
+
+                # Save kl and js history
+                self.save_kljs_history(p, epoch)
+
+                if (output_freq is not None) and (epoch == epoch_minimum_test_loss):
+                    for f in os.listdir(p):
+                        if '_model.pt' in f:
+                            os.remove(p / f)
+                        elif '_waveforms_supplementary.hdf5' in f:
+                            os.remove(p / f)
+                    print('Saving model as e{}_{} & e{}_{}'.format(epoch, self.save_model_name, epoch,
+                                                                   self.save_aux_filename))
+                    self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
+                                    aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
+                    self.save_test_samples(p)
+
+    def save_test_samples(self, p):
+        np.save(p / 'test_event_samples', self.test_samples)
+
+    def get_test_samples(self, p):
+        # for nflow only
+        x_samples = nde_flows.obtain_samples(self.model, self.event_y, 50000, self.device)
+        x_samples = x_samples.cpu()
+        # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
+        self.test_samples = self.wfd.post_process_parameters(x_samples.numpy())
+
+    def save_kljs_history(self, p, epoch):
+        self.get_test_samples(p)
+        # Make column headers if this is the first epoch
+        if epoch == 1:
+            with open(p / 'js_history.txt', 'w') as f:
+                writer = csv.writer(f, delimiter='\t')
+                writer.writerow(list(self.wfd.param_idx.keys()))
+            with open(p / 'kl_history.txt', 'w') as f:
+                writer = csv.writer(f, delimiter='\t')
+                writer.writerow(list(self.wfd.param_idx.keys()))
+
+        with open(p / 'js_history.txt', 'a') as f:
+            writer = csv.writer(f, delimiter='\t')
+            writer.writerow(js_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+        with open(p / 'kl_history.txt', 'a') as f:
+            writer = csv.writer(f, delimiter='\t')
+            writer.writerow(kl_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+
+        touch(p / ('.'+'js_history.txt'))
+        touch(p / ('.'+'kl_history.txt'))
+
+        # Plot
+        if epoch >1:
+            kldf = pd.read_csv(p / 'kl_history.txt', sep='\t')
+            jsdf = pd.read_csv(p / 'js_history.txt', sep='\t')
+            plt.figure()
+            [plt.plot(jsdf[name], label=name) for name in self.wfd.param_idx.keys()]
+            plt.xlabel('Epoch')
+            plt.ylabel('JS div.')
+            plt.legend()
+            plt.savefig(p / 'js_history.png')
+            plt.close()
+            touch(p / ('.'+'js_history.png'))        
+
+            plt.figure()
+            [plt.plot(kldf[name], label=name) for name in self.wfd.param_idx.keys()]
+            plt.xlabel('Epoch')
+            plt.ylabel('KL div.')
+            plt.legend()
+            plt.savefig(p / 'kl_history.png')
+            plt.close()
+            touch(p / ('.'+'kl_history.png'))
 
     def init_waveform_supp(self, aux_filename='waveforms_supplementary.hdf5'):
 
