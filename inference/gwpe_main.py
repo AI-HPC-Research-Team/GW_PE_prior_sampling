@@ -1401,14 +1401,6 @@ def main():
         print('Starting timer')
         start_time = time.time()
         if args.transfer_epochs:
-            try:
-                pm.train(args.epochs,
-                        output_freq=args.output_freq,
-                        kl_annealing=args.kl_annealing,
-                        snr_annealing=args.snr_annealing)
-            except KeyboardInterrupt as e:
-                print(e)
-        else: # You should set args.mixed_alpha = 1.0
             print('Now, transfer learning from alpha={}!'.format(args.mixed_alpha))
             try:
                 pm.train(args.transfer_epochs,
@@ -1466,6 +1458,25 @@ def main():
                         print('Saving model')
                         pm.save_model(filename= 'a{}'.format(mixed_alpha) + pm.save_model_name, 
                                       aux_filename='a{}'.format(mixed_alpha) + pm.save_aux_filename)
+        else: # You should set args.mixed_alpha = 1.0
+            try:
+                pm.train(args.epochs,
+                        output_freq=args.output_freq,
+                        kl_annealing=args.kl_annealing,
+                        snr_annealing=args.snr_annealing)
+            except KeyboardInterrupt as e:
+                print(e)      
+            finally:
+                print('Stopping timer.')
+                stop_time = time.time()
+                print('Training time (including validation): {} seconds'
+                    .format(stop_time - start_time))
+
+                if args.save:
+                    print('Saving model')
+                    pm.save_model(filename=pm.save_model_name, 
+                                    aux_filename=pm.save_aux_filename)                      
+
     print('Program complete')
 
 
