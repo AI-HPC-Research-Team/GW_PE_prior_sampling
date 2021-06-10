@@ -23,11 +23,14 @@ print('f_max', wfd.f_max)
 print('T', wfd.time_duration)
 print('reference time', wfd.ref_time)
 
-wfd.generate_reduced_basis(50000)
+# wfd.generate_reduced_basis(50000)
+wfd.generate_reduced_basis(1000)
 
-wfd.generate_dataset(1000000)
+# wfd.generate_dataset(1000000)
+wfd.generate_dataset(500)
 
-wfd.generate_noisy_test_data(5000)
+# wfd.generate_noisy_test_data(5000)
+wfd.generate_noisy_test_data(50)
 
 wfd.save('waveforms/GW150914')
 wfd.save_train('waveforms/GW150914')
