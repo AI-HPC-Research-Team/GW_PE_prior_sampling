@@ -109,6 +109,8 @@ class WaveformDataset(object):
                  detectors=['H1', 'L1', 'V1'], domain='TD',
                  extrinsic_at_train=False):
 
+        self.mixed_alpha = 0.0
+
         # Set up indices for parameters
         param_idx = dict(mass_1=0, mass_2=1, phase=2, time=3, distance=4)
         nparams = 5
