@@ -78,12 +78,15 @@ def js_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
 class PosteriorModel(object):
 
     def __init__(self, model_dir=None, data_dir=None,
+                save_aux_filename='waveforms_supplementary.hdf5',save_model_name='model.pt',
                  use_cuda=True):
 
         self.wfd = None
         self.model = None
         self.data_dir = data_dir
         self.model_dir = model_dir
+        self.save_aux_filename = save_aux_filename
+        self.save_model_name = save_model_name
         self.model_type = None
         self.optimizer = None
         self.scheduler = None
