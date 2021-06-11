@@ -476,6 +476,7 @@ class PosteriorModel(object):
                 output_freq:    how many iterations between outputs
                 kl_annealing:  for cvae, whether to anneal the kl loss
         """
+        epoch_minimum_test_loss = 0
 
         if self.wfd.extrinsic_at_train:
             add_noise = False
