@@ -621,7 +621,7 @@ class PosteriorModel(object):
 
                 # Make column headers if this is the first epoch
                 if epoch == 1:
-                    with open(p / 'history.txt', 'w') as f:
+                    with open(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt', 'w') as f:
                         writer = csv.writer(f, delimiter='\t')
                         writer.writerow([epoch, train_loss, test_loss])
                     if self.model_type == 'cvae':
@@ -630,7 +630,7 @@ class PosteriorModel(object):
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
                 else:
-                    with open(p / 'history.txt', 'a') as f:
+                    with open(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt', 'a') as f:
                         writer = csv.writer(f, delimiter='\t')
                         writer.writerow([epoch, train_loss, test_loss])
                     if self.model_type == 'cvae':
@@ -647,7 +647,7 @@ class PosteriorModel(object):
                     plt.xlabel('Epoch')
                     plt.ylabel('Loss')
                     plt.legend()
-                    plt.savefig(p / 'history.png')
+                    plt.savefig(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.png')
                     plt.close()
                     touch(p / ('.'+'history.png'))
                     
@@ -672,9 +672,9 @@ class PosteriorModel(object):
                                     aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
                     self.save_test_samples(p)
     def save_test_samples(self, p):
-        np.save(p / 'test_event_samples', self.test_samples)
+        np.save(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'test_event_samples', self.test_samples)
 
-    def get_test_samples(self, p):
+    def get_test_samples(self):
         # for nflow only
         x_samples = nde_flows.obtain_samples(self.model, self.event_y, self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
@@ -682,20 +682,20 @@ class PosteriorModel(object):
         self.test_samples = self.wfd.post_process_parameters(x_samples.numpy())
 
     def save_kljs_history(self, p, epoch):
-        self.get_test_samples(p)
+        self.get_test_samples()
         # Make column headers if this is the first epoch
         if epoch == 1:
-            with open(p / 'js_history.txt', 'w') as f:
+            with open(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt', 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(list(self.wfd.param_idx.keys()))
-            with open(p / 'kl_history.txt', 'w') as f:
+            with open(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt', 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(list(self.wfd.param_idx.keys()))
 
-        with open(p / 'js_history.txt', 'a') as f:
+        with open(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(js_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
-        with open(p / 'kl_history.txt', 'a') as f:
+        with open(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(kl_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
 
@@ -704,14 +704,14 @@ class PosteriorModel(object):
 
         # Plot
         if epoch >1:
-            kldf = pd.read_csv(p / 'kl_history.txt', sep='\t')
-            jsdf = pd.read_csv(p / 'js_history.txt', sep='\t')
+            kldf = pd.read_csv(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt', sep='\t')
+            jsdf = pd.read_csv(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt', sep='\t')
             plt.figure()
             [plt.plot(jsdf[name], label=name) for name in self.wfd.param_idx.keys()]
             plt.xlabel('Epoch')
             plt.ylabel('JS div.')
             plt.legend()
-            plt.savefig(p / 'js_history.png')
+            plt.savefig(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.png')
             plt.close()
             touch(p / ('.'+'js_history.png'))        
 
@@ -720,7 +720,7 @@ class PosteriorModel(object):
             plt.xlabel('Epoch')
             plt.ylabel('KL div.')
             plt.legend()
-            plt.savefig(p / 'kl_history.png')
+            plt.savefig(p / ('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.png')
             plt.close()
             touch(p / ('.'+'kl_history.png'))
 
@@ -1419,7 +1419,7 @@ def main():
                     print('Saving model')
                     pm.save_model(filename='a{}'.format(args.mixed_alpha) + pm.save_model_name, 
                                     aux_filename='a{}'.format(args.mixed_alpha) + pm.save_aux_filename)                         
-            alpha_list = [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005]
+            alpha_list = [0.8, 0.6, 0.4, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005]
             for i, mixed_alpha in enumerate(alpha_list):
                 print('Transfer learning by starting with alpha={}!'.format(mixed_alpha))
                 pm.load_dataset(batch_size=args.batch_size,
@@ -1447,7 +1447,11 @@ def main():
                             kl_annealing=args.kl_annealing,
                             snr_annealing=args.snr_annealing)
                 except KeyboardInterrupt as e:
-                    print(e)                                                                         
+                    print(e)
+                except Exception as e:
+                    print(e)
+                    print('Let us continue!')
+                    continue                                                                         
                 finally:
                     print('Stopping timer.')
                     stop_time = time.time()
