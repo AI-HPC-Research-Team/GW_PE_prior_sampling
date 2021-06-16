@@ -1447,7 +1447,11 @@ def main():
                             kl_annealing=args.kl_annealing,
                             snr_annealing=args.snr_annealing)
                 except KeyboardInterrupt as e:
-                    print(e)                                                                         
+                    print(e)
+                except Exception as e:
+                    print(e)
+                    print('Let us continue!')
+                    continue                                                                         
                 finally:
                     print('Stopping timer.')
                     stop_time = time.time()
