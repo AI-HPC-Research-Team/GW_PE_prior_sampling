@@ -638,7 +638,7 @@ class PosteriorModel(object):
                             writer = csv.writer(f, delimiter='\t')
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
-                    data_history = np.loadtxt(p / 'history.txt')
+                    data_history = np.loadtxt(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt'))
 
                     # Plot                  
                     plt.figure()
