@@ -25,6 +25,7 @@ from . import waveform as wfg
 from . import nde_flows
 # from . import cvae
 from scipy import stats
+from tqdm import tqdm
 
 def touch(path):
     with open(path, 'a'):
@@ -224,18 +225,22 @@ class PosteriorModel(object):
 
         # 用于在训练的时候，与目标 event 的测试后验分布作对比
         if self.nsamples_target_event:
-            self.wfd._load_posterior(self.wfd.event,) 
-            self.wfd.parameters_event = self.wfd._sample_prior_posterior(nsamples_target_event).astype(np.float32)        
+            self.test_samples = {}
+            # self.wfd._load_posterior(self.wfd.event,) 
+            # self.wfd.parameters_event = self.wfd._sample_prior_posterior(nsamples_target_event).astype(np.float32)        
 
-            # Load strain data for event
-            event_strain = {}
-            with h5py.File(self.wfd.event_dir / 'strain_FD_whitened.hdf5', 'r') as f:
-                event_strain = {det:f[det][:].astype(np.complex64) for det in self.detectors}
-            d_RB = {}
-            for ifo, di in event_strain.items():
-                h_RB = self.wfd.basis.fseries_to_basis_coefficients(di)
-                d_RB[ifo] = h_RB
-            _, self.event_y = self.wfd.x_y_from_p_h(np.zeros(self.wfd.nparams), d_RB, add_noise=False)
+            # # Load strain data for event
+            # event_strain = {}
+            # with h5py.File(self.wfd.event_dir / 'strain_FD_whitened.hdf5', 'r') as f:
+            #     event_strain = {det:f[det][:].astype(np.complex64) for det in self.detectors}
+            # d_RB = {}
+            # for ifo, di in event_strain.items():
+            #     h_RB = self.wfd.basis.fseries_to_basis_coefficients(di)
+            #     d_RB[ifo] = h_RB
+            # _, self.event_y = self.wfd.x_y_from_p_h(np.zeros(self.wfd.nparams), d_RB, add_noise=False)
+
+            self.load_all_bilby_samples()
+            self.load_all_event_strain(truncate_basis)
 
         # pytorch wrappers
         wfd_train = wfg.WaveformDatasetTorch(self.wfd, train=True)
@@ -656,9 +661,15 @@ class PosteriorModel(object):
                 touch(p / ('.'+'history.txt'))
 
 
+                for event in ['GW150914', 'GW151012', 
+                            'GW151226', 
+                            'GW170104', 'GW170818', 'GW170823',
+                            'GW170809', 'GW170814', 'GW170729', 
+                            'GW170608',]:
+                    # Save kl and js history
+                    self.save_kljs_history(p, epoch, event)
 
-                # Save kl and js history
-                self.save_kljs_history(p, epoch)
+                self.plot_kljs_history(p, epoch)
 
                 if (output_freq is not None) and (epoch == epoch_minimum_test_loss):
                     for f in os.listdir(p):
@@ -671,43 +682,133 @@ class PosteriorModel(object):
                     self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
                                     aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
                     self.save_test_samples(p)
-    def save_test_samples(self, p):
-        np.save(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'test_event_samples'), self.test_samples)
 
-    def get_test_samples(self):
+    def load_a_event_strain(self, event, truncate_basis):
+        event_detectors_dict = {
+            'GW150914': ['H1', 'L1'],
+            'GW151012': ['H1', 'L1'],
+            'GW151226': ['H1', 'L1'],
+            'GW170104': ['H1', 'L1'],
+            'GW170608': ['H1', 'L1'],
+            'GW170729': ['H1', 'L1', 'V1'],
+            'GW170809': ['H1', 'L1', 'V1'],
+            'GW170814': ['H1', 'L1', 'V1'],
+            'GW170818': ['H1', 'L1', 'V1'],
+            'GW170823': ['H1', 'L1']
+        }    
+        # Load strain data for event
+        event_strain = {}
+        with h5py.File('./data/{}'.format(event) / 'strain_FD_whitened.hdf5', 'r') as f:
+            event_strain = {det:f[det][:].astype(np.complex64) for det in event_detectors_dict[event]}
+        d_RB = {}
+        event_basis = SVDBasis()
+        event_basis.load('data/{}_sample_prior_basis/'.format(event))
+        event_basis.truncate(truncate_basis)
+        for ifo, di in event_strain.items():
+            h_RB = event_basis.fseries_to_basis_coefficients(di)
+            d_RB[ifo] = h_RB
+        _, event_y = self.wfd.x_y_from_p_h(np.zeros(self.wfd.nparams), d_RB, add_noise=False)
+        return event_y
+
+    def load_all_event_strain(self, truncate_basis):
+        self.all_event_strain = {}
+        print('Loading load_all_event_strain...')
+        for event in tqdm(['GW150914', 'GW151012', 
+                    'GW151226', 
+                    'GW170104', 'GW170818', 'GW170823',
+                    'GW170809', 'GW170814', 'GW170729', 
+                    'GW170608',]):
+            self.all_event_strain[event] = self.load_a_event_strain(self, event, truncate_basis)
+
+    @staticmethod
+    def load_a_bilby_samples(event):
+        event_gps_dict = {
+            'GW150914': 1126259462.4,
+            'GW151012': 1128678900.4,
+            'GW151226': 1135136350.6,
+            'GW170104': 1167559936.6,
+            'GW170608': 1180922494.5,
+            'GW170729': 1185389807.3,
+            'GW170809': 1186302519.8,
+            'GW170814': 1186741861.5,
+            'GW170818': 1187058327.1,
+            'GW170823': 1187529256.5
+        }
+        event = event.split('_')[0]
+        # Load bilby samples
+        try:
+            df = pd.read_csv('../bilby_runs/downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+        except:
+            df = pd.read_csv('./downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+        bilby_samples = df.dropna()[['mass_1', 'mass_2', 'phase', 'geocent_time','luminosity_distance',
+                                        'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl',
+                                        'theta_jn', 'psi', 'ra', 'dec']].values.astype('float64')
+
+        # Shift the time of coalescence by the trigger time
+        bilby_samples[:,3] = bilby_samples[:,3] - event_gps_dict[event]
+        return bilby_samples
+    def load_all_bilby_samples(self):
+        self.all_bilby_samples = {}
+        print('Loading load_all_bilby_samples...')
+        for event in tqdm(['GW150914', 'GW151012', 
+                    'GW151226', 
+                    'GW170104', 'GW170818', 'GW170823',
+                    'GW170809', 'GW170814', 'GW170729', 
+                    'GW170608',]):
+            self.all_bilby_samples[event] = self.load_bilby_samples(event)
+                        
+    def save_test_samples(self, p):
+        print('Save test samples ...')
+        for event in tqdm(['GW150914', 'GW151012', 
+                    'GW151226', 
+                    'GW170104', 'GW170818', 'GW170823',
+                    'GW170809', 'GW170814', 'GW170729', 
+                    'GW170608',]):        
+            self.get_test_samples(event)
+            np.save(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'test_event_samples'), self.test_samples)
+
+    def get_test_samples(self, event):
         # for nflow only
-        x_samples = nde_flows.obtain_samples(self.model, self.event_y, self.nsamples_target_event, self.device)
+        x_samples = nde_flows.obtain_samples(self.model, self.all_event_strain[event], self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
         # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
         self.test_samples = self.wfd.post_process_parameters(x_samples.numpy())
 
-    def save_kljs_history(self, p, epoch):
-        self.get_test_samples()
+    def save_kljs_history(self, p, epoch, event):
+        self.get_test_samples(event)
         # Make column headers if this is the first epoch
         if epoch == 1:
-            with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'), 'w') as f:
+            with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_{}_history.txt'.format(event)), 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(list(self.wfd.param_idx.keys()))
-            with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'), 'w') as f:
+            with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_{}_history.txt'.format(event)), 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(list(self.wfd.param_idx.keys()))
 
-        with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'), 'a') as f:
+        with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_{}_history.txt'.format(event)), 'a') as f:
             writer = csv.writer(f, delimiter='\t')
-            writer.writerow(js_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
-        with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'), 'a') as f:
+            writer.writerow(js_divergence([self.test_samples[:,index], self.all_bilby_samples[event][:,index]]) for name, index in self.wfd.param_idx.items())
+        with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_{}_history.txt'.format(event)), 'a') as f:
             writer = csv.writer(f, delimiter='\t')
-            writer.writerow(kl_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+            writer.writerow(kl_divergence([self.test_samples[:,index], self.all_bilby_samples[event][:,index]]) for name, index in self.wfd.param_idx.items())
 
         touch(p / ('.'+'js_history.txt'))
         touch(p / ('.'+'kl_history.txt'))
 
+    def plot_kljs_history(self, p, epoch):
         # Plot
         if epoch >1:
-            kldf = pd.read_csv(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'), sep='\t')
-            jsdf = pd.read_csv(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'), sep='\t')
-            plt.figure()
-            [plt.plot(jsdf[name], label=name) for name in self.wfd.param_idx.keys()]
+            plt.figure()            
+            for event in ['GW150914', 'GW151012', 
+                        'GW151226', 
+                        'GW170104', 'GW170818', 'GW170823',
+                        'GW170809', 'GW170814', 'GW170729', 
+                        'GW170608',]:
+                
+                jsdf = pd.read_csv(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_{}_history.txt'.format(event)), sep='\t')
+                
+                plt.fill_between(range(len(jsdf)),jsdf.mean(axis=1),jsdf.max(axis=1), alpha=0.6, label=event)
+            # [plt.plot(jsdf[name], label=name) for name in self.wfd.param_idx.keys()]
             plt.xlabel('Epoch')
             plt.ylabel('JS div.')
             plt.legend()
@@ -715,14 +816,6 @@ class PosteriorModel(object):
             plt.close()
             touch(p / ('.'+'js_history.png'))        
 
-            plt.figure()
-            [plt.plot(kldf[name], label=name) for name in self.wfd.param_idx.keys()]
-            plt.xlabel('Epoch')
-            plt.ylabel('KL div.')
-            plt.legend()
-            plt.savefig(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.png'))
-            plt.close()
-            touch(p / ('.'+'kl_history.png'))
 
     
     def init_waveform_supp(self, aux_filename='waveforms_supplementary.hdf5'):
