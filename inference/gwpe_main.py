@@ -134,7 +134,8 @@ class PosteriorModel(object):
             self.wfd.basis = SVDBasis()
             self.wfd.basis.load(self.basis_dir)
             self.wfd.Nrb = self.wfd.basis.n
-
+        
+        self.wfd.mixed_alpha = mixed_alpha
         print("Sampling {} sets of parameters from {} prior.".format(nsample, self.wfd.sampling_from))
         if self.wfd.sampling_from == 'posterior':
             # loading bilby posterior as training dist.
@@ -151,7 +152,6 @@ class PosteriorModel(object):
             self.wfd.init_training() # split dataset and _compute_parameter_statistics  
         elif self.wfd.sampling_from == 'mixed':
             assert mixed_alpha, "You need specify a 'mixed_alpha' value for 'mixed'"
-            self.wfd.mixed_alpha = mixed_alpha
             self.wfd._load_posterior(self.wfd.event,) 
             parameters_posterior = self.wfd._sample_prior_posterior(nsample).astype(np.float32)
             parameters_uniform = self.wfd._sample_prior(nsample).astype(np.float32)
@@ -698,16 +698,29 @@ class PosteriorModel(object):
         }    
         # Load strain data for event
         event_strain = {}
-        with h5py.File('./data/{}'.format(event) / 'strain_FD_whitened.hdf5', 'r') as f:
-            event_strain = {det:f[det][:].astype(np.complex64) for det in event_detectors_dict[event]}
+        with h5py.File(Path('./data/events/{}'.format(event)) / 'strain_FD_whitened.hdf5', 'r') as f:
+            event_strain = {det:f[det][:].astype(np.complex64) for det in event_detectors_dict[event][:2]}
+        # Load settings
+        WFD = wfg.WaveformDataset(sampling_from=self.wfd.sampling_from)
+        WFD.load_setting('./data/{}_sample_prior_basis'.format(event), sample_extrinsic_only = self.sample_extrinsic_only)
+
+        # 覆盖 basis
+        WFD.basis = SVDBasis()
+        WFD.basis.load('data/{}_sample_prior_basis/'.format(event))
+        WFD.Nrb = WFD.basis.n
+        WFD.basis.truncate(truncate_basis)
+        # Set up relative whitening
+        print('init relative whitening...')
+        WFD.init_relative_whitening()        
+        WFD.initialize_reduced_basis_aux()
         d_RB = {}
-        event_basis = SVDBasis()
-        event_basis.load('data/{}_sample_prior_basis/'.format(event))
-        event_basis.truncate(truncate_basis)
         for ifo, di in event_strain.items():
-            h_RB = event_basis.fseries_to_basis_coefficients(di)
+            h_RB = WFD.basis.fseries_to_basis_coefficients(di)
             d_RB[ifo] = h_RB
-        _, event_y = self.wfd.x_y_from_p_h(np.zeros(self.wfd.nparams), d_RB, add_noise=False)
+        WFD.parameters_mean = 0
+        WFD.parameters_std = 1 
+        WFD.basis.standardization_dict = self.wfd.basis.standardization_dict
+        _, event_y = WFD.x_y_from_p_h(np.zeros(self.wfd.nparams), d_RB, add_noise=False)
         return event_y
 
     def load_all_event_strain(self, truncate_basis):
@@ -718,7 +731,7 @@ class PosteriorModel(object):
                     'GW170104', 'GW170818', 'GW170823',
                     'GW170809', 'GW170814', 'GW170729', 
                     'GW170608',]):
-            self.all_event_strain[event] = self.load_a_event_strain(self, event, truncate_basis)
+            self.all_event_strain[event] = self.load_a_event_strain(event, truncate_basis)
 
     @staticmethod
     def load_a_bilby_samples(event):
@@ -755,7 +768,7 @@ class PosteriorModel(object):
                     'GW170104', 'GW170818', 'GW170823',
                     'GW170809', 'GW170814', 'GW170729', 
                     'GW170608',]):
-            self.all_bilby_samples[event] = self.load_bilby_samples(event)
+            self.all_bilby_samples[event] = self.load_a_bilby_samples(event)
                         
     def save_test_samples(self, p):
         print('Save test samples ...')
