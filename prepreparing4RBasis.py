@@ -81,7 +81,7 @@ if __name__ == '__main__':
     if event in ['GW151226', 'GW170608']:
         wfd.prior['mass_1'][0] = 5.0
         wfd.prior['mass_2'][0] = 5.0
-    if event in ['GW170817'']:
+    if event in ['GW170817']:
         wfd.prior['mass_1'][0] = 1.0
         wfd.prior['mass_2'][0] = 1.0
         wfd.prior['mass_1'][1] = 5.0
