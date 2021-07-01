@@ -42,9 +42,10 @@ if __name__ == '__main__':
     #event = 'GW151226'
     # O2
     # event = 'GW170104'
-    event = 'GW170608'
+    # event = 'GW170608'
     # event = 'GW170729'
     #event = 'GW170809'
+    event = 'GW170817'
     # event = 'GW170814'
     # event = 'GW170818'
     # event = 'GW170823'
@@ -60,7 +61,7 @@ if __name__ == '__main__':
         GW170729=5000,
         GW170809=2000,
         GW170814=1000,
-        GW170817=500,
+        GW170817=100,
         GW170818=2000,
         GW170823=4000,
     )
@@ -72,6 +73,7 @@ if __name__ == '__main__':
     wfd.approximant = 'IMRPhenomPv2'
 
     wfd.load_event('data/events/{}/'.format(event))
+    # wfd.load_event('data/events/{}_30s/'.format(event))
 
     wfd.importance_sampling = 'uniform_distance'
     wfd.fiducial_params['distance'] = fiducial_params[event]
@@ -79,7 +81,13 @@ if __name__ == '__main__':
     if event in ['GW151226', 'GW170608']:
         wfd.prior['mass_1'][0] = 5.0
         wfd.prior['mass_2'][0] = 5.0
-
+    if event in ['GW170817'']:
+        wfd.prior['mass_1'][0] = 1.0
+        wfd.prior['mass_2'][0] = 1.0
+        wfd.prior['mass_1'][1] = 5.0
+        wfd.prior['mass_2'][1] = 5.0       
+        wfd.prior['distance'][0] = 10
+        wfd.prior['distance'][1] = 100
     print('Dataset properties')
     print('Event', wfd.event)
     print(wfd.prior)
