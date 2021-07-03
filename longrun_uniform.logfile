@@ -37567,3 +37567,3383 @@ Setting extrinsic parameters to fiducial values.
 Test set: Average loss: 21.9137
 
 Learning rate: 0.00019011148617852853
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2856 [0/90000 (0%)]	Loss: 19.4793	Cost: 13.13s
+Train Epoch: 2856 [20480/90000 (23%)]	Loss: -7.1143	Cost: 8.83s
+Train Epoch: 2856 [40960/90000 (45%)]	Loss: -7.2397	Cost: 8.31s
+Train Epoch: 2856 [61440/90000 (68%)]	Loss: -7.2895	Cost: 5.97s
+Train Epoch: 2856 [81920/90000 (91%)]	Loss: -7.4410	Cost: 6.17s
+Train Epoch: 2856 	Average Loss: -5.3784
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9191
+
+Learning rate: 0.00019010467440108196
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2857 [0/90000 (0%)]	Loss: 19.6633	Cost: 13.24s
+Train Epoch: 2857 [20480/90000 (23%)]	Loss: -7.0652	Cost: 6.25s
+Train Epoch: 2857 [40960/90000 (45%)]	Loss: -7.2187	Cost: 7.43s
+Train Epoch: 2857 [61440/90000 (68%)]	Loss: -7.3725	Cost: 8.63s
+Train Epoch: 2857 [81920/90000 (91%)]	Loss: -7.5038	Cost: 8.42s
+Train Epoch: 2857 	Average Loss: -5.3909
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8224
+
+Learning rate: 0.00019009786040039166
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2858 [0/90000 (0%)]	Loss: 19.7133	Cost: 12.40s
+Train Epoch: 2858 [20480/90000 (23%)]	Loss: -6.9236	Cost: 8.02s
+Train Epoch: 2858 [40960/90000 (45%)]	Loss: -7.2776	Cost: 8.77s
+Train Epoch: 2858 [61440/90000 (68%)]	Loss: -7.4430	Cost: 8.47s
+Train Epoch: 2858 [81920/90000 (91%)]	Loss: -7.3709	Cost: 8.35s
+Train Epoch: 2858 	Average Loss: -5.3067
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9352
+
+Learning rate: 0.0001900910441766258
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2859 [0/90000 (0%)]	Loss: 19.4750	Cost: 12.40s
+Train Epoch: 2859 [20480/90000 (23%)]	Loss: -7.3777	Cost: 8.87s
+Train Epoch: 2859 [40960/90000 (45%)]	Loss: -7.3037	Cost: 8.81s
+Train Epoch: 2859 [61440/90000 (68%)]	Loss: -7.2588	Cost: 8.09s
+Train Epoch: 2859 [81920/90000 (91%)]	Loss: -7.4170	Cost: 6.50s
+Train Epoch: 2859 	Average Loss: -5.3990
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8995
+
+Learning rate: 0.0001900842257299525
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2860 [0/90000 (0%)]	Loss: 19.4924	Cost: 16.57s
+Train Epoch: 2860 [20480/90000 (23%)]	Loss: -7.2128	Cost: 9.82s
+Train Epoch: 2860 [40960/90000 (45%)]	Loss: -7.2819	Cost: 12.12s
+Train Epoch: 2860 [61440/90000 (68%)]	Loss: -7.2185	Cost: 5.91s
+Train Epoch: 2860 [81920/90000 (91%)]	Loss: -7.1710	Cost: 5.92s
+Train Epoch: 2860 	Average Loss: -5.3616
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8800
+
+Learning rate: 0.00019007740506054004
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2861 [0/90000 (0%)]	Loss: 19.4140	Cost: 12.52s
+Train Epoch: 2861 [20480/90000 (23%)]	Loss: -7.0093	Cost: 6.74s
+Train Epoch: 2861 [40960/90000 (45%)]	Loss: -7.1656	Cost: 8.84s
+Train Epoch: 2861 [61440/90000 (68%)]	Loss: -7.0668	Cost: 8.61s
+Train Epoch: 2861 [81920/90000 (91%)]	Loss: -7.1971	Cost: 8.36s
+Train Epoch: 2861 	Average Loss: -5.3285
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8842
+
+Learning rate: 0.00019007058216855672
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2862 [0/90000 (0%)]	Loss: 19.9084	Cost: 12.97s
+Train Epoch: 2862 [20480/90000 (23%)]	Loss: -7.0919	Cost: 8.81s
+Train Epoch: 2862 [40960/90000 (45%)]	Loss: -6.9218	Cost: 8.74s
+Train Epoch: 2862 [61440/90000 (68%)]	Loss: -6.6964	Cost: 8.44s
+Train Epoch: 2862 [81920/90000 (91%)]	Loss: -6.9324	Cost: 6.99s
+Train Epoch: 2862 	Average Loss: -5.0631
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.7699
+
+Learning rate: 0.00019006375705417084
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2863 [0/90000 (0%)]	Loss: 19.5712	Cost: 14.40s
+Train Epoch: 2863 [20480/90000 (23%)]	Loss: -6.9183	Cost: 9.44s
+Train Epoch: 2863 [40960/90000 (45%)]	Loss: -6.8098	Cost: 12.18s
+Train Epoch: 2863 [61440/90000 (68%)]	Loss: -7.0837	Cost: 11.89s
+Train Epoch: 2863 [81920/90000 (91%)]	Loss: -7.0290	Cost: 11.80s
+Train Epoch: 2863 	Average Loss: -5.1607
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8102
+
+Learning rate: 0.00019005692971755085
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2864 [0/90000 (0%)]	Loss: 19.5454	Cost: 14.14s
+Train Epoch: 2864 [20480/90000 (23%)]	Loss: -7.0277	Cost: 8.64s
+Train Epoch: 2864 [40960/90000 (45%)]	Loss: -7.0077	Cost: 9.22s
+Train Epoch: 2864 [61440/90000 (68%)]	Loss: -7.1188	Cost: 8.90s
+Train Epoch: 2864 [81920/90000 (91%)]	Loss: -7.2241	Cost: 8.80s
+Train Epoch: 2864 	Average Loss: -5.2773
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.6997
+
+Learning rate: 0.0001900501001588652
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2865 [0/90000 (0%)]	Loss: 19.3014	Cost: 12.82s
+Train Epoch: 2865 [20480/90000 (23%)]	Loss: -7.3698	Cost: 9.04s
+Train Epoch: 2865 [40960/90000 (45%)]	Loss: -7.1867	Cost: 8.83s
+Train Epoch: 2865 [61440/90000 (68%)]	Loss: -7.1967	Cost: 6.59s
+Train Epoch: 2865 [81920/90000 (91%)]	Loss: -7.3006	Cost: 8.17s
+Train Epoch: 2865 	Average Loss: -5.4287
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9676
+
+Learning rate: 0.00019004326837828236
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2866 [0/90000 (0%)]	Loss: 19.4920	Cost: 12.94s
+Train Epoch: 2866 [20480/90000 (23%)]	Loss: -7.1343	Cost: 6.67s
+Train Epoch: 2866 [40960/90000 (45%)]	Loss: -7.3408	Cost: 9.24s
+Train Epoch: 2866 [61440/90000 (68%)]	Loss: -7.1664	Cost: 12.29s
+Train Epoch: 2866 [81920/90000 (91%)]	Loss: -7.4980	Cost: 11.94s
+Train Epoch: 2866 	Average Loss: -5.4378
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8556
+
+Learning rate: 0.00019003643437597096
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2867 [0/90000 (0%)]	Loss: 19.6374	Cost: 12.78s
+Train Epoch: 2867 [20480/90000 (23%)]	Loss: -7.3648	Cost: 9.05s
+Train Epoch: 2867 [40960/90000 (45%)]	Loss: -7.2013	Cost: 8.79s
+Train Epoch: 2867 [61440/90000 (68%)]	Loss: -7.2174	Cost: 7.49s
+Train Epoch: 2867 [81920/90000 (91%)]	Loss: -7.0703	Cost: 7.53s
+Train Epoch: 2867 	Average Loss: -5.3390
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8741
+
+Learning rate: 0.0001900295981520996
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2868 [0/90000 (0%)]	Loss: 19.7985	Cost: 12.68s
+Train Epoch: 2868 [20480/90000 (23%)]	Loss: -6.5679	Cost: 8.08s
+Train Epoch: 2868 [40960/90000 (45%)]	Loss: -6.4438	Cost: 7.50s
+Train Epoch: 2868 [61440/90000 (68%)]	Loss: -6.4014	Cost: 8.59s
+Train Epoch: 2868 [81920/90000 (91%)]	Loss: -6.8177	Cost: 8.46s
+Train Epoch: 2868 	Average Loss: -4.7880
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.6719
+
+Learning rate: 0.0001900227597068369
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2869 [0/90000 (0%)]	Loss: 19.3485	Cost: 12.55s
+Train Epoch: 2869 [20480/90000 (23%)]	Loss: -7.0280	Cost: 6.66s
+Train Epoch: 2869 [40960/90000 (45%)]	Loss: -6.9451	Cost: 6.78s
+Train Epoch: 2869 [61440/90000 (68%)]	Loss: -7.0489	Cost: 6.40s
+Train Epoch: 2869 [81920/90000 (91%)]	Loss: -7.3334	Cost: 12.16s
+Train Epoch: 2869 	Average Loss: -5.1480
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.7271
+
+Learning rate: 0.0001900159190403517
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2870 [0/90000 (0%)]	Loss: 19.5492	Cost: 13.21s
+Train Epoch: 2870 [20480/90000 (23%)]	Loss: -7.3796	Cost: 7.00s
+Train Epoch: 2870 [40960/90000 (45%)]	Loss: -7.1713	Cost: 8.81s
+Train Epoch: 2870 [61440/90000 (68%)]	Loss: -7.1506	Cost: 8.79s
+Train Epoch: 2870 [81920/90000 (91%)]	Loss: -7.3786	Cost: 8.51s
+Train Epoch: 2870 	Average Loss: -5.3670
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8668
+
+Learning rate: 0.00019000907615281264
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2871 [0/90000 (0%)]	Loss: 19.4558	Cost: 12.73s
+Train Epoch: 2871 [20480/90000 (23%)]	Loss: -7.2601	Cost: 9.02s
+Train Epoch: 2871 [40960/90000 (45%)]	Loss: -7.2530	Cost: 8.79s
+Train Epoch: 2871 [61440/90000 (68%)]	Loss: -7.3203	Cost: 8.82s
+Train Epoch: 2871 [81920/90000 (91%)]	Loss: -7.4352	Cost: 6.71s
+Train Epoch: 2871 	Average Loss: -5.4246
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8131
+
+Learning rate: 0.00019000223104438871
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2872 [0/90000 (0%)]	Loss: 19.4605	Cost: 12.17s
+Train Epoch: 2872 [20480/90000 (23%)]	Loss: -7.6314	Cost: 7.88s
+Train Epoch: 2872 [40960/90000 (45%)]	Loss: -7.2814	Cost: 6.61s
+Train Epoch: 2872 [61440/90000 (68%)]	Loss: -7.4616	Cost: 6.47s
+Train Epoch: 2872 [81920/90000 (91%)]	Loss: -7.4412	Cost: 6.20s
+Train Epoch: 2872 	Average Loss: -5.5546
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0153
+
+Learning rate: 0.00018999538371524877
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2873 [0/90000 (0%)]	Loss: 19.5157	Cost: 12.79s
+Train Epoch: 2873 [20480/90000 (23%)]	Loss: -7.3046	Cost: 8.62s
+Train Epoch: 2873 [40960/90000 (45%)]	Loss: -7.4107	Cost: 8.83s
+Train Epoch: 2873 [61440/90000 (68%)]	Loss: -7.3543	Cost: 8.77s
+Train Epoch: 2873 [81920/90000 (91%)]	Loss: -7.3620	Cost: 8.37s
+Train Epoch: 2873 	Average Loss: -5.4473
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0617
+
+Learning rate: 0.0001899885341655617
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2874 [0/90000 (0%)]	Loss: 19.4550	Cost: 12.90s
+Train Epoch: 2874 [20480/90000 (23%)]	Loss: -7.0101	Cost: 9.03s
+Train Epoch: 2874 [40960/90000 (45%)]	Loss: -6.9001	Cost: 8.53s
+Train Epoch: 2874 [61440/90000 (68%)]	Loss: -7.0563	Cost: 6.75s
+Train Epoch: 2874 [81920/90000 (91%)]	Loss: -7.2211	Cost: 8.77s
+Train Epoch: 2874 	Average Loss: -5.2903
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8531
+
+Learning rate: 0.00018998168239549654
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2875 [0/90000 (0%)]	Loss: 19.6299	Cost: 12.19s
+Train Epoch: 2875 [20480/90000 (23%)]	Loss: -7.3746	Cost: 7.54s
+Train Epoch: 2875 [40960/90000 (45%)]	Loss: -7.3201	Cost: 8.84s
+Train Epoch: 2875 [61440/90000 (68%)]	Loss: -7.3335	Cost: 8.67s
+Train Epoch: 2875 [81920/90000 (91%)]	Loss: -7.5438	Cost: 8.61s
+Train Epoch: 2875 	Average Loss: -5.5317
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9688
+
+Learning rate: 0.0001899748284052224
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2876 [0/90000 (0%)]	Loss: 19.4984	Cost: 12.14s
+Train Epoch: 2876 [20480/90000 (23%)]	Loss: -7.4550	Cost: 6.28s
+Train Epoch: 2876 [40960/90000 (45%)]	Loss: -7.3737	Cost: 7.34s
+Train Epoch: 2876 [61440/90000 (68%)]	Loss: -7.3782	Cost: 6.19s
+Train Epoch: 2876 [81920/90000 (91%)]	Loss: -7.5042	Cost: 7.73s
+Train Epoch: 2876 	Average Loss: -5.5419
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9741
+
+Learning rate: 0.00018996797219490835
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2877 [0/90000 (0%)]	Loss: 19.6787	Cost: 13.17s
+Train Epoch: 2877 [20480/90000 (23%)]	Loss: -7.3581	Cost: 8.79s
+Train Epoch: 2877 [40960/90000 (45%)]	Loss: -7.4276	Cost: 7.36s
+Train Epoch: 2877 [61440/90000 (68%)]	Loss: -7.3083	Cost: 7.74s
+Train Epoch: 2877 [81920/90000 (91%)]	Loss: -7.5435	Cost: 8.32s
+Train Epoch: 2877 	Average Loss: -5.5328
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0110
+
+Learning rate: 0.00018996111376472357
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2878 [0/90000 (0%)]	Loss: 19.5814	Cost: 12.36s
+Train Epoch: 2878 [20480/90000 (23%)]	Loss: -7.5703	Cost: 6.67s
+Train Epoch: 2878 [40960/90000 (45%)]	Loss: -7.3390	Cost: 8.77s
+Train Epoch: 2878 [61440/90000 (68%)]	Loss: -7.3456	Cost: 8.63s
+Train Epoch: 2878 [81920/90000 (91%)]	Loss: -7.2239	Cost: 8.38s
+Train Epoch: 2878 	Average Loss: -5.4870
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9162
+
+Learning rate: 0.0001899542531148373
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2879 [0/90000 (0%)]	Loss: 19.6412	Cost: 15.31s
+Train Epoch: 2879 [20480/90000 (23%)]	Loss: -7.3089	Cost: 11.71s
+Train Epoch: 2879 [40960/90000 (45%)]	Loss: -7.2337	Cost: 11.88s
+Train Epoch: 2879 [61440/90000 (68%)]	Loss: -7.2597	Cost: 11.84s
+Train Epoch: 2879 [81920/90000 (91%)]	Loss: -7.3169	Cost: 8.19s
+Train Epoch: 2879 	Average Loss: -5.4269
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9885
+
+Learning rate: 0.0001899473902454188
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2880 [0/90000 (0%)]	Loss: 19.6748	Cost: 12.40s
+Train Epoch: 2880 [20480/90000 (23%)]	Loss: -7.6917	Cost: 8.80s
+Train Epoch: 2880 [40960/90000 (45%)]	Loss: -7.3257	Cost: 8.74s
+Train Epoch: 2880 [61440/90000 (68%)]	Loss: -7.3775	Cost: 7.82s
+Train Epoch: 2880 [81920/90000 (91%)]	Loss: -7.3653	Cost: 6.64s
+Train Epoch: 2880 	Average Loss: -5.5174
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9777
+
+Learning rate: 0.00018994052515663737
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2881 [0/90000 (0%)]	Loss: 19.4164	Cost: 12.23s
+Train Epoch: 2881 [20480/90000 (23%)]	Loss: -7.6000	Cost: 8.81s
+Train Epoch: 2881 [40960/90000 (45%)]	Loss: -7.6392	Cost: 6.57s
+Train Epoch: 2881 [61440/90000 (68%)]	Loss: -7.4312	Cost: 8.52s
+Train Epoch: 2881 [81920/90000 (91%)]	Loss: -7.1758	Cost: 8.29s
+Train Epoch: 2881 	Average Loss: -5.5875
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0049
+
+Learning rate: 0.00018993365784866247
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2882 [0/90000 (0%)]	Loss: 19.5196	Cost: 13.91s
+Train Epoch: 2882 [20480/90000 (23%)]	Loss: -7.1781	Cost: 6.38s
+Train Epoch: 2882 [40960/90000 (45%)]	Loss: -7.1252	Cost: 7.61s
+Train Epoch: 2882 [61440/90000 (68%)]	Loss: -7.1698	Cost: 6.96s
+Train Epoch: 2882 [81920/90000 (91%)]	Loss: -7.1982	Cost: 12.06s
+Train Epoch: 2882 	Average Loss: -5.3618
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8430
+
+Learning rate: 0.0001899267883216635
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2883 [0/90000 (0%)]	Loss: 19.6010	Cost: 12.21s
+Train Epoch: 2883 [20480/90000 (23%)]	Loss: -7.5246	Cost: 7.20s
+Train Epoch: 2883 [40960/90000 (45%)]	Loss: -7.3334	Cost: 8.78s
+Train Epoch: 2883 [61440/90000 (68%)]	Loss: -7.5542	Cost: 8.55s
+Train Epoch: 2883 [81920/90000 (91%)]	Loss: -7.4022	Cost: 8.33s
+Train Epoch: 2883 	Average Loss: -5.5033
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9329
+
+Learning rate: 0.00018991991657580994
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2884 [0/90000 (0%)]	Loss: 19.3602	Cost: 12.78s
+Train Epoch: 2884 [20480/90000 (23%)]	Loss: -7.4951	Cost: 8.83s
+Train Epoch: 2884 [40960/90000 (45%)]	Loss: -7.5467	Cost: 8.80s
+Train Epoch: 2884 [61440/90000 (68%)]	Loss: -7.4405	Cost: 8.56s
+Train Epoch: 2884 [81920/90000 (91%)]	Loss: -7.1941	Cost: 7.14s
+Train Epoch: 2884 	Average Loss: -5.5510
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0458
+
+Learning rate: 0.00018991304261127141
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2885 [0/90000 (0%)]	Loss: 19.5214	Cost: 12.78s
+Train Epoch: 2885 [20480/90000 (23%)]	Loss: -7.1622	Cost: 9.02s
+Train Epoch: 2885 [40960/90000 (45%)]	Loss: -7.1091	Cost: 6.91s
+Train Epoch: 2885 [61440/90000 (68%)]	Loss: -7.0721	Cost: 6.23s
+Train Epoch: 2885 [81920/90000 (91%)]	Loss: -7.2841	Cost: 6.14s
+Train Epoch: 2885 	Average Loss: -5.3335
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8126
+
+Learning rate: 0.00018990616642821747
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2886 [0/90000 (0%)]	Loss: 19.4952	Cost: 12.50s
+Train Epoch: 2886 [20480/90000 (23%)]	Loss: -7.1577	Cost: 6.95s
+Train Epoch: 2886 [40960/90000 (45%)]	Loss: -7.1248	Cost: 8.17s
+Train Epoch: 2886 [61440/90000 (68%)]	Loss: -7.3124	Cost: 8.53s
+Train Epoch: 2886 [81920/90000 (91%)]	Loss: -7.1338	Cost: 8.48s
+Train Epoch: 2886 	Average Loss: -5.3443
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9456
+
+Learning rate: 0.00018989928802681783
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2887 [0/90000 (0%)]	Loss: 19.4915	Cost: 12.60s
+Train Epoch: 2887 [20480/90000 (23%)]	Loss: -7.3316	Cost: 8.93s
+Train Epoch: 2887 [40960/90000 (45%)]	Loss: -7.3758	Cost: 8.78s
+Train Epoch: 2887 [61440/90000 (68%)]	Loss: -7.1923	Cost: 8.45s
+Train Epoch: 2887 [81920/90000 (91%)]	Loss: -7.4358	Cost: 8.34s
+Train Epoch: 2887 	Average Loss: -5.4736
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9974
+
+Learning rate: 0.00018989240740724216
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2888 [0/90000 (0%)]	Loss: 19.7368	Cost: 12.27s
+Train Epoch: 2888 [20480/90000 (23%)]	Loss: -7.4380	Cost: 8.94s
+Train Epoch: 2888 [40960/90000 (45%)]	Loss: -7.3717	Cost: 8.84s
+Train Epoch: 2888 [61440/90000 (68%)]	Loss: -7.5357	Cost: 7.12s
+Train Epoch: 2888 [81920/90000 (91%)]	Loss: -7.4648	Cost: 7.26s
+Train Epoch: 2888 	Average Loss: -5.5979
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0337
+
+Learning rate: 0.0001898855245696602
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2889 [0/90000 (0%)]	Loss: 19.6493	Cost: 15.48s
+Train Epoch: 2889 [20480/90000 (23%)]	Loss: -7.5902	Cost: 9.00s
+Train Epoch: 2889 [40960/90000 (45%)]	Loss: -7.4549	Cost: 12.02s
+Train Epoch: 2889 [61440/90000 (68%)]	Loss: -7.4454	Cost: 5.98s
+Train Epoch: 2889 [81920/90000 (91%)]	Loss: -7.4134	Cost: 5.93s
+Train Epoch: 2889 	Average Loss: -5.6099
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0394
+
+Learning rate: 0.00018987863951424187
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2890 [0/90000 (0%)]	Loss: 19.4597	Cost: 12.24s
+Train Epoch: 2890 [20480/90000 (23%)]	Loss: -7.5795	Cost: 7.27s
+Train Epoch: 2890 [40960/90000 (45%)]	Loss: -7.5473	Cost: 8.83s
+Train Epoch: 2890 [61440/90000 (68%)]	Loss: -7.3692	Cost: 8.64s
+Train Epoch: 2890 [81920/90000 (91%)]	Loss: -7.0338	Cost: 8.43s
+Train Epoch: 2890 	Average Loss: -5.4840
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9184
+
+Learning rate: 0.000189871752241157
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2891 [0/90000 (0%)]	Loss: 19.3962	Cost: 13.31s
+Train Epoch: 2891 [20480/90000 (23%)]	Loss: -6.9431	Cost: 8.99s
+Train Epoch: 2891 [40960/90000 (45%)]	Loss: -6.5708	Cost: 8.80s
+Train Epoch: 2891 [61440/90000 (68%)]	Loss: -6.7178	Cost: 8.88s
+Train Epoch: 2891 [81920/90000 (91%)]	Loss: -6.7338	Cost: 6.73s
+Train Epoch: 2891 	Average Loss: -4.9501
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.7120
+
+Learning rate: 0.0001898648627505755
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2892 [0/90000 (0%)]	Loss: 19.6909	Cost: 17.28s
+Train Epoch: 2892 [20480/90000 (23%)]	Loss: -6.7430	Cost: 12.28s
+Train Epoch: 2892 [40960/90000 (45%)]	Loss: -6.8513	Cost: 12.07s
+Train Epoch: 2892 [61440/90000 (68%)]	Loss: -7.0985	Cost: 11.91s
+Train Epoch: 2892 [81920/90000 (91%)]	Loss: -7.1672	Cost: 11.14s
+Train Epoch: 2892 	Average Loss: -5.1342
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.6621
+
+Learning rate: 0.00018985797104266743
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2893 [0/90000 (0%)]	Loss: 19.4342	Cost: 12.30s
+Train Epoch: 2893 [20480/90000 (23%)]	Loss: -7.1397	Cost: 8.83s
+Train Epoch: 2893 [40960/90000 (45%)]	Loss: -6.4908	Cost: 8.78s
+Train Epoch: 2893 [61440/90000 (68%)]	Loss: -6.7395	Cost: 8.44s
+Train Epoch: 2893 [81920/90000 (91%)]	Loss: -6.9362	Cost: 7.47s
+Train Epoch: 2893 	Average Loss: -5.1017
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.7511
+
+Learning rate: 0.00018985107711760277
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2894 [0/90000 (0%)]	Loss: 19.2971	Cost: 12.10s
+Train Epoch: 2894 [20480/90000 (23%)]	Loss: -7.2648	Cost: 8.82s
+Train Epoch: 2894 [40960/90000 (45%)]	Loss: -7.2695	Cost: 8.78s
+Train Epoch: 2894 [61440/90000 (68%)]	Loss: -7.4002	Cost: 8.47s
+Train Epoch: 2894 [81920/90000 (91%)]	Loss: -7.6541	Cost: 8.39s
+Train Epoch: 2894 	Average Loss: -5.4413
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9278
+
+Learning rate: 0.00018984418097555165
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2895 [0/90000 (0%)]	Loss: 19.4828	Cost: 13.20s
+Train Epoch: 2895 [20480/90000 (23%)]	Loss: -7.5606	Cost: 6.31s
+Train Epoch: 2895 [40960/90000 (45%)]	Loss: -7.5192	Cost: 8.38s
+Train Epoch: 2895 [61440/90000 (68%)]	Loss: -7.4554	Cost: 6.29s
+Train Epoch: 2895 [81920/90000 (91%)]	Loss: -7.6495	Cost: 13.07s
+Train Epoch: 2895 	Average Loss: -5.6431
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0149
+
+Learning rate: 0.00018983728261668422
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2896 [0/90000 (0%)]	Loss: 19.7822	Cost: 13.43s
+Train Epoch: 2896 [20480/90000 (23%)]	Loss: -7.4859	Cost: 6.64s
+Train Epoch: 2896 [40960/90000 (45%)]	Loss: -7.4150	Cost: 8.80s
+Train Epoch: 2896 [61440/90000 (68%)]	Loss: -7.4301	Cost: 8.57s
+Train Epoch: 2896 [81920/90000 (91%)]	Loss: -7.4645	Cost: 8.44s
+Train Epoch: 2896 	Average Loss: -5.5944
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1018
+
+Learning rate: 0.00018983038204117072
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2897 [0/90000 (0%)]	Loss: 19.8015	Cost: 12.35s
+Train Epoch: 2897 [20480/90000 (23%)]	Loss: -7.0452	Cost: 8.96s
+Train Epoch: 2897 [40960/90000 (45%)]	Loss: -6.8389	Cost: 8.81s
+Train Epoch: 2897 [61440/90000 (68%)]	Loss: -7.2251	Cost: 8.64s
+Train Epoch: 2897 [81920/90000 (91%)]	Loss: -7.1112	Cost: 7.47s
+Train Epoch: 2897 	Average Loss: -5.2445
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8648
+
+Learning rate: 0.00018982347924918137
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2898 [0/90000 (0%)]	Loss: 19.3062	Cost: 13.36s
+Train Epoch: 2898 [20480/90000 (23%)]	Loss: -7.2476	Cost: 8.83s
+Train Epoch: 2898 [40960/90000 (45%)]	Loss: -7.1058	Cost: 6.36s
+Train Epoch: 2898 [61440/90000 (68%)]	Loss: -7.2626	Cost: 6.70s
+Train Epoch: 2898 [81920/90000 (91%)]	Loss: -7.5387	Cost: 6.19s
+Train Epoch: 2898 	Average Loss: -5.4439
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9528
+
+Learning rate: 0.00018981657424088652
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2899 [0/90000 (0%)]	Loss: 19.5256	Cost: 12.90s
+Train Epoch: 2899 [20480/90000 (23%)]	Loss: -7.5266	Cost: 7.19s
+Train Epoch: 2899 [40960/90000 (45%)]	Loss: -7.4284	Cost: 8.78s
+Train Epoch: 2899 [61440/90000 (68%)]	Loss: -7.5664	Cost: 8.60s
+Train Epoch: 2899 [81920/90000 (91%)]	Loss: -7.7442	Cost: 8.42s
+Train Epoch: 2899 	Average Loss: -5.6764
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0840
+
+Learning rate: 0.00018980966701645654
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2900 [0/90000 (0%)]	Loss: 19.7120	Cost: 12.43s
+Train Epoch: 2900 [20480/90000 (23%)]	Loss: -7.7844	Cost: 9.04s
+Train Epoch: 2900 [40960/90000 (45%)]	Loss: -7.4258	Cost: 8.78s
+Train Epoch: 2900 [61440/90000 (68%)]	Loss: -7.4393	Cost: 8.72s
+Train Epoch: 2900 [81920/90000 (91%)]	Loss: -7.5018	Cost: 7.20s
+Train Epoch: 2900 	Average Loss: -5.7120
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1922
+
+Learning rate: 0.00018980275757606182
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2901 [0/90000 (0%)]	Loss: 19.5941	Cost: 12.65s
+Train Epoch: 2901 [20480/90000 (23%)]	Loss: -7.4683	Cost: 8.96s
+Train Epoch: 2901 [40960/90000 (45%)]	Loss: -7.5702	Cost: 6.70s
+Train Epoch: 2901 [61440/90000 (68%)]	Loss: -7.5313	Cost: 8.70s
+Train Epoch: 2901 [81920/90000 (91%)]	Loss: -7.6442	Cost: 8.85s
+Train Epoch: 2901 	Average Loss: -5.7401
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0609
+
+Learning rate: 0.0001897958459198729
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2902 [0/90000 (0%)]	Loss: 19.5375	Cost: 13.64s
+Train Epoch: 2902 [20480/90000 (23%)]	Loss: -7.6957	Cost: 10.70s
+Train Epoch: 2902 [40960/90000 (45%)]	Loss: -7.4809	Cost: 6.14s
+Train Epoch: 2902 [61440/90000 (68%)]	Loss: -7.2514	Cost: 6.08s
+Train Epoch: 2902 [81920/90000 (91%)]	Loss: -7.5604	Cost: 5.77s
+Train Epoch: 2902 	Average Loss: -5.6702
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0650
+
+Learning rate: 0.0001897889320480603
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2903 [0/90000 (0%)]	Loss: 19.7007	Cost: 12.75s
+Train Epoch: 2903 [20480/90000 (23%)]	Loss: -7.6323	Cost: 9.01s
+Train Epoch: 2903 [40960/90000 (45%)]	Loss: -7.3802	Cost: 8.83s
+Train Epoch: 2903 [61440/90000 (68%)]	Loss: -7.2644	Cost: 6.54s
+Train Epoch: 2903 [81920/90000 (91%)]	Loss: -7.7713	Cost: 8.57s
+Train Epoch: 2903 	Average Loss: -5.6641
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9747
+
+Learning rate: 0.00018978201596079458
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2904 [0/90000 (0%)]	Loss: 19.6401	Cost: 12.46s
+Train Epoch: 2904 [20480/90000 (23%)]	Loss: -7.3628	Cost: 6.82s
+Train Epoch: 2904 [40960/90000 (45%)]	Loss: -7.4731	Cost: 8.86s
+Train Epoch: 2904 [61440/90000 (68%)]	Loss: -7.3643	Cost: 8.68s
+Train Epoch: 2904 [81920/90000 (91%)]	Loss: -7.6765	Cost: 8.42s
+Train Epoch: 2904 	Average Loss: -5.6610
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9738
+
+Learning rate: 0.00018977509765824644
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2905 [0/90000 (0%)]	Loss: 19.3589	Cost: 15.99s
+Train Epoch: 2905 [20480/90000 (23%)]	Loss: -7.4164	Cost: 9.65s
+Train Epoch: 2905 [40960/90000 (45%)]	Loss: -7.6432	Cost: 11.99s
+Train Epoch: 2905 [61440/90000 (68%)]	Loss: -7.5393	Cost: 11.95s
+Train Epoch: 2905 [81920/90000 (91%)]	Loss: -7.4448	Cost: 7.17s
+Train Epoch: 2905 	Average Loss: -5.6308
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0089
+
+Learning rate: 0.00018976817714058659
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2906 [0/90000 (0%)]	Loss: 19.3319	Cost: 12.96s
+Train Epoch: 2906 [20480/90000 (23%)]	Loss: -7.3651	Cost: 9.00s
+Train Epoch: 2906 [40960/90000 (45%)]	Loss: -7.3321	Cost: 7.43s
+Train Epoch: 2906 [61440/90000 (68%)]	Loss: -7.4474	Cost: 7.86s
+Train Epoch: 2906 [81920/90000 (91%)]	Loss: -7.4029	Cost: 8.39s
+Train Epoch: 2906 	Average Loss: -5.4622
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0518
+
+Learning rate: 0.0001897612544079857
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2907 [0/90000 (0%)]	Loss: 19.4668	Cost: 11.82s
+Train Epoch: 2907 [20480/90000 (23%)]	Loss: -7.4781	Cost: 7.60s
+Train Epoch: 2907 [40960/90000 (45%)]	Loss: -7.3968	Cost: 8.87s
+Train Epoch: 2907 [61440/90000 (68%)]	Loss: -7.5035	Cost: 8.63s
+Train Epoch: 2907 [81920/90000 (91%)]	Loss: -7.6062	Cost: 8.48s
+Train Epoch: 2907 	Average Loss: -5.4874
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0351
+
+Learning rate: 0.00018975432946061462
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2908 [0/90000 (0%)]	Loss: 19.6483	Cost: 16.54s
+Train Epoch: 2908 [20480/90000 (23%)]	Loss: -7.5132	Cost: 9.13s
+Train Epoch: 2908 [40960/90000 (45%)]	Loss: -7.2550	Cost: 12.20s
+Train Epoch: 2908 [61440/90000 (68%)]	Loss: -7.0857	Cost: 11.93s
+Train Epoch: 2908 [81920/90000 (91%)]	Loss: -7.4099	Cost: 12.31s
+Train Epoch: 2908 	Average Loss: -5.4391
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9271
+
+Learning rate: 0.00018974740229864425
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2909 [0/90000 (0%)]	Loss: 19.7258	Cost: 12.32s
+Train Epoch: 2909 [20480/90000 (23%)]	Loss: -7.2609	Cost: 8.02s
+Train Epoch: 2909 [40960/90000 (45%)]	Loss: -7.5249	Cost: 8.76s
+Train Epoch: 2909 [61440/90000 (68%)]	Loss: -7.2766	Cost: 8.75s
+Train Epoch: 2909 [81920/90000 (91%)]	Loss: -7.2534	Cost: 8.41s
+Train Epoch: 2909 	Average Loss: -5.3155
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9101
+
+Learning rate: 0.0001897404729222455
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2910 [0/90000 (0%)]	Loss: 19.3179	Cost: 12.24s
+Train Epoch: 2910 [20480/90000 (23%)]	Loss: -7.4968	Cost: 8.98s
+Train Epoch: 2910 [40960/90000 (45%)]	Loss: -7.5336	Cost: 8.82s
+Train Epoch: 2910 [61440/90000 (68%)]	Loss: -7.4584	Cost: 8.17s
+Train Epoch: 2910 [81920/90000 (91%)]	Loss: -7.3873	Cost: 7.25s
+Train Epoch: 2910 	Average Loss: -5.5531
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0888
+
+Learning rate: 0.00018973354133158937
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2911 [0/90000 (0%)]	Loss: 19.7315	Cost: 13.32s
+Train Epoch: 2911 [20480/90000 (23%)]	Loss: -7.3057	Cost: 6.54s
+Train Epoch: 2911 [40960/90000 (45%)]	Loss: -7.4092	Cost: 7.36s
+Train Epoch: 2911 [61440/90000 (68%)]	Loss: -7.3634	Cost: 10.62s
+Train Epoch: 2911 [81920/90000 (91%)]	Loss: -7.4713	Cost: 12.10s
+Train Epoch: 2911 	Average Loss: -5.5046
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0366
+
+Learning rate: 0.00018972660752684684
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2912 [0/90000 (0%)]	Loss: 19.6186	Cost: 13.68s
+Train Epoch: 2912 [20480/90000 (23%)]	Loss: -7.3912	Cost: 8.95s
+Train Epoch: 2912 [40960/90000 (45%)]	Loss: -7.2954	Cost: 8.83s
+Train Epoch: 2912 [61440/90000 (68%)]	Loss: -7.1981	Cost: 8.50s
+Train Epoch: 2912 [81920/90000 (91%)]	Loss: -7.6616	Cost: 6.11s
+Train Epoch: 2912 	Average Loss: -5.5418
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0313
+
+Learning rate: 0.000189719671508189
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2913 [0/90000 (0%)]	Loss: 19.6120	Cost: 12.81s
+Train Epoch: 2913 [20480/90000 (23%)]	Loss: -7.4790	Cost: 8.52s
+Train Epoch: 2913 [40960/90000 (45%)]	Loss: -7.2831	Cost: 7.12s
+Train Epoch: 2913 [61440/90000 (68%)]	Loss: -7.2100	Cost: 8.61s
+Train Epoch: 2913 [81920/90000 (91%)]	Loss: -7.3451	Cost: 8.33s
+Train Epoch: 2913 	Average Loss: -5.5618
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9423
+
+Learning rate: 0.00018971273327578702
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2914 [0/90000 (0%)]	Loss: 19.5249	Cost: 11.82s
+Train Epoch: 2914 [20480/90000 (23%)]	Loss: -7.2237	Cost: 6.49s
+Train Epoch: 2914 [40960/90000 (45%)]	Loss: -7.2053	Cost: 6.44s
+Train Epoch: 2914 [61440/90000 (68%)]	Loss: -7.5194	Cost: 6.36s
+Train Epoch: 2914 [81920/90000 (91%)]	Loss: -7.4134	Cost: 7.55s
+Train Epoch: 2914 	Average Loss: -5.4973
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9444
+
+Learning rate: 0.00018970579282981206
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2915 [0/90000 (0%)]	Loss: 19.7023	Cost: 13.02s
+Train Epoch: 2915 [20480/90000 (23%)]	Loss: -7.5807	Cost: 8.79s
+Train Epoch: 2915 [40960/90000 (45%)]	Loss: -7.5579	Cost: 6.75s
+Train Epoch: 2915 [61440/90000 (68%)]	Loss: -7.5700	Cost: 8.55s
+Train Epoch: 2915 [81920/90000 (91%)]	Loss: -7.3735	Cost: 8.88s
+Train Epoch: 2915 	Average Loss: -5.6136
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0262
+
+Learning rate: 0.00018969885017043538
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2916 [0/90000 (0%)]	Loss: 19.3780	Cost: 12.65s
+Train Epoch: 2916 [20480/90000 (23%)]	Loss: -7.4773	Cost: 8.86s
+Train Epoch: 2916 [40960/90000 (45%)]	Loss: -7.5166	Cost: 8.82s
+Train Epoch: 2916 [61440/90000 (68%)]	Loss: -7.5195	Cost: 8.45s
+Train Epoch: 2916 [81920/90000 (91%)]	Loss: -7.9215	Cost: 8.31s
+Train Epoch: 2916 	Average Loss: -5.7191
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0333
+
+Learning rate: 0.0001896919052978283
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2917 [0/90000 (0%)]	Loss: 19.4450	Cost: 12.23s
+Train Epoch: 2917 [20480/90000 (23%)]	Loss: -7.7459	Cost: 9.04s
+Train Epoch: 2917 [40960/90000 (45%)]	Loss: -7.5418	Cost: 8.81s
+Train Epoch: 2917 [61440/90000 (68%)]	Loss: -7.7946	Cost: 8.36s
+Train Epoch: 2917 [81920/90000 (91%)]	Loss: -7.8566	Cost: 5.79s
+Train Epoch: 2917 	Average Loss: -5.8563
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1372
+
+Learning rate: 0.00018968495821216217
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2918 [0/90000 (0%)]	Loss: 19.6250	Cost: 12.88s
+Train Epoch: 2918 [20480/90000 (23%)]	Loss: -7.7663	Cost: 6.30s
+Train Epoch: 2918 [40960/90000 (45%)]	Loss: -7.6548	Cost: 6.35s
+Train Epoch: 2918 [61440/90000 (68%)]	Loss: -7.7486	Cost: 6.88s
+Train Epoch: 2918 [81920/90000 (91%)]	Loss: -7.7708	Cost: 8.00s
+Train Epoch: 2918 	Average Loss: -5.7879
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1194
+
+Learning rate: 0.00018967800891360839
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2919 [0/90000 (0%)]	Loss: 19.4947	Cost: 13.15s
+Train Epoch: 2919 [20480/90000 (23%)]	Loss: -7.6252	Cost: 6.89s
+Train Epoch: 2919 [40960/90000 (45%)]	Loss: -7.5195	Cost: 8.85s
+Train Epoch: 2919 [61440/90000 (68%)]	Loss: -7.4682	Cost: 8.66s
+Train Epoch: 2919 [81920/90000 (91%)]	Loss: -7.5200	Cost: 8.50s
+Train Epoch: 2919 	Average Loss: -5.6526
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0434
+
+Learning rate: 0.00018967105740233845
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2920 [0/90000 (0%)]	Loss: 19.5317	Cost: 12.48s
+Train Epoch: 2920 [20480/90000 (23%)]	Loss: -7.6522	Cost: 9.06s
+Train Epoch: 2920 [40960/90000 (45%)]	Loss: -7.5558	Cost: 8.81s
+Train Epoch: 2920 [61440/90000 (68%)]	Loss: -7.2172	Cost: 8.54s
+Train Epoch: 2920 [81920/90000 (91%)]	Loss: -7.2518	Cost: 6.78s
+Train Epoch: 2920 	Average Loss: -5.6145
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0610
+
+Learning rate: 0.00018966410367852386
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2921 [0/90000 (0%)]	Loss: 19.4282	Cost: 15.77s
+Train Epoch: 2921 [20480/90000 (23%)]	Loss: -7.2631	Cost: 10.80s
+Train Epoch: 2921 [40960/90000 (45%)]	Loss: -7.0633	Cost: 11.20s
+Train Epoch: 2921 [61440/90000 (68%)]	Loss: -7.1980	Cost: 5.81s
+Train Epoch: 2921 [81920/90000 (91%)]	Loss: -7.6004	Cost: 5.89s
+Train Epoch: 2921 	Average Loss: -5.3839
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.8171
+
+Learning rate: 0.00018965714774233616
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2922 [0/90000 (0%)]	Loss: 19.7101	Cost: 12.42s
+Train Epoch: 2922 [20480/90000 (23%)]	Loss: -7.3827	Cost: 7.15s
+Train Epoch: 2922 [40960/90000 (45%)]	Loss: -7.5847	Cost: 8.79s
+Train Epoch: 2922 [61440/90000 (68%)]	Loss: -7.5163	Cost: 8.59s
+Train Epoch: 2922 [81920/90000 (91%)]	Loss: -7.7097	Cost: 8.88s
+Train Epoch: 2922 	Average Loss: -5.5835
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0798
+
+Learning rate: 0.00018965018959394702
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2923 [0/90000 (0%)]	Loss: 19.3796	Cost: 12.59s
+Train Epoch: 2923 [20480/90000 (23%)]	Loss: -7.6926	Cost: 8.96s
+Train Epoch: 2923 [40960/90000 (45%)]	Loss: -7.6291	Cost: 8.78s
+Train Epoch: 2923 [61440/90000 (68%)]	Loss: -7.4709	Cost: 8.14s
+Train Epoch: 2923 [81920/90000 (91%)]	Loss: -7.7449	Cost: 6.73s
+Train Epoch: 2923 	Average Loss: -5.7544
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0488
+
+Learning rate: 0.00018964322923352816
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2924 [0/90000 (0%)]	Loss: 19.7296	Cost: 17.17s
+Train Epoch: 2924 [20480/90000 (23%)]	Loss: -7.7659	Cost: 12.29s
+Train Epoch: 2924 [40960/90000 (45%)]	Loss: -7.6948	Cost: 12.02s
+Train Epoch: 2924 [61440/90000 (68%)]	Loss: -7.5491	Cost: 12.32s
+Train Epoch: 2924 [81920/90000 (91%)]	Loss: -7.6200	Cost: 11.19s
+Train Epoch: 2924 	Average Loss: -5.7701
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0848
+
+Learning rate: 0.00018963626666125127
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2925 [0/90000 (0%)]	Loss: 19.7197	Cost: 12.22s
+Train Epoch: 2925 [20480/90000 (23%)]	Loss: -7.6720	Cost: 9.00s
+Train Epoch: 2925 [40960/90000 (45%)]	Loss: -7.5860	Cost: 8.79s
+Train Epoch: 2925 [61440/90000 (68%)]	Loss: -7.4370	Cost: 8.74s
+Train Epoch: 2925 [81920/90000 (91%)]	Loss: -7.6210	Cost: 6.84s
+Train Epoch: 2925 	Average Loss: -5.6913
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0201
+
+Learning rate: 0.00018962930187728816
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2926 [0/90000 (0%)]	Loss: 19.6510	Cost: 13.70s
+Train Epoch: 2926 [20480/90000 (23%)]	Loss: -7.7983	Cost: 7.07s
+Train Epoch: 2926 [40960/90000 (45%)]	Loss: -7.8567	Cost: 8.61s
+Train Epoch: 2926 [61440/90000 (68%)]	Loss: -7.6227	Cost: 8.68s
+Train Epoch: 2926 [81920/90000 (91%)]	Loss: -7.8211	Cost: 8.82s
+Train Epoch: 2926 	Average Loss: -5.8310
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2069
+
+Learning rate: 0.00018962233488181064
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2927 [0/90000 (0%)]	Loss: 19.4648	Cost: 14.56s
+Train Epoch: 2927 [20480/90000 (23%)]	Loss: -7.7023	Cost: 6.60s
+Train Epoch: 2927 [40960/90000 (45%)]	Loss: -7.6848	Cost: 9.75s
+Train Epoch: 2927 [61440/90000 (68%)]	Loss: -7.6140	Cost: 12.04s
+Train Epoch: 2927 [81920/90000 (91%)]	Loss: -7.7503	Cost: 11.74s
+Train Epoch: 2927 	Average Loss: -5.7780
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1182
+
+Learning rate: 0.00018961536567499066
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2928 [0/90000 (0%)]	Loss: 19.6412	Cost: 12.45s
+Train Epoch: 2928 [20480/90000 (23%)]	Loss: -7.9344	Cost: 9.01s
+Train Epoch: 2928 [40960/90000 (45%)]	Loss: -7.6678	Cost: 8.85s
+Train Epoch: 2928 [61440/90000 (68%)]	Loss: -7.8444	Cost: 7.03s
+Train Epoch: 2928 [81920/90000 (91%)]	Loss: -7.7151	Cost: 8.18s
+Train Epoch: 2928 	Average Loss: -5.8950
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2509
+
+Learning rate: 0.00018960839425700017
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2929 [0/90000 (0%)]	Loss: 19.8174	Cost: 12.45s
+Train Epoch: 2929 [20480/90000 (23%)]	Loss: -7.7679	Cost: 7.28s
+Train Epoch: 2929 [40960/90000 (45%)]	Loss: -8.0030	Cost: 8.36s
+Train Epoch: 2929 [61440/90000 (68%)]	Loss: -7.7089	Cost: 8.63s
+Train Epoch: 2929 [81920/90000 (91%)]	Loss: -7.7813	Cost: 8.45s
+Train Epoch: 2929 	Average Loss: -5.8647
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3241
+
+Learning rate: 0.0001896014206280112
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2930 [0/90000 (0%)]	Loss: 19.7726	Cost: 12.23s
+Train Epoch: 2930 [20480/90000 (23%)]	Loss: -7.8116	Cost: 6.51s
+Train Epoch: 2930 [40960/90000 (45%)]	Loss: -7.5807	Cost: 7.06s
+Train Epoch: 2930 [61440/90000 (68%)]	Loss: -7.5244	Cost: 6.31s
+Train Epoch: 2930 [81920/90000 (91%)]	Loss: -7.6564	Cost: 11.51s
+Train Epoch: 2930 	Average Loss: -5.7419
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0365
+
+Learning rate: 0.00018959444478819576
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2931 [0/90000 (0%)]	Loss: 20.4239	Cost: 12.33s
+Train Epoch: 2931 [20480/90000 (23%)]	Loss: -7.7069	Cost: 6.88s
+Train Epoch: 2931 [40960/90000 (45%)]	Loss: -7.5810	Cost: 8.56s
+Train Epoch: 2931 [61440/90000 (68%)]	Loss: -7.4994	Cost: 8.66s
+Train Epoch: 2931 [81920/90000 (91%)]	Loss: -7.6633	Cost: 8.40s
+Train Epoch: 2931 	Average Loss: -5.6698
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9833
+
+Learning rate: 0.000189587466737726
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2932 [0/90000 (0%)]	Loss: 19.8798	Cost: 12.26s
+Train Epoch: 2932 [20480/90000 (23%)]	Loss: -7.5575	Cost: 7.23s
+Train Epoch: 2932 [40960/90000 (45%)]	Loss: -7.5863	Cost: 8.15s
+Train Epoch: 2932 [61440/90000 (68%)]	Loss: -7.4434	Cost: 8.80s
+Train Epoch: 2932 [81920/90000 (91%)]	Loss: -7.7656	Cost: 8.85s
+Train Epoch: 2932 	Average Loss: -5.7217
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1140
+
+Learning rate: 0.00018958048647677413
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2933 [0/90000 (0%)]	Loss: 19.7586	Cost: 12.88s
+Train Epoch: 2933 [20480/90000 (23%)]	Loss: -7.7984	Cost: 8.96s
+Train Epoch: 2933 [40960/90000 (45%)]	Loss: -7.7378	Cost: 8.85s
+Train Epoch: 2933 [61440/90000 (68%)]	Loss: -7.6959	Cost: 8.47s
+Train Epoch: 2933 [81920/90000 (91%)]	Loss: -7.5428	Cost: 7.10s
+Train Epoch: 2933 	Average Loss: -5.7432
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0646
+
+Learning rate: 0.00018957350400551236
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2934 [0/90000 (0%)]	Loss: 19.4433	Cost: 13.27s
+Train Epoch: 2934 [20480/90000 (23%)]	Loss: -7.6605	Cost: 6.19s
+Train Epoch: 2934 [40960/90000 (45%)]	Loss: -7.6482	Cost: 8.09s
+Train Epoch: 2934 [61440/90000 (68%)]	Loss: -7.7980	Cost: 6.09s
+Train Epoch: 2934 [81920/90000 (91%)]	Loss: -7.7098	Cost: 8.28s
+Train Epoch: 2934 	Average Loss: -5.6944
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0043
+
+Learning rate: 0.00018956651932411296
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2935 [0/90000 (0%)]	Loss: 19.7690	Cost: 12.51s
+Train Epoch: 2935 [20480/90000 (23%)]	Loss: -7.8072	Cost: 7.42s
+Train Epoch: 2935 [40960/90000 (45%)]	Loss: -7.7087	Cost: 8.30s
+Train Epoch: 2935 [61440/90000 (68%)]	Loss: -7.7323	Cost: 8.79s
+Train Epoch: 2935 [81920/90000 (91%)]	Loss: -7.5951	Cost: 8.70s
+Train Epoch: 2935 	Average Loss: -5.7012
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0054
+
+Learning rate: 0.0001895595324327483
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2936 [0/90000 (0%)]	Loss: 19.6114	Cost: 12.99s
+Train Epoch: 2936 [20480/90000 (23%)]	Loss: -7.8049	Cost: 9.04s
+Train Epoch: 2936 [40960/90000 (45%)]	Loss: -7.7948	Cost: 8.80s
+Train Epoch: 2936 [61440/90000 (68%)]	Loss: -7.6229	Cost: 8.55s
+Train Epoch: 2936 [81920/90000 (91%)]	Loss: -7.4853	Cost: 7.83s
+Train Epoch: 2936 	Average Loss: -5.6795
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0272
+
+Learning rate: 0.00018955254333159071
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2937 [0/90000 (0%)]	Loss: 19.6454	Cost: 15.87s
+Train Epoch: 2937 [20480/90000 (23%)]	Loss: -7.4214	Cost: 12.09s
+Train Epoch: 2937 [40960/90000 (45%)]	Loss: -7.6454	Cost: 12.05s
+Train Epoch: 2937 [61440/90000 (68%)]	Loss: -7.7369	Cost: 6.84s
+Train Epoch: 2937 [81920/90000 (91%)]	Loss: -7.9024	Cost: 5.96s
+Train Epoch: 2937 	Average Loss: -5.7607
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0532
+
+Learning rate: 0.0001895455520208127
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2938 [0/90000 (0%)]	Loss: 19.3963	Cost: 12.43s
+Train Epoch: 2938 [20480/90000 (23%)]	Loss: -7.5228	Cost: 7.91s
+Train Epoch: 2938 [40960/90000 (45%)]	Loss: -7.4112	Cost: 7.79s
+Train Epoch: 2938 [61440/90000 (68%)]	Loss: -7.4455	Cost: 8.61s
+Train Epoch: 2938 [81920/90000 (91%)]	Loss: -7.6549	Cost: 8.43s
+Train Epoch: 2938 	Average Loss: -5.6716
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0592
+
+Learning rate: 0.00018953855850058676
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2939 [0/90000 (0%)]	Loss: 19.7451	Cost: 12.82s
+Train Epoch: 2939 [20480/90000 (23%)]	Loss: -7.5671	Cost: 9.01s
+Train Epoch: 2939 [40960/90000 (45%)]	Loss: -7.4428	Cost: 8.78s
+Train Epoch: 2939 [61440/90000 (68%)]	Loss: -7.5473	Cost: 8.63s
+Train Epoch: 2939 [81920/90000 (91%)]	Loss: -7.7422	Cost: 8.12s
+Train Epoch: 2939 	Average Loss: -5.6498
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9825
+
+Learning rate: 0.00018953156277108546
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2940 [0/90000 (0%)]	Loss: 19.4170	Cost: 16.26s
+Train Epoch: 2940 [20480/90000 (23%)]	Loss: -7.5844	Cost: 12.30s
+Train Epoch: 2940 [40960/90000 (45%)]	Loss: -7.5019	Cost: 12.10s
+Train Epoch: 2940 [61440/90000 (68%)]	Loss: -7.6949	Cost: 11.91s
+Train Epoch: 2940 [81920/90000 (91%)]	Loss: -7.8341	Cost: 12.26s
+Train Epoch: 2940 	Average Loss: -5.7571
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0627
+
+Learning rate: 0.0001895245648324814
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2941 [0/90000 (0%)]	Loss: 19.4595	Cost: 12.47s
+Train Epoch: 2941 [20480/90000 (23%)]	Loss: -7.7071	Cost: 9.02s
+Train Epoch: 2941 [40960/90000 (45%)]	Loss: -7.4164	Cost: 8.82s
+Train Epoch: 2941 [61440/90000 (68%)]	Loss: -7.4458	Cost: 8.71s
+Train Epoch: 2941 [81920/90000 (91%)]	Loss: -7.7434	Cost: 8.05s
+Train Epoch: 2941 	Average Loss: -5.7449
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9960
+
+Learning rate: 0.00018951756468494723
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2942 [0/90000 (0%)]	Loss: 19.6046	Cost: 12.20s
+Train Epoch: 2942 [20480/90000 (23%)]	Loss: -7.6010	Cost: 9.03s
+Train Epoch: 2942 [40960/90000 (45%)]	Loss: -7.5302	Cost: 8.79s
+Train Epoch: 2942 [61440/90000 (68%)]	Loss: -7.3102	Cost: 6.46s
+Train Epoch: 2942 [81920/90000 (91%)]	Loss: -7.6493	Cost: 8.66s
+Train Epoch: 2942 	Average Loss: -5.6946
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0225
+
+Learning rate: 0.00018951056232865572
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2943 [0/90000 (0%)]	Loss: 19.2527	Cost: 13.60s
+Train Epoch: 2943 [20480/90000 (23%)]	Loss: -7.6512	Cost: 6.65s
+Train Epoch: 2943 [40960/90000 (45%)]	Loss: -7.5494	Cost: 6.93s
+Train Epoch: 2943 [61440/90000 (68%)]	Loss: -7.5147	Cost: 12.36s
+Train Epoch: 2943 [81920/90000 (91%)]	Loss: -7.7287	Cost: 12.00s
+Train Epoch: 2943 	Average Loss: -5.7544
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9792
+
+Learning rate: 0.0001895035577637796
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2944 [0/90000 (0%)]	Loss: 19.3617	Cost: 12.85s
+Train Epoch: 2944 [20480/90000 (23%)]	Loss: -7.5731	Cost: 8.92s
+Train Epoch: 2944 [40960/90000 (45%)]	Loss: -7.4153	Cost: 8.73s
+Train Epoch: 2944 [61440/90000 (68%)]	Loss: -7.4307	Cost: 8.69s
+Train Epoch: 2944 [81920/90000 (91%)]	Loss: -7.5081	Cost: 6.06s
+Train Epoch: 2944 	Average Loss: -5.7208
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9109
+
+Learning rate: 0.00018949655099049172
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2945 [0/90000 (0%)]	Loss: 19.6651	Cost: 12.56s
+Train Epoch: 2945 [20480/90000 (23%)]	Loss: -7.5181	Cost: 8.82s
+Train Epoch: 2945 [40960/90000 (45%)]	Loss: -7.5445	Cost: 6.83s
+Train Epoch: 2945 [61440/90000 (68%)]	Loss: -7.7202	Cost: 8.57s
+Train Epoch: 2945 [81920/90000 (91%)]	Loss: -7.4685	Cost: 8.38s
+Train Epoch: 2945 	Average Loss: -5.7319
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0690
+
+Learning rate: 0.00018948954200896496
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2946 [0/90000 (0%)]	Loss: 19.6252	Cost: 12.23s
+Train Epoch: 2946 [20480/90000 (23%)]	Loss: -7.7762	Cost: 6.58s
+Train Epoch: 2946 [40960/90000 (45%)]	Loss: -7.3760	Cost: 9.38s
+Train Epoch: 2946 [61440/90000 (68%)]	Loss: -7.3321	Cost: 6.43s
+Train Epoch: 2946 [81920/90000 (91%)]	Loss: -7.5071	Cost: 16.31s
+Train Epoch: 2946 	Average Loss: -5.6579
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9359
+
+Learning rate: 0.0001894825308193723
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2947 [0/90000 (0%)]	Loss: 19.4126	Cost: 12.03s
+Train Epoch: 2947 [20480/90000 (23%)]	Loss: -7.7318	Cost: 7.15s
+Train Epoch: 2947 [40960/90000 (45%)]	Loss: -7.5417	Cost: 8.79s
+Train Epoch: 2947 [61440/90000 (68%)]	Loss: -7.6503	Cost: 8.54s
+Train Epoch: 2947 [81920/90000 (91%)]	Loss: -7.7709	Cost: 8.35s
+Train Epoch: 2947 	Average Loss: -5.7227
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9531
+
+Learning rate: 0.00018947551742188665
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2948 [0/90000 (0%)]	Loss: 19.4518	Cost: 12.66s
+Train Epoch: 2948 [20480/90000 (23%)]	Loss: -7.8647	Cost: 8.97s
+Train Epoch: 2948 [40960/90000 (45%)]	Loss: -7.2060	Cost: 8.82s
+Train Epoch: 2948 [61440/90000 (68%)]	Loss: -7.1091	Cost: 8.57s
+Train Epoch: 2948 [81920/90000 (91%)]	Loss: -7.4737	Cost: 6.09s
+Train Epoch: 2948 	Average Loss: -5.5317
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9809
+
+Learning rate: 0.0001894685018166811
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2949 [0/90000 (0%)]	Loss: 19.3712	Cost: 12.69s
+Train Epoch: 2949 [20480/90000 (23%)]	Loss: -7.5900	Cost: 8.14s
+Train Epoch: 2949 [40960/90000 (45%)]	Loss: -7.4089	Cost: 6.40s
+Train Epoch: 2949 [61440/90000 (68%)]	Loss: -7.4056	Cost: 6.38s
+Train Epoch: 2949 [81920/90000 (91%)]	Loss: -7.8251	Cost: 7.14s
+Train Epoch: 2949 	Average Loss: -5.6523
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0919
+
+Learning rate: 0.00018946148400392877
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2950 [0/90000 (0%)]	Loss: 19.5271	Cost: 12.93s
+Train Epoch: 2950 [20480/90000 (23%)]	Loss: -7.7333	Cost: 7.73s
+Train Epoch: 2950 [40960/90000 (45%)]	Loss: -7.7595	Cost: 8.79s
+Train Epoch: 2950 [61440/90000 (68%)]	Loss: -7.6521	Cost: 8.69s
+Train Epoch: 2950 [81920/90000 (91%)]	Loss: -7.9344	Cost: 8.69s
+Train Epoch: 2950 	Average Loss: -5.8552
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0828
+
+Learning rate: 0.00018945446398380277
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2951 [0/90000 (0%)]	Loss: 19.6087	Cost: 12.29s
+Train Epoch: 2951 [20480/90000 (23%)]	Loss: -7.9840	Cost: 9.11s
+Train Epoch: 2951 [40960/90000 (45%)]	Loss: -7.7211	Cost: 8.79s
+Train Epoch: 2951 [61440/90000 (68%)]	Loss: -7.9372	Cost: 8.49s
+Train Epoch: 2951 [81920/90000 (91%)]	Loss: -7.8597	Cost: 6.72s
+Train Epoch: 2951 	Average Loss: -5.9250
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2006
+
+Learning rate: 0.0001894474417564764
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2952 [0/90000 (0%)]	Loss: 19.5626	Cost: 12.11s
+Train Epoch: 2952 [20480/90000 (23%)]	Loss: -7.9190	Cost: 9.03s
+Train Epoch: 2952 [40960/90000 (45%)]	Loss: -7.7335	Cost: 6.51s
+Train Epoch: 2952 [61440/90000 (68%)]	Loss: -7.5586	Cost: 8.62s
+Train Epoch: 2952 [81920/90000 (91%)]	Loss: -7.9106	Cost: 8.62s
+Train Epoch: 2952 	Average Loss: -5.8600
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1426
+
+Learning rate: 0.00018944041732212282
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2953 [0/90000 (0%)]	Loss: 19.7485	Cost: 13.95s
+Train Epoch: 2953 [20480/90000 (23%)]	Loss: -7.8640	Cost: 11.24s
+Train Epoch: 2953 [40960/90000 (45%)]	Loss: -7.5562	Cost: 8.28s
+Train Epoch: 2953 [61440/90000 (68%)]	Loss: -7.2801	Cost: 5.96s
+Train Epoch: 2953 [81920/90000 (91%)]	Loss: -7.4819	Cost: 6.00s
+Train Epoch: 2953 	Average Loss: -5.7577
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0522
+
+Learning rate: 0.00018943339068091543
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2954 [0/90000 (0%)]	Loss: 19.8711	Cost: 12.95s
+Train Epoch: 2954 [20480/90000 (23%)]	Loss: -7.7466	Cost: 9.03s
+Train Epoch: 2954 [40960/90000 (45%)]	Loss: -7.7321	Cost: 8.82s
+Train Epoch: 2954 [61440/90000 (68%)]	Loss: -7.4546	Cost: 8.84s
+Train Epoch: 2954 [81920/90000 (91%)]	Loss: -7.6742	Cost: 6.75s
+Train Epoch: 2954 	Average Loss: -5.8011
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0407
+
+Learning rate: 0.0001894263618330276
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2955 [0/90000 (0%)]	Loss: 19.7712	Cost: 12.41s
+Train Epoch: 2955 [20480/90000 (23%)]	Loss: -7.6571	Cost: 8.50s
+Train Epoch: 2955 [40960/90000 (45%)]	Loss: -7.5472	Cost: 7.22s
+Train Epoch: 2955 [61440/90000 (68%)]	Loss: -6.9283	Cost: 8.55s
+Train Epoch: 2955 [81920/90000 (91%)]	Loss: -7.1242	Cost: 8.41s
+Train Epoch: 2955 	Average Loss: -5.4716
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.7568
+
+Learning rate: 0.0001894193307786327
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2956 [0/90000 (0%)]	Loss: 19.8822	Cost: 15.90s
+Train Epoch: 2956 [20480/90000 (23%)]	Loss: -7.3080	Cost: 11.11s
+Train Epoch: 2956 [40960/90000 (45%)]	Loss: -7.2953	Cost: 12.05s
+Train Epoch: 2956 [61440/90000 (68%)]	Loss: -7.4636	Cost: 12.09s
+Train Epoch: 2956 [81920/90000 (91%)]	Loss: -7.6962	Cost: 6.51s
+Train Epoch: 2956 	Average Loss: -5.5324
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9162
+
+Learning rate: 0.0001894122975179043
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2957 [0/90000 (0%)]	Loss: 19.5426	Cost: 13.15s
+Train Epoch: 2957 [20480/90000 (23%)]	Loss: -7.8013	Cost: 9.01s
+Train Epoch: 2957 [40960/90000 (45%)]	Loss: -7.7528	Cost: 7.76s
+Train Epoch: 2957 [61440/90000 (68%)]	Loss: -7.6543	Cost: 7.70s
+Train Epoch: 2957 [81920/90000 (91%)]	Loss: -7.8783	Cost: 8.91s
+Train Epoch: 2957 	Average Loss: -5.8472
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1630
+
+Learning rate: 0.00018940526205101586
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2958 [0/90000 (0%)]	Loss: 19.7460	Cost: 12.09s
+Train Epoch: 2958 [20480/90000 (23%)]	Loss: -7.8235	Cost: 7.83s
+Train Epoch: 2958 [40960/90000 (45%)]	Loss: -7.7801	Cost: 8.86s
+Train Epoch: 2958 [61440/90000 (68%)]	Loss: -7.7830	Cost: 8.53s
+Train Epoch: 2958 [81920/90000 (91%)]	Loss: -7.7378	Cost: 8.43s
+Train Epoch: 2958 	Average Loss: -5.8122
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1765
+
+Learning rate: 0.00018939822437814098
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2959 [0/90000 (0%)]	Loss: 19.4320	Cost: 15.23s
+Train Epoch: 2959 [20480/90000 (23%)]	Loss: -7.6798	Cost: 8.17s
+Train Epoch: 2959 [40960/90000 (45%)]	Loss: -7.9737	Cost: 12.03s
+Train Epoch: 2959 [61440/90000 (68%)]	Loss: -7.9127	Cost: 12.03s
+Train Epoch: 2959 [81920/90000 (91%)]	Loss: -8.1115	Cost: 12.25s
+Train Epoch: 2959 	Average Loss: -5.8418
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2869
+
+Learning rate: 0.00018939118449945336
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2960 [0/90000 (0%)]	Loss: 19.5052	Cost: 12.96s
+Train Epoch: 2960 [20480/90000 (23%)]	Loss: -7.7033	Cost: 6.89s
+Train Epoch: 2960 [40960/90000 (45%)]	Loss: -7.7255	Cost: 8.89s
+Train Epoch: 2960 [61440/90000 (68%)]	Loss: -7.5881	Cost: 8.81s
+Train Epoch: 2960 [81920/90000 (91%)]	Loss: -7.6404	Cost: 8.34s
+Train Epoch: 2960 	Average Loss: -5.7289
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1668
+
+Learning rate: 0.00018938414241512666
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2961 [0/90000 (0%)]	Loss: 19.5472	Cost: 12.71s
+Train Epoch: 2961 [20480/90000 (23%)]	Loss: -7.6687	Cost: 9.02s
+Train Epoch: 2961 [40960/90000 (45%)]	Loss: -7.3800	Cost: 8.74s
+Train Epoch: 2961 [61440/90000 (68%)]	Loss: -7.4371	Cost: 8.48s
+Train Epoch: 2961 [81920/90000 (91%)]	Loss: -7.4840	Cost: 6.48s
+Train Epoch: 2961 	Average Loss: -5.5182
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0399
+
+Learning rate: 0.00018937709812533467
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2962 [0/90000 (0%)]	Loss: 19.7093	Cost: 13.36s
+Train Epoch: 2962 [20480/90000 (23%)]	Loss: -7.7223	Cost: 6.62s
+Train Epoch: 2962 [40960/90000 (45%)]	Loss: -7.3479	Cost: 8.15s
+Train Epoch: 2962 [61440/90000 (68%)]	Loss: -7.2128	Cost: 12.42s
+Train Epoch: 2962 [81920/90000 (91%)]	Loss: -7.4543	Cost: 11.95s
+Train Epoch: 2962 	Average Loss: -5.6641
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0997
+
+Learning rate: 0.00018937005163025117
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2963 [0/90000 (0%)]	Loss: 19.1910	Cost: 12.46s
+Train Epoch: 2963 [20480/90000 (23%)]	Loss: -7.4695	Cost: 8.95s
+Train Epoch: 2963 [40960/90000 (45%)]	Loss: -7.3331	Cost: 8.80s
+Train Epoch: 2963 [61440/90000 (68%)]	Loss: -7.2315	Cost: 8.79s
+Train Epoch: 2963 [81920/90000 (91%)]	Loss: -7.6721	Cost: 6.74s
+Train Epoch: 2963 	Average Loss: -5.6646
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1281
+
+Learning rate: 0.00018936300293005004
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2964 [0/90000 (0%)]	Loss: 19.4256	Cost: 13.18s
+Train Epoch: 2964 [20480/90000 (23%)]	Loss: -7.5475	Cost: 7.68s
+Train Epoch: 2964 [40960/90000 (45%)]	Loss: -7.3974	Cost: 8.16s
+Train Epoch: 2964 [61440/90000 (68%)]	Loss: -7.4742	Cost: 8.79s
+Train Epoch: 2964 [81920/90000 (91%)]	Loss: -7.7533	Cost: 8.91s
+Train Epoch: 2964 	Average Loss: -5.7428
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1289
+
+Learning rate: 0.00018935595202490522
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2965 [0/90000 (0%)]	Loss: 19.7426	Cost: 11.95s
+Train Epoch: 2965 [20480/90000 (23%)]	Loss: -7.6377	Cost: 6.50s
+Train Epoch: 2965 [40960/90000 (45%)]	Loss: -7.5512	Cost: 7.29s
+Train Epoch: 2965 [61440/90000 (68%)]	Loss: -7.7012	Cost: 6.32s
+Train Epoch: 2965 [81920/90000 (91%)]	Loss: -7.7329	Cost: 10.91s
+Train Epoch: 2965 	Average Loss: -5.7480
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0511
+
+Learning rate: 0.00018934889891499064
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2966 [0/90000 (0%)]	Loss: 19.6143	Cost: 13.12s
+Train Epoch: 2966 [20480/90000 (23%)]	Loss: -7.6476	Cost: 6.59s
+Train Epoch: 2966 [40960/90000 (45%)]	Loss: -7.6350	Cost: 8.81s
+Train Epoch: 2966 [61440/90000 (68%)]	Loss: -7.5747	Cost: 8.62s
+Train Epoch: 2966 [81920/90000 (91%)]	Loss: -7.7722	Cost: 8.76s
+Train Epoch: 2966 	Average Loss: -5.6882
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0910
+
+Learning rate: 0.00018934184360048034
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2967 [0/90000 (0%)]	Loss: 19.5151	Cost: 13.36s
+Train Epoch: 2967 [20480/90000 (23%)]	Loss: -7.1911	Cost: 8.99s
+Train Epoch: 2967 [40960/90000 (45%)]	Loss: -7.2538	Cost: 8.82s
+Train Epoch: 2967 [61440/90000 (68%)]	Loss: -7.0467	Cost: 8.67s
+Train Epoch: 2967 [81920/90000 (91%)]	Loss: -7.2968	Cost: 6.28s
+Train Epoch: 2967 	Average Loss: -5.4014
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0306
+
+Learning rate: 0.00018933478608154847
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2968 [0/90000 (0%)]	Loss: 19.6043	Cost: 12.53s
+Train Epoch: 2968 [20480/90000 (23%)]	Loss: -7.6416	Cost: 8.50s
+Train Epoch: 2968 [40960/90000 (45%)]	Loss: -7.4120	Cost: 6.29s
+Train Epoch: 2968 [61440/90000 (68%)]	Loss: -7.3672	Cost: 6.46s
+Train Epoch: 2968 [81920/90000 (91%)]	Loss: -7.7843	Cost: 6.16s
+Train Epoch: 2968 	Average Loss: -5.6792
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0314
+
+Learning rate: 0.00018932772635836905
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2969 [0/90000 (0%)]	Loss: 19.6733	Cost: 12.41s
+Train Epoch: 2969 [20480/90000 (23%)]	Loss: -7.7303	Cost: 7.48s
+Train Epoch: 2969 [40960/90000 (45%)]	Loss: -7.7252	Cost: 8.81s
+Train Epoch: 2969 [61440/90000 (68%)]	Loss: -7.7164	Cost: 8.54s
+Train Epoch: 2969 [81920/90000 (91%)]	Loss: -7.7318	Cost: 8.64s
+Train Epoch: 2969 	Average Loss: -5.8172
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0894
+
+Learning rate: 0.00018932066443111636
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2970 [0/90000 (0%)]	Loss: 19.6477	Cost: 12.86s
+Train Epoch: 2970 [20480/90000 (23%)]	Loss: -7.6791	Cost: 8.96s
+Train Epoch: 2970 [40960/90000 (45%)]	Loss: -7.7405	Cost: 8.80s
+Train Epoch: 2970 [61440/90000 (68%)]	Loss: -7.8204	Cost: 8.49s
+Train Epoch: 2970 [81920/90000 (91%)]	Loss: -7.7839	Cost: 6.51s
+Train Epoch: 2970 	Average Loss: -5.8627
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0459
+
+Learning rate: 0.00018931360029996458
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2971 [0/90000 (0%)]	Loss: 19.4373	Cost: 13.20s
+Train Epoch: 2971 [20480/90000 (23%)]	Loss: -7.9956	Cost: 9.08s
+Train Epoch: 2971 [40960/90000 (45%)]	Loss: -7.7556	Cost: 8.75s
+Train Epoch: 2971 [61440/90000 (68%)]	Loss: -7.9927	Cost: 6.67s
+Train Epoch: 2971 [81920/90000 (91%)]	Loss: -7.9349	Cost: 7.63s
+Train Epoch: 2971 	Average Loss: -5.9204
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2398
+
+Learning rate: 0.00018930653396508808
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2972 [0/90000 (0%)]	Loss: 19.7465	Cost: 15.67s
+Train Epoch: 2972 [20480/90000 (23%)]	Loss: -7.9603	Cost: 9.64s
+Train Epoch: 2972 [40960/90000 (45%)]	Loss: -7.9984	Cost: 11.33s
+Train Epoch: 2972 [61440/90000 (68%)]	Loss: -8.1664	Cost: 5.95s
+Train Epoch: 2972 [81920/90000 (91%)]	Loss: -7.8871	Cost: 5.92s
+Train Epoch: 2972 	Average Loss: -6.0229
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2872
+
+Learning rate: 0.00018929946542666116
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2973 [0/90000 (0%)]	Loss: 19.4387	Cost: 12.38s
+Train Epoch: 2973 [20480/90000 (23%)]	Loss: -7.7262	Cost: 8.90s
+Train Epoch: 2973 [40960/90000 (45%)]	Loss: -7.6982	Cost: 7.24s
+Train Epoch: 2973 [61440/90000 (68%)]	Loss: -7.9035	Cost: 7.78s
+Train Epoch: 2973 [81920/90000 (91%)]	Loss: -7.9258	Cost: 8.33s
+Train Epoch: 2973 	Average Loss: -5.8560
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2297
+
+Learning rate: 0.00018929239468485826
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2974 [0/90000 (0%)]	Loss: 19.6527	Cost: 12.35s
+Train Epoch: 2974 [20480/90000 (23%)]	Loss: -8.0256	Cost: 8.83s
+Train Epoch: 2974 [40960/90000 (45%)]	Loss: -8.0605	Cost: 6.92s
+Train Epoch: 2974 [61440/90000 (68%)]	Loss: -7.8580	Cost: 8.08s
+Train Epoch: 2974 [81920/90000 (91%)]	Loss: -8.1076	Cost: 8.30s
+Train Epoch: 2974 	Average Loss: -6.0448
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2831
+
+Learning rate: 0.00018928532173985386
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2975 [0/90000 (0%)]	Loss: 19.7153	Cost: 13.54s
+Train Epoch: 2975 [20480/90000 (23%)]	Loss: -8.0779	Cost: 6.26s
+Train Epoch: 2975 [40960/90000 (45%)]	Loss: -8.0681	Cost: 8.43s
+Train Epoch: 2975 [61440/90000 (68%)]	Loss: -7.9307	Cost: 7.56s
+Train Epoch: 2975 [81920/90000 (91%)]	Loss: -8.0550	Cost: 12.06s
+Train Epoch: 2975 	Average Loss: -6.1136
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2748
+
+Learning rate: 0.0001892782465918224
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2976 [0/90000 (0%)]	Loss: 19.5244	Cost: 12.52s
+Train Epoch: 2976 [20480/90000 (23%)]	Loss: -8.0899	Cost: 7.25s
+Train Epoch: 2976 [40960/90000 (45%)]	Loss: -8.0210	Cost: 8.76s
+Train Epoch: 2976 [61440/90000 (68%)]	Loss: -7.9899	Cost: 8.44s
+Train Epoch: 2976 [81920/90000 (91%)]	Loss: -8.2071	Cost: 8.30s
+Train Epoch: 2976 	Average Loss: -6.1609
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3192
+
+Learning rate: 0.00018927116924093854
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2977 [0/90000 (0%)]	Loss: 19.4796	Cost: 12.49s
+Train Epoch: 2977 [20480/90000 (23%)]	Loss: -8.0208	Cost: 7.21s
+Train Epoch: 2977 [40960/90000 (45%)]	Loss: -7.9400	Cost: 8.75s
+Train Epoch: 2977 [61440/90000 (68%)]	Loss: -7.7851	Cost: 8.44s
+Train Epoch: 2977 [81920/90000 (91%)]	Loss: -7.8696	Cost: 8.28s
+Train Epoch: 2977 	Average Loss: -5.9770
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1744
+
+Learning rate: 0.00018926408968737685
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2978 [0/90000 (0%)]	Loss: 19.4399	Cost: 12.82s
+Train Epoch: 2978 [20480/90000 (23%)]	Loss: -7.7092	Cost: 7.52s
+Train Epoch: 2978 [40960/90000 (45%)]	Loss: -7.6869	Cost: 8.81s
+Train Epoch: 2978 [61440/90000 (68%)]	Loss: -7.7478	Cost: 8.47s
+Train Epoch: 2978 [81920/90000 (91%)]	Loss: -8.0292	Cost: 8.33s
+Train Epoch: 2978 	Average Loss: -5.9615
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2800
+
+Learning rate: 0.00018925700793131204
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2979 [0/90000 (0%)]	Loss: 19.6534	Cost: 13.09s
+Train Epoch: 2979 [20480/90000 (23%)]	Loss: -7.9203	Cost: 6.54s
+Train Epoch: 2979 [40960/90000 (45%)]	Loss: -7.8446	Cost: 6.22s
+Train Epoch: 2979 [61440/90000 (68%)]	Loss: -7.9120	Cost: 6.17s
+Train Epoch: 2979 [81920/90000 (91%)]	Loss: -8.1724	Cost: 6.44s
+Train Epoch: 2979 	Average Loss: -6.0493
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2203
+
+Learning rate: 0.00018924992397291888
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2980 [0/90000 (0%)]	Loss: 19.5580	Cost: 12.31s
+Train Epoch: 2980 [20480/90000 (23%)]	Loss: -8.1314	Cost: 8.82s
+Train Epoch: 2980 [40960/90000 (45%)]	Loss: -8.0687	Cost: 8.75s
+Train Epoch: 2980 [61440/90000 (68%)]	Loss: -8.1582	Cost: 8.38s
+Train Epoch: 2980 [81920/90000 (91%)]	Loss: -8.1156	Cost: 7.24s
+Train Epoch: 2980 	Average Loss: -6.1642
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3464
+
+Learning rate: 0.00018924283781237208
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2981 [0/90000 (0%)]	Loss: 19.1896	Cost: 12.25s
+Train Epoch: 2981 [20480/90000 (23%)]	Loss: -7.9400	Cost: 8.83s
+Train Epoch: 2981 [40960/90000 (45%)]	Loss: -7.7894	Cost: 8.76s
+Train Epoch: 2981 [61440/90000 (68%)]	Loss: -7.9645	Cost: 8.48s
+Train Epoch: 2981 [81920/90000 (91%)]	Loss: -8.0073	Cost: 6.96s
+Train Epoch: 2981 	Average Loss: -5.9845
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2397
+
+Learning rate: 0.00018923574944984656
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2982 [0/90000 (0%)]	Loss: 19.6499	Cost: 16.35s
+Train Epoch: 2982 [20480/90000 (23%)]	Loss: -8.0225	Cost: 11.28s
+Train Epoch: 2982 [40960/90000 (45%)]	Loss: -7.8625	Cost: 12.29s
+Train Epoch: 2982 [61440/90000 (68%)]	Loss: -7.9730	Cost: 11.81s
+Train Epoch: 2982 [81920/90000 (91%)]	Loss: -7.8665	Cost: 12.00s
+Train Epoch: 2982 	Average Loss: -6.0771
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3460
+
+Learning rate: 0.00018922865888551716
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2983 [0/90000 (0%)]	Loss: 19.6273	Cost: 12.54s
+Train Epoch: 2983 [20480/90000 (23%)]	Loss: -7.9540	Cost: 8.62s
+Train Epoch: 2983 [40960/90000 (45%)]	Loss: -7.9767	Cost: 8.84s
+Train Epoch: 2983 [61440/90000 (68%)]	Loss: -7.7727	Cost: 8.58s
+Train Epoch: 2983 [81920/90000 (91%)]	Loss: -7.6652	Cost: 8.44s
+Train Epoch: 2983 	Average Loss: -5.9544
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2467
+
+Learning rate: 0.0001892215661195588
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2984 [0/90000 (0%)]	Loss: 19.5605	Cost: 12.24s
+Train Epoch: 2984 [20480/90000 (23%)]	Loss: -7.8684	Cost: 8.96s
+Train Epoch: 2984 [40960/90000 (45%)]	Loss: -7.7210	Cost: 8.89s
+Train Epoch: 2984 [61440/90000 (68%)]	Loss: -7.4887	Cost: 7.36s
+Train Epoch: 2984 [81920/90000 (91%)]	Loss: -7.8558	Cost: 7.60s
+Train Epoch: 2984 	Average Loss: -5.8319
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0702
+
+Learning rate: 0.0001892144711521466
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2985 [0/90000 (0%)]	Loss: 19.6571	Cost: 13.39s
+Train Epoch: 2985 [20480/90000 (23%)]	Loss: -7.8655	Cost: 6.60s
+Train Epoch: 2985 [40960/90000 (45%)]	Loss: -7.6629	Cost: 6.88s
+Train Epoch: 2985 [61440/90000 (68%)]	Loss: -7.8518	Cost: 11.76s
+Train Epoch: 2985 [81920/90000 (91%)]	Loss: -7.8767	Cost: 12.00s
+Train Epoch: 2985 	Average Loss: -5.9156
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2325
+
+Learning rate: 0.00018920737398345555
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2986 [0/90000 (0%)]	Loss: 19.6702	Cost: 12.29s
+Train Epoch: 2986 [20480/90000 (23%)]	Loss: -7.9150	Cost: 8.93s
+Train Epoch: 2986 [40960/90000 (45%)]	Loss: -7.7166	Cost: 8.80s
+Train Epoch: 2986 [61440/90000 (68%)]	Loss: -7.6207	Cost: 8.82s
+Train Epoch: 2986 [81920/90000 (91%)]	Loss: -7.8233	Cost: 6.80s
+Train Epoch: 2986 	Average Loss: -5.8081
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2075
+
+Learning rate: 0.0001892002746136608
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2987 [0/90000 (0%)]	Loss: 19.3139	Cost: 12.51s
+Train Epoch: 2987 [20480/90000 (23%)]	Loss: -7.6754	Cost: 8.75s
+Train Epoch: 2987 [40960/90000 (45%)]	Loss: -7.4364	Cost: 6.81s
+Train Epoch: 2987 [61440/90000 (68%)]	Loss: -7.4821	Cost: 8.64s
+Train Epoch: 2987 [81920/90000 (91%)]	Loss: -7.8192	Cost: 8.88s
+Train Epoch: 2987 	Average Loss: -5.6778
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1713
+
+Learning rate: 0.00018919317304293744
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2988 [0/90000 (0%)]	Loss: 19.8306	Cost: 12.42s
+Train Epoch: 2988 [20480/90000 (23%)]	Loss: -7.1810	Cost: 6.59s
+Train Epoch: 2988 [40960/90000 (45%)]	Loss: -6.9771	Cost: 8.32s
+Train Epoch: 2988 [61440/90000 (68%)]	Loss: -7.4315	Cost: 6.50s
+Train Epoch: 2988 [81920/90000 (91%)]	Loss: -7.3819	Cost: 11.67s
+Train Epoch: 2988 	Average Loss: -5.3692
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 21.9148
+
+Learning rate: 0.0001891860692714608
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2989 [0/90000 (0%)]	Loss: 19.4752	Cost: 12.70s
+Train Epoch: 2989 [20480/90000 (23%)]	Loss: -7.7336	Cost: 7.30s
+Train Epoch: 2989 [40960/90000 (45%)]	Loss: -7.5812	Cost: 8.04s
+Train Epoch: 2989 [61440/90000 (68%)]	Loss: -7.5829	Cost: 8.59s
+Train Epoch: 2989 [81920/90000 (91%)]	Loss: -7.7796	Cost: 8.34s
+Train Epoch: 2989 	Average Loss: -5.6957
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1536
+
+Learning rate: 0.0001891789632994061
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2990 [0/90000 (0%)]	Loss: 19.5305	Cost: 12.50s
+Train Epoch: 2990 [20480/90000 (23%)]	Loss: -7.5667	Cost: 6.75s
+Train Epoch: 2990 [40960/90000 (45%)]	Loss: -7.4465	Cost: 8.61s
+Train Epoch: 2990 [61440/90000 (68%)]	Loss: -7.2637	Cost: 8.52s
+Train Epoch: 2990 [81920/90000 (91%)]	Loss: -7.3063	Cost: 8.28s
+Train Epoch: 2990 	Average Loss: -5.6195
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0499
+
+Learning rate: 0.00018917185512694866
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2991 [0/90000 (0%)]	Loss: 19.7177	Cost: 12.21s
+Train Epoch: 2991 [20480/90000 (23%)]	Loss: -7.6135	Cost: 8.78s
+Train Epoch: 2991 [40960/90000 (45%)]	Loss: -7.4709	Cost: 8.85s
+Train Epoch: 2991 [61440/90000 (68%)]	Loss: -7.5511	Cost: 8.66s
+Train Epoch: 2991 [81920/90000 (91%)]	Loss: -7.9333	Cost: 8.54s
+Train Epoch: 2991 	Average Loss: -5.7810
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1429
+
+Learning rate: 0.00018916474475426392
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2992 [0/90000 (0%)]	Loss: 19.4971	Cost: 13.01s
+Train Epoch: 2992 [20480/90000 (23%)]	Loss: -7.8667	Cost: 6.49s
+Train Epoch: 2992 [40960/90000 (45%)]	Loss: -7.8602	Cost: 8.11s
+Train Epoch: 2992 [61440/90000 (68%)]	Loss: -7.8877	Cost: 6.20s
+Train Epoch: 2992 [81920/90000 (91%)]	Loss: -7.9987	Cost: 7.79s
+Train Epoch: 2992 	Average Loss: -6.0136
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2264
+
+Learning rate: 0.00018915763218152728
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2993 [0/90000 (0%)]	Loss: 19.5501	Cost: 12.59s
+Train Epoch: 2993 [20480/90000 (23%)]	Loss: -8.1443	Cost: 7.80s
+Train Epoch: 2993 [40960/90000 (45%)]	Loss: -8.0408	Cost: 7.91s
+Train Epoch: 2993 [61440/90000 (68%)]	Loss: -7.9065	Cost: 8.57s
+Train Epoch: 2993 [81920/90000 (91%)]	Loss: -8.2512	Cost: 8.91s
+Train Epoch: 2993 	Average Loss: -6.1323
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3004
+
+Learning rate: 0.00018915051740891423
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2994 [0/90000 (0%)]	Loss: 19.6762	Cost: 12.56s
+Train Epoch: 2994 [20480/90000 (23%)]	Loss: -8.1315	Cost: 8.97s
+Train Epoch: 2994 [40960/90000 (45%)]	Loss: -8.1369	Cost: 8.84s
+Train Epoch: 2994 [61440/90000 (68%)]	Loss: -8.0316	Cost: 8.42s
+Train Epoch: 2994 [81920/90000 (91%)]	Loss: -7.9745	Cost: 7.81s
+Train Epoch: 2994 	Average Loss: -6.1273
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3116
+
+Learning rate: 0.00018914340043660037
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2995 [0/90000 (0%)]	Loss: 19.5678	Cost: 16.65s
+Train Epoch: 2995 [20480/90000 (23%)]	Loss: -8.1965	Cost: 12.29s
+Train Epoch: 2995 [40960/90000 (45%)]	Loss: -7.9420	Cost: 11.78s
+Train Epoch: 2995 [61440/90000 (68%)]	Loss: -7.7848	Cost: 5.89s
+Train Epoch: 2995 [81920/90000 (91%)]	Loss: -7.6769	Cost: 5.96s
+Train Epoch: 2995 	Average Loss: -5.8992
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2449
+
+Learning rate: 0.00018913628126476125
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2996 [0/90000 (0%)]	Loss: 19.6617	Cost: 12.56s
+Train Epoch: 2996 [20480/90000 (23%)]	Loss: -8.0134	Cost: 6.97s
+Train Epoch: 2996 [40960/90000 (45%)]	Loss: -7.7997	Cost: 8.91s
+Train Epoch: 2996 [61440/90000 (68%)]	Loss: -7.4850	Cost: 8.83s
+Train Epoch: 2996 [81920/90000 (91%)]	Loss: -7.4403	Cost: 8.71s
+Train Epoch: 2996 	Average Loss: -5.7338
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1840
+
+Learning rate: 0.00018912915989357257
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2997 [0/90000 (0%)]	Loss: 19.2580	Cost: 12.56s
+Train Epoch: 2997 [20480/90000 (23%)]	Loss: -7.8770	Cost: 9.03s
+Train Epoch: 2997 [40960/90000 (45%)]	Loss: -7.7874	Cost: 8.79s
+Train Epoch: 2997 [61440/90000 (68%)]	Loss: -7.6576	Cost: 8.51s
+Train Epoch: 2997 [81920/90000 (91%)]	Loss: -7.8579	Cost: 6.58s
+Train Epoch: 2997 	Average Loss: -5.7629
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2297
+
+Learning rate: 0.00018912203632321
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2998 [0/90000 (0%)]	Loss: 19.5019	Cost: 17.22s
+Train Epoch: 2998 [20480/90000 (23%)]	Loss: -8.0009	Cost: 12.45s
+Train Epoch: 2998 [40960/90000 (45%)]	Loss: -7.9858	Cost: 12.07s
+Train Epoch: 2998 [61440/90000 (68%)]	Loss: -7.8249	Cost: 11.94s
+Train Epoch: 2998 [81920/90000 (91%)]	Loss: -7.8531	Cost: 12.01s
+Train Epoch: 2998 	Average Loss: -6.0207
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3558
+
+Learning rate: 0.00018911491055384933
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2999 [0/90000 (0%)]	Loss: 19.6432	Cost: 13.30s
+Train Epoch: 2999 [20480/90000 (23%)]	Loss: -7.8758	Cost: 8.97s
+Train Epoch: 2999 [40960/90000 (45%)]	Loss: -7.9241	Cost: 8.87s
+Train Epoch: 2999 [61440/90000 (68%)]	Loss: -7.8520	Cost: 8.28s
+Train Epoch: 2999 [81920/90000 (91%)]	Loss: -7.9120	Cost: 7.23s
+Train Epoch: 2999 	Average Loss: -6.0567
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4089
+
+Learning rate: 0.0001891077825856664
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3000 [0/90000 (0%)]	Loss: 19.7740	Cost: 12.29s
+Train Epoch: 3000 [20480/90000 (23%)]	Loss: -8.2651	Cost: 7.91s
+Train Epoch: 3000 [40960/90000 (45%)]	Loss: -8.0439	Cost: 7.76s
+Train Epoch: 3000 [61440/90000 (68%)]	Loss: -7.9898	Cost: 8.67s
+Train Epoch: 3000 [81920/90000 (91%)]	Loss: -8.1979	Cost: 8.84s
+Train Epoch: 3000 	Average Loss: -6.1705
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5073
+
+Learning rate: 0.00018910065241883704
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3001 [0/90000 (0%)]	Loss: 19.8118	Cost: 15.34s
+Train Epoch: 3001 [20480/90000 (23%)]	Loss: -8.2164	Cost: 6.48s
+Train Epoch: 3001 [40960/90000 (45%)]	Loss: -8.0862	Cost: 10.82s
+Train Epoch: 3001 [61440/90000 (68%)]	Loss: -8.0947	Cost: 12.04s
+Train Epoch: 3001 [81920/90000 (91%)]	Loss: -7.9313	Cost: 11.77s
+Train Epoch: 3001 	Average Loss: -6.1782
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5471
+
+Learning rate: 0.00018909352005353722
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3002 [0/90000 (0%)]	Loss: 19.8560	Cost: 12.53s
+Train Epoch: 3002 [20480/90000 (23%)]	Loss: -7.7097	Cost: 9.05s
+Train Epoch: 3002 [40960/90000 (45%)]	Loss: -7.6226	Cost: 7.56s
+Train Epoch: 3002 [61440/90000 (68%)]	Loss: -7.8827	Cost: 7.60s
+Train Epoch: 3002 [81920/90000 (91%)]	Loss: -7.7896	Cost: 8.66s
+Train Epoch: 3002 	Average Loss: -5.8983
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2907
+
+Learning rate: 0.00018908638548994293
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3003 [0/90000 (0%)]	Loss: 19.8484	Cost: 12.70s
+Train Epoch: 3003 [20480/90000 (23%)]	Loss: -7.7301	Cost: 8.36s
+Train Epoch: 3003 [40960/90000 (45%)]	Loss: -7.6712	Cost: 8.82s
+Train Epoch: 3003 [61440/90000 (68%)]	Loss: -7.9363	Cost: 8.69s
+Train Epoch: 3003 [81920/90000 (91%)]	Loss: -7.9284	Cost: 8.58s
+Train Epoch: 3003 	Average Loss: -5.9456
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2440
+
+Learning rate: 0.00018907924872823016
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3004 [0/90000 (0%)]	Loss: 19.5270	Cost: 12.74s
+Train Epoch: 3004 [20480/90000 (23%)]	Loss: -7.9167	Cost: 6.66s
+Train Epoch: 3004 [40960/90000 (45%)]	Loss: -7.9934	Cost: 8.15s
+Train Epoch: 3004 [61440/90000 (68%)]	Loss: -7.8844	Cost: 6.33s
+Train Epoch: 3004 [81920/90000 (91%)]	Loss: -7.9114	Cost: 14.17s
+Train Epoch: 3004 	Average Loss: -6.0000
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2226
+
+Learning rate: 0.00018907210976857507
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3005 [0/90000 (0%)]	Loss: 19.3036	Cost: 12.49s
+Train Epoch: 3005 [20480/90000 (23%)]	Loss: -7.5296	Cost: 8.39s
+Train Epoch: 3005 [40960/90000 (45%)]	Loss: -7.4506	Cost: 8.82s
+Train Epoch: 3005 [61440/90000 (68%)]	Loss: -7.5486	Cost: 8.70s
+Train Epoch: 3005 [81920/90000 (91%)]	Loss: -7.5753	Cost: 8.79s
+Train Epoch: 3005 	Average Loss: -5.6209
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1215
+
+Learning rate: 0.00018906496861115373
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3006 [0/90000 (0%)]	Loss: 19.7796	Cost: 12.69s
+Train Epoch: 3006 [20480/90000 (23%)]	Loss: -7.6210	Cost: 9.05s
+Train Epoch: 3006 [40960/90000 (45%)]	Loss: -7.6366	Cost: 8.78s
+Train Epoch: 3006 [61440/90000 (68%)]	Loss: -7.8881	Cost: 6.47s
+Train Epoch: 3006 [81920/90000 (91%)]	Loss: -7.8648	Cost: 8.33s
+Train Epoch: 3006 	Average Loss: -5.7969
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2224
+
+Learning rate: 0.0001890578252561424
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3007 [0/90000 (0%)]	Loss: 19.5893	Cost: 12.50s
+Train Epoch: 3007 [20480/90000 (23%)]	Loss: -7.6567	Cost: 6.36s
+Train Epoch: 3007 [40960/90000 (45%)]	Loss: -7.8736	Cost: 6.97s
+Train Epoch: 3007 [61440/90000 (68%)]	Loss: -7.6887	Cost: 6.43s
+Train Epoch: 3007 [81920/90000 (91%)]	Loss: -8.0453	Cost: 8.92s
+Train Epoch: 3007 	Average Loss: -5.8124
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1371
+
+Learning rate: 0.00018905067970371732
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3008 [0/90000 (0%)]	Loss: 19.5809	Cost: 13.17s
+Train Epoch: 3008 [20480/90000 (23%)]	Loss: -7.6806	Cost: 8.93s
+Train Epoch: 3008 [40960/90000 (45%)]	Loss: -7.8799	Cost: 8.15s
+Train Epoch: 3008 [61440/90000 (68%)]	Loss: -7.8483	Cost: 6.91s
+Train Epoch: 3008 [81920/90000 (91%)]	Loss: -7.7550	Cost: 8.48s
+Train Epoch: 3008 	Average Loss: -5.8579
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2317
+
+Learning rate: 0.00018904353195405477
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3009 [0/90000 (0%)]	Loss: 19.7352	Cost: 12.78s
+Train Epoch: 3009 [20480/90000 (23%)]	Loss: -7.9753	Cost: 7.78s
+Train Epoch: 3009 [40960/90000 (45%)]	Loss: -7.6522	Cost: 8.83s
+Train Epoch: 3009 [61440/90000 (68%)]	Loss: -7.6457	Cost: 8.72s
+Train Epoch: 3009 [81920/90000 (91%)]	Loss: -7.9722	Cost: 8.40s
+Train Epoch: 3009 	Average Loss: -5.7960
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1944
+
+Learning rate: 0.00018903638200733116
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3010 [0/90000 (0%)]	Loss: 19.6144	Cost: 12.61s
+Train Epoch: 3010 [20480/90000 (23%)]	Loss: -7.8931	Cost: 9.03s
+Train Epoch: 3010 [40960/90000 (45%)]	Loss: -7.6800	Cost: 8.83s
+Train Epoch: 3010 [61440/90000 (68%)]	Loss: -7.8423	Cost: 8.76s
+Train Epoch: 3010 [81920/90000 (91%)]	Loss: -7.9395	Cost: 6.17s
+Train Epoch: 3010 	Average Loss: -5.8465
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2518
+
+Learning rate: 0.00018902922986372287
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3011 [0/90000 (0%)]	Loss: 19.7150	Cost: 12.73s
+Train Epoch: 3011 [20480/90000 (23%)]	Loss: -8.0291	Cost: 6.51s
+Train Epoch: 3011 [40960/90000 (45%)]	Loss: -8.1845	Cost: 6.30s
+Train Epoch: 3011 [61440/90000 (68%)]	Loss: -7.9885	Cost: 6.90s
+Train Epoch: 3011 [81920/90000 (91%)]	Loss: -8.1216	Cost: 7.97s
+Train Epoch: 3011 	Average Loss: -6.0708
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3760
+
+Learning rate: 0.0001890220755234064
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3012 [0/90000 (0%)]	Loss: 19.7739	Cost: 12.65s
+Train Epoch: 3012 [20480/90000 (23%)]	Loss: -8.1399	Cost: 6.85s
+Train Epoch: 3012 [40960/90000 (45%)]	Loss: -7.8825	Cost: 8.82s
+Train Epoch: 3012 [61440/90000 (68%)]	Loss: -7.8753	Cost: 8.62s
+Train Epoch: 3012 [81920/90000 (91%)]	Loss: -8.1586	Cost: 8.43s
+Train Epoch: 3012 	Average Loss: -6.0076
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3790
+
+Learning rate: 0.00018901491898655826
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3013 [0/90000 (0%)]	Loss: 19.5861	Cost: 13.14s
+Train Epoch: 3013 [20480/90000 (23%)]	Loss: -8.1074	Cost: 8.99s
+Train Epoch: 3013 [40960/90000 (45%)]	Loss: -8.1581	Cost: 8.79s
+Train Epoch: 3013 [61440/90000 (68%)]	Loss: -7.9161	Cost: 8.47s
+Train Epoch: 3013 [81920/90000 (91%)]	Loss: -8.0030	Cost: 6.77s
+Train Epoch: 3013 	Average Loss: -6.0627
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2601
+
+Learning rate: 0.00018900776025335502
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3014 [0/90000 (0%)]	Loss: 19.5163	Cost: 16.00s
+Train Epoch: 3014 [20480/90000 (23%)]	Loss: -7.8900	Cost: 9.17s
+Train Epoch: 3014 [40960/90000 (45%)]	Loss: -7.9585	Cost: 11.86s
+Train Epoch: 3014 [61440/90000 (68%)]	Loss: -7.8819	Cost: 6.25s
+Train Epoch: 3014 [81920/90000 (91%)]	Loss: -8.1323	Cost: 5.97s
+Train Epoch: 3014 	Average Loss: -6.1213
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2390
+
+Learning rate: 0.00018900059932397333
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3015 [0/90000 (0%)]	Loss: 19.7642	Cost: 12.50s
+Train Epoch: 3015 [20480/90000 (23%)]	Loss: -7.9007	Cost: 6.78s
+Train Epoch: 3015 [40960/90000 (45%)]	Loss: -7.9132	Cost: 8.80s
+Train Epoch: 3015 [61440/90000 (68%)]	Loss: -7.8668	Cost: 8.59s
+Train Epoch: 3015 [81920/90000 (91%)]	Loss: -7.6117	Cost: 8.72s
+Train Epoch: 3015 	Average Loss: -6.0008
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3183
+
+Learning rate: 0.0001889934361985899
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3016 [0/90000 (0%)]	Loss: 19.6982	Cost: 12.59s
+Train Epoch: 3016 [20480/90000 (23%)]	Loss: -7.7211	Cost: 9.00s
+Train Epoch: 3016 [40960/90000 (45%)]	Loss: -7.9019	Cost: 8.78s
+Train Epoch: 3016 [61440/90000 (68%)]	Loss: -7.8850	Cost: 8.46s
+Train Epoch: 3016 [81920/90000 (91%)]	Loss: -7.7857	Cost: 6.96s
+Train Epoch: 3016 	Average Loss: -5.8660
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.1923
+
+Learning rate: 0.00018898627087738143
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3017 [0/90000 (0%)]	Loss: 19.4443	Cost: 17.71s
+Train Epoch: 3017 [20480/90000 (23%)]	Loss: -7.2039	Cost: 12.18s
+Train Epoch: 3017 [40960/90000 (45%)]	Loss: -7.3941	Cost: 12.03s
+Train Epoch: 3017 [61440/90000 (68%)]	Loss: -7.5155	Cost: 12.13s
+Train Epoch: 3017 [81920/90000 (91%)]	Loss: -7.5365	Cost: 11.52s
+Train Epoch: 3017 	Average Loss: -5.5348
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.0511
+
+Learning rate: 0.00018897910336052474
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3018 [0/90000 (0%)]	Loss: 19.7654	Cost: 12.77s
+Train Epoch: 3018 [20480/90000 (23%)]	Loss: -7.9539	Cost: 9.02s
+Train Epoch: 3018 [40960/90000 (45%)]	Loss: -7.8611	Cost: 8.79s
+Train Epoch: 3018 [61440/90000 (68%)]	Loss: -7.8457	Cost: 8.59s
+Train Epoch: 3018 [81920/90000 (91%)]	Loss: -8.0195	Cost: 7.21s
+Train Epoch: 3018 	Average Loss: -5.9936
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3784
+
+Learning rate: 0.00018897193364819667
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3019 [0/90000 (0%)]	Loss: 19.7948	Cost: 12.85s
+Train Epoch: 3019 [20480/90000 (23%)]	Loss: -8.2283	Cost: 8.84s
+Train Epoch: 3019 [40960/90000 (45%)]	Loss: -8.0416	Cost: 6.81s
+Train Epoch: 3019 [61440/90000 (68%)]	Loss: -7.8223	Cost: 8.65s
+Train Epoch: 3019 [81920/90000 (91%)]	Loss: -7.9618	Cost: 8.35s
+Train Epoch: 3019 	Average Loss: -6.0734
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3449
+
+Learning rate: 0.00018896476174057412
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3020 [0/90000 (0%)]	Loss: 19.5222	Cost: 16.12s
+Train Epoch: 3020 [20480/90000 (23%)]	Loss: -8.0038	Cost: 6.54s
+Train Epoch: 3020 [40960/90000 (45%)]	Loss: -7.7750	Cost: 12.14s
+Train Epoch: 3020 [61440/90000 (68%)]	Loss: -8.0141	Cost: 12.07s
+Train Epoch: 3020 [81920/90000 (91%)]	Loss: -8.1384	Cost: 11.95s
+Train Epoch: 3020 	Average Loss: -6.0865
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4873
+
+Learning rate: 0.0001889575876378341
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3021 [0/90000 (0%)]	Loss: 19.3359	Cost: 13.05s
+Train Epoch: 3021 [20480/90000 (23%)]	Loss: -8.1749	Cost: 9.03s
+Train Epoch: 3021 [40960/90000 (45%)]	Loss: -8.1991	Cost: 7.41s
+Train Epoch: 3021 [61440/90000 (68%)]	Loss: -8.3161	Cost: 7.82s
+Train Epoch: 3021 [81920/90000 (91%)]	Loss: -8.1568	Cost: 8.42s
+Train Epoch: 3021 	Average Loss: -6.2652
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4352
+
+Learning rate: 0.00018895041134015357
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3022 [0/90000 (0%)]	Loss: 19.7669	Cost: 12.59s
+Train Epoch: 3022 [20480/90000 (23%)]	Loss: -8.2820	Cost: 7.96s
+Train Epoch: 3022 [40960/90000 (45%)]	Loss: -8.1820	Cost: 8.85s
+Train Epoch: 3022 [61440/90000 (68%)]	Loss: -8.1778	Cost: 8.75s
+Train Epoch: 3022 [81920/90000 (91%)]	Loss: -8.2445	Cost: 8.87s
+Train Epoch: 3022 	Average Loss: -6.2910
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5230
+
+Learning rate: 0.00018894323284770963
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3023 [0/90000 (0%)]	Loss: 19.8637	Cost: 13.16s
+Train Epoch: 3023 [20480/90000 (23%)]	Loss: -8.0343	Cost: 6.59s
+Train Epoch: 3023 [40960/90000 (45%)]	Loss: -7.4624	Cost: 9.48s
+Train Epoch: 3023 [61440/90000 (68%)]	Loss: -7.6300	Cost: 8.41s
+Train Epoch: 3023 [81920/90000 (91%)]	Loss: -7.7670	Cost: 12.13s
+Train Epoch: 3023 	Average Loss: -5.8955
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2492
+
+Learning rate: 0.00018893605216067938
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3024 [0/90000 (0%)]	Loss: 19.3461	Cost: 12.68s
+Train Epoch: 3024 [20480/90000 (23%)]	Loss: -8.0782	Cost: 8.95s
+Train Epoch: 3024 [40960/90000 (45%)]	Loss: -8.0504	Cost: 8.82s
+Train Epoch: 3024 [61440/90000 (68%)]	Loss: -8.0283	Cost: 8.55s
+Train Epoch: 3024 [81920/90000 (91%)]	Loss: -8.1286	Cost: 8.46s
+Train Epoch: 3024 	Average Loss: -6.1841
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3446
+
+Learning rate: 0.00018892886927924003
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3025 [0/90000 (0%)]	Loss: 19.4612	Cost: 13.04s
+Train Epoch: 3025 [20480/90000 (23%)]	Loss: -8.2416	Cost: 9.00s
+Train Epoch: 3025 [40960/90000 (45%)]	Loss: -8.0332	Cost: 8.08s
+Train Epoch: 3025 [61440/90000 (68%)]	Loss: -8.0998	Cost: 7.20s
+Train Epoch: 3025 [81920/90000 (91%)]	Loss: -8.1969	Cost: 8.80s
+Train Epoch: 3025 	Average Loss: -6.3261
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4113
+
+Learning rate: 0.00018892168420356876
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3026 [0/90000 (0%)]	Loss: 19.6688	Cost: 12.37s
+Train Epoch: 3026 [20480/90000 (23%)]	Loss: -8.3808	Cost: 6.54s
+Train Epoch: 3026 [40960/90000 (45%)]	Loss: -8.2517	Cost: 7.41s
+Train Epoch: 3026 [61440/90000 (68%)]	Loss: -8.0619	Cost: 6.44s
+Train Epoch: 3026 [81920/90000 (91%)]	Loss: -7.9960	Cost: 10.82s
+Train Epoch: 3026 	Average Loss: -6.1961
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4389
+
+Learning rate: 0.00018891449693384289
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3027 [0/90000 (0%)]	Loss: 19.6572	Cost: 14.10s
+Train Epoch: 3027 [20480/90000 (23%)]	Loss: -7.9066	Cost: 6.71s
+Train Epoch: 3027 [40960/90000 (45%)]	Loss: -7.8821	Cost: 8.83s
+Train Epoch: 3027 [61440/90000 (68%)]	Loss: -7.9918	Cost: 8.72s
+Train Epoch: 3027 [81920/90000 (91%)]	Loss: -8.2081	Cost: 8.85s
+Train Epoch: 3027 	Average Loss: -6.1466
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3962
+
+Learning rate: 0.00018890730747023974
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3028 [0/90000 (0%)]	Loss: 19.5479	Cost: 12.51s
+Train Epoch: 3028 [20480/90000 (23%)]	Loss: -7.8700	Cost: 9.00s
+Train Epoch: 3028 [40960/90000 (45%)]	Loss: -7.8597	Cost: 8.86s
+Train Epoch: 3028 [61440/90000 (68%)]	Loss: -8.2314	Cost: 8.58s
+Train Epoch: 3028 [81920/90000 (91%)]	Loss: -8.2727	Cost: 6.63s
+Train Epoch: 3028 	Average Loss: -6.0968
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3810
+
+Learning rate: 0.0001889001158129367
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3029 [0/90000 (0%)]	Loss: 19.7823	Cost: 12.32s
+Train Epoch: 3029 [20480/90000 (23%)]	Loss: -8.0078	Cost: 9.08s
+Train Epoch: 3029 [40960/90000 (45%)]	Loss: -7.9965	Cost: 6.87s
+Train Epoch: 3029 [61440/90000 (68%)]	Loss: -8.2130	Cost: 6.44s
+Train Epoch: 3029 [81920/90000 (91%)]	Loss: -8.2345	Cost: 6.15s
+Train Epoch: 3029 	Average Loss: -6.1238
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3802
+
+Learning rate: 0.00018889292196211125
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3030 [0/90000 (0%)]	Loss: 19.5448	Cost: 12.64s
+Train Epoch: 3030 [20480/90000 (23%)]	Loss: -8.1605	Cost: 6.94s
+Train Epoch: 3030 [40960/90000 (45%)]	Loss: -8.0470	Cost: 8.26s
+Train Epoch: 3030 [61440/90000 (68%)]	Loss: -8.1400	Cost: 8.59s
+Train Epoch: 3030 [81920/90000 (91%)]	Loss: -8.1246	Cost: 8.31s
+Train Epoch: 3030 	Average Loss: -6.1380
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4104
+
+Learning rate: 0.00018888572591794082
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3031 [0/90000 (0%)]	Loss: 19.8875	Cost: 12.36s
+Train Epoch: 3031 [20480/90000 (23%)]	Loss: -8.2702	Cost: 6.58s
+Train Epoch: 3031 [40960/90000 (45%)]	Loss: -8.1773	Cost: 8.83s
+Train Epoch: 3031 [61440/90000 (68%)]	Loss: -8.3041	Cost: 8.58s
+Train Epoch: 3031 [81920/90000 (91%)]	Loss: -8.4332	Cost: 8.32s
+Train Epoch: 3031 	Average Loss: -6.2336
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5125
+
+Learning rate: 0.0001888785276806031
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3032 [0/90000 (0%)]	Loss: 19.5286	Cost: 12.84s
+Train Epoch: 3032 [20480/90000 (23%)]	Loss: -7.7979	Cost: 6.56s
+Train Epoch: 3032 [40960/90000 (45%)]	Loss: -7.7690	Cost: 8.71s
+Train Epoch: 3032 [61440/90000 (68%)]	Loss: -7.8519	Cost: 8.47s
+Train Epoch: 3032 [81920/90000 (91%)]	Loss: -7.9598	Cost: 8.22s
+Train Epoch: 3032 	Average Loss: -5.9762
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3645
+
+Learning rate: 0.00018887132725027556
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3033 [0/90000 (0%)]	Loss: 19.6237	Cost: 15.51s
+Train Epoch: 3033 [20480/90000 (23%)]	Loss: -7.9431	Cost: 12.31s
+Train Epoch: 3033 [40960/90000 (45%)]	Loss: -7.9127	Cost: 12.02s
+Train Epoch: 3033 [61440/90000 (68%)]	Loss: -8.1390	Cost: 11.91s
+Train Epoch: 3033 [81920/90000 (91%)]	Loss: -8.3199	Cost: 8.62s
+Train Epoch: 3033 	Average Loss: -6.1401
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4183
+
+Learning rate: 0.00018886412462713594
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3034 [0/90000 (0%)]	Loss: 19.6993	Cost: 13.05s
+Train Epoch: 3034 [20480/90000 (23%)]	Loss: -8.3894	Cost: 8.83s
+Train Epoch: 3034 [40960/90000 (45%)]	Loss: -8.2123	Cost: 8.77s
+Train Epoch: 3034 [61440/90000 (68%)]	Loss: -8.1823	Cost: 7.33s
+Train Epoch: 3034 [81920/90000 (91%)]	Loss: -8.0182	Cost: 7.57s
+Train Epoch: 3034 	Average Loss: -6.2441
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4344
+
+Learning rate: 0.00018885691981136192
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3035 [0/90000 (0%)]	Loss: 19.4297	Cost: 12.29s
+Train Epoch: 3035 [20480/90000 (23%)]	Loss: -8.2132	Cost: 8.69s
+Train Epoch: 3035 [40960/90000 (45%)]	Loss: -8.0688	Cost: 6.73s
+Train Epoch: 3035 [61440/90000 (68%)]	Loss: -8.0711	Cost: 8.64s
+Train Epoch: 3035 [81920/90000 (91%)]	Loss: -8.0174	Cost: 8.33s
+Train Epoch: 3035 	Average Loss: -6.1356
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3131
+
+Learning rate: 0.0001888497128031313
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3036 [0/90000 (0%)]	Loss: 19.4492	Cost: 14.95s
+Train Epoch: 3036 [20480/90000 (23%)]	Loss: -7.9561	Cost: 6.37s
+Train Epoch: 3036 [40960/90000 (45%)]	Loss: -8.0562	Cost: 11.20s
+Train Epoch: 3036 [61440/90000 (68%)]	Loss: -7.5692	Cost: 12.26s
+Train Epoch: 3036 [81920/90000 (91%)]	Loss: -7.5113	Cost: 12.00s
+Train Epoch: 3036 	Average Loss: -5.9495
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2065
+
+Learning rate: 0.0001888425036026219
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3037 [0/90000 (0%)]	Loss: 19.5833	Cost: 12.14s
+Train Epoch: 3037 [20480/90000 (23%)]	Loss: -7.9557	Cost: 8.63s
+Train Epoch: 3037 [40960/90000 (45%)]	Loss: -7.9296	Cost: 8.85s
+Train Epoch: 3037 [61440/90000 (68%)]	Loss: -7.8130	Cost: 8.54s
+Train Epoch: 3037 [81920/90000 (91%)]	Loss: -7.8338	Cost: 8.33s
+Train Epoch: 3037 	Average Loss: -6.0139
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4622
+
+Learning rate: 0.0001888352922100116
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3038 [0/90000 (0%)]	Loss: 19.5755	Cost: 12.24s
+Train Epoch: 3038 [20480/90000 (23%)]	Loss: -8.2239	Cost: 8.07s
+Train Epoch: 3038 [40960/90000 (45%)]	Loss: -8.0360	Cost: 8.79s
+Train Epoch: 3038 [61440/90000 (68%)]	Loss: -8.0786	Cost: 8.63s
+Train Epoch: 3038 [81920/90000 (91%)]	Loss: -8.3213	Cost: 8.32s
+Train Epoch: 3038 	Average Loss: -6.1609
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3512
+
+Learning rate: 0.0001888280786254783
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3039 [0/90000 (0%)]	Loss: 19.5541	Cost: 12.36s
+Train Epoch: 3039 [20480/90000 (23%)]	Loss: -8.2939	Cost: 7.87s
+Train Epoch: 3039 [40960/90000 (45%)]	Loss: -8.0123	Cost: 8.81s
+Train Epoch: 3039 [61440/90000 (68%)]	Loss: -8.4197	Cost: 8.54s
+Train Epoch: 3039 [81920/90000 (91%)]	Loss: -8.1799	Cost: 8.42s
+Train Epoch: 3039 	Average Loss: -6.2986
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4879
+
+Learning rate: 0.00018882086284920002
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3040 [0/90000 (0%)]	Loss: 19.5831	Cost: 12.74s
+Train Epoch: 3040 [20480/90000 (23%)]	Loss: -8.2857	Cost: 6.80s
+Train Epoch: 3040 [40960/90000 (45%)]	Loss: -8.3495	Cost: 6.26s
+Train Epoch: 3040 [61440/90000 (68%)]	Loss: -8.3473	Cost: 6.16s
+Train Epoch: 3040 [81920/90000 (91%)]	Loss: -8.2295	Cost: 6.75s
+Train Epoch: 3040 	Average Loss: -6.3198
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5897
+
+Learning rate: 0.0001888136448813548
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3041 [0/90000 (0%)]	Loss: 19.9542	Cost: 12.88s
+Train Epoch: 3041 [20480/90000 (23%)]	Loss: -8.4121	Cost: 8.81s
+Train Epoch: 3041 [40960/90000 (45%)]	Loss: -8.1278	Cost: 8.76s
+Train Epoch: 3041 [61440/90000 (68%)]	Loss: -8.0553	Cost: 8.39s
+Train Epoch: 3041 [81920/90000 (91%)]	Loss: -8.2700	Cost: 7.99s
+Train Epoch: 3041 	Average Loss: -6.2494
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5696
+
+Learning rate: 0.00018880642472212075
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3042 [0/90000 (0%)]	Loss: 19.5862	Cost: 12.57s
+Train Epoch: 3042 [20480/90000 (23%)]	Loss: -8.1788	Cost: 8.80s
+Train Epoch: 3042 [40960/90000 (45%)]	Loss: -8.1930	Cost: 8.75s
+Train Epoch: 3042 [61440/90000 (68%)]	Loss: -8.1639	Cost: 8.40s
+Train Epoch: 3042 [81920/90000 (91%)]	Loss: -8.3419	Cost: 8.33s
+Train Epoch: 3042 	Average Loss: -6.2716
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4444
+
+Learning rate: 0.000188799202371676
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3043 [0/90000 (0%)]	Loss: 19.6884	Cost: 15.57s
+Train Epoch: 3043 [20480/90000 (23%)]	Loss: -8.3741	Cost: 6.38s
+Train Epoch: 3043 [40960/90000 (45%)]	Loss: -8.1297	Cost: 11.83s
+Train Epoch: 3043 [61440/90000 (68%)]	Loss: -7.8274	Cost: 12.12s
+Train Epoch: 3043 [81920/90000 (91%)]	Loss: -8.0737	Cost: 11.80s
+Train Epoch: 3043 	Average Loss: -6.2727
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5367
+
+Learning rate: 0.00018879197783019873
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3044 [0/90000 (0%)]	Loss: 19.6538	Cost: 13.01s
+Train Epoch: 3044 [20480/90000 (23%)]	Loss: -8.0015	Cost: 8.84s
+Train Epoch: 3044 [40960/90000 (45%)]	Loss: -7.8555	Cost: 8.09s
+Train Epoch: 3044 [61440/90000 (68%)]	Loss: -7.9122	Cost: 7.03s
+Train Epoch: 3044 [81920/90000 (91%)]	Loss: -7.8347	Cost: 8.34s
+Train Epoch: 3044 	Average Loss: -6.0090
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2531
+
+Learning rate: 0.00018878475109786725
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3045 [0/90000 (0%)]	Loss: 19.8028	Cost: 12.70s
+Train Epoch: 3045 [20480/90000 (23%)]	Loss: -7.9190	Cost: 6.56s
+Train Epoch: 3045 [40960/90000 (45%)]	Loss: -7.7816	Cost: 8.82s
+Train Epoch: 3045 [61440/90000 (68%)]	Loss: -7.8861	Cost: 8.48s
+Train Epoch: 3045 [81920/90000 (91%)]	Loss: -8.0486	Cost: 8.35s
+Train Epoch: 3045 	Average Loss: -6.0496
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3374
+
+Learning rate: 0.00018877752217485983
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3046 [0/90000 (0%)]	Loss: 19.7963	Cost: 12.36s
+Train Epoch: 3046 [20480/90000 (23%)]	Loss: -8.0093	Cost: 6.36s
+Train Epoch: 3046 [40960/90000 (45%)]	Loss: -7.5504	Cost: 7.76s
+Train Epoch: 3046 [61440/90000 (68%)]	Loss: -7.5649	Cost: 6.39s
+Train Epoch: 3046 [81920/90000 (91%)]	Loss: -7.8657	Cost: 9.74s
+Train Epoch: 3046 	Average Loss: -5.9042
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.2823
+
+Learning rate: 0.00018877029106135486
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3047 [0/90000 (0%)]	Loss: 19.6833	Cost: 13.39s
+Train Epoch: 3047 [20480/90000 (23%)]	Loss: -7.8292	Cost: 7.24s
+Train Epoch: 3047 [40960/90000 (45%)]	Loss: -8.0333	Cost: 8.14s
+Train Epoch: 3047 [61440/90000 (68%)]	Loss: -8.0248	Cost: 8.60s
+Train Epoch: 3047 [81920/90000 (91%)]	Loss: -8.2155	Cost: 8.37s
+Train Epoch: 3047 	Average Loss: -6.0725
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5065
+
+Learning rate: 0.00018876305775753077
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3048 [0/90000 (0%)]	Loss: 19.7672	Cost: 12.96s
+Train Epoch: 3048 [20480/90000 (23%)]	Loss: -8.2729	Cost: 8.13s
+Train Epoch: 3048 [40960/90000 (45%)]	Loss: -8.2677	Cost: 8.78s
+Train Epoch: 3048 [61440/90000 (68%)]	Loss: -8.1888	Cost: 8.53s
+Train Epoch: 3048 [81920/90000 (91%)]	Loss: -8.2547	Cost: 8.46s
+Train Epoch: 3048 	Average Loss: -6.2923
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5971
+
+Learning rate: 0.000188755822263566
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3049 [0/90000 (0%)]	Loss: 19.6873	Cost: 12.59s
+Train Epoch: 3049 [20480/90000 (23%)]	Loss: -8.2306	Cost: 9.01s
+Train Epoch: 3049 [40960/90000 (45%)]	Loss: -8.2335	Cost: 8.77s
+Train Epoch: 3049 [61440/90000 (68%)]	Loss: -8.3322	Cost: 8.50s
+Train Epoch: 3049 [81920/90000 (91%)]	Loss: -8.3348	Cost: 5.76s
+Train Epoch: 3049 	Average Loss: -6.2683
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5011
+
+Learning rate: 0.0001887485845796391
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3050 [0/90000 (0%)]	Loss: 19.8084	Cost: 14.33s
+Train Epoch: 3050 [20480/90000 (23%)]	Loss: -8.4336	Cost: 6.17s
+Train Epoch: 3050 [40960/90000 (45%)]	Loss: -8.4697	Cost: 7.30s
+Train Epoch: 3050 [61440/90000 (68%)]	Loss: -8.3494	Cost: 7.38s
+Train Epoch: 3050 [81920/90000 (91%)]	Loss: -8.2120	Cost: 8.42s
+Train Epoch: 3050 	Average Loss: -6.3362
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5324
+
+Learning rate: 0.00018874134470592868
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3051 [0/90000 (0%)]	Loss: 19.2516	Cost: 12.76s
+Train Epoch: 3051 [20480/90000 (23%)]	Loss: -8.4366	Cost: 7.67s
+Train Epoch: 3051 [40960/90000 (45%)]	Loss: -8.2991	Cost: 8.81s
+Train Epoch: 3051 [61440/90000 (68%)]	Loss: -8.1193	Cost: 8.62s
+Train Epoch: 3051 [81920/90000 (91%)]	Loss: -8.3497	Cost: 8.86s
+Train Epoch: 3051 	Average Loss: -6.3340
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4567
+
+Learning rate: 0.00018873410264261332
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3052 [0/90000 (0%)]	Loss: 19.6275	Cost: 12.53s
+Train Epoch: 3052 [20480/90000 (23%)]	Loss: -8.3016	Cost: 8.98s
+Train Epoch: 3052 [40960/90000 (45%)]	Loss: -8.1871	Cost: 8.80s
+Train Epoch: 3052 [61440/90000 (68%)]	Loss: -8.2813	Cost: 7.89s
+Train Epoch: 3052 [81920/90000 (91%)]	Loss: -8.3513	Cost: 6.54s
+Train Epoch: 3052 	Average Loss: -6.3163
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5106
+
+Learning rate: 0.00018872685838987175
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3053 [0/90000 (0%)]	Loss: 19.6156	Cost: 14.74s
+Train Epoch: 3053 [20480/90000 (23%)]	Loss: -8.0293	Cost: 7.44s
+Train Epoch: 3053 [40960/90000 (45%)]	Loss: -8.0730	Cost: 12.15s
+Train Epoch: 3053 [61440/90000 (68%)]	Loss: -8.0990	Cost: 5.90s
+Train Epoch: 3053 [81920/90000 (91%)]	Loss: -8.1566	Cost: 5.91s
+Train Epoch: 3053 	Average Loss: -6.1264
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4235
+
+Learning rate: 0.0001887196119478827
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3054 [0/90000 (0%)]	Loss: 19.2868	Cost: 12.51s
+Train Epoch: 3054 [20480/90000 (23%)]	Loss: -7.9404	Cost: 7.17s
+Train Epoch: 3054 [40960/90000 (45%)]	Loss: -8.1162	Cost: 8.78s
+Train Epoch: 3054 [61440/90000 (68%)]	Loss: -7.9925	Cost: 8.80s
+Train Epoch: 3054 [81920/90000 (91%)]	Loss: -8.2848	Cost: 8.82s
+Train Epoch: 3054 	Average Loss: -6.1259
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3425
+
+Learning rate: 0.00018871236331682498
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3055 [0/90000 (0%)]	Loss: 19.7886	Cost: 12.84s
+Train Epoch: 3055 [20480/90000 (23%)]	Loss: -8.1020	Cost: 8.95s
+Train Epoch: 3055 [40960/90000 (45%)]	Loss: -7.9903	Cost: 8.79s
+Train Epoch: 3055 [61440/90000 (68%)]	Loss: -8.0975	Cost: 8.36s
+Train Epoch: 3055 [81920/90000 (91%)]	Loss: -8.0375	Cost: 7.17s
+Train Epoch: 3055 	Average Loss: -6.1926
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3797
+
+Learning rate: 0.0001887051124968774
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3056 [0/90000 (0%)]	Loss: 19.8726	Cost: 15.64s
+Train Epoch: 3056 [20480/90000 (23%)]	Loss: -8.0853	Cost: 12.37s
+Train Epoch: 3056 [40960/90000 (45%)]	Loss: -7.9889	Cost: 12.09s
+Train Epoch: 3056 [61440/90000 (68%)]	Loss: -8.0573	Cost: 11.94s
+Train Epoch: 3056 [81920/90000 (91%)]	Loss: -8.0677	Cost: 11.84s
+Train Epoch: 3056 	Average Loss: -6.1253
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4215
+
+Learning rate: 0.00018869785948821894
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3057 [0/90000 (0%)]	Loss: 19.6081	Cost: 12.66s
+Train Epoch: 3057 [20480/90000 (23%)]	Loss: -8.0114	Cost: 9.06s
+Train Epoch: 3057 [40960/90000 (45%)]	Loss: -7.9191	Cost: 8.82s
+Train Epoch: 3057 [61440/90000 (68%)]	Loss: -8.1756	Cost: 7.89s
+Train Epoch: 3057 [81920/90000 (91%)]	Loss: -7.6294	Cost: 7.26s
+Train Epoch: 3057 	Average Loss: -6.0342
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3853
+
+Learning rate: 0.00018869060429102852
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3058 [0/90000 (0%)]	Loss: 19.8400	Cost: 12.83s
+Train Epoch: 3058 [20480/90000 (23%)]	Loss: -7.6875	Cost: 7.50s
+Train Epoch: 3058 [40960/90000 (45%)]	Loss: -7.8554	Cost: 8.12s
+Train Epoch: 3058 [61440/90000 (68%)]	Loss: -8.0535	Cost: 8.77s
+Train Epoch: 3058 [81920/90000 (91%)]	Loss: -7.9186	Cost: 8.90s
+Train Epoch: 3058 	Average Loss: -5.9175
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3080
+
+Learning rate: 0.00018868334690548514
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3059 [0/90000 (0%)]	Loss: 19.6928	Cost: 15.48s
+Train Epoch: 3059 [20480/90000 (23%)]	Loss: -8.1320	Cost: 6.63s
+Train Epoch: 3059 [40960/90000 (45%)]	Loss: -8.0688	Cost: 12.42s
+Train Epoch: 3059 [61440/90000 (68%)]	Loss: -8.1675	Cost: 12.02s
+Train Epoch: 3059 [81920/90000 (91%)]	Loss: -8.3251	Cost: 12.08s
+Train Epoch: 3059 	Average Loss: -6.1935
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4756
+
+Learning rate: 0.0001886760873317679
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3060 [0/90000 (0%)]	Loss: 19.7456	Cost: 12.27s
+Train Epoch: 3060 [20480/90000 (23%)]	Loss: -8.2741	Cost: 8.65s
+Train Epoch: 3060 [40960/90000 (45%)]	Loss: -8.2124	Cost: 7.13s
+Train Epoch: 3060 [61440/90000 (68%)]	Loss: -8.2237	Cost: 8.85s
+Train Epoch: 3060 [81920/90000 (91%)]	Loss: -8.0570	Cost: 8.87s
+Train Epoch: 3060 	Average Loss: -6.2955
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5511
+
+Learning rate: 0.00018866882557005597
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3061 [0/90000 (0%)]	Loss: 19.7003	Cost: 12.61s
+Train Epoch: 3061 [20480/90000 (23%)]	Loss: -8.2070	Cost: 9.00s
+Train Epoch: 3061 [40960/90000 (45%)]	Loss: -7.7774	Cost: 8.86s
+Train Epoch: 3061 [61440/90000 (68%)]	Loss: -7.9899	Cost: 8.58s
+Train Epoch: 3061 [81920/90000 (91%)]	Loss: -8.1126	Cost: 8.37s
+Train Epoch: 3061 	Average Loss: -6.1056
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3770
+
+Learning rate: 0.00018866156162052842
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3062 [0/90000 (0%)]	Loss: 19.5472	Cost: 12.70s
+Train Epoch: 3062 [20480/90000 (23%)]	Loss: -7.8884	Cost: 6.71s
+Train Epoch: 3062 [40960/90000 (45%)]	Loss: -7.9085	Cost: 7.64s
+Train Epoch: 3062 [61440/90000 (68%)]	Loss: -7.9574	Cost: 9.83s
+Train Epoch: 3062 [81920/90000 (91%)]	Loss: -8.1703	Cost: 12.09s
+Train Epoch: 3062 	Average Loss: -6.0713
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4677
+
+Learning rate: 0.00018865429548336452
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3063 [0/90000 (0%)]	Loss: 19.7171	Cost: 12.76s
+Train Epoch: 3063 [20480/90000 (23%)]	Loss: -8.0085	Cost: 8.72s
+Train Epoch: 3063 [40960/90000 (45%)]	Loss: -7.9557	Cost: 8.83s
+Train Epoch: 3063 [61440/90000 (68%)]	Loss: -7.9457	Cost: 8.58s
+Train Epoch: 3063 [81920/90000 (91%)]	Loss: -8.1190	Cost: 8.39s
+Train Epoch: 3063 	Average Loss: -6.1174
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4655
+
+Learning rate: 0.00018864702715874358
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3064 [0/90000 (0%)]	Loss: 19.7244	Cost: 12.46s
+Train Epoch: 3064 [20480/90000 (23%)]	Loss: -8.1481	Cost: 9.04s
+Train Epoch: 3064 [40960/90000 (45%)]	Loss: -8.0556	Cost: 8.79s
+Train Epoch: 3064 [61440/90000 (68%)]	Loss: -8.2548	Cost: 7.41s
+Train Epoch: 3064 [81920/90000 (91%)]	Loss: -8.2435	Cost: 8.09s
+Train Epoch: 3064 	Average Loss: -6.2507
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5375
+
+Learning rate: 0.0001886397566468449
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3065 [0/90000 (0%)]	Loss: 19.6748	Cost: 12.96s
+Train Epoch: 3065 [20480/90000 (23%)]	Loss: -8.3533	Cost: 6.41s
+Train Epoch: 3065 [40960/90000 (45%)]	Loss: -8.2951	Cost: 6.93s
+Train Epoch: 3065 [61440/90000 (68%)]	Loss: -8.4802	Cost: 6.40s
+Train Epoch: 3065 [81920/90000 (91%)]	Loss: -8.4577	Cost: 9.77s
+Train Epoch: 3065 	Average Loss: -6.4210
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7478
+
+Learning rate: 0.0001886324839478479
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3066 [0/90000 (0%)]	Loss: 19.7751	Cost: 12.37s
+Train Epoch: 3066 [20480/90000 (23%)]	Loss: -8.3747	Cost: 8.91s
+Train Epoch: 3066 [40960/90000 (45%)]	Loss: -8.3282	Cost: 7.09s
+Train Epoch: 3066 [61440/90000 (68%)]	Loss: -8.4130	Cost: 8.22s
+Train Epoch: 3066 [81920/90000 (91%)]	Loss: -8.4160	Cost: 8.79s
+Train Epoch: 3066 	Average Loss: -6.4870
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6554
+
+Learning rate: 0.000188625209061932
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3067 [0/90000 (0%)]	Loss: 19.7778	Cost: 12.13s
+Train Epoch: 3067 [20480/90000 (23%)]	Loss: -8.6477	Cost: 8.03s
+Train Epoch: 3067 [40960/90000 (45%)]	Loss: -8.4513	Cost: 8.85s
+Train Epoch: 3067 [61440/90000 (68%)]	Loss: -8.4933	Cost: 8.75s
+Train Epoch: 3067 [81920/90000 (91%)]	Loss: -8.4918	Cost: 8.88s
+Train Epoch: 3067 	Average Loss: -6.5521
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7493
+
+Learning rate: 0.00018861793198927674
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3068 [0/90000 (0%)]	Loss: 19.8611	Cost: 12.78s
+Train Epoch: 3068 [20480/90000 (23%)]	Loss: -8.5628	Cost: 9.02s
+Train Epoch: 3068 [40960/90000 (45%)]	Loss: -8.4106	Cost: 8.80s
+Train Epoch: 3068 [61440/90000 (68%)]	Loss: -8.6501	Cost: 7.59s
+Train Epoch: 3068 [81920/90000 (91%)]	Loss: -8.5768	Cost: 6.17s
+Train Epoch: 3068 	Average Loss: -6.5339
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7340
+
+Learning rate: 0.00018861065273006168
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3069 [0/90000 (0%)]	Loss: 19.5408	Cost: 13.08s
+Train Epoch: 3069 [20480/90000 (23%)]	Loss: -8.3939	Cost: 6.38s
+Train Epoch: 3069 [40960/90000 (45%)]	Loss: -8.3077	Cost: 6.45s
+Train Epoch: 3069 [61440/90000 (68%)]	Loss: -8.5704	Cost: 7.68s
+Train Epoch: 3069 [81920/90000 (91%)]	Loss: -8.5443	Cost: 8.64s
+Train Epoch: 3069 	Average Loss: -6.4725
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6839
+
+Learning rate: 0.00018860337128446638
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3070 [0/90000 (0%)]	Loss: 19.9273	Cost: 12.70s
+Train Epoch: 3070 [20480/90000 (23%)]	Loss: -8.5015	Cost: 7.41s
+Train Epoch: 3070 [40960/90000 (45%)]	Loss: -8.2618	Cost: 8.88s
+Train Epoch: 3070 [61440/90000 (68%)]	Loss: -8.4120	Cost: 8.67s
+Train Epoch: 3070 [81920/90000 (91%)]	Loss: -8.3867	Cost: 8.44s
+Train Epoch: 3070 	Average Loss: -6.3874
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6000
+
+Learning rate: 0.0001885960876526705
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3071 [0/90000 (0%)]	Loss: 19.7223	Cost: 12.91s
+Train Epoch: 3071 [20480/90000 (23%)]	Loss: -8.4450	Cost: 8.94s
+Train Epoch: 3071 [40960/90000 (45%)]	Loss: -8.3728	Cost: 8.80s
+Train Epoch: 3071 [61440/90000 (68%)]	Loss: -8.2651	Cost: 8.75s
+Train Epoch: 3071 [81920/90000 (91%)]	Loss: -7.9696	Cost: 6.73s
+Train Epoch: 3071 	Average Loss: -6.3358
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6370
+
+Learning rate: 0.00018858880183485384
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3072 [0/90000 (0%)]	Loss: 19.7179	Cost: 16.35s
+Train Epoch: 3072 [20480/90000 (23%)]	Loss: -7.8834	Cost: 8.67s
+Train Epoch: 3072 [40960/90000 (45%)]	Loss: -8.0785	Cost: 11.85s
+Train Epoch: 3072 [61440/90000 (68%)]	Loss: -7.9111	Cost: 5.83s
+Train Epoch: 3072 [81920/90000 (91%)]	Loss: -8.0206	Cost: 5.94s
+Train Epoch: 3072 	Average Loss: -6.1054
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5573
+
+Learning rate: 0.00018858151383119607
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3073 [0/90000 (0%)]	Loss: 19.5789	Cost: 12.51s
+Train Epoch: 3073 [20480/90000 (23%)]	Loss: -8.2066	Cost: 7.15s
+Train Epoch: 3073 [40960/90000 (45%)]	Loss: -8.0565	Cost: 8.97s
+Train Epoch: 3073 [61440/90000 (68%)]	Loss: -8.1411	Cost: 8.82s
+Train Epoch: 3073 [81920/90000 (91%)]	Loss: -8.3655	Cost: 8.84s
+Train Epoch: 3073 	Average Loss: -6.2796
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6343
+
+Learning rate: 0.00018857422364187705
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3074 [0/90000 (0%)]	Loss: 19.2177	Cost: 12.36s
+Train Epoch: 3074 [20480/90000 (23%)]	Loss: -8.1666	Cost: 9.01s
+Train Epoch: 3074 [40960/90000 (45%)]	Loss: -8.3095	Cost: 8.74s
+Train Epoch: 3074 [61440/90000 (68%)]	Loss: -8.1140	Cost: 8.43s
+Train Epoch: 3074 [81920/90000 (91%)]	Loss: -8.4636	Cost: 6.35s
+Train Epoch: 3074 	Average Loss: -6.3462
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5408
+
+Learning rate: 0.0001885669312670767
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3075 [0/90000 (0%)]	Loss: 19.4462	Cost: 15.95s
+Train Epoch: 3075 [20480/90000 (23%)]	Loss: -8.2854	Cost: 12.15s
+Train Epoch: 3075 [40960/90000 (45%)]	Loss: -7.8548	Cost: 12.08s
+Train Epoch: 3075 [61440/90000 (68%)]	Loss: -8.1087	Cost: 11.85s
+Train Epoch: 3075 [81920/90000 (91%)]	Loss: -8.3525	Cost: 11.88s
+Train Epoch: 3075 	Average Loss: -6.2362
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5498
+
+Learning rate: 0.00018855963670697489
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3076 [0/90000 (0%)]	Loss: 19.6454	Cost: 12.89s
+Train Epoch: 3076 [20480/90000 (23%)]	Loss: -8.4351	Cost: 9.05s
+Train Epoch: 3076 [40960/90000 (45%)]	Loss: -7.9617	Cost: 8.83s
+Train Epoch: 3076 [61440/90000 (68%)]	Loss: -8.2586	Cost: 8.81s
+Train Epoch: 3076 [81920/90000 (91%)]	Loss: -8.4483	Cost: 6.95s
+Train Epoch: 3076 	Average Loss: -6.3367
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5680
+
+Learning rate: 0.00018855233996175165
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3077 [0/90000 (0%)]	Loss: 19.3188	Cost: 12.24s
+Train Epoch: 3077 [20480/90000 (23%)]	Loss: -8.3763	Cost: 8.97s
+Train Epoch: 3077 [40960/90000 (45%)]	Loss: -7.6441	Cost: 6.90s
+Train Epoch: 3077 [61440/90000 (68%)]	Loss: -7.4884	Cost: 8.27s
+Train Epoch: 3077 [81920/90000 (91%)]	Loss: -7.7108	Cost: 8.76s
+Train Epoch: 3077 	Average Loss: -5.9830
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3537
+
+Learning rate: 0.00018854504103158701
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3078 [0/90000 (0%)]	Loss: 19.6403	Cost: 13.56s
+Train Epoch: 3078 [20480/90000 (23%)]	Loss: -7.7682	Cost: 6.62s
+Train Epoch: 3078 [40960/90000 (45%)]	Loss: -7.6652	Cost: 12.24s
+Train Epoch: 3078 [61440/90000 (68%)]	Loss: -7.6928	Cost: 12.11s
+Train Epoch: 3078 [81920/90000 (91%)]	Loss: -8.0866	Cost: 11.87s
+Train Epoch: 3078 	Average Loss: -5.8797
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3700
+
+Learning rate: 0.00018853773991666108
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3079 [0/90000 (0%)]	Loss: 19.5709	Cost: 12.69s
+Train Epoch: 3079 [20480/90000 (23%)]	Loss: -8.0913	Cost: 8.84s
+Train Epoch: 3079 [40960/90000 (45%)]	Loss: -7.9695	Cost: 8.78s
+Train Epoch: 3079 [61440/90000 (68%)]	Loss: -8.0461	Cost: 7.29s
+Train Epoch: 3079 [81920/90000 (91%)]	Loss: -8.4423	Cost: 7.94s
+Train Epoch: 3079 	Average Loss: -6.2508
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6264
+
+Learning rate: 0.00018853043661715396
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3080 [0/90000 (0%)]	Loss: 19.6803	Cost: 12.41s
+Train Epoch: 3080 [20480/90000 (23%)]	Loss: -8.2347	Cost: 7.15s
+Train Epoch: 3080 [40960/90000 (45%)]	Loss: -8.2197	Cost: 8.60s
+Train Epoch: 3080 [61440/90000 (68%)]	Loss: -8.5211	Cost: 8.68s
+Train Epoch: 3080 [81920/90000 (91%)]	Loss: -8.5285	Cost: 8.53s
+Train Epoch: 3080 	Average Loss: -6.4271
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6289
+
+Learning rate: 0.00018852313113324587
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3081 [0/90000 (0%)]	Loss: 19.6150	Cost: 12.12s
+Train Epoch: 3081 [20480/90000 (23%)]	Loss: -8.5013	Cost: 6.58s
+Train Epoch: 3081 [40960/90000 (45%)]	Loss: -8.3172	Cost: 7.21s
+Train Epoch: 3081 [61440/90000 (68%)]	Loss: -8.2546	Cost: 6.34s
+Train Epoch: 3081 [81920/90000 (91%)]	Loss: -8.3319	Cost: 10.97s
+Train Epoch: 3081 	Average Loss: -6.4437
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7044
+
+Learning rate: 0.00018851582346511708
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3082 [0/90000 (0%)]	Loss: 19.7860	Cost: 12.82s
+Train Epoch: 3082 [20480/90000 (23%)]	Loss: -8.6665	Cost: 7.02s
+Train Epoch: 3082 [40960/90000 (45%)]	Loss: -8.3016	Cost: 8.79s
+Train Epoch: 3082 [61440/90000 (68%)]	Loss: -8.1864	Cost: 8.70s
+Train Epoch: 3082 [81920/90000 (91%)]	Loss: -8.2871	Cost: 8.85s
+Train Epoch: 3082 	Average Loss: -6.3111
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5645
+
+Learning rate: 0.00018850851361294787
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3083 [0/90000 (0%)]	Loss: 19.7498	Cost: 12.61s
+Train Epoch: 3083 [20480/90000 (23%)]	Loss: -8.5207	Cost: 8.92s
+Train Epoch: 3083 [40960/90000 (45%)]	Loss: -8.3617	Cost: 8.83s
+Train Epoch: 3083 [61440/90000 (68%)]	Loss: -8.4079	Cost: 8.50s
+Train Epoch: 3083 [81920/90000 (91%)]	Loss: -8.2633	Cost: 6.52s
+Train Epoch: 3083 	Average Loss: -6.4305
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6487
+
+Learning rate: 0.00018850120157691864
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3084 [0/90000 (0%)]	Loss: 19.6276	Cost: 12.74s
+Train Epoch: 3084 [20480/90000 (23%)]	Loss: -8.5221	Cost: 8.13s
+Train Epoch: 3084 [40960/90000 (45%)]	Loss: -8.0726	Cost: 6.43s
+Train Epoch: 3084 [61440/90000 (68%)]	Loss: -8.2492	Cost: 6.42s
+Train Epoch: 3084 [81920/90000 (91%)]	Loss: -8.3535	Cost: 7.86s
+Train Epoch: 3084 	Average Loss: -6.3779
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4605
+
+Learning rate: 0.0001884938873572098
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3085 [0/90000 (0%)]	Loss: 19.6342	Cost: 12.46s
+Train Epoch: 3085 [20480/90000 (23%)]	Loss: -8.5249	Cost: 8.08s
+Train Epoch: 3085 [40960/90000 (45%)]	Loss: -8.2830	Cost: 8.77s
+Train Epoch: 3085 [61440/90000 (68%)]	Loss: -8.2003	Cost: 8.53s
+Train Epoch: 3085 [81920/90000 (91%)]	Loss: -8.6066	Cost: 8.45s
+Train Epoch: 3085 	Average Loss: -6.4294
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7220
+
+Learning rate: 0.0001884865709540018
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3086 [0/90000 (0%)]	Loss: 19.7095	Cost: 13.20s
+Train Epoch: 3086 [20480/90000 (23%)]	Loss: -8.4934	Cost: 9.00s
+Train Epoch: 3086 [40960/90000 (45%)]	Loss: -8.6471	Cost: 8.84s
+Train Epoch: 3086 [61440/90000 (68%)]	Loss: -8.6144	Cost: 7.54s
+Train Epoch: 3086 [81920/90000 (91%)]	Loss: -8.6002	Cost: 7.01s
+Train Epoch: 3086 	Average Loss: -6.5005
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6616
+
+Learning rate: 0.0001884792523674752
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3087 [0/90000 (0%)]	Loss: 19.7219	Cost: 12.54s
+Train Epoch: 3087 [20480/90000 (23%)]	Loss: -8.7260	Cost: 7.50s
+Train Epoch: 3087 [40960/90000 (45%)]	Loss: -8.6015	Cost: 8.11s
+Train Epoch: 3087 [61440/90000 (68%)]	Loss: -8.3706	Cost: 8.63s
+Train Epoch: 3087 [81920/90000 (91%)]	Loss: -8.5729	Cost: 8.43s
+Train Epoch: 3087 	Average Loss: -6.6187
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7656
+
+Learning rate: 0.00018847193159781054
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3088 [0/90000 (0%)]	Loss: 19.6453	Cost: 13.45s
+Train Epoch: 3088 [20480/90000 (23%)]	Loss: -8.5645	Cost: 12.04s
+Train Epoch: 3088 [40960/90000 (45%)]	Loss: -8.4412	Cost: 6.18s
+Train Epoch: 3088 [61440/90000 (68%)]	Loss: -8.3732	Cost: 6.01s
+Train Epoch: 3088 [81920/90000 (91%)]	Loss: -8.6983	Cost: 5.85s
+Train Epoch: 3088 	Average Loss: -6.5357
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7272
+
+Learning rate: 0.00018846460864518848
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3089 [0/90000 (0%)]	Loss: 19.7739	Cost: 13.04s
+Train Epoch: 3089 [20480/90000 (23%)]	Loss: -8.5464	Cost: 8.95s
+Train Epoch: 3089 [40960/90000 (45%)]	Loss: -7.5774	Cost: 8.82s
+Train Epoch: 3089 [61440/90000 (68%)]	Loss: -7.5770	Cost: 7.30s
+Train Epoch: 3089 [81920/90000 (91%)]	Loss: -7.7993	Cost: 7.32s
+Train Epoch: 3089 	Average Loss: -6.0413
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.3421
+
+Learning rate: 0.00018845728350978968
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3090 [0/90000 (0%)]	Loss: 19.8095	Cost: 12.73s
+Train Epoch: 3090 [20480/90000 (23%)]	Loss: -8.0246	Cost: 7.18s
+Train Epoch: 3090 [40960/90000 (45%)]	Loss: -7.8897	Cost: 8.54s
+Train Epoch: 3090 [61440/90000 (68%)]	Loss: -8.0550	Cost: 8.50s
+Train Epoch: 3090 [81920/90000 (91%)]	Loss: -8.2945	Cost: 8.33s
+Train Epoch: 3090 	Average Loss: -6.1566
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5109
+
+Learning rate: 0.0001884499561917949
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3091 [0/90000 (0%)]	Loss: 19.7063	Cost: 14.66s
+Train Epoch: 3091 [20480/90000 (23%)]	Loss: -8.4037	Cost: 9.99s
+Train Epoch: 3091 [40960/90000 (45%)]	Loss: -8.0834	Cost: 11.91s
+Train Epoch: 3091 [61440/90000 (68%)]	Loss: -7.7918	Cost: 12.14s
+Train Epoch: 3091 [81920/90000 (91%)]	Loss: -7.6841	Cost: 8.35s
+Train Epoch: 3091 	Average Loss: -6.1094
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4006
+
+Learning rate: 0.0001884426266913849
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3092 [0/90000 (0%)]	Loss: 19.5612	Cost: 12.78s
+Train Epoch: 3092 [20480/90000 (23%)]	Loss: -7.4422	Cost: 9.04s
+Train Epoch: 3092 [40960/90000 (45%)]	Loss: -7.7514	Cost: 8.76s
+Train Epoch: 3092 [61440/90000 (68%)]	Loss: -7.8214	Cost: 6.58s
+Train Epoch: 3092 [81920/90000 (91%)]	Loss: -8.0610	Cost: 8.83s
+Train Epoch: 3092 	Average Loss: -5.9310
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4049
+
+Learning rate: 0.00018843529500874062
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3093 [0/90000 (0%)]	Loss: 19.2752	Cost: 12.64s
+Train Epoch: 3093 [20480/90000 (23%)]	Loss: -8.0218	Cost: 7.23s
+Train Epoch: 3093 [40960/90000 (45%)]	Loss: -8.0778	Cost: 8.86s
+Train Epoch: 3093 [61440/90000 (68%)]	Loss: -8.0578	Cost: 8.54s
+Train Epoch: 3093 [81920/90000 (91%)]	Loss: -8.2871	Cost: 8.36s
+Train Epoch: 3093 	Average Loss: -6.2497
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6924
+
+Learning rate: 0.00018842796114404287
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3094 [0/90000 (0%)]	Loss: 19.5433	Cost: 15.70s
+Train Epoch: 3094 [20480/90000 (23%)]	Loss: -8.2215	Cost: 7.42s
+Train Epoch: 3094 [40960/90000 (45%)]	Loss: -8.3962	Cost: 12.24s
+Train Epoch: 3094 [61440/90000 (68%)]	Loss: -8.1779	Cost: 11.88s
+Train Epoch: 3094 [81920/90000 (91%)]	Loss: -8.1485	Cost: 12.35s
+Train Epoch: 3094 	Average Loss: -6.3436
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5307
+
+Learning rate: 0.00018842062509747266
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3095 [0/90000 (0%)]	Loss: 19.6874	Cost: 12.33s
+Train Epoch: 3095 [20480/90000 (23%)]	Loss: -8.0910	Cost: 7.21s
+Train Epoch: 3095 [40960/90000 (45%)]	Loss: -8.2461	Cost: 8.38s
+Train Epoch: 3095 [61440/90000 (68%)]	Loss: -8.2387	Cost: 8.66s
+Train Epoch: 3095 [81920/90000 (91%)]	Loss: -8.5289	Cost: 8.36s
+Train Epoch: 3095 	Average Loss: -6.2880
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5760
+
+Learning rate: 0.00018841328686921094
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3096 [0/90000 (0%)]	Loss: 19.5467	Cost: 12.00s
+Train Epoch: 3096 [20480/90000 (23%)]	Loss: -8.3680	Cost: 8.83s
+Train Epoch: 3096 [40960/90000 (45%)]	Loss: -8.2200	Cost: 8.85s
+Train Epoch: 3096 [61440/90000 (68%)]	Loss: -8.0778	Cost: 8.86s
+Train Epoch: 3096 [81920/90000 (91%)]	Loss: -8.4495	Cost: 8.38s
+Train Epoch: 3096 	Average Loss: -6.3117
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6087
+
+Learning rate: 0.00018840594645943884
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3097 [0/90000 (0%)]	Loss: 19.4388	Cost: 13.30s
+Train Epoch: 3097 [20480/90000 (23%)]	Loss: -8.4604	Cost: 6.51s
+Train Epoch: 3097 [40960/90000 (45%)]	Loss: -8.4146	Cost: 7.40s
+Train Epoch: 3097 [61440/90000 (68%)]	Loss: -8.4491	Cost: 6.49s
+Train Epoch: 3097 [81920/90000 (91%)]	Loss: -8.5944	Cost: 12.70s
+Train Epoch: 3097 	Average Loss: -6.4961
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7554
+
+Learning rate: 0.00018839860386833746
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3098 [0/90000 (0%)]	Loss: 19.9352	Cost: 12.78s
+Train Epoch: 3098 [20480/90000 (23%)]	Loss: -8.6801	Cost: 8.50s
+Train Epoch: 3098 [40960/90000 (45%)]	Loss: -8.6214	Cost: 8.83s
+Train Epoch: 3098 [61440/90000 (68%)]	Loss: -8.7281	Cost: 8.52s
+Train Epoch: 3098 [81920/90000 (91%)]	Loss: -8.6631	Cost: 8.68s
+Train Epoch: 3098 	Average Loss: -6.5834
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.8028
+
+Learning rate: 0.00018839125909608797
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3099 [0/90000 (0%)]	Loss: 19.6595	Cost: 12.78s
+Train Epoch: 3099 [20480/90000 (23%)]	Loss: -8.7023	Cost: 9.02s
+Train Epoch: 3099 [40960/90000 (45%)]	Loss: -8.3213	Cost: 8.80s
+Train Epoch: 3099 [61440/90000 (68%)]	Loss: -8.4139	Cost: 6.93s
+Train Epoch: 3099 [81920/90000 (91%)]	Loss: -8.6152	Cost: 8.45s
+Train Epoch: 3099 	Average Loss: -6.5057
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7548
+
+Learning rate: 0.00018838391214287157
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3100 [0/90000 (0%)]	Loss: 19.4298	Cost: 12.71s
+Train Epoch: 3100 [20480/90000 (23%)]	Loss: -8.7836	Cost: 6.37s
+Train Epoch: 3100 [40960/90000 (45%)]	Loss: -8.4912	Cost: 7.47s
+Train Epoch: 3100 [61440/90000 (68%)]	Loss: -8.4826	Cost: 6.44s
+Train Epoch: 3100 [81920/90000 (91%)]	Loss: -8.4817	Cost: 10.17s
+Train Epoch: 3100 	Average Loss: -6.5295
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7130
+
+Learning rate: 0.00018837656300886956
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3101 [0/90000 (0%)]	Loss: 19.8700	Cost: 12.28s
+Train Epoch: 3101 [20480/90000 (23%)]	Loss: -8.8292	Cost: 8.83s
+Train Epoch: 3101 [40960/90000 (45%)]	Loss: -8.5227	Cost: 6.65s
+Train Epoch: 3101 [61440/90000 (68%)]	Loss: -8.4396	Cost: 8.71s
+Train Epoch: 3101 [81920/90000 (91%)]	Loss: -8.0176	Cost: 8.52s
+Train Epoch: 3101 	Average Loss: -6.4348
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.8204
+
+Learning rate: 0.00018836921169426327
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3102 [0/90000 (0%)]	Loss: 19.4184	Cost: 12.51s
+Train Epoch: 3102 [20480/90000 (23%)]	Loss: -8.2805	Cost: 8.62s
+Train Epoch: 3102 [40960/90000 (45%)]	Loss: -8.0424	Cost: 8.82s
+Train Epoch: 3102 [61440/90000 (68%)]	Loss: -7.9221	Cost: 8.42s
+Train Epoch: 3102 [81920/90000 (91%)]	Loss: -7.8400	Cost: 8.34s
+Train Epoch: 3102 	Average Loss: -6.0762
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4164
+
+Learning rate: 0.00018836185819923407
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3103 [0/90000 (0%)]	Loss: 19.7079	Cost: 12.56s
+Train Epoch: 3103 [20480/90000 (23%)]	Loss: -8.3280	Cost: 8.96s
+Train Epoch: 3103 [40960/90000 (45%)]	Loss: -7.9423	Cost: 8.80s
+Train Epoch: 3103 [61440/90000 (68%)]	Loss: -7.9224	Cost: 8.19s
+Train Epoch: 3103 [81920/90000 (91%)]	Loss: -7.9250	Cost: 5.99s
+Train Epoch: 3103 	Average Loss: -6.1655
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5765
+
+Learning rate: 0.0001883545025239634
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3104 [0/90000 (0%)]	Loss: 19.4844	Cost: 13.06s
+Train Epoch: 3104 [20480/90000 (23%)]	Loss: -8.2759	Cost: 6.23s
+Train Epoch: 3104 [40960/90000 (45%)]	Loss: -8.2185	Cost: 7.21s
+Train Epoch: 3104 [61440/90000 (68%)]	Loss: -8.1736	Cost: 6.87s
+Train Epoch: 3104 [81920/90000 (91%)]	Loss: -8.5308	Cost: 8.39s
+Train Epoch: 3104 	Average Loss: -6.3753
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.4938
+
+Learning rate: 0.00018834714466863276
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3105 [0/90000 (0%)]	Loss: 19.7655	Cost: 12.20s
+Train Epoch: 3105 [20480/90000 (23%)]	Loss: -8.2140	Cost: 8.84s
+Train Epoch: 3105 [40960/90000 (45%)]	Loss: -7.9646	Cost: 8.41s
+Train Epoch: 3105 [61440/90000 (68%)]	Loss: -8.3640	Cost: 6.68s
+Train Epoch: 3105 [81920/90000 (91%)]	Loss: -8.0799	Cost: 8.35s
+Train Epoch: 3105 	Average Loss: -6.2643
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7034
+
+Learning rate: 0.00018833978463342376
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3106 [0/90000 (0%)]	Loss: 19.6230	Cost: 12.81s
+Train Epoch: 3106 [20480/90000 (23%)]	Loss: -8.2255	Cost: 6.73s
+Train Epoch: 3106 [40960/90000 (45%)]	Loss: -8.1706	Cost: 8.73s
+Train Epoch: 3106 [61440/90000 (68%)]	Loss: -8.1219	Cost: 8.52s
+Train Epoch: 3106 [81920/90000 (91%)]	Loss: -8.0512	Cost: 8.35s
+Train Epoch: 3106 	Average Loss: -6.2712
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6172
+
+Learning rate: 0.0001883324224185179
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3107 [0/90000 (0%)]	Loss: 19.5677	Cost: 15.17s
+Train Epoch: 3107 [20480/90000 (23%)]	Loss: -8.1391	Cost: 11.06s
+Train Epoch: 3107 [40960/90000 (45%)]	Loss: -8.0864	Cost: 11.94s
+Train Epoch: 3107 [61440/90000 (68%)]	Loss: -8.1469	Cost: 11.83s
+Train Epoch: 3107 [81920/90000 (91%)]	Loss: -8.3739	Cost: 9.31s
+Train Epoch: 3107 	Average Loss: -6.2688
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6705
+
+Learning rate: 0.0001883250580240969
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3108 [0/90000 (0%)]	Loss: 19.8968	Cost: 12.32s
+Train Epoch: 3108 [20480/90000 (23%)]	Loss: -8.4805	Cost: 8.83s
+Train Epoch: 3108 [40960/90000 (45%)]	Loss: -8.3553	Cost: 8.73s
+Train Epoch: 3108 [61440/90000 (68%)]	Loss: -8.0195	Cost: 8.41s
+Train Epoch: 3108 [81920/90000 (91%)]	Loss: -8.2583	Cost: 6.08s
+Train Epoch: 3108 	Average Loss: -6.3376
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5441
+
+Learning rate: 0.00018831769145034245
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3109 [0/90000 (0%)]	Loss: 19.5276	Cost: 12.72s
+Train Epoch: 3109 [20480/90000 (23%)]	Loss: -8.0289	Cost: 8.82s
+Train Epoch: 3109 [40960/90000 (45%)]	Loss: -7.9443	Cost: 7.18s
+Train Epoch: 3109 [61440/90000 (68%)]	Loss: -8.1238	Cost: 7.82s
+Train Epoch: 3109 [81920/90000 (91%)]	Loss: -8.2215	Cost: 8.29s
+Train Epoch: 3109 	Average Loss: -6.1419
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5512
+
+Learning rate: 0.00018831032269743634
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3110 [0/90000 (0%)]	Loss: 19.5232	Cost: 15.40s
+Train Epoch: 3110 [20480/90000 (23%)]	Loss: -8.3141	Cost: 6.34s
+Train Epoch: 3110 [40960/90000 (45%)]	Loss: -8.0841	Cost: 8.45s
+Train Epoch: 3110 [61440/90000 (68%)]	Loss: -8.4305	Cost: 12.26s
+Train Epoch: 3110 [81920/90000 (91%)]	Loss: -8.2907	Cost: 12.06s
+Train Epoch: 3110 	Average Loss: -6.3015
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5832
+
+Learning rate: 0.00018830295176556033
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3111 [0/90000 (0%)]	Loss: 19.4536	Cost: 12.90s
+Train Epoch: 3111 [20480/90000 (23%)]	Loss: -8.2000	Cost: 8.84s
+Train Epoch: 3111 [40960/90000 (45%)]	Loss: -8.0780	Cost: 8.79s
+Train Epoch: 3111 [61440/90000 (68%)]	Loss: -8.2732	Cost: 8.80s
+Train Epoch: 3111 [81920/90000 (91%)]	Loss: -8.2749	Cost: 6.73s
+Train Epoch: 3111 	Average Loss: -6.2490
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5496
+
+Learning rate: 0.0001882955786548963
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3112 [0/90000 (0%)]	Loss: 19.3092	Cost: 12.95s
+Train Epoch: 3112 [20480/90000 (23%)]	Loss: -7.9151	Cost: 8.42s
+Train Epoch: 3112 [40960/90000 (45%)]	Loss: -7.9242	Cost: 7.25s
+Train Epoch: 3112 [61440/90000 (68%)]	Loss: -8.3767	Cost: 8.50s
+Train Epoch: 3112 [81920/90000 (91%)]	Loss: -8.6066	Cost: 8.44s
+Train Epoch: 3112 	Average Loss: -6.2959
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.7139
+
+Learning rate: 0.0001882882033656262
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3113 [0/90000 (0%)]	Loss: 19.6141	Cost: 12.47s
+Train Epoch: 3113 [20480/90000 (23%)]	Loss: -8.3320	Cost: 6.63s
+Train Epoch: 3113 [40960/90000 (45%)]	Loss: -8.2741	Cost: 7.48s
+Train Epoch: 3113 [61440/90000 (68%)]	Loss: -8.3858	Cost: 6.44s
+Train Epoch: 3113 [81920/90000 (91%)]	Loss: -8.3656	Cost: 11.04s
+Train Epoch: 3113 	Average Loss: -6.3884
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6857
+
+Learning rate: 0.00018828082589793203
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3114 [0/90000 (0%)]	Loss: 19.5945	Cost: 13.26s
+Train Epoch: 3114 [20480/90000 (23%)]	Loss: -8.6100	Cost: 7.09s
+Train Epoch: 3114 [40960/90000 (45%)]	Loss: -8.3080	Cost: 8.31s
+Train Epoch: 3114 [61440/90000 (68%)]	Loss: -8.2657	Cost: 8.59s
+Train Epoch: 3114 [81920/90000 (91%)]	Loss: -8.4547	Cost: 8.82s
+Train Epoch: 3114 	Average Loss: -6.4339
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.5558
+
+Learning rate: 0.00018827344625199578
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 3115 [0/90000 (0%)]	Loss: 19.2797	Cost: 12.31s
+Train Epoch: 3115 [20480/90000 (23%)]	Loss: -8.4812	Cost: 9.01s
+Train Epoch: 3115 [40960/90000 (45%)]	Loss: -8.3838	Cost: 8.79s
+Train Epoch: 3115 [61440/90000 (68%)]	Loss: -8.3746	Cost: 8.69s
+Train Epoch: 3115 [81920/90000 (91%)]	Loss: -8.3536	Cost: 7.80s
+Train Epoch: 3115 	Average Loss: -6.4088
+Re-generating waveforms for uniform prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 22.6979
+
+Learning rate: 0.00018826606442799956
