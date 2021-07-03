@@ -661,11 +661,10 @@ class PosteriorModel(object):
                 touch(p / ('.'+'history.txt'))
 
 
-                for event in ['GW150914', 'GW151012', 
-                            'GW151226', 
-                            'GW170104', 'GW170818', 'GW170823',
-                            'GW170809', 'GW170814', 'GW170729', 
-                            'GW170608',]:
+                for event in ['GW150914', 'GW151012',
+                    'GW151226','GW170608','GW170823',
+                    'GW170104', 'GW170818','GW170817',
+                    'GW170809', 'GW170814', 'GW170729'][(-5 if len(self.detectors) else None):]:
                     # Save kl and js history
                     self.save_kljs_history(p, epoch, event)
 
@@ -693,6 +692,7 @@ class PosteriorModel(object):
             'GW170729': ['H1', 'L1', 'V1'],
             'GW170809': ['H1', 'L1', 'V1'],
             'GW170814': ['H1', 'L1', 'V1'],
+            'GW170817': ['H1', 'L1', 'V1'],
             'GW170818': ['H1', 'L1', 'V1'],
             'GW170823': ['H1', 'L1']
         }    
@@ -726,11 +726,10 @@ class PosteriorModel(object):
     def load_all_event_strain(self, truncate_basis):
         self.all_event_strain = {}
         print('Loading load_all_event_strain...')
-        for event in tqdm(['GW150914', 'GW151012', 
-                    'GW151226', 
-                    'GW170104', 'GW170818', 'GW170823',
-                    'GW170809', 'GW170814', 'GW170729', 
-                    'GW170608',]):
+        for event in tqdm(['GW150914', 'GW151012',
+                    'GW151226','GW170608','GW170823',
+                    'GW170104', 'GW170818','GW170817',
+                    'GW170809', 'GW170814', 'GW170729'][(-5 if len(self.detectors) else None):]):
             self.all_event_strain[event] = self.load_a_event_strain(event, truncate_basis)
 
     @staticmethod
@@ -743,6 +742,7 @@ class PosteriorModel(object):
             'GW170608': 1180922494.5,
             'GW170729': 1185389807.3,
             'GW170809': 1186302519.8,
+            'GW170817': 1187008882.4,
             'GW170814': 1186741861.5,
             'GW170818': 1187058327.1,
             'GW170823': 1187529256.5
@@ -763,25 +763,24 @@ class PosteriorModel(object):
     def load_all_bilby_samples(self):
         self.all_bilby_samples = {}
         print('Loading load_all_bilby_samples...')
-        for event in tqdm(['GW150914', 'GW151012', 
-                    'GW151226', 
-                    'GW170104', 'GW170818', 'GW170823',
-                    'GW170809', 'GW170814', 'GW170729', 
-                    'GW170608',]):
+        for event in tqdm(['GW150914', 'GW151012',
+                    'GW151226','GW170608','GW170823',
+                    'GW170104', 'GW170818','GW170817',
+                    'GW170809', 'GW170814', 'GW170729'][(-5 if len(self.detectors) else None):]):
             self.all_bilby_samples[event] = self.load_a_bilby_samples(event)
                         
     def save_test_samples(self, p):
         print('Save test samples ...')
         for event in tqdm(['GW150914', 'GW151012', 
-                    'GW151226', 
-                    'GW170104', 'GW170818', 'GW170823',
-                    'GW170809', 'GW170814', 'GW170729', 
-                    'GW170608',]):        
+                    'GW151226','GW170608','GW170823', 
+                    'GW170104', 'GW170818','GW170817',
+                    'GW170809', 'GW170814', 'GW170729'][(-5 if len(self.detectors) else None):]):        
             self.get_test_samples(event)
             np.save(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'test_event_samples'), self.test_samples)
 
     def get_test_samples(self, event):
         # for nflow only
+        print(self.all_event_strain[event].shape)
         x_samples = nde_flows.obtain_samples(self.model, self.all_event_strain[event], self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
         # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
