@@ -544,8 +544,8 @@ class WaveformDataset(object):
     #
     # Generate target dis.
     #
-    def _load_posterior(self, event):
-        print('sample_extrinsic_only:', self.sample_extrinsic_only)
+    def load_bilby_samples(self, event):
+        # Load bilby samples
         try:
             df = pd.read_csv('../bilby_runs/downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
         except:
@@ -553,7 +553,22 @@ class WaveformDataset(object):
         self.bilby_samples = df.dropna()[['mass_1', 'mass_2', 'phase', 'geocent_time', 'luminosity_distance',
                               'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl',
                               'theta_jn', 'psi', 'ra', 'dec']].values.astype('float64')
-        self.bilby_samples[:,3] = self.bilby_samples[:,3] - self.ref_time
+        # Shift the time of coalescence by the trigger time
+        bilby_samples[:,3] = bilby_samples[:,3] - self.ref_time
+        return bilby_samples    
+    def _load_all_posterior(self):
+        all_bilby_samples = np.empty((50000*10, 15)) # 10 个 events，无 170817
+        for i, event in enumerate(['GW150914', 'GW151012', 
+                    'GW151226', # 'GW170817’,
+                    'GW170104', 'GW170818', 'GW170823',
+                    'GW170809', 'GW170814', 'GW170729', 
+                    'GW170608',]):
+            all_bilby_samples[i*50000:(i+1)*50000] = load_bilby_samples(event)
+        self.bilby_samples = all_bilby_samples
+
+    def _load_posterior(self, event):
+        print('sample_extrinsic_only:', self.sample_extrinsic_only)
+        self.bilby_samples = self.load_bilby_samples(event)
         # if self.sample_extrinsic_only:
         self.bilby_samples_extrisinc = self.bilby_samples[:,[3,4,12,13,14]]
 

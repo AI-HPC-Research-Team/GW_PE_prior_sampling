@@ -162,6 +162,18 @@ class PosteriorModel(object):
             print('init training...')
             self.wfd.init_training() # split dataset and _compute_parameter_statistics
             self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))         
+        elif self.wfd.sampling_from == "all_event_mixed":
+            assert mixed_alpha, "You need specify a 'mixed_alpha' value for 'all_event_mixed'"
+            self.wfd._load_all_posterior() 
+            parameters_posterior = self.wfd._sample_prior_posterior(nsample).astype(np.float32)
+            parameters_uniform = self.wfd._sample_prior(nsample).astype(np.float32)
+            self.wfd.parameters = np.concatenate((parameters_posterior[:int(nsample*mixed_alpha)], 
+                                                  parameters_uniform[:(nsample-int(nsample*mixed_alpha))]),axis=0)
+            self.wfd.nsamples = len(self.wfd.parameters)
+            assert self.wfd.nsamples == nsample
+            print('init training...')
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics
+            self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))      
         else:
             raise NameError('You need specify either "uniform", "posterior" or "mixed" for `sampling_from`.')
         #self.wfd.load_train(self.data_dir) # discard
@@ -780,7 +792,7 @@ class PosteriorModel(object):
 
     def get_test_samples(self, event):
         # for nflow only
-        print(self.all_event_strain[event].shape)
+        print(self.all_event_strain[event].shape) # (400,)
         x_samples = nde_flows.obtain_samples(self.model, self.all_event_strain[event], self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
         # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
