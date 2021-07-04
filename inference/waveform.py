@@ -565,6 +565,7 @@ class WaveformDataset(object):
                     'GW170608',]):
             all_bilby_samples[i*50000:(i+1)*50000] = self.load_bilby_samples(event)
         self.bilby_samples = all_bilby_samples
+        self.bilby_samples_extrisinc = self.bilby_samples[:,[3,4,12,13,14]]
 
     def _load_posterior(self, event):
         print('sample_extrinsic_only:', self.sample_extrinsic_only)
@@ -1089,7 +1090,7 @@ class WaveformDataset(object):
             p_extrinsic = self.sample_prior_extrinsic(1)[0]
         elif self.sampling_from == 'posterior':
             p_extrinsic = self.sample_prior_extrinsic_posterior(1)[0]
-        elif self.sampling_from == 'mixed':
+        elif self.sampling_from in ['mixed', 'all_event_mixed']:
             p_extrinsic = (self.sample_prior_extrinsic_posterior(1)[0]
                 if np.random.binomial(1, self.mixed_alpha,)
                     else self.sample_prior_extrinsic(1)[0])
@@ -2274,7 +2275,7 @@ class WaveformDataset(object):
             self.parameters = self._sample_prior_posterior(self.nsamples).astype(np.float32)
         elif self.sampling_from == 'uniform':
             self.parameters = self._sample_prior(self.nsamples).astype(np.float32)
-        elif self.sampling_from == 'mixed':
+        elif self.sampling_from in ['mixed', 'all_event_mixed']:
             parameters_posterior = self._sample_prior_posterior(self.nsamples).astype(np.float32)
             parameters_uniform = self._sample_prior(self.nsamples).astype(np.float32)
             self.parameters = np.concatenate((parameters_posterior[:int(self.nsamples*self.mixed_alpha)], 
@@ -2329,7 +2330,7 @@ class WaveformDatasetTorch(Dataset):
                 self.wfd.parameters = self.wfd._sample_prior_posterior(self.wfd.nsamples).astype(np.float32)
             elif self.wfd.sampling_from == 'uniform':
                 self.wfd.parameters = self.wfd._sample_prior(self.wfd.nsamples).astype(np.float32)
-            elif self.wfd.sampling_from == 'mixed':
+            elif self.wfd.sampling_from in ['mixed', 'all_event_mixed']:
                 parameters_posterior = self.wfd._sample_prior_posterior(self.wfd.nsamples).astype(np.float32)
                 parameters_uniform = self.wfd._sample_prior(self.wfd.nsamples).astype(np.float32)
                 self.wfd.parameters = np.concatenate((parameters_posterior[:int(self.wfd.nsamples*self.wfd.mixed_alpha)],
@@ -2348,7 +2349,7 @@ class WaveformDatasetTorch(Dataset):
         elif (idx == 0) and self.wfd.sample_extrinsic_only:
             if self.wfd.sampling_from == 'posterior':
                 self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
-            elif self.wfd.sampling_from == 'mixed':
+            elif self.wfd.sampling_from in ['mixed', 'all_event_mixed']:
                 self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
             print('Re-sampling exterior params for {} prior.'.format(self.wfd.sampling_from))
 
