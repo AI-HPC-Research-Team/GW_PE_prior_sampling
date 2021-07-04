@@ -953,7 +953,8 @@ def parse_args():
     dir_parent_parser.add_argument('--sampling_from',
                                      choices=['uniform',
                                               'posterior',
-                                              'mixed'])
+                                              'mixed',
+                                              'all_event_mixed',])
     dir_parent_parser.add_argument(
         '--nsamples_target_event', type=int, default='0')    
     dir_parent_parser.add_argument(
