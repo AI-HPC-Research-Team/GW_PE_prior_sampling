@@ -1,0 +1,98 @@
+Nestedspace(activation='elu', apply_unconditional_transform=False, base_transform_type='rq-coupling', basis_dir='data/GW150914_sample_prior_basis/', batch_norm=True, batch_size=2048, bw_dstar=None, cuda=True, data_dir='data/GW150914_sample_prior_basis/', detectors=None, distance_prior=None, distance_prior_fn='uniform_distance', dont_sample_extrinsic_only=False, dropout_probability=0.0, epochs=400, flow_lr=None, hidden_dims=512, kl_annealing=True, lr=0.0002, lr_anneal_method='cosine', lr_annealing=True, mixed_alpha=0.0, mode='train', model_dir='models/GW150914_sample_uniform_100basis_all_posterior_prior_nflows10/', model_source='new', model_type='nde', nbins=8, nflows=10, nsample=100000, nsamples_target_event=10000, num_transform_blocks=10, output_freq=10, sampling_from='posterior', save=True, save_aux_filename='waveforms_supplementary.hdf5', save_model_name='model.pt', snr_annealing=False, snr_threshold=None, steplr_gamma=0.5, steplr_step_size=80, tail_bound=1.0, transfer_epochs=0, truncate_basis=100)
+Waveform directory data/GW150914_sample_prior_basis/
+Model directory models/GW150914_sample_uniform_100basis_all_posterior_prior_nflows10/
+Device cuda
+Loading dataset
+Sampling 100000 sets of parameters from posterior prior.
+sample_extrinsic_only: False
+init training...
+init relative whitening...
+Truncating reduced basis from 600 to 100 elements.
+initialidze reduced basis aux...
+Building time translation matrices.
+calculate threshold standardizatison...
+  Generating 90000 detector waveforms
+Setting extrinsic parameters to fiducial values.
+  Calculating new standardization factors.
+Loading load_all_bilby_samples...
+Loading load_all_event_strain...
+init relative whitening...
+Building time translation matrices.
+init relative whitening...
+Building time translation matrices.
+init relative whitening...
+Building time translation matrices.
+init relative whitening...
+Building time translation matrices.
+init relative whitening...
+Building time translation matrices.
+Detectors: ['H1', 'L1']
+
+Constructing model of type nde
+
+Initial learning rate 0.0002
+Using cosine LR annealing.
+
+Model hyperparameters:
+input_dim 	 15
+num_flow_steps 	 10
+context_dim 	 400
+base_transform_kwargs
+	 hidden_dim 	 512
+	 num_transform_blocks 	 10
+	 activation 	 elu
+	 dropout_probability 	 0.0
+	 batch_norm 	 True
+	 num_bins 	 8
+	 tail_bound 	 1.0
+	 apply_unconditional_transform 	 False
+	 base_transform_type 	 rq-coupling
+
+Training for 400 epochs
+Starting timer
+Learning rate: 0.0002
+Re-generating waveforms for posterior prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 1 [0/90000 (0%)]	Loss: 24.5166	Cost: 23.63s
+Train Epoch: 1 [20480/90000 (23%)]	Loss: 21.5000	Cost: 4.07s
+Train Epoch: 1 [40960/90000 (45%)]	Loss: 20.9054	Cost: 8.39s
+Train Epoch: 1 [61440/90000 (68%)]	Loss: 20.6078	Cost: 3.89s
+Train Epoch: 1 [81920/90000 (91%)]	Loss: 20.4547	Cost: 7.73s
+Train Epoch: 1 	Average Loss: 21.0833
+Re-generating waveforms for posterior prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 20.1867
+
+(400,)
+(400,)
+(400,)
+(400,)
+(400,)
+Saving model as e1_model.pt & e1_waveforms_supplementary.hdf5
+Save test samples ...
+(400,)
+(400,)
+(400,)
+(400,)
+(400,)
+Learning rate: 0.00019999691576447898
+Re-generating waveforms for posterior prior.
+Setting extrinsic parameters to fiducial values.
+Train Epoch: 2 [0/90000 (0%)]	Loss: 20.2130	Cost: 25.79s
+Train Epoch: 2 [20480/90000 (23%)]	Loss: 19.9046	Cost: 4.03s
+Train Epoch: 2 [40960/90000 (45%)]	Loss: 19.5519	Cost: 9.74s
+Train Epoch: 2 [61440/90000 (68%)]	Loss: 19.0204	Cost: 3.99s
+Train Epoch: 2 [81920/90000 (91%)]	Loss: 18.6540	Cost: 8.32s
+Train Epoch: 2 	Average Loss: 19.4447
+Re-generating waveforms for posterior prior.
+Setting extrinsic parameters to fiducial values.
+Test set: Average loss: 18.6701
+
+(400,)
+(400,)
+(400,)
+(400,)
+(400,)
+Stopping timer.
+Training time (including validation): 191.45823645591736 seconds
+Saving model
