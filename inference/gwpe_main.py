@@ -796,7 +796,7 @@ class PosteriorModel(object):
 
     def get_test_samples(self, event):
         # for nflow only
-        print(self.all_event_strain[event].shape) # (400,)
+        #print(self.all_event_strain[event].shape) # (400,)
         x_samples = nde_flows.obtain_samples(self.model, self.all_event_strain[event], self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
         # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
@@ -827,11 +827,11 @@ class PosteriorModel(object):
         # Plot
         if epoch >1:
             plt.figure()            
-            for event in ['GW150914', 'GW151012', 
-                        'GW151226', 
-                        'GW170104', 'GW170818', 'GW170823',
-                        'GW170809', 'GW170814', 'GW170729', 
-                        'GW170608',]:
+            for event in ['GW150914', 'GW151012',
+                          'GW151226','GW170608','GW170823',
+                          'GW170104',#'GW170817',
+                          'GW170818',
+                          'GW170809', 'GW170814', 'GW170729'][(-4 if len(self.detectors) else None):]:
                 
                 jsdf = pd.read_csv(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_{}_history.txt'.format(event)), sep='\t')
                 
