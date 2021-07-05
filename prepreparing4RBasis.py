@@ -69,7 +69,7 @@ if __name__ == '__main__':
     wfd = wfg.WaveformDataset(spins_aligned=False, domain='RB',
                             extrinsic_at_train=True)
 
-    wfd.Nrb = 600#600
+    wfd.Nrb = 1200#600
     wfd.approximant = 'IMRPhenomPv2'
 
     wfd.load_event('data/events/{}/'.format(event))
@@ -110,8 +110,8 @@ if __name__ == '__main__':
                             fiducial_distance=100, truncate=100)
     #wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
     #                        fiducial_distance=1000, truncate=None)
-    #wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
-    #                        fiducial_distance=450, truncate=100)
+    wfd.test_reduced_basis(n_test=10000//div, prior_fun=wfd._sample_prior_posterior,
+                            fiducial_distance=100, truncate=100)
     addr = 'data/{}{}_basis/'.format(event, wfd._sample_prior.__name__)
     #addr = 'data/{}_30s_{}_basis/'.format(event, wfd._sample_prior.__name__)
     wfd.basis.save(addr)

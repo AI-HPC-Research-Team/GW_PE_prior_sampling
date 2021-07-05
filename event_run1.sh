@@ -15,7 +15,7 @@ python3.7 -m inference.gwpe_main train new nde \
     --batch_norm \
     --batch_size 2048 \
     --output_freq 10 \
-    --lr 0.0002 \
+    --lr 0.0001 \
     --epochs 10000 \
     --distance_prior_fn uniform_distance \
     --hidden_dims 512 \
