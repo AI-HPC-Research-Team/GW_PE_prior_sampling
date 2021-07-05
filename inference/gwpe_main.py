@@ -675,8 +675,8 @@ class PosteriorModel(object):
 
                 for event in ['GW150914', 'GW151012',
                     'GW151226','GW170608','GW170823',
-                    'GW170104', 'GW170818','GW170817',
-                    'GW170809', 'GW170814', 'GW170729'][(-5 if len(self.detectors) else None):]:
+                    'GW170104','GW170817', 'GW170818',
+                    'GW170809', 'GW170814', 'GW170729'][(-4 if len(self.detectors) else None):]:
                     # Save kl and js history
                     self.save_kljs_history(p, epoch, event)
 
@@ -740,8 +740,8 @@ class PosteriorModel(object):
         print('Loading load_all_event_strain...')
         for event in tqdm(['GW150914', 'GW151012',
                     'GW151226','GW170608','GW170823',
-                    'GW170104', 'GW170818','GW170817',
-                    'GW170809', 'GW170814', 'GW170729'][(-5 if len(self.detectors) else None):]):
+                    'GW170104','GW170817','GW170818',
+                    'GW170809', 'GW170814', 'GW170729'][(-4 if len(self.detectors) else None):]):
             self.all_event_strain[event] = self.load_a_event_strain(event, truncate_basis)
 
     @staticmethod
@@ -777,16 +777,16 @@ class PosteriorModel(object):
         print('Loading load_all_bilby_samples...')
         for event in tqdm(['GW150914', 'GW151012',
                     'GW151226','GW170608','GW170823',
-                    'GW170104', 'GW170818','GW170817',
-                    'GW170809', 'GW170814', 'GW170729'][(-5 if len(self.detectors) else None):]):
+                    'GW170104','GW170817', 'GW170818',
+                    'GW170809', 'GW170814', 'GW170729'][(-4 if len(self.detectors) else None):]):
             self.all_bilby_samples[event] = self.load_a_bilby_samples(event)
                         
     def save_test_samples(self, p):
         print('Save test samples ...')
         for event in tqdm(['GW150914', 'GW151012', 
                     'GW151226','GW170608','GW170823', 
-                    'GW170104', 'GW170818','GW170817',
-                    'GW170809', 'GW170814', 'GW170729'][(-5 if len(self.detectors) else None):]):        
+                    'GW170104','GW170817', 'GW170818',
+                    'GW170809', 'GW170814', 'GW170729'][(-4 if len(self.detectors) else None):]):        
             self.get_test_samples(event)
             np.save(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'test_event_samples'), self.test_samples)
 
