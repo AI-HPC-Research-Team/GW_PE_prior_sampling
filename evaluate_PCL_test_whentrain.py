@@ -99,8 +99,8 @@ except:
     print('Init all_epoch_test_samples..')
 
 # try:
-save_model_name = [f for f in os.listdir(model_dir) if ('_model.pt' in f) and ('.e' not in f) ][0]
-save_aux_filename = [f for f in os.listdir(model_dir) if ('_waveforms_supplementary.hdf5' in f) and ('.e' not in f) ][0]
+save_model_name = [f for f in os.listdir(model_dir) if ('_model_e50.pt' in f) and ('.e' not in f) ][0]
+save_aux_filename = [f for f in os.listdir(model_dir) if ('_waveforms_supplementary_e50.hdf5' in f) and ('.e' not in f) ][0]
 epoch = save_model_name.split('_')[0][1:]
 print('Try epoch =',epoch)
 assert save_model_name[0] == 'e'

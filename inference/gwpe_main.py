@@ -640,7 +640,11 @@ class PosteriorModel(object):
                 touch(p / ('.'+'history.txt'))
 
                 if epoch % 50 == 0:
-                    # print('Start real-time testing...')
+                    print('Saving model as e{}_{} & e{}_{}'.format(epoch, 'model_e50.pt', epoch,
+                                                                   'waveforms_supplementary_e50.hdf5'))
+                    self.save_model(filename= 'e{}_'.format(epoch) + 'model_e50.pt', 
+                                    aux_filename='e{}_'.format(epoch) + 'waveforms_supplementary_e50.hdf5')
+                                        # print('Start real-time testing...')
                     start_time = time.time()
                     cmd = 'python3.7 /userhome/rerungw/gw150914/evaluate_PCL_test_whentrain.py ' + self.model_dir
                     os.system(cmd)
@@ -648,14 +652,10 @@ class PosteriorModel(object):
                     print('Test finished, cost {}s'.format(time.time()-start_time))
                     print('Keep training...')
                     for f in os.listdir(p):
-                        if '_model.pt' in f:
+                        if '_model_e50.pt' in f:
                             os.remove(p / f)
-                        elif '_waveforms_supplementary.hdf5' in f:
+                        elif '_waveforms_supplementary_e50.hdf5' in f:
                             os.remove(p / f)
-                    print('Saving model as e{}_{} & e{}_{}'.format(epoch, self.save_model_name, epoch,
-                                                                   self.save_aux_filename))
-                    self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
-                                    aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
 
                 # Save kl and js history
                 self.save_kljs_history(p, epoch)
