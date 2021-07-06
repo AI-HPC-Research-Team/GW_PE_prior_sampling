@@ -114,9 +114,7 @@ class PosteriorModel(object):
                      mixed_alpha = None,
                      bw_dstar=None):
         """Load database of waveforms and set up data loaders.
-
         Args:
-
             batch_size (int):  batch size for DataLoaders
         """
         self.nsamples_target_event = nsamples_target_event
@@ -255,16 +253,12 @@ class PosteriorModel(object):
 
     def construct_model(self, model_type, existing=False, **kwargs):
         """Construct the neural network model.
-
         Args:
-
             model_type:     'maf' or 'cvae'
             wfd:            (Optional) If constructing the model from a
                             WaveformDataset, include this. Otherwise, all
                             arguments are passed through kwargs.
-
             kwargs:         Depends on the model_type
-
                 'maf'   input_dim       Do not include with wfd
                         context_dim     Do not include with wfd
                         hidden_dims
@@ -272,7 +266,6 @@ class PosteriorModel(object):
                         batch_norm      (True)
                         bn_momentum     (0.9)
                         activation      ('elu')
-
                 'cvae'  input_dim       Do not include with wfd
                         context_dim     Do not include with wfd
                         latent_dim      int
@@ -282,14 +275,12 @@ class PosteriorModel(object):
                         decoder_full_cov (True)
                         activation      ('elu')
                         batch_norm      (False)
-
                         iaf             Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         IAF. Keys should be:
                                             context_dim
                                             hidden_dims
                                             nflows
-
                         prior_maf     Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         MAF. Keys should be:
@@ -297,9 +288,7 @@ class PosteriorModel(object):
                                             nflows
                                         Note that this is conditioned on
                                         the waveforms automatically.
-
             * it is recommended to only use one of iaf or prior_maf
-
                         decoder_maf     Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         MAF. Keys should be:
@@ -408,9 +397,7 @@ class PosteriorModel(object):
     def save_model(self, filename='model.pt',
                    aux_filename='waveforms_supplementary.hdf5'):
         """Save a model and optimizer to file.
-
         Args:
-
             model:      model to be saved
             optimizer:  optimizer to be saved
             epoch:      current epoch number
@@ -461,9 +448,7 @@ class PosteriorModel(object):
 
     def load_model(self, filename='model.pt'):
         """Load a saved model.
-
         Args:
-
             filename:       File name
         """
 
@@ -527,7 +512,6 @@ class PosteriorModel(object):
     def train(self, epochs, output_freq=50, kl_annealing=True,
               snr_annealing=False):
         """Train the model.
-
         Args:
                 epochs:     number of epochs to train for
                 output_freq:    how many iterations between outputs
@@ -621,7 +605,7 @@ class PosteriorModel(object):
 
                 # Make column headers if this is the first epoch
                 if epoch == 1:
-                    with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt'), 'w') as f:
+                    with open(p / 'history.txt', 'w') as f:
                         writer = csv.writer(f, delimiter='\t')
                         writer.writerow([epoch, train_loss, test_loss])
                     if self.model_type == 'cvae':
@@ -630,7 +614,7 @@ class PosteriorModel(object):
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
                 else:
-                    with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt'), 'a') as f:
+                    with open(p / 'history.txt', 'a') as f:
                         writer = csv.writer(f, delimiter='\t')
                         writer.writerow([epoch, train_loss, test_loss])
                     if self.model_type == 'cvae':
@@ -638,7 +622,7 @@ class PosteriorModel(object):
                             writer = csv.writer(f, delimiter='\t')
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
-                    data_history = np.loadtxt(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt'))
+                    data_history = np.loadtxt(p / 'history.txt')
 
                     # Plot                  
                     plt.figure()
@@ -647,7 +631,7 @@ class PosteriorModel(object):
                     plt.xlabel('Epoch')
                     plt.ylabel('Loss')
                     plt.legend()
-                    plt.savefig(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.png'))
+                    plt.savefig(p / 'history.png')
                     plt.close()
                     touch(p / ('.'+'history.png'))
                     
@@ -655,7 +639,23 @@ class PosteriorModel(object):
 
                 touch(p / ('.'+'history.txt'))
 
-
+                if epoch % 50 == 0:
+                    # print('Start real-time testing...')
+                    start_time = time.time()
+                    cmd = 'python3.7 /userhome/rerungw/gw150914/evaluate_PCL_test_whentrain.py ' + self.model_dir
+                    os.system(cmd)
+                    os.system('sleep 5')
+                    print('Test finished, cost {}s'.format(time.time()-start_time))
+                    print('Keep training...')
+                    for f in os.listdir(p):
+                        if '_model.pt' in f:
+                            os.remove(p / f)
+                        elif '_waveforms_supplementary.hdf5' in f:
+                            os.remove(p / f)
+                    print('Saving model as e{}_{} & e{}_{}'.format(epoch, self.save_model_name, epoch,
+                                                                   self.save_aux_filename))
+                    self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
+                                    aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
 
                 # Save kl and js history
                 self.save_kljs_history(p, epoch)
@@ -672,9 +672,9 @@ class PosteriorModel(object):
                                     aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
                     self.save_test_samples(p)
     def save_test_samples(self, p):
-        np.save(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'test_event_samples'), self.test_samples)
+        np.save(p / 'test_event_samples', self.test_samples)
 
-    def get_test_samples(self):
+    def get_test_samples(self, p):
         # for nflow only
         x_samples = nde_flows.obtain_samples(self.model, self.event_y, self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
@@ -682,20 +682,20 @@ class PosteriorModel(object):
         self.test_samples = self.wfd.post_process_parameters(x_samples.numpy())
 
     def save_kljs_history(self, p, epoch):
-        self.get_test_samples()
+        self.get_test_samples(p)
         # Make column headers if this is the first epoch
         if epoch == 1:
-            with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'), 'w') as f:
+            with open(p / 'js_history.txt', 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(list(self.wfd.param_idx.keys()))
-            with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'), 'w') as f:
+            with open(p / 'kl_history.txt', 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(list(self.wfd.param_idx.keys()))
 
-        with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'), 'a') as f:
+        with open(p / 'js_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(js_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
-        with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'), 'a') as f:
+        with open(p / 'kl_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(kl_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
 
@@ -704,14 +704,14 @@ class PosteriorModel(object):
 
         # Plot
         if epoch >1:
-            kldf = pd.read_csv(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'), sep='\t')
-            jsdf = pd.read_csv(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'), sep='\t')
+            kldf = pd.read_csv(p / 'kl_history.txt', sep='\t')
+            jsdf = pd.read_csv(p / 'js_history.txt', sep='\t')
             plt.figure()
             [plt.plot(jsdf[name], label=name) for name in self.wfd.param_idx.keys()]
             plt.xlabel('Epoch')
             plt.ylabel('JS div.')
             plt.legend()
-            plt.savefig(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.png'))
+            plt.savefig(p / 'js_history.png')
             plt.close()
             touch(p / ('.'+'js_history.png'))        
 
@@ -720,7 +720,7 @@ class PosteriorModel(object):
             plt.xlabel('Epoch')
             plt.ylabel('KL div.')
             plt.legend()
-            plt.savefig(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.png'))
+            plt.savefig(p / 'kl_history.png')
             plt.close()
             touch(p / ('.'+'kl_history.png'))
 
@@ -753,7 +753,6 @@ class PosteriorModel(object):
 
     def evaluate(self, idx, nsamples=10000, plot=True):
         """Evaluate the model on a noisy waveform.
-
         Args:
             idx         index of the waveform, from a noisy waveform
                         database
@@ -1419,7 +1418,7 @@ def main():
                     print('Saving model')
                     pm.save_model(filename='a{}'.format(args.mixed_alpha) + pm.save_model_name, 
                                     aux_filename='a{}'.format(args.mixed_alpha) + pm.save_aux_filename)                         
-            alpha_list = [0.8, 0.6, 0.4, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005]
+            alpha_list = [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005]
             for i, mixed_alpha in enumerate(alpha_list):
                 print('Transfer learning by starting with alpha={}!'.format(mixed_alpha))
                 pm.load_dataset(batch_size=args.batch_size,
@@ -1447,11 +1446,7 @@ def main():
                             kl_annealing=args.kl_annealing,
                             snr_annealing=args.snr_annealing)
                 except KeyboardInterrupt as e:
-                    print(e)
-                except Exception as e:
-                    print(e)
-                    print('Let us continue!')
-                    continue                                                                         
+                    print(e)                                                                         
                 finally:
                     print('Stopping timer.')
                     stop_time = time.time()
@@ -1486,4 +1481,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
