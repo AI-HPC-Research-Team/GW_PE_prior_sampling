@@ -9,7 +9,6 @@ import torch
 from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib
-
 matplotlib.use('Agg')
 import corner
 import csv
@@ -27,18 +26,16 @@ from . import nde_flows
 # from . import cvae
 from scipy import stats
 
-
 def touch(path):
     with open(path, 'a'):
         os.utime(path, None)
 
-
 def kl_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
     try:
-        kernel = [kde(i, bw_method='scott') for i in samples]
+         kernel = [kde(i,bw_method='scott') for i in samples]
     except np.linalg.LinAlgError:
-        return float("nan")
-
+         return float("nan")
+        
     x = np.linspace(
         np.min([np.min(i) for i in samples]),
         np.max([np.max(i) for i in samples]),
@@ -47,11 +44,11 @@ def kl_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
     factor = 1.0e-5
 
     a, b = [k(x) for k in kernel]
-
+    
     for index in range(len(a)):
         if a[index] < max(a) * factor:
             a[index] = max(a) * factor
-
+            
     for index in range(len(b)):
         if b[index] < max(b) * factor:
             b[index] = max(b) * factor
@@ -61,40 +58,36 @@ def kl_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
     kl_forward = stats.entropy(a, qk=b, base=base)
     return kl_forward
 
-
 def js_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
     try:
-        kernel = [kde(i) for i in samples]
+         kernel = [kde(i) for i in samples]
     except np.linalg.LinAlgError:
-        return float("nan")
-
+         return float("nan")
+        
     x = np.linspace(
         np.min([np.min(i) for i in samples]),
         np.max([np.max(i) for i in samples]),
         100
     )
-
+    
     a, b = [k(x) for k in kernel]
     a = np.asarray(a)
     b = np.asarray(b)
-
+    
     m = 1. / 2 * (a + b)
     kl_forward = stats.entropy(a, qk=m, base=base)
     kl_backward = stats.entropy(b, qk=m, base=base)
     return np.round(kl_forward / 2. + kl_backward / 2., decimal)
-
-
 class PosteriorModel(object):
 
-    def __init__(self, model_dir=None, data_dir=None, basis_dir=None,
-                 sample_extrinsic_only=True, save_aux_filename='waveforms_supplementary.hdf5',
-                 save_model_name='model.pt',
+    def __init__(self, model_dir=None, data_dir=None, basis_dir=None, 
+                 sample_extrinsic_only=True, save_aux_filename='waveforms_supplementary.hdf5',save_model_name='model.pt',
                  use_cuda=True):
 
         self.wfd = None
         self.model = None
         self.data_dir = data_dir
-        self.basis_dir = basis_dir
+        self.basis_dir = basis_dir        
         self.model_dir = model_dir
         self.save_aux_filename = save_aux_filename
         self.save_model_name = save_model_name
@@ -118,7 +111,7 @@ class PosteriorModel(object):
                      truncate_basis=None, snr_threshold=None,
                      distance_prior_fn=None, distance_prior=None,
                      sampling_from=None, nsample=10000, nsamples_target_event=0,
-                     mixed_alpha=None,
+                     mixed_alpha = None,
                      bw_dstar=None):
         """Load database of waveforms and set up data loaders.
         Args:
@@ -131,8 +124,8 @@ class PosteriorModel(object):
 
         # Load settings
         self.wfd = wfg.WaveformDataset(sampling_from=sampling_from)
-        self.wfd.load_setting(self.data_dir, sample_extrinsic_only=self.sample_extrinsic_only)
-
+        self.wfd.load_setting(self.data_dir, sample_extrinsic_only = self.sample_extrinsic_only)
+        
         # 覆盖 basis
         if self.wfd.domain == 'RB':
             self.wfd.basis = SVDBasis()
@@ -142,33 +135,35 @@ class PosteriorModel(object):
         print("Sampling {} sets of parameters from {} prior.".format(nsample, self.wfd.sampling_from))
         if self.wfd.sampling_from == 'posterior':
             # loading bilby posterior as training dist.
-            self.wfd._load_posterior(self.wfd.event, )
+            self.wfd._load_posterior(self.wfd.event,) 
             self.wfd.parameters = self.wfd._sample_prior_posterior(nsample).astype(np.float32)
             self.wfd.nsamples = len(self.wfd.parameters)
             print('init training...')
-            self.wfd.init_training()  # split dataset and _compute_parameter_statistics
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics            
             self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))
         elif self.wfd.sampling_from == 'uniform':
             self.wfd.parameters = self.wfd._sample_prior(nsample).astype(np.float32)
             self.wfd.nsamples = len(self.wfd.parameters)
             print('init training...')
-            self.wfd.init_training()  # split dataset and _compute_parameter_statistics
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics  
         elif self.wfd.sampling_from == 'mixed':
             assert mixed_alpha, "You need specify a 'mixed_alpha' value for 'mixed'"
             self.wfd.mixed_alpha = mixed_alpha
-            self.wfd._load_posterior(self.wfd.event, )
+            self.wfd._load_posterior(self.wfd.event,) 
             parameters_posterior = self.wfd._sample_prior_posterior(nsample).astype(np.float32)
             parameters_uniform = self.wfd._sample_prior(nsample).astype(np.float32)
-            self.wfd.parameters = np.concatenate((parameters_posterior[:int(nsample * mixed_alpha)],
-                                                  parameters_uniform[:(nsample - int(nsample * mixed_alpha))]), axis=0)
+            self.wfd.parameters = np.concatenate((parameters_posterior[:int(nsample*mixed_alpha)], 
+                                                  parameters_uniform[:(nsample-int(nsample*mixed_alpha))]),axis=0)
             self.wfd.nsamples = len(self.wfd.parameters)
             assert self.wfd.nsamples == nsample
             print('init training...')
-            self.wfd.init_training()  # split dataset and _compute_parameter_statistics
-            self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics
+            self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))         
         else:
             raise NameError('You need specify either "uniform", "posterior" or "mixed" for `sampling_from`.')
-        # self.wfd.load_train(self.data_dir) # discard
+        #self.wfd.load_train(self.data_dir) # discard
+
+
 
         # Set up relative whitening
         print('init relative whitening...')
@@ -227,13 +222,13 @@ class PosteriorModel(object):
 
         # 用于在训练的时候，与目标 event 的测试后验分布作对比
         if self.nsamples_target_event:
-            self.wfd._load_posterior(self.wfd.event, )
-            self.wfd.parameters_event = self.wfd._sample_prior_posterior(nsamples_target_event).astype(np.float32)
+            self.wfd._load_posterior(self.wfd.event,) 
+            self.wfd.parameters_event = self.wfd._sample_prior_posterior(nsamples_target_event).astype(np.float32)        
 
             # Load strain data for event
             event_strain = {}
             with h5py.File(self.wfd.event_dir / 'strain_FD_whitened.hdf5', 'r') as f:
-                event_strain = {det: f[det][:].astype(np.complex64) for det in self.detectors}
+                event_strain = {det:f[det][:].astype(np.complex64) for det in self.detectors}
             d_RB = {}
             for ifo, di in event_strain.items():
                 h_RB = self.wfd.basis.fseries_to_basis_coefficients(di)
@@ -249,12 +244,12 @@ class PosteriorModel(object):
             wfd_train, batch_size=batch_size, shuffle=False, pin_memory=True,
             num_workers=16,
             worker_init_fn=lambda _: np.random.seed(
-                int(torch.initial_seed()) % (2 ** 32 - 1)))
+                int(torch.initial_seed()) % (2**32-1)))
         self.test_loader = DataLoader(
             wfd_test, batch_size=batch_size, shuffle=False, pin_memory=True,
             num_workers=16,
             worker_init_fn=lambda _: np.random.seed(
-                int(torch.initial_seed()) % (2 ** 32 - 1)))
+                int(torch.initial_seed()) % (2**32-1)))
 
     def construct_model(self, model_type, existing=False, **kwargs):
         """Construct the neural network model.
@@ -328,12 +323,12 @@ class PosteriorModel(object):
             base_dim = self.model.model_hyperparams['latent_dim']
         if model_type == 'maf' or model_type == 'cvae':
             self.base_dist = (torch.distributions.
-                MultivariateNormal(
-                loc=torch.zeros(
-                    base_dim, device=self.device),
-                covariance_matrix=torch.diag_embed(
-                    torch.ones(base_dim,
-                               device=self.device))))
+                              MultivariateNormal(
+                                  loc=torch.zeros(
+                                      base_dim, device=self.device),
+                                  covariance_matrix=torch.diag_embed(
+                                      torch.ones(base_dim,
+                                                 device=self.device))))
 
         # I would like to use the code below, but the KL divergence doesn't
         # work... Should be a workaround.
@@ -430,13 +425,13 @@ class PosteriorModel(object):
             dict['scheduler_state_dict'] = self.scheduler.state_dict()
 
         torch.save(dict, p / filename)
-        touch(p / ('.' + filename))
-
+        touch(p / ('.'+filename))
+        
         # Save any information about basis truncation or standardization in
         # another file.
         f = h5py.File(p / aux_filename, 'w')
-        touch(p / ('.' + aux_filename))
-
+        touch(p / ('.'+aux_filename))
+        
         if self.wfd.domain == 'RB':
             f.attrs['Nrb'] = self.wfd.Nrb
 
@@ -480,7 +475,7 @@ class PosteriorModel(object):
         # flow_lr different from lr
         if len(checkpoint['optimizer_state_dict']['param_groups']) > 1:
             flow_lr = (checkpoint['optimizer_state_dict']['param_groups'][-1]
-            ['initial_lr'])
+                       ['initial_lr'])
         else:
             flow_lr = None
         self.initialize_training(lr_annealing=scheduler_present_in_checkpoint,
@@ -527,7 +522,7 @@ class PosteriorModel(object):
             add_noise = False
         else:
             add_noise = True
-
+        
         epoch_minimum_test_loss = 1
         for epoch in range(self.epoch, self.epoch + epochs):
 
@@ -610,9 +605,7 @@ class PosteriorModel(object):
 
                 # Make column headers if this is the first epoch
                 if epoch == 1:
-                    with open(
-                            p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt'),
-                            'w') as f:
+                    with open(p / 'history.txt', 'w') as f:
                         writer = csv.writer(f, delimiter='\t')
                         writer.writerow([epoch, train_loss, test_loss])
                     if self.model_type == 'cvae':
@@ -621,9 +614,7 @@ class PosteriorModel(object):
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
                 else:
-                    with open(
-                            p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt'),
-                            'a') as f:
+                    with open(p / 'history.txt', 'a') as f:
                         writer = csv.writer(f, delimiter='\t')
                         writer.writerow([epoch, train_loss, test_loss])
                     if self.model_type == 'cvae':
@@ -631,24 +622,22 @@ class PosteriorModel(object):
                             writer = csv.writer(f, delimiter='\t')
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
-                    data_history = np.loadtxt(
-                        p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.txt'))
+                    data_history = np.loadtxt(p / 'history.txt')
 
-                    # Plot
+                    # Plot                  
                     plt.figure()
-                    plt.plot(data_history[:, 0], data_history[:, 1], '*--', label='train')
-                    plt.plot(data_history[:, 0], data_history[:, 2], '*--', label='test')
+                    plt.plot(data_history[:,0], data_history[:,1], '*--', label='train')
+                    plt.plot(data_history[:,0], data_history[:,2], '*--', label='test')
                     plt.xlabel('Epoch')
                     plt.ylabel('Loss')
                     plt.legend()
-                    plt.savefig(
-                        p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'history.png'))
+                    plt.savefig(p / 'history.png')
                     plt.close()
-                    touch(p / ('.' + 'history.png'))
+                    touch(p / ('.'+'history.png'))
+                    
+                    epoch_minimum_test_loss = int(data_history[np.argmin(data_history[:,2]),0])
 
-                    epoch_minimum_test_loss = int(data_history[np.argmin(data_history[:, 2]), 0])
-
-                touch(p / ('.' + 'history.txt'))
+                touch(p / ('.'+'history.txt'))
 
                 if epoch % 50 == 0:
                     # print('Start real-time testing...')
@@ -665,7 +654,7 @@ class PosteriorModel(object):
                             os.remove(p / f)
                     print('Saving model as e{}_{} & e{}_{}'.format(epoch, self.save_model_name, epoch,
                                                                    self.save_aux_filename))
-                    self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name,
+                    self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
                                     aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
 
                 # Save kl and js history
@@ -679,15 +668,13 @@ class PosteriorModel(object):
                             os.remove(p / f)
                     print('Saving model as e{}_{} & e{}_{}'.format(epoch, self.save_model_name, epoch,
                                                                    self.save_aux_filename))
-                    self.save_model(filename='e{}_'.format(epoch) + self.save_model_name,
+                    self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
                                     aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
                     self.save_test_samples(p)
-
     def save_test_samples(self, p):
-        np.save(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'test_event_samples'),
-                self.test_samples)
+        np.save(p / 'test_event_samples', self.test_samples)
 
-    def get_test_samples(self):
+    def get_test_samples(self, p):
         # for nflow only
         x_samples = nde_flows.obtain_samples(self.model, self.event_y, self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
@@ -695,60 +682,49 @@ class PosteriorModel(object):
         self.test_samples = self.wfd.post_process_parameters(x_samples.numpy())
 
     def save_kljs_history(self, p, epoch):
-        self.get_test_samples()
+        self.get_test_samples(p)
         # Make column headers if this is the first epoch
         if epoch == 1:
-            with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'),
-                      'w') as f:
+            with open(p / 'js_history.txt', 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(list(self.wfd.param_idx.keys()))
-            with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'),
-                      'w') as f:
+            with open(p / 'kl_history.txt', 'w') as f:
                 writer = csv.writer(f, delimiter='\t')
                 writer.writerow(list(self.wfd.param_idx.keys()))
 
-        with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'),
-                  'a') as f:
+        with open(p / 'js_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
-            writer.writerow(
-                js_divergence([self.test_samples[:, index], self.wfd.parameters_event[:, index]]) for name, index in
-                self.wfd.param_idx.items())
-        with open(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'),
-                  'a') as f:
+            writer.writerow(js_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+        with open(p / 'kl_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
-            writer.writerow(
-                kl_divergence([self.test_samples[:, index], self.wfd.parameters_event[:, index]]) for name, index in
-                self.wfd.param_idx.items())
+            writer.writerow(kl_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
 
-        touch(p / ('.' + 'js_history.txt'))
-        touch(p / ('.' + 'kl_history.txt'))
+        touch(p / ('.'+'js_history.txt'))
+        touch(p / ('.'+'kl_history.txt'))
 
         # Plot
-        if epoch > 1:
-            kldf = pd.read_csv(
-                p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.txt'),
-                sep='\t')
-            jsdf = pd.read_csv(
-                p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.txt'),
-                sep='\t')
+        if epoch >1:
+            kldf = pd.read_csv(p / 'kl_history.txt', sep='\t')
+            jsdf = pd.read_csv(p / 'js_history.txt', sep='\t')
             plt.figure()
             [plt.plot(jsdf[name], label=name) for name in self.wfd.param_idx.keys()]
             plt.xlabel('Epoch')
             plt.ylabel('JS div.')
             plt.legend()
-            plt.savefig(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'js_history.png'))
+            plt.savefig(p / 'js_history.png')
             plt.close()
-            touch(p / ('.' + 'js_history.png'))
+            touch(p / ('.'+'js_history.png'))        
 
             plt.figure()
             [plt.plot(kldf[name], label=name) for name in self.wfd.param_idx.keys()]
             plt.xlabel('Epoch')
             plt.ylabel('KL div.')
             plt.legend()
-            plt.savefig(p / (('a{}_'.format(self.wfd.mixed_alpha) if self.wfd.mixed_alpha else '') + 'kl_history.png'))
+            plt.savefig(p / 'kl_history.png')
             plt.close()
-            touch(p / ('.' + 'kl_history.png'))
+            touch(p / ('.'+'kl_history.png'))
 
+    
     def init_waveform_supp(self, aux_filename='waveforms_supplementary.hdf5'):
 
         p = Path(self.model_dir)
@@ -857,13 +833,13 @@ def parse_args():
                                    dest='cuda')
     dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
     dir_parent_parser.add_argument('--sampling_from',
-                                   choices=['uniform',
-                                            'posterior',
-                                            'mixed'])
+                                     choices=['uniform',
+                                              'posterior',
+                                              'mixed'])
     dir_parent_parser.add_argument(
-        '--nsamples_target_event', type=int, default='0')
+        '--nsamples_target_event', type=int, default='0')    
     dir_parent_parser.add_argument(
-        '--mixed_alpha', type=float, default='0.0')
+        '--mixed_alpha', type=float, default='0.0')    
     dir_parent_parser.add_argument(
         '--nsample', type=int, default='1000000')
 
@@ -1254,7 +1230,7 @@ def main():
                         'batch_norm': args.maf_prior.batch_norm,
                         'bn_momentum': args.maf_prior.bn_momentum,
                         'iaf_parametrization':
-                            args.maf_prior.iaf_parametrization
+                        args.maf_prior.iaf_parametrization
                     },
                     batch_norm=args.batch_norm,
                     prior_gaussian_nn=args.prior_gaussian_nn,
@@ -1274,7 +1250,7 @@ def main():
                         'batch_norm': args.maf_decoder.batch_norm,
                         'bn_momentum': args.maf_decoder.bn_momentum,
                         'iaf_parametrization':
-                            args.maf_decoder.iaf_parametrization
+                        args.maf_decoder.iaf_parametrization
                     },
                     decoder_zcontext=args.maf_decoder.zcontext,
                     batch_norm=args.batch_norm,
@@ -1303,7 +1279,7 @@ def main():
                         'batch_norm': args.maf_decoder.batch_norm,
                         'bn_momentum': args.maf_decoder.bn_momentum,
                         'iaf_parametrization':
-                            args.maf_decoder.iaf_parametrization
+                        args.maf_decoder.iaf_parametrization
                     },
                     encoder_xcontext=args.iaf.xcontext,
                     encoder_ycontext=args.iaf.ycontext,
@@ -1326,7 +1302,7 @@ def main():
                         'batch_norm': args.maf_prior.batch_norm,
                         'bn_momentum': args.maf_prior.bn_momentum,
                         'iaf_parametrization':
-                            args.maf_prior.iaf_parametrization
+                        args.maf_prior.iaf_parametrization
                     },
                     decoder_maf={
                         'hidden_dims': args.maf_decoder.hidden_dims,
@@ -1334,7 +1310,7 @@ def main():
                         'batch_norm': args.maf_decoder.batch_norm,
                         'bn_momentum': args.maf_decoder.bn_momentum,
                         'iaf_parametrization':
-                            args.maf_decoder.iaf_parametrization
+                        args.maf_decoder.iaf_parametrization
                     },
                     decoder_zcontext=args.maf_decoder.zcontext,
                     batch_norm=args.batch_norm,
@@ -1363,7 +1339,7 @@ def main():
                         'batch_norm': args.maf_prior.batch_norm,
                         'bn_momentum': args.maf_prior.bn_momentum,
                         'iaf_parametrization':
-                            args.maf_prior.iaf_parametrization
+                        args.maf_prior.iaf_parametrization
                     },
                     decoder_maf={
                         'hidden_dims': args.maf_decoder.hidden_dims,
@@ -1371,7 +1347,7 @@ def main():
                         'batch_norm': args.maf_decoder.batch_norm,
                         'bn_momentum': args.maf_decoder.bn_momentum,
                         'iaf_parametrization':
-                            args.maf_decoder.iaf_parametrization
+                        args.maf_decoder.iaf_parametrization
                     },
                     encoder_xcontext=args.iaf.xcontext,
                     encoder_ycontext=args.iaf.ycontext,
@@ -1427,22 +1403,22 @@ def main():
             print('Now, transfer learning from alpha={}!'.format(args.mixed_alpha))
             try:
                 pm.train(args.transfer_epochs,
-                         output_freq=args.output_freq,
-                         kl_annealing=args.kl_annealing,
-                         snr_annealing=args.snr_annealing)
+                        output_freq=args.output_freq,
+                        kl_annealing=args.kl_annealing,
+                        snr_annealing=args.snr_annealing)
             except KeyboardInterrupt as e:
-                print(e)
+                print(e)   
             finally:
                 print('Stopping timer.')
                 stop_time = time.time()
                 print('Training time (including validation): {} seconds'
-                      .format(stop_time - start_time))
+                    .format(stop_time - start_time))
 
                 if args.save:
                     print('Saving model')
-                    pm.save_model(filename='a{}'.format(args.mixed_alpha) + pm.save_model_name,
-                                  aux_filename='a{}'.format(args.mixed_alpha) + pm.save_aux_filename)
-            alpha_list = [0.8, 0.6, 0.4, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005]
+                    pm.save_model(filename='a{}'.format(args.mixed_alpha) + pm.save_model_name, 
+                                    aux_filename='a{}'.format(args.mixed_alpha) + pm.save_aux_filename)                         
+            alpha_list = [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005]
             for i, mixed_alpha in enumerate(alpha_list):
                 print('Transfer learning by starting with alpha={}!'.format(mixed_alpha))
                 pm.load_dataset(batch_size=args.batch_size,
@@ -1455,54 +1431,50 @@ def main():
                                 mixed_alpha=mixed_alpha,
                                 nsample=args.nsample,
                                 distance_prior=args.distance_prior,
-                                bw_dstar=args.bw_dstar)
+                                bw_dstar=args.bw_dstar)       
                 pm.initialize_training(lr=args.lr,
-                                       lr_annealing=args.lr_annealing,
-                                       anneal_method=args.lr_anneal_method,
-                                       total_epochs=args.transfer_epochs,
-                                       # steplr=args.steplr,
-                                       steplr_step_size=args.steplr_step_size,
-                                       steplr_gamma=args.steplr_gamma,
-                                       flow_lr=args.flow_lr)
+                                    lr_annealing=args.lr_annealing,
+                                    anneal_method=args.lr_anneal_method,
+                                    total_epochs=args.transfer_epochs,
+                                    # steplr=args.steplr,
+                                    steplr_step_size=args.steplr_step_size,
+                                    steplr_gamma=args.steplr_gamma,
+                                    flow_lr=args.flow_lr)   
                 try:
                     pm.train(args.transfer_epochs,
-                             output_freq=args.output_freq,
-                             kl_annealing=args.kl_annealing,
-                             snr_annealing=args.snr_annealing)
+                            output_freq=args.output_freq,
+                            kl_annealing=args.kl_annealing,
+                            snr_annealing=args.snr_annealing)
                 except KeyboardInterrupt as e:
-                    print(e)
-                except Exception as e:
-                    print(e)
-                    print('Let us continue!')
-                    continue
+                    print(e)                                                                         
                 finally:
                     print('Stopping timer.')
                     stop_time = time.time()
                     print('Training time (including validation): {} seconds'
-                          .format(stop_time - start_time))
+                        .format(stop_time - start_time))
 
                     if args.save:
                         print('Saving model')
-                        pm.save_model(filename='a{}'.format(mixed_alpha) + pm.save_model_name,
+                        pm.save_model(filename= 'a{}'.format(mixed_alpha) + pm.save_model_name, 
                                       aux_filename='a{}'.format(mixed_alpha) + pm.save_aux_filename)
-        else:  # You should set args.mixed_alpha = 1.0
+        else: # You should set args.mixed_alpha = 1.0
             try:
                 pm.train(args.epochs,
-                         output_freq=args.output_freq,
-                         kl_annealing=args.kl_annealing,
-                         snr_annealing=args.snr_annealing)
+                        output_freq=args.output_freq,
+                        kl_annealing=args.kl_annealing,
+                        snr_annealing=args.snr_annealing)
             except KeyboardInterrupt as e:
-                print(e)
+                print(e)      
             finally:
                 print('Stopping timer.')
                 stop_time = time.time()
                 print('Training time (including validation): {} seconds'
-                      .format(stop_time - start_time))
+                    .format(stop_time - start_time))
 
                 if args.save:
                     print('Saving model')
-                    pm.save_model(filename=pm.save_model_name,
-                                  aux_filename=pm.save_aux_filename)
+                    pm.save_model(filename=pm.save_model_name, 
+                                    aux_filename=pm.save_aux_filename)                      
 
     print('Program complete')
 
