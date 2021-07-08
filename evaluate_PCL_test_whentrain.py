@@ -66,7 +66,7 @@ def js_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
     x = np.linspace(
         np.min([np.min(i) for i in samples]),
         np.max([np.max(i) for i in samples]),
-        100
+        101 #100
     )
     
     a, b = [k(x) for k in kernel]
@@ -77,6 +77,18 @@ def js_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
     kl_forward = stats.entropy(a, qk=m, base=base)
     kl_backward = stats.entropy(b, qk=m, base=base)
     return np.round(kl_forward / 2. + kl_backward / 2., decimal)
+
+def load_bilby_samples(event):
+    event = event.split('_')[0]
+    # Load bilby samples
+    df = pd.read_csv('downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+    bilby_samples = df.dropna()[['mass_1', 'mass_2', 'phase', 'geocent_time','luminosity_distance',
+                                      'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl',
+                                      'theta_jn', 'psi', 'ra', 'dec']].values.astype('float64')
+
+    # Shift the time of coalescence by the trigger time
+    bilby_samples[:,3] = bilby_samples[:,3] - event_gps_dict[event]
+    return bilby_samples
 
 labels = ['$m_1$', '$m_2$', '$\\phi_c$', '$t_c$', '$d_L$', '$a_1$',
        '$a_2$', '$t_1$', '$t_2$', '$\\phi_{12}$',
@@ -90,6 +102,7 @@ model_name = sys.argv[1]   #'GW150914_sample_uniform_100basis_all_posterior_prio
 # all_models = os.listdir(model_path) 
 model_dir = os.path.join(model_path, model_name)
 save_dir = os.path.join(model_dir , 'all_epoch_test_samples')
+save_js_dir = os.path.join(model_dir , 'all_epoch_js')
 try: 
     all_epoch_test_samples = np.load(save_dir + '.npy',  allow_pickle=True).tolist()
     print('Load all_epoch_test_samples..')
@@ -98,6 +111,14 @@ except:
     all_epoch_test_samples = {}
     print('Init all_epoch_test_samples..')
 
+try:
+    all_epoch_js_dict = np.load(save_js_dir + '.npy',  allow_pickle=True).tolist()
+    print('Load all_epoch_js_dict..')
+    print(all_epoch_js_dict.keys())
+except:
+    all_epoch_js_dict = {}
+    print('Init all_epoch_js_dict..')
+     
 # try:
 save_model_name = [f for f in os.listdir(model_dir) if ('_model_e50.pt' in f) and ('.e' not in f) ][0]
 save_aux_filename = [f for f in os.listdir(model_dir) if ('_waveforms_supplementary_e50.hdf5' in f) and ('.e' not in f) ][0]
@@ -106,6 +127,7 @@ print('Try epoch =',epoch)
 assert save_model_name[0] == 'e'
 assert save_aux_filename[0] == 'e'
 
+all_js_dict = {}
 all_test_samples = np.empty((50000*10, 15))
 for i, event in enumerate(tqdm(event_gps_dict.keys())):
     try:
@@ -155,16 +177,23 @@ for i, event in enumerate(tqdm(event_gps_dict.keys())):
         test_samples = pm.wfd.post_process_parameters(x_samples.numpy())
 
         all_test_samples[i*50000:(i+1)*50000] = test_samples
+          
+        all_js_dict[event] = [js_divergence([rr[:,i], load_bilby_samples(event)[:,i]]) for i in range(15)]
     except Exception as e:
         continue
 ##################### Save ###############
 # print('saving...')
 
 all_epoch_test_samples[epoch] = all_test_samples
+all_epoch_js_dict[epoch] = all_js_dict
 
 print(all_epoch_test_samples.keys())
 np.save(save_dir, all_epoch_test_samples)
 print('saving at', save_dir+'.npy')
+
+print(all_epoch_js_dict.keys())
+np.save(save_js_dir, all_epoch_js_dict)
+print('saving at', save_js_dir+'.npy')
 
 # except Exception as e:
 #     print('-----------------------------------------------------')
