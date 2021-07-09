@@ -1,8 +1,8 @@
 export CUDA_VISIBLE_DEVICES=1
 python3.7 -m inference.gwpe_main train new nde \
-    --data_dir data/GW170809_sample_prior_basis/ \
-    --model_dir models/GW170809_sample_uniform_100basis_all_uniform_prior/ \
-    --basis_dir data/GW170809_sample_prior_basis/ \
+    --data_dir data/GW150914_sample_prior_basis/ \
+    --model_dir models/GW150914_sample_uniform_100basis_all_uniform_prior/ \
+    --basis_dir data/GW150914_sample_prior_basis/ \
     --save_model_name model.pt \
     --save_aux_filename waveforms_supplementary.hdf5 \
     --nbins 8 \
@@ -15,7 +15,7 @@ python3.7 -m inference.gwpe_main train new nde \
     --batch_norm \
     --output_freq 10 \
     --batch_size 2048 \
-    --lr 0.0001 \
+    --lr 0.0002 \
     --epochs 10000 \
     --distance_prior_fn uniform_distance \
     --hidden_dims 512 \
@@ -25,7 +25,7 @@ python3.7 -m inference.gwpe_main train new nde \
 # train data sampling from uniform
 # for all params dim
 # using uniform basis (truncate 100)
-# 10.26.236.51
+
 ## Used for resuming running
 # python3.7 -m inference.gwpe_main train existing \
 #     --data_dir data/GW150914_sample_prior_basis/ \

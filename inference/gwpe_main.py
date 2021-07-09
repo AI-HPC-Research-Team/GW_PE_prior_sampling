@@ -111,11 +111,10 @@ class PosteriorModel(object):
                      truncate_basis=None, snr_threshold=None,
                      distance_prior_fn=None, distance_prior=None,
                      sampling_from=None, nsample=10000, nsamples_target_event=0,
+                     mixed_alpha = None,
                      bw_dstar=None):
         """Load database of waveforms and set up data loaders.
-
         Args:
-
             batch_size (int):  batch size for DataLoaders
         """
         self.nsamples_target_event = nsamples_target_event
@@ -146,9 +145,22 @@ class PosteriorModel(object):
             self.wfd.parameters = self.wfd._sample_prior(nsample).astype(np.float32)
             self.wfd.nsamples = len(self.wfd.parameters)
             print('init training...')
-            self.wfd.init_training() # split dataset and _compute_parameter_statistics            
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics  
+        elif self.wfd.sampling_from == 'mixed':
+            assert mixed_alpha, "You need specify a 'mixed_alpha' value for 'mixed'"
+            self.wfd.mixed_alpha = mixed_alpha
+            self.wfd._load_posterior(self.wfd.event,) 
+            parameters_posterior = self.wfd._sample_prior_posterior(nsample).astype(np.float32)
+            parameters_uniform = self.wfd._sample_prior(nsample).astype(np.float32)
+            self.wfd.parameters = np.concatenate((parameters_posterior[:int(nsample*mixed_alpha)], 
+                                                  parameters_uniform[:(nsample-int(nsample*mixed_alpha))]),axis=0)
+            self.wfd.nsamples = len(self.wfd.parameters)
+            assert self.wfd.nsamples == nsample
+            print('init training...')
+            self.wfd.init_training() # split dataset and _compute_parameter_statistics
+            self.wfd._cache_oversampled_parameters(len(self.wfd.train_selection))         
         else:
-            raise NameError('You need specify either "uniform" or "posterior" for `sampling_from`.')
+            raise NameError('You need specify either "uniform", "posterior" or "mixed" for `sampling_from`.')
         #self.wfd.load_train(self.data_dir) # discard
 
 
@@ -241,16 +253,12 @@ class PosteriorModel(object):
 
     def construct_model(self, model_type, existing=False, **kwargs):
         """Construct the neural network model.
-
         Args:
-
             model_type:     'maf' or 'cvae'
             wfd:            (Optional) If constructing the model from a
                             WaveformDataset, include this. Otherwise, all
                             arguments are passed through kwargs.
-
             kwargs:         Depends on the model_type
-
                 'maf'   input_dim       Do not include with wfd
                         context_dim     Do not include with wfd
                         hidden_dims
@@ -258,7 +266,6 @@ class PosteriorModel(object):
                         batch_norm      (True)
                         bn_momentum     (0.9)
                         activation      ('elu')
-
                 'cvae'  input_dim       Do not include with wfd
                         context_dim     Do not include with wfd
                         latent_dim      int
@@ -268,14 +275,12 @@ class PosteriorModel(object):
                         decoder_full_cov (True)
                         activation      ('elu')
                         batch_norm      (False)
-
                         iaf             Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         IAF. Keys should be:
                                             context_dim
                                             hidden_dims
                                             nflows
-
                         prior_maf     Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         MAF. Keys should be:
@@ -283,9 +288,7 @@ class PosteriorModel(object):
                                             nflows
                                         Note that this is conditioned on
                                         the waveforms automatically.
-
             * it is recommended to only use one of iaf or prior_maf
-
                         decoder_maf     Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         MAF. Keys should be:
@@ -394,9 +397,7 @@ class PosteriorModel(object):
     def save_model(self, filename='model.pt',
                    aux_filename='waveforms_supplementary.hdf5'):
         """Save a model and optimizer to file.
-
         Args:
-
             model:      model to be saved
             optimizer:  optimizer to be saved
             epoch:      current epoch number
@@ -447,9 +448,7 @@ class PosteriorModel(object):
 
     def load_model(self, filename='model.pt'):
         """Load a saved model.
-
         Args:
-
             filename:       File name
         """
 
@@ -513,7 +512,6 @@ class PosteriorModel(object):
     def train(self, epochs, output_freq=50, kl_annealing=True,
               snr_annealing=False):
         """Train the model.
-
         Args:
                 epochs:     number of epochs to train for
                 output_freq:    how many iterations between outputs
@@ -656,15 +654,19 @@ class PosteriorModel(object):
                                                                    self.save_aux_filename))
                     self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
                                     aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
-                    
+                    self.save_test_samples(p)
+    def save_test_samples(self, p):
+        np.save(p / 'test_event_samples', self.test_samples)
 
-    def save_kljs_history(self, p, epoch):
+    def get_test_samples(self, p):
         # for nflow only
         x_samples = nde_flows.obtain_samples(self.model, self.event_y, self.nsamples_target_event, self.device)
         x_samples = x_samples.cpu()
         # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
-        test_samples = self.wfd.post_process_parameters(x_samples.numpy())
+        self.test_samples = self.wfd.post_process_parameters(x_samples.numpy())
 
+    def save_kljs_history(self, p, epoch):
+        self.get_test_samples(p)
         # Make column headers if this is the first epoch
         if epoch == 1:
             with open(p / 'js_history.txt', 'w') as f:
@@ -676,14 +678,13 @@ class PosteriorModel(object):
 
         with open(p / 'js_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
-            writer.writerow(js_divergence([test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+            writer.writerow(js_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
         with open(p / 'kl_history.txt', 'a') as f:
             writer = csv.writer(f, delimiter='\t')
-            writer.writerow(kl_divergence([test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+            writer.writerow(kl_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
 
         touch(p / ('.'+'js_history.txt'))
         touch(p / ('.'+'kl_history.txt'))
-        np.save(p / 'test_event_samples', test_samples)
 
         # Plot
         if epoch >1:
@@ -736,7 +737,6 @@ class PosteriorModel(object):
 
     def evaluate(self, idx, nsamples=10000, plot=True):
         """Evaluate the model on a noisy waveform.
-
         Args:
             idx         index of the waveform, from a noisy waveform
                         database
@@ -818,9 +818,12 @@ def parse_args():
     dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
     dir_parent_parser.add_argument('--sampling_from',
                                      choices=['uniform',
-                                              'posterior'])
+                                              'posterior',
+                                              'mixed'])
     dir_parent_parser.add_argument(
-        '--nsamples_target_event', type=int, default='0')                                              
+        '--nsamples_target_event', type=int, default='0')    
+    dir_parent_parser.add_argument(
+        '--mixed_alpha', type=float, default='0.0')    
     dir_parent_parser.add_argument(
         '--nsample', type=int, default='1000000')
 
@@ -1125,6 +1128,7 @@ def main():
                         distance_prior_fn=args.distance_prior_fn,
                         sampling_from=args.sampling_from,
                         nsamples_target_event=args.nsamples_target_event,
+                        mixed_alpha=args.mixed_alpha,
                         nsample=args.nsample,
                         distance_prior=args.distance_prior,
                         bw_dstar=args.bw_dstar)
