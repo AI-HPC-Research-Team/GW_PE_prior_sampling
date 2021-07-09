@@ -639,23 +639,7 @@ class PosteriorModel(object):
 
                 touch(p / ('.'+'history.txt'))
 
-                if epoch % 50 == 0:
-                    print('Saving model as e{}_{} & e{}_{}'.format(epoch, 'model_e50.pt', epoch,
-                                                                   'waveforms_supplementary_e50.hdf5'))
-                    self.save_model(filename= 'e{}_'.format(epoch) + 'model_e50.pt', 
-                                    aux_filename='e{}_'.format(epoch) + 'waveforms_supplementary_e50.hdf5')
-                                        # print('Start real-time testing...')
-                    start_time = time.time()
-                    cmd = 'python3.7 /userhome/rerungw/gw150914/evaluate_PCL_test_whentrain.py ' + self.model_dir
-                    os.system(cmd)
-                    os.system('sleep 5')
-                    print('Test finished, cost {}s'.format(time.time()-start_time))
-                    print('Keep training...')
-                    for f in os.listdir(p):
-                        if '_model_e50.pt' in f:
-                            os.remove(p / f)
-                        elif '_waveforms_supplementary_e50.hdf5' in f:
-                            os.remove(p / f)
+
 
                 # Save kl and js history
                 self.save_kljs_history(p, epoch)
@@ -1400,6 +1384,14 @@ def main():
         print('Starting timer')
         start_time = time.time()
         if args.transfer_epochs:
+            try:
+                pm.train(args.epochs,
+                        output_freq=args.output_freq,
+                        kl_annealing=args.kl_annealing,
+                        snr_annealing=args.snr_annealing)
+            except KeyboardInterrupt as e:
+                print(e)
+        else: # You should set args.mixed_alpha = 1.0
             print('Now, transfer learning from alpha={}!'.format(args.mixed_alpha))
             try:
                 pm.train(args.transfer_epochs,
@@ -1457,25 +1449,6 @@ def main():
                         print('Saving model')
                         pm.save_model(filename= 'a{}'.format(mixed_alpha) + pm.save_model_name, 
                                       aux_filename='a{}'.format(mixed_alpha) + pm.save_aux_filename)
-        else: # You should set args.mixed_alpha = 1.0
-            try:
-                pm.train(args.epochs,
-                        output_freq=args.output_freq,
-                        kl_annealing=args.kl_annealing,
-                        snr_annealing=args.snr_annealing)
-            except KeyboardInterrupt as e:
-                print(e)      
-            finally:
-                print('Stopping timer.')
-                stop_time = time.time()
-                print('Training time (including validation): {} seconds'
-                    .format(stop_time - start_time))
-
-                if args.save:
-                    print('Saving model')
-                    pm.save_model(filename=pm.save_model_name, 
-                                    aux_filename=pm.save_aux_filename)                      
-
     print('Program complete')
 
 
