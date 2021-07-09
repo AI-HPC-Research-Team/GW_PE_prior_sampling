@@ -65,7 +65,6 @@ def source_frame_to_radiation(theta_jn, phi_jl, tilt_1, tilt_2, phi_12,
 
 def is_fd_waveform(approximant):
     """Return whether the approximant is implemented in FD.
-
     Args:
         approximant (str): name of approximant
     """
@@ -76,13 +75,10 @@ def is_fd_waveform(approximant):
 
 def m1_m2_from_M_q(M, q):
     """Compute individual masses from total mass and mass ratio.
-
     Choose m1 >= m2.
-
     Arguments:
         M {float} -- total mass
         q {mass ratio} -- mass ratio, 0.0< q <= 1.0
-
     Returns:
         (float, float) -- (mass_1, mass_2)
     """
@@ -317,14 +313,11 @@ class WaveformDataset(object):
     @property
     def _noise_std(self):
         """Standard deviation of the whitened noise distribution.
-
         To have noise that comes from a multivariate *unit* normal
         distribution, you must divide by this factor. In practice, this means
         dividing the whitened waveforms by this.
-
         In the continuum limit in time domain, the standard deviation of white
         noise would at each point go to infinity, hence the delta_t factor.
-
         """
         if self.domain == 'TD':
             return 1.0 / np.sqrt(2.0 * self.delta_t)
@@ -341,7 +334,6 @@ class WaveformDataset(object):
 
     def init_detectors(self, ifo_list):
         """Create Detector objects.
-
         Arguments:
             ifo_list {list} -- list of strings representing detector names
         """
@@ -358,9 +350,7 @@ class WaveformDataset(object):
 
     def generate_dataset(self, n=100000):
         """Generate and store the dataset of waveforms.
-
         Waveforms are distributed in parameter space according to the prior.
-
         Keyword Arguments:
             n {int} -- number of waveforms (default: {10000})
         """
@@ -472,12 +462,9 @@ class WaveformDataset(object):
 
     def _sample_prior(self, n):
         """Obtain samples from the prior distribution.
-
         Note that this does not respect the SNR threshold.
-
         Arguments:
             n {int} -- number of samples
-
         Returns:
             array -- samples
         """
@@ -559,10 +546,8 @@ class WaveformDataset(object):
 
     def _sample_prior_posterior(self, n):
         """Obtain samples from the target posterior distribution.
-
         Arguments:
             n {int} -- number of samples
-
         Returns:
             array -- samples
         """
@@ -593,10 +578,8 @@ class WaveformDataset(object):
     
     def sample_prior_extrinsic_posterior(self, n):
         """Draw samples of extrinsic parameters from the posterior prior.
-
         Arguments:
             n {int} -- number of prior samples
-
         Returns:
             array -- n x m array of samples, where m is number of extrinsic
                      parameters
@@ -606,11 +589,9 @@ class WaveformDataset(object):
 
     def _generate_psd(self, delta_f, ifo):
         """Generate a PSD. This depends on the detector chosen.
-
         Arguments:
             delta_f {float} -- frequency spacing for PSD
             ifo {str} -- detector name
-
         Returns:
             psd -- generated PSD
         """
@@ -639,14 +620,11 @@ class WaveformDataset(object):
 
     def _get_psd(self, delta_f, ifo):
         """Return a PSD with given delta_f.
-
         Either get the PSD from the PSD dictionary or generate it and
         save it to the PSD dictionary.
-
          Arguments:
             delta_f {float} -- frequency spacing for PSD
             ifo {str} -- detector name
-
         Returns:
             psd -- generated PSD
         """
@@ -866,10 +844,8 @@ class WaveformDataset(object):
 
     def sample_prior_extrinsic(self, n):
         """Draw samples of extrinsic parameters from the prior.
-
         Arguments:
             n {int} -- number of prior samples
-
         Returns:
             array -- n x m array of samples, where m is number of extrinsic
                      parameters
@@ -904,19 +880,15 @@ class WaveformDataset(object):
 
     def get_detector_waveforms(self, hp, hc, p_initial, p_extrinsic, mode):
         """Convert intrinsic hp, hc waveforms into waveforms at the detectors.
-
         This modifies the extrinsic parameters (distance, phase, time) and
         inserts the sky position.
-
         Works on FD or RB waveforms.
-
         Arguments:
             hp {array} -- plus polarization of initial waveform
             hc {array} -- cross polarization of initial waveform
             p_initial {array} -- parameters of initial waveform
             p_extrinsic {array} -- new extrinsic parameters desired
             mode {str} -- 'FD' or 'RB'
-
         Returns:
             tuple -- (new parameter array, list of detector waveforms)
         """
@@ -984,7 +956,6 @@ class WaveformDataset(object):
 
     def init_relative_whitening(self):
         """Initialize relative whitening.
-
         For FD waveforms, this sets up multiplicative factors to go from
         waveforms whitened with the reference PSD to waveforms
         whitened with detector PSDs.
@@ -1009,13 +980,10 @@ class WaveformDataset(object):
     def whiten_relative(self, h, ifo):
         """Whiten a FD waveform that has already been whitened with the
         reference PSD.
-
         Whitening must first be initialized with init_relative_whitening.
-
         Arguments:
             h {array} -- frequency domain waveform
             ifo {str} -- detector name for whitening
-
         Returns:
             array -- whitened waveform
         """
@@ -1027,18 +995,13 @@ class WaveformDataset(object):
 
     def p_h_random_extrinsic(self, idx, train, mode=None):
         """Generate detector waveform with random extrinsic parameters.
-
         This uses intrinsic parameters for a given index from either the train
         or test set. If necessary, it generates the + and x polarizations.
-
         Then it generates random parameters, and calculates detector waveforms.
-
         Arguments: idx {int} -- index of the intrinsic parameters train {bool}
             -- True: training set; False: test set
-
         Keyword Arguments: mode {str} -- domain of desired waveform ('FD' or
             'RB') (default: {None})
-
         Returns: (array, dict, float) -- parameters, detector waveforms, weight
         """
 
@@ -1109,13 +1072,10 @@ class WaveformDataset(object):
 
     def generate_reduced_basis(self, n_train=10000, n_test=10000):
         """Generate the reduced basis elements.
-
         This draws parameters from the prior, generates detector waveforms,
         and trains the SVD basis based on these.
-
         It then evaluates performance on the training waveforms, and a set
         of validation waveforms.
-
         Keyword Arguments:
             n_train {int} -- number of training waveforms (default: {10000})
             n_test {int} -- number of test waveforms (default: {10000})
@@ -1254,7 +1214,6 @@ class WaveformDataset(object):
 
     def truncate_basis(self, n):
         """Truncate the reduced basis to dimension n.
-
         Arguments:
             n {int} -- New basis dimension.
         """
@@ -1281,7 +1240,6 @@ class WaveformDataset(object):
              config_fn='settings.json'):
         """Save the database of parameters and waveforms to an HDF5 file,
         and the configuration parameters to a json file.
-
         Keyword Arguments:
             data_dir {str} -- directory for saving (default: {'.'})
             data_fn {str} -- data file name (default:
@@ -1344,7 +1302,6 @@ class WaveformDataset(object):
     def load(self, data_dir='.', data_fn='waveform_dataset.hdf5',
              config_fn='settings.json', mixed_alpha=None):
         """Load a database created with the save method.
-
         Keyword Arguments:
             data_dir {str} -- directory where files are stored (default: {'.'})
             data_fn {str} -- data file name (default:
@@ -1465,7 +1422,6 @@ class WaveformDataset(object):
     def init_training(self, train_fraction=0.9):
         """Define training and test sets, compute parameters needed for
         standardization.
-
         """
 
         self.train_fraction = train_fraction
@@ -1483,7 +1439,6 @@ class WaveformDataset(object):
     def _compute_parameter_statistics(self):
         """Compute mean and standard deviation for physical parameters, in
         order to standardize later.
-
         """
         # parameters_train = self.parameters[self.train_selection]
         # self.parameters_mean = np.mean(parameters_train, axis=0)
@@ -1554,7 +1509,6 @@ class WaveformDataset(object):
 
     def x_train(self):
         """Return training set of standardized waveform parameters x.
-
         Each parameter should have mean 0 and standard deviation 1,
         when averaged over the training set."""
 
@@ -1563,10 +1517,8 @@ class WaveformDataset(object):
 
     def x_test(self):
         """Return test set of standardized waveform parameters x.
-
         Each parameter should have mean 0 and standard deviation 1,
         when averaged over the training set.
-
         """
 
         return (self.parameters[self.test_selection]
@@ -1575,7 +1527,6 @@ class WaveformDataset(object):
     def post_process_parameters(self, parameters):
         """Takes as input an array of size (nsamples, nparameters), consisting
         of a list of standardized parameters.
-
         Returns true parameters, i.e., undoes the standardization.
         """
 
@@ -1587,7 +1538,6 @@ class WaveformDataset(object):
     def pre_process_parameters(self, parameters):
         """Takes as input an array of size (nsamples, nparameters), consisting
         of a list of parameters.
-
         Returns standardized parameters.
         """
 
@@ -1829,7 +1779,6 @@ class WaveformDataset(object):
                              data_fn='noisy_test_data.hdf5',
                              config_fn='settings.json'):
         """Load noisy test data from file.
-
         This works even without loading a full training set, e.g, for
         evaluation purposes.
         """
@@ -1949,11 +1898,9 @@ class WaveformDataset(object):
     def _resample_distance(self, p, h_det):
         """Resample the luminosity distance for a waveform based on
         new distance prior and / or an SNR threshold.
-
         Arguments:
             p {array} -- initial parameters
             h_det {dict} -- initial detector waveforms
-
         Returns:
             array -- new parameters, with distance resampled
             dict -- new detector waveforms
@@ -2102,10 +2049,8 @@ class WaveformDataset(object):
         """Estimate the variances of the luminosity distance and the
         reduced basis coefficients, based on the SNR threshold. Also calculate
         the mean for the distance.
-
         This is needed in order to standardize inputs to the neural network,
         where the variance in each input is 1, and the mean is 0.
-
         Arguments:
             nsamples {int} -- number of waveforms to use in the estimate
                               (Default: 100000)

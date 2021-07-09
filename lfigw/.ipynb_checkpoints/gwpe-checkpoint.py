@@ -12,28 +12,82 @@ import corner
 import csv
 import time
 import numpy as np
+import pandas as pd
 import h5py
+from scipy import stats
 
 from . import waveform_generator as wfg
 from . import a_flows
 from . import nde_flows
 from . import cvae
 
+def touch(path):
+    with open(path, 'a'):
+        os.utime(path, None)
+
+def kl_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
+    try:
+         kernel = [kde(i,bw_method='scott') for i in samples]
+    except np.linalg.LinAlgError:
+         return float("nan")
+        
+    x = np.linspace(
+        np.min([np.min(i) for i in samples]),
+        np.max([np.max(i) for i in samples]),
+        100
+    )
+    factor = 1.0e-5
+
+    a, b = [k(x) for k in kernel]
+    
+    for index in range(len(a)):
+        if a[index] < max(a) * factor:
+            a[index] = max(a) * factor
+            
+    for index in range(len(b)):
+        if b[index] < max(b) * factor:
+            b[index] = max(b) * factor
+
+    a = np.asarray(a)
+    b = np.asarray(b)
+    kl_forward = stats.entropy(a, qk=b, base=base)
+    return kl_forward
+
+def js_divergence(samples, kde=stats.gaussian_kde, decimal=5, base=2.0):
+    try:
+         kernel = [kde(i) for i in samples]
+    except np.linalg.LinAlgError:
+         return float("nan")
+        
+    x = np.linspace(
+        np.min([np.min(i) for i in samples]),
+        np.max([np.max(i) for i in samples]),
+        100
+    )
+    
+    a, b = [k(x) for k in kernel]
+    a = np.asarray(a)
+    b = np.asarray(b)
+    
+    m = 1. / 2 * (a + b)
+    kl_forward = stats.entropy(a, qk=m, base=base)
+    kl_backward = stats.entropy(b, qk=m, base=base)
+    return np.round(kl_forward / 2. + kl_backward / 2., decimal)
+
 
 class PosteriorModel(object):
 
     def __init__(self, model_dir=None, data_dir=None,
-                 sample_extrinsic_only=True,save_aux_filename='waveforms_supplementary.hdf5',save_model_name='model.pt',
+                save_aux_filename='waveforms_supplementary.hdf5',save_model_name='model.pt',
                  use_cuda=True):
 
         self.wfd = None
         self.model = None
         self.data_dir = data_dir
         self.model_dir = model_dir
-        self.model_type = None
         self.save_aux_filename = save_aux_filename
-        self.save_model_name = save_model_name        
-        self.sample_extrinsic_only = sample_extrinsic_only
+        self.save_model_name = save_model_name
+        self.model_type = None
         self.optimizer = None
         self.scheduler = None
         self.detectors = None
@@ -51,11 +105,10 @@ class PosteriorModel(object):
     def load_dataset(self, batch_size=512, detectors=None,
                      truncate_basis=None, snr_threshold=None,
                      distance_prior_fn=None, distance_prior=None,
+                     mixed_alpha=None,
                      bw_dstar=None):
         """Load database of waveforms and set up data loaders.
-
         Args:
-
             batch_size (int):  batch size for DataLoaders
         """
 
@@ -65,7 +118,7 @@ class PosteriorModel(object):
 
         # Load waveforms, already split into train and test sets
         self.wfd = wfg.WaveformDataset()
-        self.wfd.load(self.data_dir)
+        self.wfd.load(self.data_dir, mixed_alpha=mixed_alpha)
         self.wfd.load_train(self.data_dir)
 
         # Set the detectors for training; useful if this is different from
@@ -115,6 +168,21 @@ class PosteriorModel(object):
             if restandardize:
                 self.wfd.calculate_threshold_standardizations()
 
+        # 用于在训练的时候，与目标 event 的测试后验分布作对比
+        self.wfd._load_posterior(self.wfd.event,)
+        self.wfd.parameters_event = self.wfd._sample_prior_posterior(50000).astype(np.float32)
+
+        # Load strain data for event
+        event_strain = {}
+        with h5py.File(self.wfd.event_dir / 'strain_FD_whitened.hdf5', 'r') as f:
+            event_strain = {det: f[det][:].astype(np.complex64) for det in self.detectors}
+        d_RB = {}
+        for ifo, di in event_strain.items():
+            h_RB = self.wfd.basis.fseries_to_basis_coefficients(di)
+            d_RB[ifo] = h_RB
+        _, self.event_y = self.wfd.x_y_from_p_h(np.zeros(self.wfd.nparams), d_RB, add_noise=False)
+
+
         # pytorch wrappers
         wfd_train = wfg.WaveformDatasetTorch(self.wfd, train=True)
         wfd_test = wfg.WaveformDatasetTorch(self.wfd, train=False)
@@ -133,16 +201,12 @@ class PosteriorModel(object):
 
     def construct_model(self, model_type, existing=False, **kwargs):
         """Construct the neural network model.
-
         Args:
-
             model_type:     'maf' or 'cvae'
             wfd:            (Optional) If constructing the model from a
                             WaveformDataset, include this. Otherwise, all
                             arguments are passed through kwargs.
-
             kwargs:         Depends on the model_type
-
                 'maf'   input_dim       Do not include with wfd
                         context_dim     Do not include with wfd
                         hidden_dims
@@ -150,7 +214,6 @@ class PosteriorModel(object):
                         batch_norm      (True)
                         bn_momentum     (0.9)
                         activation      ('elu')
-
                 'cvae'  input_dim       Do not include with wfd
                         context_dim     Do not include with wfd
                         latent_dim      int
@@ -160,14 +223,12 @@ class PosteriorModel(object):
                         decoder_full_cov (True)
                         activation      ('elu')
                         batch_norm      (False)
-
                         iaf             Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         IAF. Keys should be:
                                             context_dim
                                             hidden_dims
                                             nflows
-
                         prior_maf     Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         MAF. Keys should be:
@@ -175,9 +236,7 @@ class PosteriorModel(object):
                                             nflows
                                         Note that this is conditioned on
                                         the waveforms automatically.
-
             * it is recommended to only use one of iaf or prior_maf
-
                         decoder_maf     Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         MAF. Keys should be:
@@ -286,9 +345,7 @@ class PosteriorModel(object):
     def save_model(self, filename='model.pt',
                    aux_filename='waveforms_supplementary.hdf5'):
         """Save a model and optimizer to file.
-
         Args:
-
             model:      model to be saved
             optimizer:  optimizer to be saved
             epoch:      current epoch number
@@ -337,9 +394,7 @@ class PosteriorModel(object):
 
     def load_model(self, filename='model.pt'):
         """Load a saved model.
-
         Args:
-
             filename:       File name
         """
 
@@ -403,12 +458,12 @@ class PosteriorModel(object):
     def train(self, epochs, output_freq=50, kl_annealing=True,
               snr_annealing=False):
         """Train the model.
-
         Args:
                 epochs:     number of epochs to train for
                 output_freq:    how many iterations between outputs
                 kl_annealing:  for cvae, whether to anneal the kl loss
         """
+        epoch_minimum_test_loss = 0
 
         if self.wfd.extrinsic_at_train:
             add_noise = False
@@ -513,6 +568,89 @@ class PosteriorModel(object):
                             writer = csv.writer(f, delimiter='\t')
                             writer.writerow(
                                 [epoch, train_kl_loss, test_kl_loss])
+                    data_history = np.loadtxt(p / 'history.txt')
+
+                    # Plot                  
+                    plt.figure()
+                    plt.plot(data_history[:,0], data_history[:,1], '*--', label='train')
+                    plt.plot(data_history[:,0], data_history[:,2], '*--', label='test')
+                    plt.xlabel('Epoch')
+                    plt.ylabel('Loss')
+                    plt.legend()
+                    plt.savefig(p / 'history.png')
+                    plt.close()
+                    touch(p / ('.'+'history.png'))
+                    
+                    epoch_minimum_test_loss = int(data_history[np.argmin(data_history[:,2]),0])
+                touch(p / ('.'+'history.txt'))
+
+                # Save kl and js history
+                self.save_kljs_history(p, epoch)
+
+                if (output_freq is not None) and (epoch == epoch_minimum_test_loss):
+                    for f in os.listdir(p):
+                        if '_model.pt' in f:
+                            os.remove(p / f)
+                        elif '_waveforms_supplementary.hdf5' in f:
+                            os.remove(p / f)
+                    print('Saving model as e{}_{} & e{}_{}'.format(epoch, self.save_model_name, epoch,
+                                                                   self.save_aux_filename))
+                    self.save_model(filename= 'e{}_'.format(epoch) + self.save_model_name, 
+                                    aux_filename='e{}_'.format(epoch) + self.save_aux_filename)
+                    self.save_test_samples(p)
+
+    def save_test_samples(self, p):
+        np.save(p / 'test_event_samples', self.test_samples)
+
+    def get_test_samples(self, p):
+        # for nflow only
+        x_samples = nde_flows.obtain_samples(self.model, self.event_y, 50000, self.device)
+        x_samples = x_samples.cpu()
+        # Rescale parameters. The neural network preferred mean zero and variance one. This undoes that scaling.
+        self.test_samples = self.wfd.post_process_parameters(x_samples.numpy())
+
+    def save_kljs_history(self, p, epoch):
+        self.get_test_samples(p)
+        # Make column headers if this is the first epoch
+        if epoch == 1:
+            with open(p / 'js_history.txt', 'w') as f:
+                writer = csv.writer(f, delimiter='\t')
+                writer.writerow(list(self.wfd.param_idx.keys()))
+            with open(p / 'kl_history.txt', 'w') as f:
+                writer = csv.writer(f, delimiter='\t')
+                writer.writerow(list(self.wfd.param_idx.keys()))
+
+        with open(p / 'js_history.txt', 'a') as f:
+            writer = csv.writer(f, delimiter='\t')
+            writer.writerow(js_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+        with open(p / 'kl_history.txt', 'a') as f:
+            writer = csv.writer(f, delimiter='\t')
+            writer.writerow(kl_divergence([self.test_samples[:,index], self.wfd.parameters_event[:,index]]) for name, index in self.wfd.param_idx.items())
+
+        touch(p / ('.'+'js_history.txt'))
+        touch(p / ('.'+'kl_history.txt'))
+
+        # Plot
+        if epoch >1:
+            kldf = pd.read_csv(p / 'kl_history.txt', sep='\t')
+            jsdf = pd.read_csv(p / 'js_history.txt', sep='\t')
+            plt.figure()
+            [plt.plot(jsdf[name], label=name) for name in self.wfd.param_idx.keys()]
+            plt.xlabel('Epoch')
+            plt.ylabel('JS div.')
+            plt.legend()
+            plt.savefig(p / 'js_history.png')
+            plt.close()
+            touch(p / ('.'+'js_history.png'))        
+
+            plt.figure()
+            [plt.plot(kldf[name], label=name) for name in self.wfd.param_idx.keys()]
+            plt.xlabel('Epoch')
+            plt.ylabel('KL div.')
+            plt.legend()
+            plt.savefig(p / 'kl_history.png')
+            plt.close()
+            touch(p / ('.'+'kl_history.png'))
 
     def init_waveform_supp(self, aux_filename='waveforms_supplementary.hdf5'):
 
@@ -542,7 +680,6 @@ class PosteriorModel(object):
 
     def evaluate(self, idx, nsamples=10000, plot=True):
         """Evaluate the model on a noisy waveform.
-
         Args:
             idx         index of the waveform, from a noisy waveform
                         database
@@ -616,11 +753,10 @@ def parse_args():
     dir_parent_parser = argparse.ArgumentParser(add_help=False)
     dir_parent_parser.add_argument('--data_dir', type=str, required=True)
     dir_parent_parser.add_argument('--model_dir', type=str, required=True)
-    dir_parent_parser.add_argument('--save_model_name', type=str, required=True)
-    dir_parent_parser.add_argument('--save_aux_filename', type=str, required=True)   
-    dir_parent_parser.add_argument('--dont_sample_extrinsic_only', action='store_false')
     dir_parent_parser.add_argument('--no_cuda', action='store_false',
                                    dest='cuda')
+    dir_parent_parser.add_argument(
+        '--mixed_alpha', type=float, default='0.0')
 
     activation_parent_parser = argparse.ArgumentParser(add_help=None)
     activation_parent_parser.add_argument(
@@ -907,9 +1043,6 @@ def main():
         print('Model directory', args.model_dir)
         pm = PosteriorModel(model_dir=args.model_dir,
                             data_dir=args.data_dir,
-                            save_model_name=args.save_model_name,
-                            save_aux_filename=args.save_aux_filename,
-                            sample_extrinsic_only=args.dont_sample_extrinsic_only,
                             use_cuda=args.cuda)
         print('Device', pm.device)
         print('Loading dataset')
@@ -918,6 +1051,7 @@ def main():
                         truncate_basis=args.truncate_basis,
                         snr_threshold=args.snr_threshold,
                         distance_prior_fn=args.distance_prior_fn,
+                        mixed_alpha=args.mixed_alpha,
                         distance_prior=args.distance_prior,
                         bw_dstar=args.bw_dstar)
         print('Detectors:', pm.detectors)
@@ -1171,22 +1305,19 @@ def main():
         print('Starting timer')
         start_time = time.time()
 
-        try:
-            pm.train(args.epochs,
-                     output_freq=args.output_freq,
-                     kl_annealing=args.kl_annealing,
-                     snr_annealing=args.snr_annealing)
-        except KeyboardInterrupt as e:
-            print(e)
-        finally:
-            print('Stopping timer.')
-            stop_time = time.time()
-            print('Training time (including validation): {} seconds'
-                  .format(stop_time - start_time))
+        pm.train(args.epochs,
+                 output_freq=args.output_freq,
+                 kl_annealing=args.kl_annealing,
+                 snr_annealing=args.snr_annealing)
 
-            if args.save:
-                print('Saving model')
-                pm.save_model(filename=pm.save_model_name, aux_filename=pm.save_aux_filename)
+        print('Stopping timer.')
+        stop_time = time.time()
+        print('Training time (including validation): {} seconds'
+              .format(stop_time - start_time))
+
+        if args.save:
+            print('Saving model')
+            pm.save_model()
 
     print('Program complete')
 

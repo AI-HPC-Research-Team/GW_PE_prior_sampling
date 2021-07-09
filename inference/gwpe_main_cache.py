@@ -114,9 +114,7 @@ class PosteriorModel(object):
                      mixed_alpha = None,
                      bw_dstar=None):
         """Load database of waveforms and set up data loaders.
-
         Args:
-
             batch_size (int):  batch size for DataLoaders
         """
         self.nsamples_target_event = nsamples_target_event
@@ -255,16 +253,12 @@ class PosteriorModel(object):
 
     def construct_model(self, model_type, existing=False, **kwargs):
         """Construct the neural network model.
-
         Args:
-
             model_type:     'maf' or 'cvae'
             wfd:            (Optional) If constructing the model from a
                             WaveformDataset, include this. Otherwise, all
                             arguments are passed through kwargs.
-
             kwargs:         Depends on the model_type
-
                 'maf'   input_dim       Do not include with wfd
                         context_dim     Do not include with wfd
                         hidden_dims
@@ -272,7 +266,6 @@ class PosteriorModel(object):
                         batch_norm      (True)
                         bn_momentum     (0.9)
                         activation      ('elu')
-
                 'cvae'  input_dim       Do not include with wfd
                         context_dim     Do not include with wfd
                         latent_dim      int
@@ -282,14 +275,12 @@ class PosteriorModel(object):
                         decoder_full_cov (True)
                         activation      ('elu')
                         batch_norm      (False)
-
                         iaf             Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         IAF. Keys should be:
                                             context_dim
                                             hidden_dims
                                             nflows
-
                         prior_maf     Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         MAF. Keys should be:
@@ -297,9 +288,7 @@ class PosteriorModel(object):
                                             nflows
                                         Note that this is conditioned on
                                         the waveforms automatically.
-
             * it is recommended to only use one of iaf or prior_maf
-
                         decoder_maf     Either None, or a dictionary of
                                         hyperparameters describing the desired
                                         MAF. Keys should be:
@@ -408,9 +397,7 @@ class PosteriorModel(object):
     def save_model(self, filename='model.pt',
                    aux_filename='waveforms_supplementary.hdf5'):
         """Save a model and optimizer to file.
-
         Args:
-
             model:      model to be saved
             optimizer:  optimizer to be saved
             epoch:      current epoch number
@@ -461,9 +448,7 @@ class PosteriorModel(object):
 
     def load_model(self, filename='model.pt'):
         """Load a saved model.
-
         Args:
-
             filename:       File name
         """
 
@@ -527,7 +512,6 @@ class PosteriorModel(object):
     def train(self, epochs, output_freq=50, kl_annealing=True,
               snr_annealing=False):
         """Train the model.
-
         Args:
                 epochs:     number of epochs to train for
                 output_freq:    how many iterations between outputs
@@ -753,7 +737,6 @@ class PosteriorModel(object):
 
     def evaluate(self, idx, nsamples=10000, plot=True):
         """Evaluate the model on a noisy waveform.
-
         Args:
             idx         index of the waveform, from a noisy waveform
                         database

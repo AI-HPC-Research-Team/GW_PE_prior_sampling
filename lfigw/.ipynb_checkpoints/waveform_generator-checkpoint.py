@@ -1,7 +1,8 @@
 from .reduced_basis import SVDBasis
-
+from imblearn.combine import SMOTETomek # pip install imblearn
 import h5py
 import numpy as np
+import pandas as pd
 from pathlib import Path
 import json
 import functools
@@ -64,7 +65,6 @@ def source_frame_to_radiation(theta_jn, phi_jl, tilt_1, tilt_2, phi_12,
 
 def is_fd_waveform(approximant):
     """Return whether the approximant is implemented in FD.
-
     Args:
         approximant (str): name of approximant
     """
@@ -75,13 +75,10 @@ def is_fd_waveform(approximant):
 
 def m1_m2_from_M_q(M, q):
     """Compute individual masses from total mass and mass ratio.
-
     Choose m1 >= m2.
-
     Arguments:
         M {float} -- total mass
         q {mass ratio} -- mass ratio, 0.0< q <= 1.0
-
     Returns:
         (float, float) -- (mass_1, mass_2)
     """
@@ -107,6 +104,8 @@ class WaveformDataset(object):
     def __init__(self, spins=True, inclination=True, spins_aligned=True,
                  detectors=['H1', 'L1', 'V1'], domain='TD',
                  extrinsic_at_train=False):
+
+        self.mixed_alpha = 0.0
 
         # Set up indices for parameters
         param_idx = dict(mass_1=0, mass_2=1, phase=2, time=3, distance=4)
@@ -314,14 +313,11 @@ class WaveformDataset(object):
     @property
     def _noise_std(self):
         """Standard deviation of the whitened noise distribution.
-
         To have noise that comes from a multivariate *unit* normal
         distribution, you must divide by this factor. In practice, this means
         dividing the whitened waveforms by this.
-
         In the continuum limit in time domain, the standard deviation of white
         noise would at each point go to infinity, hence the delta_t factor.
-
         """
         if self.domain == 'TD':
             return 1.0 / np.sqrt(2.0 * self.delta_t)
@@ -338,7 +334,6 @@ class WaveformDataset(object):
 
     def init_detectors(self, ifo_list):
         """Create Detector objects.
-
         Arguments:
             ifo_list {list} -- list of strings representing detector names
         """
@@ -355,9 +350,7 @@ class WaveformDataset(object):
 
     def generate_dataset(self, n=100000):
         """Generate and store the dataset of waveforms.
-
         Waveforms are distributed in parameter space according to the prior.
-
         Keyword Arguments:
             n {int} -- number of waveforms (default: {10000})
         """
@@ -469,12 +462,9 @@ class WaveformDataset(object):
 
     def _sample_prior(self, n):
         """Obtain samples from the prior distribution.
-
         Note that this does not respect the SNR threshold.
-
         Arguments:
             n {int} -- number of samples
-
         Returns:
             array -- samples
         """
@@ -538,13 +528,70 @@ class WaveformDataset(object):
 
         return samples
 
+    #
+    # Generate target dis.
+    #
+    def _load_posterior(self, event):
+        # print('sample_extrinsic_only:', self.sample_extrinsic_only)
+        try:
+            df = pd.read_csv('../bilby_runs/downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+        except:
+            df = pd.read_csv('./downsampled_posterior_samples_v1.0.0/{}_downsampled_posterior_samples.dat'.format(event), sep=' ')
+        self.bilby_samples = df.dropna()[['mass_1', 'mass_2', 'phase', 'geocent_time', 'luminosity_distance',
+                              'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl',
+                              'theta_jn', 'psi', 'ra', 'dec']].values.astype('float64')
+        self.bilby_samples[:,3] = self.bilby_samples[:,3] - self.ref_time
+        # if self.sample_extrinsic_only:
+        self.bilby_samples_extrisinc = self.bilby_samples[:,[3,4,12,13,14]]
+
+    def _sample_prior_posterior(self, n):
+        """Obtain samples from the target posterior distribution.
+        Arguments:
+            n {int} -- number of samples
+        Returns:
+            array -- samples
+        """
+        # if not self.sample_extrinsic_only:
+        return self.oversampling(self.bilby_samples, threshold=n)[:n]
+        # elif self.sample_extrinsic_only:
+            # return self.oversampling(self.bilby_samples_extrisinc, threshold=n)[:n]
+
+    @staticmethod
+    def oversampling(x: np.array, threshold=512, random_state=0):
+        num = len(x)//4
+        cache = []
+        while True:
+            Input = pd.DataFrame(x).sample(2*num).values
+            fitfor = Input, [1,]*(num)+[0,]*(num)
+            smote_tomek = SMOTETomek(random_state=random_state)
+            Output_tomek, _ = smote_tomek.fit_resample(*fitfor)            
+            cache.append(pd.concat([pd.DataFrame(Input), pd.DataFrame(Output_tomek)]).drop_duplicates(keep=False).values)
+            if len(np.concatenate(cache)) > threshold:
+                break
+        return np.concatenate(cache)
+
+    def _cache_oversampled_parameters(self, nsample):
+        self.ncache_parameters = nsample
+        # sample_extrinsic_only
+        #self.cache_parameters = self.oversampling(self.bilby_samples, threshold=len(self.parameters))
+        self.cache_parameters_extrinsic = self.oversampling(self.bilby_samples_extrisinc, threshold=nsample)[:nsample]
+    
+    def sample_prior_extrinsic_posterior(self, n):
+        """Draw samples of extrinsic parameters from the posterior prior.
+        Arguments:
+            n {int} -- number of prior samples
+        Returns:
+            array -- n x m array of samples, where m is number of extrinsic
+                     parameters
+        """
+        assert n == 1
+        return self.cache_parameters_extrinsic[np.random.randint(self.ncache_parameters)][np.newaxis,...].astype(np.float32)
+
     def _generate_psd(self, delta_f, ifo):
         """Generate a PSD. This depends on the detector chosen.
-
         Arguments:
             delta_f {float} -- frequency spacing for PSD
             ifo {str} -- detector name
-
         Returns:
             psd -- generated PSD
         """
@@ -573,14 +620,11 @@ class WaveformDataset(object):
 
     def _get_psd(self, delta_f, ifo):
         """Return a PSD with given delta_f.
-
         Either get the PSD from the PSD dictionary or generate it and
         save it to the PSD dictionary.
-
          Arguments:
             delta_f {float} -- frequency spacing for PSD
             ifo {str} -- detector name
-
         Returns:
             psd -- generated PSD
         """
@@ -800,10 +844,8 @@ class WaveformDataset(object):
 
     def sample_prior_extrinsic(self, n):
         """Draw samples of extrinsic parameters from the prior.
-
         Arguments:
             n {int} -- number of prior samples
-
         Returns:
             array -- n x m array of samples, where m is number of extrinsic
                      parameters
@@ -838,19 +880,15 @@ class WaveformDataset(object):
 
     def get_detector_waveforms(self, hp, hc, p_initial, p_extrinsic, mode):
         """Convert intrinsic hp, hc waveforms into waveforms at the detectors.
-
         This modifies the extrinsic parameters (distance, phase, time) and
         inserts the sky position.
-
         Works on FD or RB waveforms.
-
         Arguments:
             hp {array} -- plus polarization of initial waveform
             hc {array} -- cross polarization of initial waveform
             p_initial {array} -- parameters of initial waveform
             p_extrinsic {array} -- new extrinsic parameters desired
             mode {str} -- 'FD' or 'RB'
-
         Returns:
             tuple -- (new parameter array, list of detector waveforms)
         """
@@ -918,7 +956,6 @@ class WaveformDataset(object):
 
     def init_relative_whitening(self):
         """Initialize relative whitening.
-
         For FD waveforms, this sets up multiplicative factors to go from
         waveforms whitened with the reference PSD to waveforms
         whitened with detector PSDs.
@@ -943,13 +980,10 @@ class WaveformDataset(object):
     def whiten_relative(self, h, ifo):
         """Whiten a FD waveform that has already been whitened with the
         reference PSD.
-
         Whitening must first be initialized with init_relative_whitening.
-
         Arguments:
             h {array} -- frequency domain waveform
             ifo {str} -- detector name for whitening
-
         Returns:
             array -- whitened waveform
         """
@@ -961,18 +995,13 @@ class WaveformDataset(object):
 
     def p_h_random_extrinsic(self, idx, train, mode=None):
         """Generate detector waveform with random extrinsic parameters.
-
         This uses intrinsic parameters for a given index from either the train
         or test set. If necessary, it generates the + and x polarizations.
-
         Then it generates random parameters, and calculates detector waveforms.
-
         Arguments: idx {int} -- index of the intrinsic parameters train {bool}
             -- True: training set; False: test set
-
         Keyword Arguments: mode {str} -- domain of desired waveform ('FD' or
             'RB') (default: {None})
-
         Returns: (array, dict, float) -- parameters, detector waveforms, weight
         """
 
@@ -994,7 +1023,10 @@ class WaveformDataset(object):
         p_initial = self.parameters[orig_idx]
 
         # Generate random extrinsic parameters.
-        p_extrinsic = self.sample_prior_extrinsic(1)[0]
+        # p_extrinsic = self.sample_prior_extrinsic(1)[0]
+        p_extrinsic = (self.sample_prior_extrinsic_posterior(1)[0]
+            if np.random.binomial(1, self.mixed_alpha,)
+                else self.sample_prior_extrinsic(1)[0])
 
         if mode == 'FD' and self.domain == 'RB':
             # Generate the waveform.
@@ -1040,13 +1072,10 @@ class WaveformDataset(object):
 
     def generate_reduced_basis(self, n_train=10000, n_test=10000):
         """Generate the reduced basis elements.
-
         This draws parameters from the prior, generates detector waveforms,
         and trains the SVD basis based on these.
-
         It then evaluates performance on the training waveforms, and a set
         of validation waveforms.
-
         Keyword Arguments:
             n_train {int} -- number of training waveforms (default: {10000})
             n_test {int} -- number of test waveforms (default: {10000})
@@ -1185,7 +1214,6 @@ class WaveformDataset(object):
 
     def truncate_basis(self, n):
         """Truncate the reduced basis to dimension n.
-
         Arguments:
             n {int} -- New basis dimension.
         """
@@ -1212,7 +1240,6 @@ class WaveformDataset(object):
              config_fn='settings.json'):
         """Save the database of parameters and waveforms to an HDF5 file,
         and the configuration parameters to a json file.
-
         Keyword Arguments:
             data_dir {str} -- directory for saving (default: {'.'})
             data_fn {str} -- data file name (default:
@@ -1273,9 +1300,8 @@ class WaveformDataset(object):
             self.basis.save(data_dir)
 
     def load(self, data_dir='.', data_fn='waveform_dataset.hdf5',
-             config_fn='settings.json'):
+             config_fn='settings.json', mixed_alpha=None):
         """Load a database created with the save method.
-
         Keyword Arguments:
             data_dir {str} -- directory where files are stored (default: {'.'})
             data_fn {str} -- data file name (default:
@@ -1348,6 +1374,22 @@ class WaveformDataset(object):
         self.parameters = f_data['parameters'][:, :]
         self.nsamples = len(self.parameters)
 
+        self.mixed_alpha = mixed_alpha
+        if self.mixed_alpha:
+            print('Load mixed_alpha =', self.mixed_alpha, '(It may take a few mins...)')
+            self._load_posterior(self.event,)
+            parameters_posterior = self._sample_prior_posterior(self.nsamples).astype(np.float32)
+            parameters_uniform = self._sample_prior(self.nsamples).astype(np.float32)
+            self.parameters = np.concatenate((parameters_posterior[:int(self.nsamples*self.mixed_alpha)], 
+                                                  parameters_uniform[:(self.nsamples-int(self.nsamples*self.mixed_alpha))]),axis=0)
+            assert self.nsamples == len(self.parameters)        
+            # I have to shuffle the mixed parameters...
+            index = np.arange(self.nsamples)
+            np.random.shuffle(index)
+            self.parameters = self.parameters[index]                
+        else:
+            print('Load mixed_alpha = 0.0')
+        print('loaded parameters...')
         self.h_detector = {}
 
         if self.extrinsic_at_train:
@@ -1380,7 +1422,6 @@ class WaveformDataset(object):
     def init_training(self, train_fraction=0.9):
         """Define training and test sets, compute parameters needed for
         standardization.
-
         """
 
         self.train_fraction = train_fraction
@@ -1398,7 +1439,6 @@ class WaveformDataset(object):
     def _compute_parameter_statistics(self):
         """Compute mean and standard deviation for physical parameters, in
         order to standardize later.
-
         """
         # parameters_train = self.parameters[self.train_selection]
         # self.parameters_mean = np.mean(parameters_train, axis=0)
@@ -1469,7 +1509,6 @@ class WaveformDataset(object):
 
     def x_train(self):
         """Return training set of standardized waveform parameters x.
-
         Each parameter should have mean 0 and standard deviation 1,
         when averaged over the training set."""
 
@@ -1478,10 +1517,8 @@ class WaveformDataset(object):
 
     def x_test(self):
         """Return test set of standardized waveform parameters x.
-
         Each parameter should have mean 0 and standard deviation 1,
         when averaged over the training set.
-
         """
 
         return (self.parameters[self.test_selection]
@@ -1490,7 +1527,6 @@ class WaveformDataset(object):
     def post_process_parameters(self, parameters):
         """Takes as input an array of size (nsamples, nparameters), consisting
         of a list of standardized parameters.
-
         Returns true parameters, i.e., undoes the standardization.
         """
 
@@ -1502,7 +1538,6 @@ class WaveformDataset(object):
     def pre_process_parameters(self, parameters):
         """Takes as input an array of size (nsamples, nparameters), consisting
         of a list of parameters.
-
         Returns standardized parameters.
         """
 
@@ -1687,9 +1722,6 @@ class WaveformDataset(object):
 
             self.noisy_test_waveforms[ifo] = noise
 
-        self._cache_oversampled_parameters(n)
-        if not self.sample_extrinsic_only:
-            self.parameters = self.cache_parameters
         print('Generating whitened detector waveforms.')
         for i in tqdm(range(n)):
 
@@ -1747,7 +1779,6 @@ class WaveformDataset(object):
                              data_fn='noisy_test_data.hdf5',
                              config_fn='settings.json'):
         """Load noisy test data from file.
-
         This works even without loading a full training set, e.g, for
         evaluation purposes.
         """
@@ -1867,11 +1898,9 @@ class WaveformDataset(object):
     def _resample_distance(self, p, h_det):
         """Resample the luminosity distance for a waveform based on
         new distance prior and / or an SNR threshold.
-
         Arguments:
             p {array} -- initial parameters
             h_det {dict} -- initial detector waveforms
-
         Returns:
             array -- new parameters, with distance resampled
             dict -- new detector waveforms
@@ -2020,10 +2049,8 @@ class WaveformDataset(object):
         """Estimate the variances of the luminosity distance and the
         reduced basis coefficients, based on the SNR threshold. Also calculate
         the mean for the distance.
-
         This is needed in order to standardize inputs to the neural network,
         where the variance in each input is 1, and the mean is 0.
-
         Arguments:
             nsamples {int} -- number of waveforms to use in the estimate
                               (Default: 100000)
@@ -2054,10 +2081,29 @@ class WaveformDataset(object):
                                        dtype=np.complex64)
         distances = np.empty(nsamples, dtype=np.float32)
 
-        self._cache_oversampled_parameters(nsamples)
-        if not self.sample_extrinsic_only:
-            self.parameters = self.cache_parameters
+        if self.mixed_alpha:
+            print('Load mixed_alpha =', self.mixed_alpha, '(It may take a few mins...)')
+            parameters_posterior = self._sample_prior_posterior(self.nsamples).astype(np.float32)
+            parameters_uniform = self._sample_prior(self.nsamples).astype(np.float32)
+            self.parameters = np.concatenate((parameters_posterior[:int(self.nsamples*self.mixed_alpha)], 
+                                                  parameters_uniform[:(self.nsamples-int(self.nsamples*self.mixed_alpha))]),axis=0)
+            assert self.nsamples == len(self.parameters)        
+            # I have to shuffle the mixed parameters...
+            index = np.arange(self.nsamples)
+            np.random.shuffle(index)
+            self.parameters = self.parameters[index]     
+            
+            self._cache_oversampled_parameters(self.nsamples)
+            # Set extrinsic parameters to fiducial values.
+            print("Setting extrinsic parameters to fiducial values.")
+            for extrinsic_param, value in self.fiducial_params.items():
+                self.parameters[:, self.param_idx[extrinsic_param]] = value
         
+        else:
+            print('Load mixed_alpha = 0.0')
+        print('loaded parameters...')
+
+
         # Generate distances and waveforms
         for i in tqdm(range(nsamples)):
             p, h_det, _, _ = self.p_h_random_extrinsic(i, train=True)
@@ -2095,6 +2141,17 @@ class WaveformDatasetTorch(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
+        if self.wfd.mixed_alpha: # sample_extrinsic_only
+            if (idx == 0):
+                self.wfd._cache_oversampled_parameters(self.wfd.nsamples)
+                print('Re-sampling exterior params for alpha = {}.'.format(self.wfd.mixed_alpha))        
+                # Set extrinsic parameters to fiducial values.
+                # print("Setting extrinsic parameters to fiducial values.")
+                # for extrinsic_param, value in self.wfd.fiducial_params.items():
+                #     self.wfd.parameters[:, self.wfd.param_idx[extrinsic_param]] = value    
+        else:
+            pass
+
         if self.wfd.extrinsic_at_train:
 
             # Obtain parameters and waveform
@@ -2109,6 +2166,7 @@ class WaveformDatasetTorch(Dataset):
                     torch.tensor(snr, device='cpu'))
 
         else:
+            raise
             # OLD CODE. REWORK FOR COMPATIBILITY.
 
             # Convert to index in wrapped WaveformDataset

@@ -84,11 +84,11 @@ labels = ['$m_1$', '$m_2$', '$\\phi_c$', '$t_c$', '$d_L$', '$a_1$',
 ######
 
 
-event = 'GW150914'
-
-model_dir = 'models/GW150914_sample_uniform_100basis_all_posterior_prior'
-# model_dir = 'models/GW150914_sample_uniform_100basis_all_uniform_prior'
-data_dir = 'data/GW150914_sample_prior_basis/'
+event = 'GW151012'
+model_dir = '../../GW-train/GW151012/models/GW151012_sample_uniform_100basis_all_posterior_prior'
+# model_dir = '../../GW-train/GW150914/models/GW150914_sample_uniform_100basis_all_uniform_prior'
+# model_dir = '../../gw-round2/gw150914/models/GW170814_sample_uniform_100basis_all_mixed_prior_a015'
+data_dir = 'data/GW151012_sample_prior_basis/'
 save_model_name = [f for f in os.listdir(model_dir) if ('_model.pt' in f) and ('.e' not in f) ][0]
 save_aux_filename = [f for f in os.listdir(model_dir) if ('_waveforms_supplementary.hdf5' in f) and ('.e' not in f) ][0]
 print(model_dir)
@@ -149,6 +149,9 @@ test_samples = pm.wfd.post_process_parameters(x_samples.numpy())
 
 ##################### Save ###############
 print('saving...')
-save_dir = model_dir + '/' + event + '_test_event_samples'
+# save_dir = '../test/' + event + '_test_event_samples_' + model_dir.split('_')[-1]
+save_dir = '../test/' + event + '_test_event_samples_' + model_dir.split('_')[-2]
 np.save(save_dir, test_samples)
 print('saving at', save_dir+'.npy')
+
+
