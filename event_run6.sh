@@ -1,8 +1,8 @@
 export CUDA_VISIBLE_DEVICES=1
 python3.7 -m inference.gwpe_main train new nde \
-    --data_dir data/GW150914_sample_prior_basis/ \
-    --model_dir models/GW150914_sample_uniform_100basis_all_uniform_prior/ \
-    --basis_dir data/GW150914_sample_prior_basis/ \
+    --data_dir data/GW151012_sample_prior_basis/ \
+    --model_dir models/GW151012_sample_uniform_100basis_all_uniform_prior/ \
+    --basis_dir data/GW151012_sample_prior_basis/ \
     --save_model_name model.pt \
     --save_aux_filename waveforms_supplementary.hdf5 \
     --nbins 8 \
