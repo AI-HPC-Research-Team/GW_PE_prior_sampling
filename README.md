@@ -18,17 +18,6 @@ The evaluation of our approach verifies the efficacy and efficiency for gravitat
 
 The paper is available on ... (TBA). This release contains scripts and data files of the research.
 
----
-
-<img src="avg_JS_vs_alpha.png" width="500" alt=""/><br/>
-
-To quantitatively measure the prior sampling effect on $\alpha$, we show the mean JS divergence of the complete 15 parameters on various prior sampling probability _alpha_ for 10 real gravitational-wave events. 
-Intuitively, the _alpha_ represents the domain knowledge used in the construction of training dataset. 
-The cross mark shows the saturation position of _alpha_ and the effect is discussed in the main text.
-The downward trends in JS divergence for all distinct events show a saturation effect on _alpha_ around 0.1.
-This implies that roughly 10% physical prior knowledge incorporated is enough for accurate Bayesian inference of the high-dimensional gravitational-wave data.
-
----
 
 ## Setup
 
@@ -64,6 +53,23 @@ Network hyperparameters and training options can be specified by modifying this 
 To perform inference, execute the code in `evaluate_PCL_test_sh.py` or `evaluate_PCL_test_whentrain.py`
 This loads the strain data for each BBH events in GWTC-1 and conditions the trained normalizing flow on them. 
 It draws samples from the base space, and applies the flow to generate samples from the conditional density estimator.
+
+## Results
+
+<img src="avg_JS_vs_alpha.png" width="500" alt=""/><br/>
+
+To quantitatively measure the prior sampling effect on $\alpha$, we show the mean JS divergence of the complete 15 parameters on various prior sampling probability _alpha_ for 10 real gravitational-wave events. 
+Intuitively, the _alpha_ represents the domain knowledge used in the construction of training dataset. 
+The cross mark shows the saturation position of _alpha_ and the effect is discussed in the main text.
+The downward trends in JS divergence for all distinct events show a saturation effect on _alpha_ around 0.1.
+This implies that roughly 10% physical prior knowledge incorporated is enough for accurate Bayesian inference of the high-dimensional gravitational-wave data.
+
+The resulting posterior distributions for GW150914 can be compared, and we see that they are indistinguishable, both qualitatively and quantitatively, with the ground truth:
+
+<img src="GW150914_corner.png" width="600" alt=""/><br/>
+
+Marginalized one- (1-sigma) and two- dimensional posterior distributions for the benchmarking event (GW150914) over the complete 15 physical parameters, with our approach (orange) and the ground truth (blue). 
+The JS divergences are showed on the top and the contours represent 1-, 2- and 3-sigma significance level.
 
 ## License and Citation
 
