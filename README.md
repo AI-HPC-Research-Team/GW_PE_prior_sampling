@@ -37,7 +37,8 @@ conda activate env
 
 2. Generate the reduced-order representation.
 
-    Use `prepreparing4RBasis.py` tot generate reduced-order representation for each BBH events in GWTC-1.
+    Use `prepreparing4RBasis.py` to generate reduced-order representation for each BBH events in GWTC-1.
+    Use `test4RBasis.py` to test the reduced performance.
 
 3. Train the network.
 
