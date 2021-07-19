@@ -5,6 +5,15 @@ downsampled_posterior_samples_v1.0.0/GW*.dat
 __pycache__/
 *.py[cod]
 *$py.class
+lfigw/
+temp*
+all_test_0709/
+retrain_*/
+bilby_runs/
+GW150914*/
+*.ipynb
+*.logfile
+readme.PCL
 
 # C extensions
 *.so
