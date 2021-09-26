@@ -1,5 +1,5 @@
 # Sampling with Prior Knowledge for High-dimensional Gravitational-wave Data Analysis
-**He Wang <sup>1</sup>, Zhoujian Cao<sup>2</sup>, Yue Zhou<sup>3</sup>, Zong-Kuan Guo<sup>1</sup>, Zhixiang Ren<sup>3</sup>**
+**He Wang <sup>1</sup>, Zhoujian Cao<sup>2</sup>, Yue Zhou<sup>3</sup>, Zong-Kuan Guo<sup>1</sup>, Zhixiang Ren*<sup>3</sup>**
 
 <sub>1. Institute of Theoretical Physics, Chinese Academy of Sciences, Beijing, China</sub>  
 <sub>2. Department of Astronomy, Beijing Normal University, Beijing, China</sub>  
