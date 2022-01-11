@@ -1,4 +1,8 @@
 #! /usr/local/bin/python
+# Copyright (c) 2020 Stephen Green
+# Copyright (c) 2021 Peng Cheng Laboratory.
+# Licensed under the MIT license.
+
 import inference.waveform as wfg
 from inference.reduced_basis import SVDBasis
 
