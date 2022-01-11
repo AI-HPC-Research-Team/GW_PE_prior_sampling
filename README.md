@@ -12,7 +12,7 @@
 <sub>3. Research Center for AI, Peng Cheng Laboratory, Shenzhen, China</sub>
 
 
-[![GitHub License](https://img.shields.io/github/license/AI-HPC-Research-Team/GW_PE_prior_sampling)]() [![DOI](https://img.shields.io/badge/DOI-10.26599%2FBDMA.2021.9020018-blue)](https://ieeexplore.ieee.org/abstract/document/9663260/) 
+[![GitHub License](https://img.shields.io/github/license/AI-HPC-Research-Team/GW_PE_prior_sampling?style=plastic)]() [![DOI](https://img.shields.io/badge/DOI-10.26599%2FBDMA.2021.9020018-blue?style=plastic)](https://ieeexplore.ieee.org/abstract/document/9663260/) 
 
 
 ## Introduction
