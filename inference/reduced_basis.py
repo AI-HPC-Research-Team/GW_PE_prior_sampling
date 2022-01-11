@@ -1,3 +1,7 @@
+# Copyright (c) 2020 Stephen Green
+# Copyright (c) 2021 Peng Cheng Laboratory.
+# Licensed under the MIT license.
+
 import scipy
 import numpy as np
 import h5py

@@ -1,3 +1,8 @@
+# Copyright (c) 2020 Stephen Green
+# Copyright (c) 2021 Peng Cheng Laboratory.
+# Licensed under the MIT license.
+
+
 # from pprint import pprint as print
 from .reduced_basis import SVDBasis
 

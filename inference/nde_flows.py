@@ -1,3 +1,7 @@
+# Copyright (c) 2020 Stephen Green
+# Copyright (c) 2021 Peng Cheng Laboratory.
+# Licensed under the MIT license.
+
 from nflows import distributions, flows, transforms, utils
 import torch
 from torch.nn import functional as F
