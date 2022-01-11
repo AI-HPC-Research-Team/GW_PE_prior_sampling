@@ -1,4 +1,6 @@
->The project was originally forked from the **lfigw** project. It is licensed under the MIT License. Please visit [https://github.com/stephengreen/lfi-gw](https://github.com/stephengreen/lfi-gw) or the [paper](https://iopscience.iop.org/article/10.1088/2632-2153/abfaed) by Stephen R. Green and Jonathan Gair for further details and contributions.
+>The project was originally forked from the **lfigw** project. It is licensed under the MIT License.
+>Our work was inspired and developed upon the research in **"Complete parameter inference for GW150914 using deep learning"** by Stephen R. Green et al.
+>Please visit [https://github.com/stephengreen/lfi-gw](https://github.com/stephengreen/lfi-gw) or the [paper](https://iopscience.iop.org/article/10.1088/2632-2153/abfaed) by Stephen R. Green and Jonathan Gair for further details and contributions.
 
 ---
 
