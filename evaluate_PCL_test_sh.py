@@ -1,3 +1,7 @@
+# Copyright (c) 2020 Stephen Green
+# Copyright (c) 2021 Peng Cheng Laboratory.
+# Licensed under the MIT license.
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd

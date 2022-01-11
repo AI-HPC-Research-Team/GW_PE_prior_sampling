@@ -1,3 +1,7 @@
+# Copyright (c) 2020 Stephen Green
+# Copyright (c) 2021 Peng Cheng Laboratory.
+# Licensed under the MIT license.
+
 import os
 
 os.environ['OMP_NUM_THREADS'] = str(1)

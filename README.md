@@ -1,9 +1,18 @@
+>The project was originally forked from the **lfigw** project. It is licensed under the MIT License. Please visit [https://github.com/stephengreen/lfi-gw](https://github.com/stephengreen/lfi-gw) or the [paper](https://iopscience.iop.org/article/10.1088/2632-2153/abfaed) by Stephen R. Green and Jonathan Gair for further details and contributions.
+
+---
+
 # Sampling with Prior Knowledge for High-dimensional Gravitational-wave Data Analysis
+
+
 **He Wang <sup>1</sup>, Zhoujian Cao<sup>2</sup>, Yue Zhou<sup>3</sup>, Zong-Kuan Guo<sup>1</sup>, Zhixiang Ren*<sup>3</sup>**
 
 <sub>1. Institute of Theoretical Physics, Chinese Academy of Sciences, Beijing, China</sub>  
 <sub>2. Department of Astronomy, Beijing Normal University, Beijing, China</sub>  
 <sub>3. Research Center for AI, Peng Cheng Laboratory, Shenzhen, China</sub>
+
+
+[![GitHub License](https://img.shields.io/github/license/AI-HPC-Research-Team/GW_PE_prior_sampling)]() [![DOI](https://img.shields.io/badge/DOI-10.26599%2FBDMA.2021.9020018-blue)](https://ieeexplore.ieee.org/abstract/document/9663260/) 
 
 
 ## Introduction
@@ -16,7 +25,7 @@ Accordingly, the more relevant regions in the high-dimensional feature space are
 We also adapt the normalizing flow method to be more expressive and trainable so that the information can be extracted and represented effectively by the transformation between the prior and target distributions.
 The evaluation of our approach verifies the efficacy and efficiency for gravitational-wave data inference and points to a promising direction for similar research.
 
-The paper is available on ... (TBA). This release contains scripts and data files of the research.
+The paper is available on [*Big Data Mining and Analytics*](https://ieeexplore.ieee.org/abstract/document/9663260/). This release contains scripts and data files of the research.
 
 
 ## Setup
@@ -74,4 +83,9 @@ The JS divergences are showed on the top and the contours represent 1-, 2- and 3
 
 ## License and Citation
 
-TBA
+Copyright (c) 2020 Stephen Green
+
+Copyright (c) 2021 Peng Cheng Laboratory.
+
+Licensed under the MIT license. For copyright information, consult the LICENSE file.
+
